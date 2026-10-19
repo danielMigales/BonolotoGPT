@@ -29,10 +29,10 @@ jobs:
           node-version: '22'
       - name: Descargar y validar el histórico oficial de BonoLoto
         run: npm run update-data
-      - name: Validar y construir la web estática
-        run: |
-          npm test
-          npm run build
+      - name: Construir la aplicación con el histórico oficial
+        run: npm run build
+      - name: Ejecutar las pruebas
+        run: npm test
       - name: Guardar el histórico oficial y los artefactos generados
         run: |
           git config user.name "github-actions[bot]"
