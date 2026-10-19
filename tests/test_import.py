@@ -11,7 +11,7 @@ class ImportTests(unittest.TestCase):
         self.assertIn('game_id=BONO',d['source'])
     def test_rejects_primitiva_data(self):
         with self.assertRaises(ValueError):
-            normalize(dict(game_id='LAPR',id_sorteo='a',fecha_sorteo='2026-01-02',combinacion='06 - 02 - 03 - 04 - 05 - 01 C(7) R(0)'))
+            normalize(dict(game_id='OTRO',id_sorteo='a',fecha_sorteo='2026-01-02',combinacion='06 - 02 - 03 - 04 - 05 - 01 C(7) R(0)'))
     def test_bad_data(self):
         with self.assertRaises(ValueError):
             normalize(dict(game_id='BONO',combinacion='sin resultado'))
