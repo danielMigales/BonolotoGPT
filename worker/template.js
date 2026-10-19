@@ -50,14 +50,14 @@ export async function getData(env){
  return current;
 }
 // Registro separado de la caché: nunca sustituir una propuesta ya emitida.
-export async function trackAnalysis(env,archive,report){
+export async function trackAnalysis(env,archive,report,now=new Date()){
  if(report.status!=='ready')return {...report,warning:archive.warning};
  const base={...report,forecast:{...report.forecast,targetDate:nextDrawDate(report.sourceLastDate)},warning:archive.warning};
  if(!env.BUCKET)return {...base,tracking:{targetDate:base.forecast.targetDate,active:null,records:[],persisted:false}};
  const key='bonoloto/ai/tracking/'+report.window+'.json';
  for(let attempt=0;attempt<4;attempt++){
   const object=await env.BUCKET.get(key),previous=object?await object.json():{records:[]};
-  const tracking=reconcileForecasts(previous.records,base,archive.draws);
+  const tracking=reconcileForecasts(previous.records,base,archive.draws,now);
   if(JSON.stringify(previous.records)!==JSON.stringify(tracking.records)){
    const options={httpMetadata:{contentType:'application/json'}};
    // R2 devuelve null si otra petición ha actualizado el objeto entre lectura y escritura.
