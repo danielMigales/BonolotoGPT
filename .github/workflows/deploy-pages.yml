@@ -1,4 +1,4 @@
-name: Publicar PrimitivaGPT en GitHub Pages
+name: Publicar BonolotoGPT en GitHub Pages
 on:
   push:
     branches: [main]
@@ -39,6 +39,6 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: public
-      - name: Publicar PrimitivaGPT
+      - name: Publicar BonolotoGPT
         id: deployment
         uses: actions/deploy-pages@v5
