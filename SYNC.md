@@ -1,4 +1,4 @@
-# Actualización de PrimitivaGPT
+# Actualización de BonolotoGPT
 
 Este documento describe un procedimiento de sincronización, no una automatización confirmada. En la revisión del 19 de octubre de 2026, los workflows de este repositorio solo validan/construyen la aplicación y no ejecutan una descarga programada de SELAE. Tampoco se ha confirmado una tarea externa activa. No afirmar que la actualización es automática hasta verificar esa tarea y sus registros.
 
