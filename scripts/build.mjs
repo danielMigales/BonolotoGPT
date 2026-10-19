@@ -1,5 +1,5 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
-import {analyze} from '../engine/model.js';
+import {analyze,avoidExactRepeat} from '../engine/model.js';
 const seed=JSON.parse(await readFile('data/draws.json','utf8'));
 const engine=await readFile('engine/model.js','utf8');
 const logic=await readFile('web/logic.js','utf8');
@@ -24,6 +24,8 @@ if(defaultAnalysis.status==='ready'){
  try{
   const history=JSON.parse(await readFile('data/forecast-history.json','utf8'));
   if(Array.isArray(history)&&history.length){
+   const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
+   if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
    defaultAnalysis.lastEvaluation=history.at(-1);
    defaultAnalysis.evaluationHistory=history.slice(-10);
   }
