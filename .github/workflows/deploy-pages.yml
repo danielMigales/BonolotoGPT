@@ -47,7 +47,7 @@ jobs:
         if: steps.schedule-time.outputs.run == 'true'
         run: npm run update-data
       - name: Contrastar y archivar la predicción que acaba de resolverse
-        if: always() && steps.schedule-time.outputs.run == 'true'
+        if: steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'success'
         run: python scripts/archive_forecast.py
       - name: Guardar el histórico y la evaluación antes de construir y probar
         if: steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'success'
@@ -56,7 +56,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/draws.json data/forecast-history.json
           if ! git diff --cached --quiet; then
-            git commit -m "Guardar histórico oficial validado de BonoLoto"
+            git commit -m "Guardar histórico oficial validado de BonoLoto [skip ci]"
             git push
           fi
       - name: Guardar el punto de control si falla SELAE
@@ -84,7 +84,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Actualizar histórico oficial de BonoLoto"
+            git commit -m "Actualizar histórico oficial de BonoLoto [skip ci]"
             git push
           fi
       - name: Configurar GitHub Pages
