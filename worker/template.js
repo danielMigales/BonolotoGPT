@@ -15,7 +15,7 @@ export function validateHistory(draws){
  if(!draws.length)throw Error('Histórico vacío');
  if(new Set(draws.map(d=>d.date)).size!==draws.length||new Set(draws.map(d=>d.id)).size!==draws.length)throw Error('Duplicados');
  const dates=new Set(draws.map(d=>d.date)),end=draws[0].date;
- for(let d=new Date('2026-01-01T12:00:00Z');d.toISOString().slice(0,10)<=end;d.setUTCDate(d.getUTCDate()+1))if(d.getUTCDay()!==0&&!dates.has(d.toISOString().slice(0,10)))throw Error('Cobertura incompleta');
+ for(let d=new Date('2026-01-01T12:00:00Z');d.toISOString().slice(0,10)<=end;d.setUTCDate(d.getUTCDate()+1))if(!dates.has(d.toISOString().slice(0,10)))throw Error('Cobertura incompleta');
 }
 export function validateArchive(input){
  if(!input||input.schemaVersion!==1||input.source!=='SELAE'||input.startDate!=='2026-01-01'||!Array.isArray(input.draws))throw Error('Archivo no reconocido');
@@ -57,6 +57,8 @@ export async function trackAnalysis(env,archive,report,now=new Date()){
  const key='bonoloto/ai/tracking/'+report.window+'.json';
  for(let attempt=0;attempt<4;attempt++){
   const object=await env.BUCKET.get(key),previous=object?await object.json():{records:[]};
+  const latestForecast=previous.records.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
+  if(latestForecast?.numbers?.length===6)base.forecast.numbers=avoidExactRepeat(base.forecast.numbers,latestForecast.numbers,base.forecast.numberScores);
   const tracking=reconcileForecasts(previous.records,base,archive.draws,now);
   if(JSON.stringify(previous.records)!==JSON.stringify(tracking.records)){
    const options={httpMetadata:{contentType:'application/json'}};
