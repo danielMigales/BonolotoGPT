@@ -37,7 +37,7 @@ def normalize_widget(day, body):
     )
     match = re.search(pattern, text, flags=re.IGNORECASE)
     if not match:
-        raise ValueError(f'SELAE no ha devuelto una combinación reconocible para {day}. Respuesta: {text[:1200]}')
+        raise ValueError(f'SELAE no ha devuelto una combinación reconocible para {day}. Final de respuesta: {text[-3000:]}')
 
     values = list(map(int, match.groups()))
     nums, complementario, reintegro = values[:6], values[6], values[7]
