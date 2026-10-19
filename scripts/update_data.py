@@ -12,7 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 START = dt.date(2026, 1, 1)
 BASE = 'https://www.loteriasyapuestas.es/servicios/buscadorSorteos'
 MADRID = ZoneInfo('Europe/Madrid')
-DRAW_WEEKDAYS = set(range(7))  # BonoLoto celebra sorteos todos los días
+DRAW_WEEKDAYS = set(range(6))  # BonoLoto celebra sorteos de lunes a sábado
 RESULTS_AVAILABLE_AFTER = dt.time(23, 0)
 
 
@@ -34,8 +34,6 @@ def normalize(row):
         id=str(row['id_sorteo']),
         date=date,
         numbers=sorted(nums),
-        complementary=c,
-        refund=r,
         source='https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + date.replace('-', ''),
     )
 
@@ -113,7 +111,6 @@ def main():
         print('No hay fechas nuevas que consultar; se conserva el histórico.')
         return
 
-    raw_files = []
     for begin, end in month_ranges(start, today):
         url = BASE + f'?game_id=BONO&celebrados=true&fechaInicioInclusiva={begin:%Y%m%d}&fechaFinInclusiva={end:%Y%m%d}'
         for attempt in range(3):
@@ -130,7 +127,6 @@ def main():
                     if not begin.isoformat() <= record['date'] <= end.isoformat():
                         raise ValueError('SELAE devuelve una fecha fuera del intervalo solicitado')
                     merged[record['date']] = record
-                raw_files.append((begin, end, rows))
                 print(f'{begin}–{end}: {len(rows)} registros recibidos', flush=True)
                 break
             except Exception:
@@ -161,14 +157,7 @@ def main():
         draws=draws,
     )
 
-    # Escribe primero los datos validados en temporales y reemplaza el archivo
-    # principal solo al final, para no publicar respuestas incompletas.
-    for begin, end, rows in raw_files:
-        raw_dir = ROOT / 'data/raw'
-        raw_dir.mkdir(parents=True, exist_ok=True)
-        suffix = f'{begin:%Y-%m}.json' if begin.day == 1 and end.day == calendar.monthrange(end.year, end.month)[1] else f'{begin:%Y%m%d}-{end:%Y%m%d}.json'
-        (raw_dir / suffix).write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n')
-
+    # Solo se conserva el histórico normalizado de seis números; no se archivan respuestas auxiliares de SELAE.
     tmp = path.with_suffix('.tmp')
     tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n')
     tmp.replace(path)
