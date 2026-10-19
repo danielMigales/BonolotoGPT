@@ -9,7 +9,7 @@ class ImportTests(unittest.TestCase):
         self.assertEqual(d['numbers'],[1,2,3,4,5,6])
         self.assertEqual(set(d),{'id','date','numbers','source'})
         self.assertIn('game_id=BONO',d['source'])
-    def test_rejects_primitiva_data(self):
+    def test_rejects_other_game_data(self):
         with self.assertRaises(ValueError):
             normalize(dict(game_id='OTRO',id_sorteo='a',fecha_sorteo='2026-01-02',combinacion='06 - 02 - 03 - 04 - 05 - 01 C(7) R(0)'))
     def test_bad_data(self):
