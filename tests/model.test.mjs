@@ -1,9 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {analyze,patterns,randomBaseline,MODEL_VERSION,nextDrawDate} from '../engine/model.js';
+import {analyze,patterns,randomBaseline,MODEL_VERSION,nextDrawDate,avoidExactRepeat} from '../engine/model.js';
 function validDraws(count=35){const out=[];let date=new Date('2026-09-08T12:00:00Z');while(out.length<count){if(date.getUTCDay()!==0){const i=out.length;const nums=Array.from({length:49},(_,j)=>((j*17+i*11)%49)+1).slice(0,6).sort((a,b)=>a-b);out.push({date:date.toISOString().slice(0,10),numbers:nums});}date.setUTCDate(date.getUTCDate()+1);}return out;}
 test('El modelo analiza seis números y explica la propuesta y el último contraste',()=>{const a=validDraws(),report=analyze(a);assert.equal(report.objective.primary,'sixMainNumbers');assert.equal(report.forecast.numbers.length,6);assert.equal(report.forecast.selectionReasons.length,6);assert.ok(report.forecast.selectionReasons.every(x=>x.rank>=1&&x.rank<=49&&Number.isInteger(x.totalFrequency)&&Number.isInteger(x.recentFrequency)));assert.equal(report.lastEvaluation.targetDate,a.at(-1).date);assert.deepEqual(report.lastEvaluation.actual,a.at(-1).numbers);assert.equal(report.lastEvaluation.hits,report.lastEvaluation.numbers.filter(n=>report.lastEvaluation.actual.includes(n)).length);assert.equal(report.lastEvaluation.selectionReasons.length,6);});
 test('Las estadísticas solo contienen números, parejas y patrones de seis números',()=>{const p=patterns([{numbers:[1,2,3,4,5,6]},{numbers:[1,2,10,20,30,40]}]);assert.equal(p.frequency[0].count,2);assert.equal(p.pairs.find(x=>x.numbers.join('-')==='1-2').count,2);assert.equal(p.parity.find(x=>x.even===3).count,1);});
 test('Validación temporal y ventanas insuficientes',()=>{const d=validDraws();assert.equal(analyze(d.slice(0,15)).status,'insufficient');assert.equal(analyze(d).rows.length,d.length-15);assert.throws(()=>analyze([...d,d[0]]));assert.throws(()=>analyze(d,{window:18}));});
 test('Predicciones reproducibles y no miran al sorteo objetivo',()=>{const d=validDraws(),a=analyze(d);const changed=d.map(x=>({...x,numbers:[...x.numbers]}));changed[15].numbers=[1,2,3,4,5,6];assert.deepEqual(analyze(changed).rows[0].predicted,a.rows[0].predicted);assert.deepEqual(analyze(d),a);});
-test('Referencia aleatoria y calendario de Bonoloto',()=>{const b=randomBaseline();assert.equal(b.expectedHits,36/49);assert.ok(b.atLeastThreeProbability>0&&b.atLeastThreeProbability<1);assert.equal(nextDrawDate('2026-10-17'),'2026-10-19');assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(MODEL_VERSION,'2.2.0');});
+test('Diversifica si la nueva propuesta repite exactamente la combinación anterior',()=>{
+ const previous=[16,18,21,23,41,47];
+ const scores=[{number:23,score:.0264},{number:18,score:.0257},{number:21,score:.024},{number:41,score:.0235},{number:16,score:.0229},{number:42,score:.0223},{number:47,score:.0223},{number:15,score:.0222}];
+ const next=avoidExactRepeat(previous,previous,scores);
+ assert.equal(next.length,6);
+ assert.notDeepEqual(next,previous);
+ assert.ok(next.every(n=>Number.isInteger(n)&&n>=1&&n<=49));
+ assert.deepEqual(avoidExactRepeat([1,2,3,4,5,6],previous,scores),[1,2,3,4,5,6]);
+});
+test('Referencia aleatoria y calendario de Bonoloto',()=>{const b=randomBaseline();assert.equal(b.expectedHits,36/49);assert.ok(b.atLeastThreeProbability>0&&b.atLeastThreeProbability<1);assert.equal(nextDrawDate('2026-10-17'),'2026-10-19');assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(MODEL_VERSION,'2.3.0');});
