@@ -42,7 +42,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         # SELAE puede devolver los números en spans separados, sin guiones.
         record = normalize_widget(
             '2026-01-01',
-            '<div>07</div><div>08</div><div>10</div><div>13</div><div>41</div><div>43</div> Complementario C(30) Reintegro R(5)',
+            '<div>07</div><div>08</div><div>10</div><div>13</div><div>41</div><div>43</div> Complementario: C(30) Reintegro: R(5)',
         )
         self.assertEqual(record['numbers'], [7, 8, 10, 13, 41, 43])
 

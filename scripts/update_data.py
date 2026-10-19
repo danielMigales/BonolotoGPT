@@ -32,8 +32,8 @@ def normalize_widget(day, body):
     sep = r'(?:\s*[-–]\s*|\s+)'
     pattern = (
         n + sep + n + sep + n + sep + n + sep + n + sep + n
-        + r'\s*(?:Complementario\s*:\s*)?C\s*\(\s*(\d{1,2})\s*\)'
-        + r'\s*(?:Reintegro\s*:\s*)?R\s*\(\s*(\d)\s*\)'
+        + r'\s*(?:Complementario\s*:?\s*)?C\s*\(\s*(\d{1,2})\s*\)'
+        + r'\s*(?:Reintegro\s*:?\s*)?R\s*\(\s*(\d)\s*\)'
     )
     match = re.search(pattern, text, flags=re.IGNORECASE)
     if not match:
