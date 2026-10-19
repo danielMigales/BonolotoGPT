@@ -41,7 +41,7 @@ export function analyze(draws,{window=15}={}){
  if(![5,10,15,20,30,50].includes(window))throw Error('Ventana no válida: usa 5, 10, 15, 20, 30 o 50');
  const ordered=draws.map(d=>({date:d.date,numbers:d.numbers.slice().sort((a,b)=>a-b)})).sort((a,b)=>a.date.localeCompare(b.date));
  if(new Set(ordered.map(d=>d.date)).size!==ordered.length)throw Error('Fechas duplicadas');
- for(const d of ordered)if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(d.date)||d.numbers.length!==6||new Set(d.numbers).size!==6||d.numbers.some(n=>!Number.isInteger(n)||n<1||n>49))throw Error('Sorteo inválido');
+ for(const d of ordered)if(!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||d.numbers.length!==6||new Set(d.numbers).size!==6||d.numbers.some(n=>!Number.isInteger(n)||n<1||n>49))throw Error('Sorteo inválido');
  if(ordered.length<=window)return {version:MODEL_VERSION,status:'insufficient',window,required:window+1,available:ordered.length};
  const names=['Azar uniforme','Frecuencia acumulada','Frecuencia reciente','Recencia ponderada','Parejas y estructura','Bayes regularizado','Markov regularizado'],logs=Array(names.length).fill(0),rows=[],histogram=Array(7).fill(0);
  let totalHits=0,totalRandom=0,randomHistogram=Array(7).fill(0);
