@@ -10,7 +10,7 @@ test('Carga validada persiste el histórico completo y permite leerlo sin red',a
  try{const saved=await saveArchive({BUCKET},doc);const a=await getData({BUCKET}),b=await getData({BUCKET});assert.deepEqual(a,saved);assert.deepEqual(a,b);assert.equal(a.warning,undefined);assert.equal(requests,0);}finally{globalThis.fetch=original;}
 });
 test('Rechaza archivos incompletos o malformados sin reemplazar el histórico',async()=>{
- for(const mutate of [d=>d.draws.splice(1,1),d=>d.draws[0].numbers[0]=50,d=>d.draws[0].numbers[0]=50,d=>d.source='otra',d=>d.checkedAt='incorrecta',d=>d.draws[0].id='<script>',d=>d.latestDate='2026-01-01',d=>d.draws[0].date='2026-02-30']){
+ for(const mutate of [d=>d.draws.splice(1,1),d=>d.draws[0].numbers[0]=50,d=>d.source='otra',d=>d.checkedAt='incorrecta',d=>d.draws[0].id='<script>',d=>d.latestDate='2026-01-01',d=>d.draws[0].date='2026-02-30']){
   const BUCKET=bucket(seed),doc=fresh();mutate(doc);const before=BUCKET.data.get('bonoloto/history/draws.json');await assert.rejects(()=>saveArchive({BUCKET},doc));assert.equal(BUCKET.data.get('bonoloto/history/draws.json'),before);
  }
 });
