@@ -1,5 +1,6 @@
 """Actualiza el histórico oficial de BonoLoto desde las páginas públicas de SELAE."""
 import datetime as dt
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import html
 import json
 import pathlib
@@ -89,37 +90,30 @@ def sorted_draws(merged):
 
 
 def fetch_day(day):
-    """Consulta primero el widget oficial de SELAE a través de Jina Reader."""
+    """Descarga un resultado desde los recursos públicos de SELAE, con reintentos breves."""
     widget = 'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + day.replace('-', '')
     urls = [
         'https://r.jina.ai/' + widget,
         'https://r.jina.ai/' + official_url(day),
-        widget,
-        official_url(day),
     ]
     last_error = None
     for url in urls:
-        for attempt in range(3):
+        for attempt in range(2):
             try:
                 response = subprocess.run(
                     [
                         'curl', '--fail', '--silent', '--show-error', '--location',
-                        '--connect-timeout', '15', '--max-time', '45',
-                        '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                        '--header', 'Referer: https://www.loteriasyapuestas.es/es/bonoloto/resultados',
+                        '--connect-timeout', '8', '--max-time', '25',
+                        '--user-agent', 'Mozilla/5.0 (compatible; BonolotoGPT/1.0)',
                         url,
                     ],
                     check=True, capture_output=True, text=True, encoding='utf-8',
                 )
-                try:
-                    return normalize_widget(day, response.stdout)
-                except ValueError as exc:
-                    last_error = exc
-                    break
+                return normalize_widget(day, response.stdout)
             except Exception as exc:
                 last_error = exc
-                if attempt < 2:
-                    time.sleep(2)
+                if attempt == 0:
+                    time.sleep(1)
     detail = getattr(last_error, 'stderr', '') or str(last_error)
     raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
 
@@ -145,55 +139,57 @@ def main():
     progress_path = ROOT / 'data/draws-progress.json'
     previous = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'draws': []}
     old_draws = previous.get('draws', [])
-    # Los sorteos guardan como source la URL pública de resultados de SELAE,
-    # no la URL interna del widget (que contiene game_id=BONO).
     merged = {row['date']: row for row in old_draws} if is_bonoloto_rows(old_draws) else {}
 
-    # Recuperar el último punto de control si una ejecución anterior se interrumpió.
     if progress_path.exists():
         progress_doc = json.loads(progress_path.read_text(encoding='utf-8'))
         progress_draws = progress_doc.get('draws', [])
         if not is_bonoloto_rows(progress_draws):
             raise ValueError('El archivo de progreso no contiene un histórico Bonoloto válido; no se sobrescribe.')
         merged.update({row['date']: row for row in progress_draws})
-    latest_date = max(merged, default=None)
-
-    if latest_date:
-        wait, reason = should_wait_for_results(now, latest_date)
-        if wait and not progress_path.exists():
-            print(f'Sin consulta a SELAE: {reason}. Se conserva el histórico.')
-            return
-        start = dt.date.fromisoformat(latest_date) + dt.timedelta(days=1)
-    else:
-        start = START
 
     end = today
     if now.time().replace(tzinfo=None) < RESULTS_AVAILABLE_AFTER:
         end -= dt.timedelta(days=1)
-    if start > end and not progress_path.exists():
-        print('No hay fechas nuevas que consultar; se conserva el histórico.')
-        return
+    expected = list(expected_dates(end))
+    missing = [day for day in expected if day not in merged]
 
-    for day in expected_dates(end):
-        if day < start.isoformat():
-            continue
-        merged[day] = fetch_day(day)
-        # Punto de control tras cada fecha validada para reanudar si falla una
-        # consulta posterior sin repetir las fechas completadas.
-        write_json_atomic(progress_path, {
-            'schemaVersion': 1,
-            'startDate': str(START),
-            'source': 'SELAE',
-            'latestDate': max(merged),
-            'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
-        })
-        print(f'{day}: resultado oficial validado y progreso guardado', flush=True)
+    if not missing:
+        draws = sorted_draws(merged)
+        print(f'Histórico ya completo: {len(draws)} sorteos; último {draws[0]["date"]}', flush=True)
+    else:
+        print(f'Histórico pendiente: {len(missing)} fechas. Descarga paralela con 16 trabajadores.', flush=True)
+        failures = []
+        # Paraleliza por bloques y escribe el punto de control desde el hilo principal.
+        # Así se reduce la duración sin que dos trabajadores sobrescriban el JSON a la vez.
+        with ThreadPoolExecutor(max_workers=16) as pool:
+            for offset in range(0, len(missing), 32):
+                batch = missing[offset:offset + 32]
+                futures = {pool.submit(fetch_day, day): day for day in batch}
+                for future in as_completed(futures):
+                    day = futures[future]
+                    try:
+                        merged[day] = future.result()
+                        write_json_atomic(progress_path, {
+                            'schemaVersion': 1,
+                            'startDate': str(START),
+                            'source': 'SELAE',
+                            'latestDate': max(merged),
+                            'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
+                        })
+                        print(f'{day}: resultado validado; guardados {len(merged)} sorteos', flush=True)
+                    except Exception as exc:
+                        failures.append((day, str(exc)))
+                        print(f'{day}: ERROR {exc}', flush=True)
+        if failures:
+            examples = '; '.join(f'{day}: {err}' for day, err in failures[:8])
+            raise RuntimeError(f'Fallaron {len(failures)} de {len(missing)} fechas. El progreso validado quedó guardado. {examples}')
 
     draws = sorted_draws(merged)
-    latest = dt.date.fromisoformat(draws[0]['date'])
-    missing = sorted(set(expected_dates(latest)) - merged.keys())
-    if missing:
-        raise ValueError('Faltan sorteos en el calendario diario: ' + ', '.join(missing))
+    dates = {row['date'] for row in draws}
+    missing_dates = sorted(set(expected) - dates)
+    if missing_dates:
+        raise ValueError('Faltan sorteos en el calendario diario: ' + ', '.join(missing_dates[:20]))
     if len({row['id'] for row in draws}) != len(draws):
         raise ValueError('Identificadores duplicados')
 
@@ -207,7 +203,7 @@ def main():
     }
     write_json_atomic(path, doc)
     progress_path.unlink(missing_ok=True)
-    print(f'Histórico oficial validado: {len(draws)} sorteos; último {draws[0]["date"]}')
+    print(f'Histórico oficial validado: {len(draws)} sorteos; último {draws[0]["date"]}', flush=True)
 
 
 if __name__ == '__main__':
