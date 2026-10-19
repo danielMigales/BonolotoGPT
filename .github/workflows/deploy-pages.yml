@@ -1,5 +1,8 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
+  schedule:
+    # GitHub Actions usa UTC: 20:00 UTC equivale a las 22:00 en España peninsular durante el horario de verano.
+    - cron: '0 20 * * *'
   push:
     branches: [main]
   workflow_dispatch:
