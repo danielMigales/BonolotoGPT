@@ -1,4 +1,4 @@
-"""Actualiza el histórico SELAE solo cuando ya debería existir un sorteo nuevo."""
+"""Actualiza el histórico oficial de BonoLoto desde el 1 de enero de 2026."""
 import calendar
 import datetime as dt
 import json
@@ -12,7 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 START = dt.date(2026, 1, 1)
 BASE = 'https://www.loteriasyapuestas.es/servicios/buscadorSorteos'
 MADRID = ZoneInfo('Europe/Madrid')
-DRAW_WEEKDAYS = {0, 3, 5}  # lunes, jueves y sábado
+DRAW_WEEKDAYS = set(range(7))  # BonoLoto celebra sorteos todos los días
 RESULTS_AVAILABLE_AFTER = dt.time(23, 0)
 
 
@@ -21,7 +21,7 @@ def normalize(row):
         r'\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s+C\((\d+)\)\s+R\((\d+)\)\s*',
         row.get('combinacion', ''),
     )
-    if not match or row.get('game_id') != 'LAPR':
+    if not match or row.get('game_id') != 'BONO':
         raise ValueError('Registro SELAE no reconocido')
     values = list(map(int, match.groups()))
     nums, c, r = values[:6], values[6], values[7]
@@ -36,7 +36,7 @@ def normalize(row):
         numbers=sorted(nums),
         complementary=c,
         refund=r,
-        source='https://www.loteriasyapuestas.es/f/loterias/resultados/primitiva.html?game_id=LAPR&fecha_sorteo=' + date.replace('-', ''),
+        source='https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + date.replace('-', ''),
     )
 
 
@@ -89,7 +89,13 @@ def main():
     today = now.date()
     path = ROOT / 'data/draws.json'
     previous = json.loads(path.read_text()) if path.exists() else {'draws': []}
-    merged = {r['date']: r for r in previous.get('draws', [])}
+    old_draws = previous.get('draws', [])
+    # No reutilizar el histórico heredado de La Primitiva: es otro juego y sus
+    # combinaciones no deben mezclarse con los resultados de BonoLoto.
+    is_bonoloto = bool(old_draws) and all(
+        'bonoloto.html?game_id=BONO' in str(r.get('source', '')) for r in old_draws
+    )
+    merged = {r['date']: r for r in old_draws} if is_bonoloto else {}
     latest_date = max(merged, default=None)
 
     # Si ya hay histórico, no consultamos antes de la hora prudente ni si ya
@@ -109,7 +115,7 @@ def main():
 
     raw_files = []
     for begin, end in month_ranges(start, today):
-        url = BASE + f'?game_id=LAPR&celebrados=true&fechaInicioInclusiva={begin:%Y%m%d}&fechaFinInclusiva={end:%Y%m%d}'
+        url = BASE + f'?game_id=BONO&celebrados=true&fechaInicioInclusiva={begin:%Y%m%d}&fechaFinInclusiva={end:%Y%m%d}'
         for attempt in range(3):
             try:
                 response = subprocess.run(
