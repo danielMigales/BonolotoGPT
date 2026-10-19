@@ -1,6 +1,6 @@
-"""Actualiza el histórico oficial de BonoLoto desde el 1 de enero de 2026."""
-import calendar
+"""Actualiza el histórico oficial de BonoLoto desde el widget publicado por SELAE."""
 import datetime as dt
+import html
 import json
 import pathlib
 import re
@@ -10,32 +10,45 @@ from zoneinfo import ZoneInfo
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 START = dt.date(2026, 1, 1)
-BASE = 'https://www.loteriasyapuestas.es/servicios/buscadorSorteos'
+BASE = 'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html'
 MADRID = ZoneInfo('Europe/Madrid')
-DRAW_WEEKDAYS = set(range(6))  # BonoLoto celebra sorteos de lunes a sábado
+DRAW_WEEKDAYS = set(range(7))  # SELAE publica sorteos de BonoLoto todos los días
 RESULTS_AVAILABLE_AFTER = dt.time(23, 0)
 
 
-def normalize(row):
-    match = re.fullmatch(
-        r'\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s+C\((\d+)\)\s+R\((\d+)\)\s*',
-        row.get('combinacion', ''),
+def normalize_widget(day, body):
+    """Extrae y valida los seis números de la página oficial de resultados de SELAE."""
+    text = html.unescape(body)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+
+    n = r'(\d{1,2})'
+    sep = r'\s*[-–]\s*'
+    pattern = (
+        n + sep + n + sep + n + sep + n + sep + n + sep + n
+        + r'\s*(?:Complementario\s*:\s*)?C\s*\(\s*(\d{1,2})\s*\)'
+        + r'\s*(?:Reintegro\s*:\s*)?R\s*\(\s*(\d)\s*\)'
     )
-    if not match or row.get('game_id') != 'BONO':
-        raise ValueError('Registro SELAE no reconocido')
+    match = re.search(pattern, text, flags=re.IGNORECASE)
+    if not match:
+        raise ValueError(f'SELAE no ha devuelto una combinación reconocible para {day}')
+
     values = list(map(int, match.groups()))
-    nums, c, r = values[:6], values[6], values[7]
-    if len(set(nums)) != 6 or not all(1 <= n <= 49 for n in nums) or not 1 <= c <= 49 or c in nums or not 0 <= r <= 9:
-        raise ValueError('Combinación inválida')
-    date = str(dt.date.fromisoformat(row['fecha_sorteo'][:10]))
-    if date < START.isoformat():
+    nums, complementario, reintegro = values[:6], values[6], values[7]
+    if (len(set(nums)) != 6 or not all(1 <= value <= 49 for value in nums)
+            or not 1 <= complementario <= 49 or complementario in nums
+            or not 0 <= reintegro <= 9):
+        raise ValueError(f'Combinación oficial inválida para {day}')
+
+    date = dt.date.fromisoformat(day)
+    if date < START:
         raise ValueError('Fecha anterior al inicio del histórico')
-    return dict(
-        id=str(row['id_sorteo']),
-        date=date,
-        numbers=sorted(nums),
-        source='https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + date.replace('-', ''),
-    )
+    return {
+        'id': 'BONO-' + date.strftime('%Y%m%d'),
+        'date': date.isoformat(),
+        'numbers': sorted(nums),
+        'source': BASE + '?game_id=BONO&fecha_sorteo=' + date.strftime('%Y%m%d'),
+    }
 
 
 def expected_dates(end):
@@ -48,14 +61,11 @@ def expected_dates(end):
 
 def latest_scheduled_date(today):
     """Última fecha de sorteo prevista en o antes de today."""
-    day = today
-    while day.weekday() not in DRAW_WEEKDAYS:
-        day -= dt.timedelta(days=1)
-    return day
+    return today
 
 
 def should_wait_for_results(now, latest_date):
-    """Evita consultas antes de hora y cuando el archivo ya está al día."""
+    """Evita consultar antes de hora y cuando el archivo ya está al día."""
     local_now = now.astimezone(MADRID)
     expected = latest_scheduled_date(local_now.date())
     if latest_date and dt.date.fromisoformat(latest_date) >= expected:
@@ -65,38 +75,48 @@ def should_wait_for_results(now, latest_date):
     return False, ''
 
 
-def month_ranges(start, today):
-    """Genera intervalos mensuales sin volver a pedir fechas ya archivadas."""
-    cursor = start
-    while cursor <= today:
-        month_end = dt.date(cursor.year, cursor.month, calendar.monthrange(cursor.year, cursor.month)[1])
-        end = min(today, month_end)
-        yield cursor, end
-        cursor = end + dt.timedelta(days=1)
-
-
 def sorted_draws(merged):
-    """Devuelve el histórico ordenado o falla de forma explícita si SELAE no dio datos."""
+    """Devuelve el histórico ordenado o falla explícitamente si no hay datos."""
     if not merged:
         raise ValueError('SELAE no ha devuelto ningún sorteo válido; se conserva el histórico')
-    return sorted(merged.values(), key=lambda r: r['date'], reverse=True)
+    return sorted(merged.values(), key=lambda row: row['date'], reverse=True)
+
+
+def fetch_day(day):
+    """Descarga el resultado de un día usando el endpoint oficial documentado por SELAE."""
+    url = BASE + '?game_id=BONO&fecha_sorteo=' + day.replace('-', '')
+    last_error = None
+    for attempt in range(3):
+        try:
+            response = subprocess.run(
+                [
+                    'curl', '--fail', '--silent', '--show-error', '--location',
+                    '--connect-timeout', '15', '--max-time', '45',
+                    '--user-agent', 'BonolotoGPT/1.0 (official results archive)',
+                    url,
+                ],
+                check=True, capture_output=True, text=True, encoding='utf-8',
+            )
+            return normalize_widget(day, response.stdout)
+        except Exception as exc:
+            last_error = exc
+            if attempt < 2:
+                time.sleep(2)
+    raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {last_error}') from last_error
 
 
 def main():
     now = dt.datetime.now(MADRID)
     today = now.date()
     path = ROOT / 'data/draws.json'
-    previous = json.loads(path.read_text()) if path.exists() else {'draws': []}
+    previous = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'draws': []}
     old_draws = previous.get('draws', [])
-    # No reutilizar históricos de otro juego ni mezclar sus combinaciones con Bonoloto.
     is_bonoloto = bool(old_draws) and all(
-        'bonoloto.html?game_id=BONO' in str(r.get('source', '')) for r in old_draws
+        'game_id=BONO' in str(row.get('source', '')) for row in old_draws
     )
-    merged = {r['date']: r for r in old_draws} if is_bonoloto else {}
+    merged = {row['date']: row for row in old_draws} if is_bonoloto else {}
     latest_date = max(merged, default=None)
 
-    # Si ya hay histórico, no consultamos antes de la hora prudente ni si ya
-    # contiene el último sorteo previsto. Para un archivo vacío, se hace carga inicial.
     if latest_date:
         wait, reason = should_wait_for_results(now, latest_date)
         if wait:
@@ -106,61 +126,39 @@ def main():
     else:
         start = START
 
-    if start > today:
+    end = today
+    if now.time().replace(tzinfo=None) < RESULTS_AVAILABLE_AFTER:
+        end -= dt.timedelta(days=1)
+    if start > end:
         print('No hay fechas nuevas que consultar; se conserva el histórico.')
         return
 
-    for begin, end in month_ranges(start, today):
-        url = BASE + f'?game_id=BONO&celebrados=true&fechaInicioInclusiva={begin:%Y%m%d}&fechaFinInclusiva={end:%Y%m%d}'
-        for attempt in range(3):
-            try:
-                response = subprocess.run(
-                    ['curl', '--fail', '--silent', '--show-error', '--location', '--max-time', '45', url],
-                    check=True, capture_output=True, text=True,
-                )
-                rows = json.loads(response.stdout)
-                if not isinstance(rows, list):
-                    raise ValueError('SELAE no ha devuelto una lista')
-                for row in rows:
-                    record = normalize(row)
-                    if not begin.isoformat() <= record['date'] <= end.isoformat():
-                        raise ValueError('SELAE devuelve una fecha fuera del intervalo solicitado')
-                    merged[record['date']] = record
-                print(f'{begin}–{end}: {len(rows)} registros recibidos', flush=True)
-                break
-            except Exception:
-                if attempt == 2:
-                    raise
-                time.sleep(2)
-
-    # Una respuesta vacía o sin sorteos posteriores no cuenta como actualización:
-    # no se toca ni draws.json ni los ficheros brutos.
-    if latest_date and max(merged, default='') <= latest_date:
-        print('SELAE todavía no publica un sorteo nuevo. Histórico sin cambios.')
-        return
+    for day in expected_dates(end):
+        if day < start.isoformat():
+            continue
+        merged[day] = fetch_day(day)
+        print(f'{day}: resultado oficial validado', flush=True)
 
     draws = sorted_draws(merged)
     latest = dt.date.fromisoformat(draws[0]['date'])
     missing = sorted(set(expected_dates(latest)) - merged.keys())
     if missing:
-        raise ValueError('Faltan sorteos en el calendario habitual: ' + ', '.join(missing))
-    if len({r['id'] for r in draws}) != len(draws):
+        raise ValueError('Faltan sorteos en el calendario diario: ' + ', '.join(missing))
+    if len({row['id'] for row in draws}) != len(draws):
         raise ValueError('Identificadores duplicados')
 
-    doc = dict(
-        schemaVersion=1,
-        startDate=str(START),
-        source='SELAE',
-        checkedAt=dt.datetime.now(dt.timezone.utc).isoformat(),
-        latestDate=draws[0]['date'],
-        draws=draws,
-    )
-
-    # Solo se conserva el histórico normalizado de seis números; no se archivan respuestas auxiliares de SELAE.
+    doc = {
+        'schemaVersion': 1,
+        'startDate': str(START),
+        'source': 'SELAE',
+        'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+        'latestDate': draws[0]['date'],
+        'draws': draws,
+    }
     tmp = path.with_suffix('.tmp')
-    tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n')
+    tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     tmp.replace(path)
-    print(f'Histórico validado: {len(draws)} sorteos; último {draws[0]["date"]}')
+    print(f'Histórico oficial validado: {len(draws)} sorteos; último {draws[0]["date"]}')
 
 
 if __name__ == '__main__':
