@@ -4,6 +4,7 @@ from zoneinfo import ZoneInfo
 
 from scripts.update_data import (
     expected_dates,
+    parse_bulk_csv,
     latest_scheduled_date,
     normalize_widget,
     should_wait_for_results,
@@ -45,6 +46,14 @@ class UpdateDataScheduleTests(unittest.TestCase):
             '<div>07</div><div>08</div><div>10</div><div>13</div><div>41</div><div>43</div> Complementario: C(30) Reintegro: R(5)',
         )
         self.assertEqual(record['numbers'], [7, 8, 10, 13, 41, 43])
+
+    def test_bulk_csv_parses_dates_and_keeps_only_six_numbers(self):
+        body = 'Fecha,N1,N2,N3,N4,N5,N6,C\\n17/10/2026,18,32,37,38,42,49,20\\n18/10/2026,9,18,21,23,48,49,29\\n'
+        rows = parse_bulk_csv(body, dt.date(2026, 10, 18))
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows['2026-10-17']['numbers'], [18, 32, 37, 38, 42, 49])
+        self.assertEqual(rows['2026-10-18']['numbers'], [9, 18, 21, 23, 48, 49])
+        self.assertTrue(rows['2026-10-17']['source'].startswith('https://www.loteriasyapuestas.es/'))
 
     def test_parses_widget_without_optional_labels(self):
         record = normalize_widget(

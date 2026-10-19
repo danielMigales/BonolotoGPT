@@ -1,5 +1,7 @@
 """Actualiza el histórico oficial de BonoLoto desde las páginas públicas de SELAE."""
 import datetime as dt
+import csv
+import io
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import html
 import json
@@ -115,6 +117,98 @@ def fetch_day(day):
     detail = getattr(last_error, 'stderr', '') or str(last_error)
     raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
 
+
+BULK_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQALTRaLDFfhXOAQmeONPqmFKm9yOiQ4W97rhWgR41BZ7czFsjK5YktD6fnETKHGB9YUnyQ4XBSbhZx/pub?gid=0&output=csv&single=true'
+BULK_SOURCE_PAGE = 'https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/'
+# Frecuencias oficiales SELAE para los sorteos del 2026-01-01 al 2026-10-17,
+# publicadas en sus estadísticas con actualización del 2026-10-17.
+SELAE_COUNTS_THROUGH_2026_10_17 = (
+    37, 33, 32, 29, 35, 34, 32, 33, 27, 38, 38, 39, 33, 28, 40, 42, 33,
+    46, 34, 25, 36, 44, 49, 33, 35, 40, 25, 35, 32, 37, 38, 30, 35, 27,
+    38, 28, 37, 30, 32, 34, 44, 37, 40, 43, 34, 44, 44, 36, 35,
+)
+
+
+def parse_bulk_csv(body, end):
+    """Lee el histórico CSV en una sola petición y conserva solo seis números."""
+    parsed = {}
+    reader = csv.reader(io.StringIO(body.lstrip('\ufeff')))
+    for row in reader:
+        if not row:
+            continue
+        first = ','.join(row[:2])
+        iso = re.search(r'(?<!\\d)(20\\d{2})[-/](\\d{1,2})[-/](\\d{1,2})(?!\\d)', first)
+        euro = re.search(r'(?<!\\d)(\\d{1,2})[/-](\\d{1,2})[/-](20\\d{2})(?!\\d)', first)
+        try:
+            if iso:
+                draw_date = dt.date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3)))
+            elif euro:
+                draw_date = dt.date(int(euro.group(3)), int(euro.group(2)), int(euro.group(1)))
+            else:
+                continue
+        except ValueError:
+            continue
+        if draw_date < START or draw_date > end:
+            continue
+        values = []
+        for cell in row[1:]:
+            token = cell.strip()
+            if re.fullmatch(r'\\d{1,2}', token):
+                values.append(int(token))
+        if len(values) < 6:
+            continue
+        numbers = values[:6]
+        if len(set(numbers)) != 6 or not all(1 <= n <= 49 for n in numbers):
+            raise ValueError(f'CSV histórico contiene una combinación inválida para {draw_date.isoformat()}')
+        day = draw_date.isoformat()
+        record = {
+            'id': 'BONO-' + draw_date.strftime('%Y%m%d'),
+            'date': day,
+            'numbers': sorted(numbers),
+            'source': official_url(day),
+        }
+        if day in parsed and parsed[day]['numbers'] != record['numbers']:
+            raise ValueError(f'CSV histórico contiene dos combinaciones distintas para {day}')
+        parsed[day] = record
+    if not parsed:
+        raise ValueError('El CSV histórico no contiene sorteos Bonoloto desde 2026-01-01')
+    return parsed
+
+
+def fetch_bulk_history(end):
+    """Descarga el CSV histórico en una petición en lugar de consultar cientos de fechas."""
+    response = subprocess.run(
+        [
+            'curl', '--fail', '--silent', '--show-error', '--location',
+            '--connect-timeout', '10', '--max-time', '45',
+            '--user-agent', 'Mozilla/5.0 (compatible; BonolotoGPT/1.0)',
+            BULK_CSV_URL,
+        ],
+        check=True, capture_output=True, text=True, encoding='utf-8',
+    )
+    return parse_bulk_csv(response.stdout, end)
+
+
+def validate_official_frequency_counts(draws):
+    """Contrasta el tramo cerrado con la tabla oficial de frecuencias de SELAE."""
+    cutoff = dt.date(2026, 10, 17)
+    expected_days = list(expected_dates(cutoff))
+    by_date = {row['date']: row for row in draws if row['date'] <= cutoff.isoformat()}
+    if not all(day in by_date for day in expected_days):
+        missing = [day for day in expected_days if day not in by_date]
+        raise ValueError('No se puede contrastar con SELAE: faltan fechas del tramo oficial: ' + ', '.join(missing[:10]))
+    counts = [0] * 49
+    for day in expected_days:
+        for number in by_date[day]['numbers']:
+            counts[number - 1] += 1
+    if tuple(counts) != SELAE_COUNTS_THROUGH_2026_10_17:
+        mismatches = [
+            f'{number}: app={counts[number - 1]}, SELAE={SELAE_COUNTS_THROUGH_2026_10_17[number - 1]}'
+            for number in range(1, 50)
+            if counts[number - 1] != SELAE_COUNTS_THROUGH_2026_10_17[number - 1]
+        ]
+        raise ValueError('El CSV no coincide con las frecuencias oficiales SELAE (hasta 2026-10-17): ' + '; '.join(mismatches[:10]))
+
 def is_bonoloto_rows(rows):
     return bool(rows) and all(
         str(row.get('id', '')).startswith('BONO-')
@@ -152,40 +246,49 @@ def main():
     expected = list(expected_dates(end))
     missing = [day for day in expected if day not in merged]
 
-    if not missing:
-        draws = sorted_draws(merged)
-        print(f'Histórico ya completo: {len(draws)} sorteos; último {draws[0]["date"]}', flush=True)
-    else:
-        print(f'Histórico pendiente: {len(missing)} fechas. Descarga paralela con 32 trabajadores.', flush=True)
-        failures = []
-        # Paraleliza por bloques y escribe el punto de control desde el hilo principal.
-        # Así se reduce la duración sin que dos trabajadores sobrescriban el JSON a la vez.
-        with ThreadPoolExecutor(max_workers=32) as pool:
-            for offset in range(0, len(missing), 32):
-                batch = missing[offset:offset + 32]
-                futures = {pool.submit(fetch_day, day): day for day in batch}
-                for future in as_completed(futures):
-                    day = futures[future]
-                    try:
-                        merged[day] = future.result()
-                        write_json_atomic(progress_path, {
-                            'schemaVersion': 1,
-                            'startDate': str(START),
-                            'source': 'SELAE',
-                            'latestDate': max(merged),
-                            'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
-                        })
-                        print(f'{day}: resultado validado; guardados {len(merged)} sorteos', flush=True)
-                    except Exception as exc:
-                        failures.append((day, str(exc)))
-                        print(f'{day}: ERROR {exc}', flush=True)
-                if failures:
-                    # Si un bloque contiene errores de origen, detenerse pronto.
-                    # Los resultados correctos del bloque ya están guardados y se reintentarán solo las fechas faltantes.
-                    break
-        if failures:
-            examples = '; '.join(f'{day}: {err}' for day, err in failures[:8])
-            raise RuntimeError(f'Fallaron {len(failures)} de {len(missing)} fechas. El progreso validado quedó guardado. {examples}')
+    import_source = previous.get('importSource')
+    if len(missing) > 3:
+        print(f'Faltan {len(missing)} fechas: descargando el histórico CSV en una sola petición.', flush=True)
+        try:
+            bulk = fetch_bulk_history(end)
+            merged.update(bulk)
+            import_source = BULK_SOURCE_PAGE
+            write_json_atomic(progress_path, {
+                'schemaVersion': 1,
+                'startDate': str(START),
+                'source': 'SELAE',
+                'importSource': import_source,
+                'latestDate': max(merged),
+                'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
+            })
+            print(f'CSV histórico importado: {len(bulk)} sorteos; progreso guardado.', flush=True)
+        except Exception as exc:
+            print(f'No se pudo importar el CSV masivo: {exc}. Se intentará recuperar solo las fechas faltantes.', flush=True)
+
+    missing = [day for day in expected if day not in merged]
+    if len(missing) > 3:
+        raise RuntimeError(
+            f'Todavía faltan {len(missing)} fechas tras intentar la importación masiva. '
+            'Se evita lanzar cientos de consultas individuales a SELAE.'
+        )
+
+    for day in missing:
+        try:
+            merged[day] = fetch_day(day)
+            write_json_atomic(progress_path, {
+                'schemaVersion': 1,
+                'startDate': str(START),
+                'source': 'SELAE',
+                'importSource': import_source,
+                'latestDate': max(merged),
+                'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
+            })
+            print(f'{day}: resultado validado; progreso guardado', flush=True)
+        except Exception as exc:
+            raise RuntimeError(
+                f'No se pudo completar {day} tras importar el histórico masivo: {exc}. '
+                'Los datos ya recuperados quedan guardados.'
+            ) from exc
 
     draws = sorted_draws(merged)
     dates = {row['date'] for row in draws}
@@ -195,10 +298,14 @@ def main():
     if len({row['id'] for row in draws}) != len(draws):
         raise ValueError('Identificadores duplicados')
 
+    # Verificación independiente del tramo histórico con la tabla de frecuencias publicada por SELAE.
+    validate_official_frequency_counts(draws)
+
     doc = {
         'schemaVersion': 1,
         'startDate': str(START),
         'source': 'SELAE',
+        'importSource': import_source,
         'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
         'latestDate': draws[0]['date'],
         'draws': draws,
