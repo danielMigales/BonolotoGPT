@@ -43,8 +43,21 @@ jobs:
         with:
           node-version: '22'
       - name: Descargar y validar el histórico oficial de BonoLoto
+        id: update-data
         if: steps.schedule-time.outputs.run == 'true'
         run: npm run update-data
+      - name: Guardar el punto de control si falla SELAE
+        if: always() && steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'failure'
+        run: |
+          if [ -f data/draws-progress.json ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/draws-progress.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Guardar progreso de descarga Bonoloto"
+              git push
+            fi
+          fi
       - name: Construir la aplicación con el histórico oficial
         if: steps.schedule-time.outputs.run == 'true'
         run: npm run build
