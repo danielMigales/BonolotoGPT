@@ -5,10 +5,10 @@
 - El proyecto se dedica exclusivamente a Bonoloto.
 - La combinación analizada contiene únicamente seis números principales distintos entre 1 y 49.
 - El único objetivo es acertar los seis números. No existen métricas, prioridades, pesos, predicciones ni seguimiento para campos auxiliares.
-- El histórico normalizado se mantiene vacío hasta obtener datos oficiales válidos.
+- El histórico normalizado contiene resultados desde el 1 de enero de 2026; su integridad se comprueba por calendario y por contraste agregado de frecuencias SELAE.
 - La ventana pública del Laboratorio IA es fija en 15 sorteos.
 - La aplicación requiere 16 sorteos para evaluar la primera predicción.
-- Bonoloto se trata como un calendario de lunes a sábado; se excluyen los domingos.
+- El importador usa el calendario diario configurado en `scripts/update_data.py`; cualquier cambio de calendario debe reflejarse también en las pruebas.
 - No se declara completada una tarea hasta ejecutar pruebas y revisar la publicación.
 
 ## Limpieza aplicada
@@ -20,6 +20,6 @@
 - La documentación técnica describe únicamente las reglas de Bonoloto.
 
 ## Pendiente
-- Ejecutar las pruebas y la construcción tras la limpieza.
-- Esperar datos oficiales reales; no se deben crear sorteos de ejemplo en producción.
-- Confirmar un workflow exitoso y la publicación.
+- Confirmar la descarga individual desde SELAE para cada fecha: el contraste de frecuencias valida el tramo agregado, no demuestra que cada registro haya sido verificado individualmente.
+- Revisar que la ejecución diaria posterior a las 23:00 de Madrid se complete correctamente.
+- No se deben crear sorteos de ejemplo ni presentar datos auxiliares como números principales.
