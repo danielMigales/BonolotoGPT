@@ -15,4 +15,5 @@ test('Diversifica si la nueva propuesta repite exactamente la combinación anter
  assert.ok(next.every(n=>Number.isInteger(n)&&n>=1&&n<=49));
  assert.deepEqual(avoidExactRepeat([1,2,3,4,5,6],previous,scores),[1,2,3,4,5,6]);
 });
+test('La evaluación compara cada método con el control aleatorio y expone victorias, empates y derrotas',()=>{const report=analyze(validDraws());assert.ok(report.experts.every(x=>Number.isFinite(x.deltaVsRandom)&&x.beatRandomRate>=0&&x.beatRandomRate<=1));assert.ok(report.experts.every(x=>x.wins+x.ties+x.losses===report.metrics.simulations));assert.ok(report.experts.every(x=>Number.isFinite(x.randomMeanHits)));assert.match(report.method,/control/);});
 test('Referencia aleatoria y calendario de Bonoloto',()=>{const b=randomBaseline();assert.equal(b.expectedHits,36/49);assert.ok(b.atLeastThreeProbability>0&&b.atLeastThreeProbability<1);assert.equal(nextDrawDate('2026-10-17'),'2026-10-19');assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(MODEL_VERSION,'2.3.0');});
