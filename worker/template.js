@@ -9,7 +9,7 @@ export function parseDraw(row){
  if(!m||row.game_id!=='BONO')throw Error('Formato SELAE inesperado');
  const v=m.slice(1).map(Number),numbers=v.slice(0,6).sort((a,b)=>a-b),date=row.fecha_sorteo.slice(0,10);
  if(new Set(numbers).size!==6||numbers.some(n=>n<1||n>49)||v[6]<1||v[6]>49||numbers.includes(v[6])||v[7]<0||v[7]>9||date<'2026-01-01'||!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(Date.parse(date)))throw Error('Resultado inválido');
- return {id:String(row.id_sorteo),date,numbers,complementary:v[6],refund:v[7],source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.replaceAll('-','')};
+ return {id:String(row.id_sorteo),date,numbers,source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.replaceAll('-','')};
 }
 export function validateHistory(draws){
  if(!draws.length)throw Error('Histórico vacío');
@@ -23,7 +23,7 @@ export function validateArchive(input){
  if(!Number.isFinite(stamp)||stamp>Date.now()+5*60*1000||stamp<Date.now()-24*60*60*1000)throw Error('Fecha de consulta no válida o demasiado antigua');
  const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Madrid'}).format(new Date());
  const draws=input.draws.map(d=>{
-  if(!d||!Array.isArray(d.numbers)||d.numbers.length!==6||![...d.numbers,d.complementary,d.refund].every(Number.isInteger)||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||!Number.isFinite(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date||d.date>today||typeof d.id!=='string'||!/^\d+$/.test(d.id))throw Error('Sorteo inválido');
+  if(!d||!Array.isArray(d.numbers)||d.numbers.length!==6||!d.numbers.every(Number.isInteger)||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||!Number.isFinite(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date||d.date>today||typeof d.id!=='string'||!/^\d+$/.test(d.id))throw Error('Sorteo inválido');
   return parseDraw({game_id:'BONO',fecha_sorteo:d.date,id_sorteo:d.id,combinacion:d.numbers.join(' - ')+' C('+d.complementary+') R('+d.refund+')'});
  }).sort((a,b)=>b.date.localeCompare(a.date));
  validateHistory(draws);
@@ -73,14 +73,14 @@ const AI_CACHE_VERSION='ai:'+MODEL_VERSION;
 export async function getAnalysis(env,window=15){
  if(![5,10,15,20,30,50].includes(window))throw Error('Ventana permitida: 5, 10, 15, 20, 30 o 50');
  const archive=await getData(env);
- const signature=AI_CACHE_VERSION+':'+JSON.stringify(archive.draws.map(d=>[d.date,d.numbers,d.refund]));
+ const signature=AI_CACHE_VERSION+':'+JSON.stringify(archive.draws.map(d=>[d.date,d.numbers]));
  const key='ai/reports/'+window+'.json';
  if(env.BUCKET){try{const saved=await env.BUCKET.get(key);if(saved){const cache=await saved.json();if(cache.signature===signature)return trackAnalysis(env,archive,cache.report);}}catch{/* Recalcular desde el histórico conservado. */}}
  const report=analyze(archive.draws,{window});
  if(env.BUCKET&&report.status==='ready'){
   await env.BUCKET.put('ai/models/'+window+'.json',JSON.stringify(report.modelState),{httpMetadata:{contentType:'application/json'}});
   const forecastKey='ai/forecasts/'+MODEL_VERSION+'/'+window+'/after-'+report.sourceLastDate+'.json';
-  if(!await env.BUCKET.get(forecastKey))await env.BUCKET.put(forecastKey,JSON.stringify({version:MODEL_VERSION,window,trainedThrough:report.sourceLastDate,trainingCount:report.drawCount,numbers:report.forecast.numbers,refund:report.forecast.refund}),{httpMetadata:{contentType:'application/json'}});
+  if(!await env.BUCKET.get(forecastKey))await env.BUCKET.put(forecastKey,JSON.stringify({version:MODEL_VERSION,window,trainedThrough:report.sourceLastDate,trainingCount:report.drawCount,numbers:report.forecast.numbers}),{httpMetadata:{contentType:'application/json'}});
   await env.BUCKET.put(key,JSON.stringify({signature,report}),{httpMetadata:{contentType:'application/json'}});
  }
  return trackAnalysis(env,archive,report);
