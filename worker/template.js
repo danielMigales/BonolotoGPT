@@ -23,8 +23,8 @@ export function validateArchive(input){
  if(!Number.isFinite(stamp)||stamp>Date.now()+5*60*1000||stamp<Date.now()-24*60*60*1000)throw Error('Fecha de consulta no válida o demasiado antigua');
  const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Madrid'}).format(new Date());
  const draws=input.draws.map(d=>{
-  if(!d||!Array.isArray(d.numbers)||d.numbers.length!==6||!d.numbers.every(Number.isInteger)||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||!Number.isFinite(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date||d.date>today||typeof d.id!=='string'||!/^\d+$/.test(d.id))throw Error('Sorteo inválido');
-  return parseDraw({game_id:'BONO',fecha_sorteo:d.date,id_sorteo:d.id,combinacion:d.numbers.join(' - ')+' C('+d.complementary+') R('+d.refund+')'});
+  if(!d||!Array.isArray(d.numbers)||d.numbers.length!==6||!d.numbers.every(Number.isInteger)||new Set(d.numbers).size!==6||d.numbers.some(n=>n<1||n>49)||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||!Number.isFinite(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date||d.date>today||typeof d.id!=='string'||!/^\d+$/.test(d.id))throw Error('Sorteo inválido');
+  return {id:d.id,date:d.date,numbers:d.numbers.slice().sort((a,b)=>a-b),source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+d.date.replaceAll('-','')};
  }).sort((a,b)=>b.date.localeCompare(a.date));
  validateHistory(draws);
  if(input.latestDate!==draws[0].date)throw Error('Última fecha inconsistente');
