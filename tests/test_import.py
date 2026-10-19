@@ -8,7 +8,7 @@ class ImportTests(unittest.TestCase):
     def test_parse_official_bonoloto_page_keeps_only_six_main_numbers(self):
         row = normalize_widget(
             '2026-01-02',
-            '<p>06 - 34 - 33 - 37 - 46 - 08 Complementario 47 Reintegro 5</p>',
+            '<p>06 - 34 - 33 - 37 - 46 - 08 Complementario: C(47) Reintegro: R(5)</p>',
         )
         self.assertEqual(row['numbers'], [6, 8, 33, 34, 37, 46])
         self.assertEqual(set(row), {'id', 'date', 'numbers', 'source'})
