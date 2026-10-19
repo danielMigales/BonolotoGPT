@@ -1,0 +1,70 @@
+[
+  {
+    "targetDate": "2026-10-19",
+    "trainedThrough": "2026-10-18",
+    "version": "2.1.0",
+    "window": 15,
+    "numbers": [
+      16,
+      18,
+      21,
+      23,
+      41,
+      47
+    ],
+    "actual": [
+      9,
+      15,
+      32,
+      36,
+      42,
+      46
+    ],
+    "hits": 0,
+    "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-19-de-octubre-de-2026",
+    "selectionReasons": [
+      {
+        "number": 16,
+        "rank": 5,
+        "score": 0.0232,
+        "totalFrequency": 42,
+        "recentFrequency": 3
+      },
+      {
+        "number": 18,
+        "rank": 2,
+        "score": 0.0258,
+        "totalFrequency": 47,
+        "recentFrequency": 4
+      },
+      {
+        "number": 21,
+        "rank": 3,
+        "score": 0.0241,
+        "totalFrequency": 37,
+        "recentFrequency": 5
+      },
+      {
+        "number": 23,
+        "rank": 1,
+        "score": 0.0263,
+        "totalFrequency": 50,
+        "recentFrequency": 4
+      },
+      {
+        "number": 41,
+        "rank": 4,
+        "score": 0.0235,
+        "totalFrequency": 44,
+        "recentFrequency": 3
+      },
+      {
+        "number": 47,
+        "rank": 6,
+        "score": 0.023,
+        "totalFrequency": 44,
+        "recentFrequency": 3
+      }
+    ]
+  }
+]
