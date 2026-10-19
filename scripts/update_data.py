@@ -88,8 +88,7 @@ def main():
     path = ROOT / 'data/draws.json'
     previous = json.loads(path.read_text()) if path.exists() else {'draws': []}
     old_draws = previous.get('draws', [])
-    # No reutilizar el histórico heredado de La Primitiva: es otro juego y sus
-    # combinaciones no deben mezclarse con los resultados de BonoLoto.
+    # No reutilizar históricos de otro juego ni mezclar sus combinaciones con Bonoloto.
     is_bonoloto = bool(old_draws) and all(
         'bonoloto.html?game_id=BONO' in str(r.get('source', '')) for r in old_draws
     )
