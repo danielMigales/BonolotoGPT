@@ -1,6 +1,6 @@
-# PrimitivaGPT · Archivo de sorteos
+# BonolotoGPT · Archivo de sorteos
 
-Aplicación web en español para consultar los cinco últimos sorteos de La Primitiva y el histórico oficial desde el **1 de enero de 2026**.
+Aplicación web en español para consultar los cinco últimos sorteos de Bonoloto y el histórico oficial desde el **1 de enero de 2026**.
 
 - Seis números, complementario y reintegro.
 - Colores por número repetido e insignias ×N según sus apariciones entre los cinco resultados visibles.
@@ -40,9 +40,9 @@ Abrir http://localhost:8000. El servidor Python usa el JSON versionado; el Worke
 
 ## GitHub
 
-Repositorio público: https://github.com/danielMigales/PrimitivaGPT
+Repositorio público: https://github.com/danielMigales/BonolotoGPT
 
-El workflow **Validar PrimitivaGPT** se activa con cada cambio en `main` y manualmente desde Actions. Ejecuta las pruebas y ofrece `public/` como artefacto descargable. No requiere activar GitHub Pages.
+El workflow **Validar BonolotoGPT** se activa con cada cambio en `main` y manualmente desde Actions. Ejecuta las pruebas y ofrece `public/` como artefacto descargable. No requiere activar GitHub Pages.
 
 **Estado de la actualización de datos:** el workflow de GitHub Actions valida el código y construye la aplicación, pero no descarga SELAE ni tiene una programación horaria configurada en este repositorio. No he podido verificar una automatización externa activa; por tanto, no debe darse por hecho que los resultados se actualizan solos. `scripts/update_data.py` permite intentar una actualización manual con Python y curl. `SYNC.md` documenta el proceso y las comprobaciones necesarias. Nunca se deben inventar resultados ni sustituir el histórico oficial por datos de ejemplo.
 
