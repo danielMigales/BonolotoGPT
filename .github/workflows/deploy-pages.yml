@@ -1,9 +1,9 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
   schedule:
-    # Se comprueban ambas horas UTC para mantener las 22:00 de Madrid tanto en invierno como en verano.
-    - cron: '0 20 * * *'
+    # Se comprueban ambas horas UTC para ejecutar a las 23:00 de Madrid en invierno y verano.
     - cron: '0 21 * * *'
+    - cron: '0 22 * * *'
   push:
     branches: [main]
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       - name: Comprobar que son las 22:00 en España
         id: schedule-time
         run: |
-          if [ "$GITHUB_EVENT_NAME" != "schedule" ] || [ "$(TZ=Europe/Madrid date +%H)" = "22" ]; then
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ] || [ "$(TZ=Europe/Madrid date +%H)" = "23" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
