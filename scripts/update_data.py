@@ -98,12 +98,12 @@ def fetch_day(day):
     ]
     last_error = None
     for url in urls:
-        for attempt in range(2):
+        for attempt in range(1):
             try:
                 response = subprocess.run(
                     [
                         'curl', '--fail', '--silent', '--show-error', '--location',
-                        '--connect-timeout', '8', '--max-time', '25',
+                        '--connect-timeout', '5', '--max-time', '15',
                         '--user-agent', 'Mozilla/5.0 (compatible; BonolotoGPT/1.0)',
                         url,
                     ],
@@ -112,8 +112,6 @@ def fetch_day(day):
                 return normalize_widget(day, response.stdout)
             except Exception as exc:
                 last_error = exc
-                if attempt == 0:
-                    time.sleep(1)
     detail = getattr(last_error, 'stderr', '') or str(last_error)
     raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
 
@@ -158,11 +156,11 @@ def main():
         draws = sorted_draws(merged)
         print(f'Histórico ya completo: {len(draws)} sorteos; último {draws[0]["date"]}', flush=True)
     else:
-        print(f'Histórico pendiente: {len(missing)} fechas. Descarga paralela con 16 trabajadores.', flush=True)
+        print(f'Histórico pendiente: {len(missing)} fechas. Descarga paralela con 32 trabajadores.', flush=True)
         failures = []
         # Paraleliza por bloques y escribe el punto de control desde el hilo principal.
         # Así se reduce la duración sin que dos trabajadores sobrescriban el JSON a la vez.
-        with ThreadPoolExecutor(max_workers=16) as pool:
+        with ThreadPoolExecutor(max_workers=32) as pool:
             for offset in range(0, len(missing), 32):
                 batch = missing[offset:offset + 32]
                 futures = {pool.submit(fetch_day, day): day for day in batch}
@@ -181,6 +179,10 @@ def main():
                     except Exception as exc:
                         failures.append((day, str(exc)))
                         print(f'{day}: ERROR {exc}', flush=True)
+                if failures:
+                    # Si un bloque contiene errores de origen, detenerse pronto.
+                    # Los resultados correctos del bloque ya están guardados y se reintentarán solo las fechas faltantes.
+                    break
         if failures:
             examples = '; '.join(f'{day}: {err}' for day, err in failures[:8])
             raise RuntimeError(f'Fallaron {len(failures)} de {len(missing)} fechas. El progreso validado quedó guardado. {examples}')
