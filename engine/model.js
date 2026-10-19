@@ -1,6 +1,6 @@
 // Modelo Bonoloto: analiza exclusivamente los seis números principales.
 // El motor opera exclusivamente con seis números principales.
-export const MODEL_VERSION='2.2.0';
+export const MODEL_VERSION='2.3.0';
 const range=n=>Array.from({length:n},(_,i)=>i);
 const normalize=v=>{const total=v.reduce((a,b)=>a+b,0);return total?v.map(x=>x/total):v.map(()=>1/v.length);};
 const softmax=v=>{const max=Math.max(...v);return normalize(v.map(x=>Math.exp(x-max)));};
@@ -9,6 +9,17 @@ function rng(seed){let s=seed>>>0;return()=>{s=(Math.imul(1664525,s)+1013904223)
 function ticket(p,random){const rest=p.slice(),out=[];for(let k=0;k<6;k++){let u=random()*rest.reduce((a,b)=>a+b,0),pick=rest.length-1;for(let i=0;i<rest.length;i++){u-=rest[i];if(u<=0){pick=i;break;}}out.push(pick+1);rest[pick]=0;}return out.sort((a,b)=>a-b);}
 const best=p=>p.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]||a[1]-b[1]).slice(0,6).map(x=>x[1]+1).sort((a,b)=>a-b);
 const hits=(a,b)=>a.filter(x=>b.includes(x)).length;
+// Evita publicar dos veces seguidas la misma combinación exacta. Es una regla de
+// diversificación editorial, no una ventaja estadística ni una mayor probabilidad.
+export function avoidExactRepeat(numbers,previous,numberScores){
+ const current=[...numbers].sort((a,b)=>a-b),prior=[...previous].sort((a,b)=>a-b);
+ if(current.length!==6||prior.length!==6||current.some((n,i)=>n!==prior[i]))return current;
+ const selected=new Set(current),score=new Map(numberScores.map(x=>[x.number,x.score]));
+ const replacement=numberScores.find(x=>!selected.has(x.number));
+ if(!replacement)return current;
+ const removable=current.slice().sort((a,b)=>(score.get(a)??0)-(score.get(b)??0)||b-a)[0];
+ return current.filter(n=>n!==removable).concat(replacement.number).sort((a,b)=>a-b);
+}
 export function patterns(draws){const frequency=Array(49).fill(0),parity=Array(7).fill(0),pairs=new Map(),gaps=Array(48).fill(0);let gapSum=0,gapCount=0,sum=0;for(const d of draws){const ns=d.numbers.slice().sort((a,b)=>a-b);parity[ns.filter(x=>x%2===0).length]++;for(const n of ns){frequency[n-1]++;sum+=n;}for(let i=1;i<6;i++){const g=ns[i]-ns[i-1];gaps[g-1]++;gapSum+=g;gapCount++;}for(let i=0;i<6;i++)for(let j=i+1;j<6;j++){const key=ns[i]+'-'+ns[j];pairs.set(key,(pairs.get(key)||0)+1);}}return {drawCount:draws.length,frequency:frequency.map((count,i)=>({number:i+1,count})),parity:parity.map((count,even)=>({even,odd:6-even,count})),pairs:[...pairs].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,12).map(([key,count])=>({numbers:key.split('-').map(Number),count})),gaps:gaps.map((count,i)=>({gap:i+1,count})),meanGap:round(gapCount?gapSum/gapCount:0),meanSum:round(draws.length?sum/draws.length:0)};}
 function structure(history){const parity=Array(7).fill(1),gap=Array(48).fill(1),pairs=new Map();for(const d of history){const ns=d.numbers.slice().sort((a,b)=>a-b);parity[ns.filter(n=>n%2===0).length]++;for(let i=1;i<6;i++)gap[ns[i]-ns[i-1]-1]++;for(let i=0;i<6;i++)for(let j=i+1;j<6;j++){const key=ns[i]+'-'+ns[j];pairs.set(key,(pairs.get(key)||0)+1);}}return {parity:normalize(parity),gap:normalize(gap),pairs};}
 function propose(p,shape,random){let winner=best(p),score=-Infinity;for(const ns of [winner,...range(48).map(()=>ticket(p,random))]){let value=ns.reduce((s,n)=>s+Math.log(Math.max(p[n-1],1e-12)),0)+.15*Math.log(shape.parity[ns.filter(n=>n%2===0).length]);for(let i=1;i<6;i++)value+=.06*Math.log(shape.gap[ns[i]-ns[i-1]-1]);for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)value+=.015*Math.log(1+(shape.pairs.get(ns[i]+'-'+ns[j])||0));if(value>score){score=value;winner=ns;}}return winner;}
@@ -51,7 +62,7 @@ export function analyze(draws,{window=15}={}){
   histogram[count]++;totalHits+=count;totalRandom+=randomHits;randomHistogram[randomHits]++;
   for(let j=0;j<names.length;j++)logs[j]=.99*logs[j]+.2*(expertHits[j]-36/49)+.1*Number(expertHits[j]>=3);
  }
- const weights=softmax(logs),next=predict(ordered,window,weights,ordered.length),n=rows.length,baseline=randomBaseline(),last=rows.at(-1);
+ const weights=softmax(logs),next=predict(ordered,window,weights,ordered.length),n=rows.length,baseline=randomBaseline(),last=rows.at(-1);next.numbers=avoidExactRepeat(next.numbers,last.predicted,next.numberScores);
  return {version:MODEL_VERSION,status:'ready',window,sourceLastDate:ordered.at(-1).date,drawCount:ordered.length,objective:{primary:'sixMainNumbers'},method:'Aprendizaje secuencial basado exclusivamente en los seis números principales.',forecast:{targetDate:nextDrawDate(ordered.at(-1).date),afterDate:ordered.at(-1).date,numbers:next.numbers,numberScores:next.numberScores,selectionReasons:explainSelection(ordered,next,window)},lastEvaluation:{targetDate:last.date,trainedThrough:last.trainingEnd,numbers:last.predicted,actual:last.actual,hits:last.hits,selectionReasons:last.selectionReasons},metrics:{simulations:n,meanHits:round(totalHits/n),atLeastThree:histogram.slice(3).reduce((a,b)=>a+b,0),atLeastFour:histogram.slice(4).reduce((a,b)=>a+b,0),maxHits:Math.max(...rows.map(r=>r.hits)),histogram,randomMeanHits:round(totalRandom/n),randomAtLeastThree:randomHistogram.slice(3).reduce((a,b)=>a+b,0),randomAtLeastFour:randomHistogram.slice(4).reduce((a,b)=>a+b,0),randomHistogram},baseline,experts:names.map((name,i)=>({name,initialWeight:1/names.length,meanHits:round(rows.reduce((s,r)=>s+r.expertHits[i],0)/n),atLeastThree:rows.filter(r=>r.expertHits[i]>=3).length,numberWeight:round(weights[i])})),patterns:patterns(ordered),rows,modelState:{version:MODEL_VERSION,window,trainedThrough:ordered.at(-1).date,numberLogWeights:logs,numberWeights:weights}};
 }
 export function nextDrawDate(afterDate){const day=new Date(afterDate+'T12:00:00Z');if(!Number.isFinite(day.getTime()))throw Error('Fecha inválida');do{day.setUTCDate(day.getUTCDate()+1);}while(day.getUTCDay()===0);return day.toISOString().slice(0,10);}
