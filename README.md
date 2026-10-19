@@ -36,7 +36,6 @@ Requiere Node.js 22+ y Python 3.12+.
 
 ```sh
 python scripts/update_data.py
-npm run build
 npm test
 npm run build
 python -m http.server 8000 --directory public
