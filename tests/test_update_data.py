@@ -18,10 +18,10 @@ class UpdateDataScheduleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'ningún sorteo válido'):
             sorted_draws({})
 
-    def test_bonoloto_is_scheduled_every_day(self):
+    def test_bonoloto_is_scheduled_monday_to_saturday(self):
         self.assertEqual(
             latest_scheduled_date(dt.date(2026, 10, 18)),
-            dt.date(2026, 10, 18),
+            dt.date(2026, 10, 17),
         )
         dates = list(expected_dates(dt.date(2026, 1, 3)))
         self.assertEqual(dates, ['2026-01-01', '2026-01-02', '2026-01-03'])
@@ -35,8 +35,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         })
         self.assertEqual(record['date'], '2026-01-01')
         self.assertEqual(record['numbers'], [7, 8, 10, 13, 41, 43])
-        self.assertEqual(record['complementary'], 30)
-        self.assertEqual(record['refund'], 5)
+        self.assertEqual(set(record), {'id', 'date', 'numbers', 'source'})
         self.assertIn('bonoloto.html?game_id=BONO', record['source'])
 
     def test_rejects_primitiva_record(self):
