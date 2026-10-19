@@ -28,7 +28,7 @@ const staticIcon = await readFile(resolve(projectRoot, "public/icon.svg"), "utf8
 const archive = JSON.parse(await readFile(resolve(projectRoot, "data/draws.json"), "utf8"));
 assert.match(staticHtml, /rel="icon" type="image\/svg\+xml" href="\.\/icon\.svg"/);
 assert.match(staticHtml, /<img src="\.\/icon\.svg" alt="">/);
-assert.match(staticHtml, /La actualización depende de la sincronización del histórico/);
+assert.match(staticHtml, /La actualización puede no ser inmediata/);
 assert.doesNotMatch(staticHtml, /SELAE se consulta cada hora|tarea programada consulta SELAE cada hora/);
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), 'La web estática debe cargar el histórico versionado');
 assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), 'La web estática debe cargar el informe fijo de 15 sorteos');
