@@ -6,14 +6,14 @@ Aplicación web en español para consultar los últimos cinco sorteos de Bonolot
 
 - Muestra exclusivamente los **seis números principales** de cada sorteo.
 - Cuenta frecuencias, repeticiones, parejas, distancias y distribución de pares/impares usando únicamente esos seis números.
-- Excluye el complementario y el reintegro de la presentación, las estadísticas, el motor de predicción y la evaluación de aciertos.
+- Guarda y analiza exclusivamente los seis números principales; los campos auxiliares no se almacenan en el histórico normalizado.
 - Permite consultar el histórico por fechas, paginar los resultados y descargar el archivo JSON.
 - Analiza secuencialmente las combinaciones anteriores y compara los aciertos con una referencia aleatoria reproducible.
 - Incluye una versión estática para GitHub Pages.
 
 ## Laboratorio de análisis
 
-El motor usa una ventana fija de 15 sorteos iniciales y combina siete enfoques estadísticos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. El complementario y el reintegro no forman parte de las entradas estadísticas ni de los objetivos del modelo.
+El motor usa una ventana fija de 15 sorteos iniciales y combina siete enfoques estadísticos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
 
 La interfaz de análisis requiere al menos **16 sorteos oficiales**: 15 para iniciar la ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
 
