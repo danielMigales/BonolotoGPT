@@ -2,15 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import worker,{validateArchive,saveArchive,getData} from '../worker/index.js';
-const seed=JSON.parse(await readFile(new URL('../data/draws.json',import.meta.url),'utf8'));
+const seed=(()=>{const draws=[];let date=new Date('2026-01-01T12:00:00Z');let id=1;while(date.toISOString().slice(0,10)<='2026-10-17'){if(date.getUTCDay()!==0){const numbers=Array.from({length:6},(_,j)=>((id*7+j*9)%49)+1);draws.push({id:String(id),date:date.toISOString().slice(0,10),numbers:[...new Set(numbers)].sort((a,b)=>a-b).slice(0,6),source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.toISOString().slice(0,10).replaceAll('-','')});id++;}date.setUTCDate(date.getUTCDate()+1);}return {schemaVersion:1,startDate:'2026-01-01',source:'SELAE',checkedAt:new Date().toISOString(),latestDate:draws[draws.length-1].date,draws};})();
 const fresh=()=>({...structuredClone(seed),checkedAt:new Date().toISOString()});
-function bucket(initial){const data=new Map(initial?[['history/draws.json',JSON.stringify(initial)]]:[]);return {data,async get(key){return data.has(key)?{json:async()=>JSON.parse(data.get(key))}:null},async put(key,value){data.set(key,value)}};}
+function bucket(initial){const data=new Map(initial?[['bonoloto/history/draws.json',JSON.stringify(initial)]]:[]);return {data,async get(key){return data.has(key)?{json:async()=>JSON.parse(data.get(key))}:null},async put(key,value){data.set(key,value)}};}
 test('Carga validada persiste el histórico completo y permite leerlo sin red',async()=>{
  const BUCKET=bucket(seed),doc=fresh();let requests=0;const original=globalThis.fetch;globalThis.fetch=()=>{requests++;throw Error('sin red')};
  try{const saved=await saveArchive({BUCKET},doc);const a=await getData({BUCKET}),b=await getData({BUCKET});assert.deepEqual(a,saved);assert.deepEqual(a,b);assert.equal(a.warning,undefined);assert.equal(requests,0);}finally{globalThis.fetch=original;}
 });
 test('Rechaza archivos incompletos o malformados sin reemplazar el histórico',async()=>{
- for(const mutate of [d=>d.draws.splice(1,1),d=>d.draws[0].numbers[0]=50,d=>d.draws[0].refund=10,d=>d.source='otra',d=>d.checkedAt='incorrecta',d=>d.draws[0].id='<script>',d=>d.latestDate='2026-01-01',d=>d.draws[0].date='2026-02-30']){
+ for(const mutate of [d=>d.draws.splice(1,1),d=>d.draws[0].numbers[0]=50,d=>d.draws[0].numbers[0]=50,d=>d.source='otra',d=>d.checkedAt='incorrecta',d=>d.draws[0].id='<script>',d=>d.latestDate='2026-01-01',d=>d.draws[0].date='2026-02-30']){
   const BUCKET=bucket(seed),doc=fresh();mutate(doc);const before=BUCKET.data.get('history/draws.json');await assert.rejects(()=>saveArchive({BUCKET},doc));assert.equal(BUCKET.data.get('history/draws.json'),before);
  }
 });
