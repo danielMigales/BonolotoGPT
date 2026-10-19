@@ -1,15 +1,24 @@
-# Actualización de BonolotoGPT
+# Sincronización oficial de BonolotoGPT
 
-Este documento describe un procedimiento de sincronización, no una automatización confirmada. En la revisión del 19 de octubre de 2026, los workflows de este repositorio solo validan/construyen la aplicación y no ejecutan una descarga programada de SELAE. Tampoco se ha confirmado una tarea externa activa. No afirmar que la actualización es automática hasta verificar esa tarea y sus registros.
+## Fuente y archivo
+Los datos se obtienen de SELAE mediante `scripts/update_data.py`. El importador acepta únicamente registros con `game_id=BONO`, valida los seis números principales y el calendario, y guarda en `data/draws.json` solo el identificador, la fecha, los seis números y la URL oficial. Los campos auxiliares de la respuesta de SELAE no se almacenan en el histórico normalizado ni se usan en cálculos.
 
-1. Obtener un checkout de la rama main actual. Ejecutar `python scripts/update_data.py`, `npm test` y `npm run build`. Requiere Python 3.12+, Node 22+ y curl.
-2. Tras descarga y validación completas, guardar en GitHub solo los cambios de `data/`, `worker/index.js` y `public/`. Conservar el resto del árbol y comprobar el head actual. Usar el conector GitHub para escribir; no hacen falta claves personales en el proyecto. Ante un cambio concurrente, releer y mezclar sin force push.
-3. El importador conserva los resultados anteriores y añade/corrige los oficiales. No publicar resultados incompletos ni sustituirlos por ejemplos. Si los archivos no cambian no se necesita commit.
-4. Para el sitio privado `appgprj_6ad47d5e88c88191ab3a55378b7ce93e`, obtener `get_site`, conservar su audiencia y usar el acceso efímero devuelto únicamente en su URL, con la cabecera `OAI-Sites-Authorization: Bearer <valor>`; nunca imprimirlo ni guardarlo.
-5. Tras descarga y pruebas satisfactorias, ejecutar `python scripts/sync_site.py`. El programa espera por stdin un objeto JSON con `url` (la URL devuelta por get_site) y `token` (su acceso de servicio efímero). Pasarlo solo por stdin con el eco de terminal desactivado; nunca guardar ni imprimir el acceso. El script envía `data/draws.json` por POST `/api/sync` y realiza dos GET `/api/draws`, verificando ausencia de avisos, misma fecha de consulta e identificadores persistidos. Después consulta `/api/ai?window=30`, que reconstruye y guarda el modelo si el histórico ha cambiado; exige análisis listo, sin avisos y entrenado hasta el último sorteo oficial. `npm run build` genera `data/ai-analysis.json` y `data/ai-model.json` con ventana 30, además de los informes estáticos de 5/10/15 sorteos que corresponden al selector HTML.
-6. Cargar en el sitio incluso cuando no haya sorteos nuevos: confirma una consulta real a SELAE. En GitHub, si solo cambió `checkedAt`, no crear un commit por la marca temporal. Si cambiaron resultados o respuestas originales, guardar solo `data/`, `worker/index.js` y `public/`, preservando el head actual.
-7. No llamar a SELAE desde el Worker: la descarga validada la realiza el importador. GET `/api/draws` lee el archivo persistente y avisa si lleva más de tres horas sin confirmar una consulta. Ante fallos mantener el archivo anterior y reportarlos.
+## Procedimiento local
+Requiere Python 3.12+, Node.js 22+ y curl.
 
-GitHub Actions valida el proyecto cuando se actualiza `main` y genera una versión estática descargable. Ese workflow no ejecuta `scripts/update_data.py`. La actualización de SELAE debe ejecutarse manualmente o mediante una tarea externa cuya existencia y registros se hayan comprobado. No publicar datos incompletos ni reemplazar resultados oficiales por ejemplos.
+```sh
+python scripts/update_data.py
+npm test
+npm run build
+```
 
-Las lecturas de `/api/ai?window=20|30|50` también reconcilian `ai/tracking/{window}.json`: evalúan las propuestas guardadas para las fechas publicadas y registran la siguiente antes de su sorteo. El registro es independiente de la caché y conserva los números originales. No borrar ni reemplazar este historial durante la sincronización; no atribuir propuestas a sorteos ya celebrados. El panel muestra el resultado oficial y los aciertos separados de las simulaciones.
+La actualización falla si SELAE no devuelve datos válidos, si faltan fechas esperadas o si hay identificadores duplicados. No se inventan resultados ni se publica un archivo incompleto. El histórico anterior se conserva ante un error de descarga.
+
+## Calendario
+Se esperan sorteos de lunes a sábado. Los domingos se excluyen de la cobertura prevista. Los resultados se consultan después de las 23:00, hora de Madrid, en la fecha de sorteo esperada.
+
+## Almacenamiento del Worker
+El histórico, los informes, los modelos y las propuestas se guardan bajo el prefijo `bonoloto/` en el bucket. Las claves antiguas sin ese prefijo no se consultan, para evitar mezclar datos de otra aplicación. Los registros de seguimiento conservan únicamente fecha, versión, seis números propuestos, seis números oficiales y número de aciertos.
+
+## Publicación
+GitHub Actions debe descargar y validar el histórico, ejecutar las pruebas, construir los artefactos y publicar `public/`. La publicación no se considera confirmada hasta que el workflow termina correctamente. No se debe afirmar que existe una actualización automática programada sin verificarla.
