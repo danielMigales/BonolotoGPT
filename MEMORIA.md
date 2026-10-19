@@ -1,10 +1,10 @@
-# Memoria técnica — Primitiva / Archivo
+# Memoria técnica — Bonoloto / Archivo
 
 Versión 1.0 · 18 de octubre de 2026
 
 ## 1. Objetivo y alcance
 
-Mostrar los cinco últimos sorteos de La Primitiva, detectar coincidencias y permitir consultar todos los resultados publicados desde el 1 de enero de 2026. Los datos proceden exclusivamente del servicio de resultados de SELAE. La aplicación es un proyecto independiente, sin funcionalidades de apuesta.
+Mostrar los cinco últimos sorteos de Bonoloto, detectar coincidencias y permitir consultar todos los resultados publicados desde el 1 de enero de 2026. Los datos proceden exclusivamente del servicio de resultados de SELAE. La aplicación es un proyecto independiente, sin funcionalidades de apuesta.
 
 ## 2. Reglas de cálculo
 
@@ -44,7 +44,7 @@ La audiencia permanece privada: la autorización del escritor depende de la puer
 
 ## 5. Actualización desatendida y GitHub
 
-La tarea vinculada a Sites está habilitada cada hora en el minuto 35 (Europe/Madrid). Descarga desde SELAE con `scripts/update_data.py`, valida el histórico y las pruebas y sincroniza `data/`, `worker/index.js` y `public/` en `danielMigales/PrimitivaGPT` usando la conexión autorizada de GitHub. Mantiene además el archivo alojado mediante el endpoint privado. El procedimiento completo está en `SYNC.md` y en la tarea.
+La tarea vinculada a Sites está habilitada cada hora en el minuto 35 (Europe/Madrid). Descarga desde SELAE con `scripts/update_data.py`, valida el histórico y las pruebas y sincroniza `data/`, `worker/index.js` y `public/` en `danielMigales/BonolotoGPT` usando la conexión autorizada de GitHub. Mantiene además el archivo alojado mediante el endpoint privado. El procedimiento completo está en `SYNC.md` y en la tarea.
 
 `.github/workflows/update.yml` valida cada cambio en main y ofrece la versión estática como artefacto descargable. La consulta a SELAE se ejecuta en la tarea vinculada: los dos primeros intentos de descarga desde Actions fallaron (HTTP 403 con urllib y código 22 con curl). La importación desde el entorno de trabajo sí ha funcionado; se mantiene el error explícito y no se simula una actualización exitosa.
 
@@ -82,7 +82,7 @@ El entorno no dispone del controlador de navegador exigido para QA de Sites; no 
 - 11 pruebas automatizadas superadas y módulo de despliegue validado.
 - Dos lecturas autenticadas del archivo alojado devolvieron el mismo histórico y fecha de consulta, sin avisos: persistencia inicial y lectura verificadas.
 - Tarea de Sites habilitada cada hora en el minuto 35, zona Europe/Madrid. Su creación está confirmada; aún no se ha observado una ejecución programada. El escritor inicial y la lectura ya se comprobaron de forma directa.
-- Repositorio autorizado: https://github.com/danielMigales/PrimitivaGPT. Se incorpora la aplicación completa, las respuestas oficiales de SELAE, las pruebas y esta memoria. La validación final del workflow se documenta a continuación. GitHub Pages no es necesario: la aplicación ya está alojada en Sites.
+- Repositorio autorizado: https://github.com/danielMigales/BonolotoGPT. Se incorpora la aplicación completa, las respuestas oficiales de SELAE, las pruebas y esta memoria. La validación final del workflow se documenta a continuación. GitHub Pages no es necesario: la aplicación ya está alojada en Sites.
 
 ## 9. Verificación en GitHub
 
@@ -90,7 +90,7 @@ La primera subida quedó registrada en el commit `f00df297842b0c20c3fd09d9b6017a
 
 La programación horaria se ha actualizado para sincronizar el histórico tanto en el sitio como en GitHub. El cambio de curl no resolvió la descarga desde Actions; por ello el workflow final solo valida y genera el proyecto.
 
-Validación final confirmada en GitHub Actions: ejecución https://github.com/danielMigales/PrimitivaGPT/actions/runs/39110984165 completada con éxito para el commit `a8cc5200ec14014500a4e918835dc066791b69fc`. Ejecutó las once pruebas, generó la aplicación y subió el artefacto estático. La nueva descarga completa de SELAE realizada desde el entorno de trabajo también validó los 125 sorteos y se guardó en ese commit. La tarea horaria está configurada para repetir el procedimiento; aún no se ha observado una ocurrencia programada.
+Validación final confirmada en GitHub Actions: ejecución https://github.com/danielMigales/BonolotoGPT/actions/runs/39110984165 completada con éxito para el commit `a8cc5200ec14014500a4e918835dc066791b69fc`. Ejecutó las once pruebas, generó la aplicación y subió el artefacto estático. La nueva descarga completa de SELAE realizada desde el entorno de trabajo también validó los 125 sorteos y se guardó en ese commit. La tarea horaria está configurada para repetir el procedimiento; aún no se ha observado una ocurrencia programada.
 
 ## 10. Corrección de visualización (18/10/2026)
 
