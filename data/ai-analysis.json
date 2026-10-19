@@ -1,5 +1,5 @@
 {
-  "version": "2.2.0",
+  "version": "2.3.0",
   "status": "ready",
   "window": 15,
   "sourceLastDate": "2026-10-19",
@@ -17,7 +17,7 @@
       21,
       23,
       41,
-      47
+      42
     ],
     "numberScores": [
       {
@@ -339,24 +339,24 @@
         ]
       },
       {
-        "number": 47,
-        "rank": 7,
+        "number": 42,
+        "rank": 6,
         "score": 0.0223,
-        "totalFrequency": 44,
-        "recentFrequency": 2,
+        "totalFrequency": 38,
+        "recentFrequency": 3,
         "recentWindow": 15,
         "selectedPairs": [
           {
             "numbers": [
-              21,
-              47
+              18,
+              42
             ],
             "count": 1
           },
           {
             "numbers": [
               41,
-              47
+              42
             ],
             "count": 1
           }
@@ -54722,7 +54722,7 @@
     }
   ],
   "modelState": {
-    "version": "2.2.0",
+    "version": "2.3.0",
     "window": 15,
     "trainedThrough": "2026-10-19",
     "numberLogWeights": [
