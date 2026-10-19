@@ -1,10 +1,10 @@
-# Investigación de métodos para PrimitivaGPT
+# Investigación de métodos para BonolotoGPT
 
 Consulta de fuentes: 18/10/2026. Aplicación experimental: modelo 1.2.0.
 
 ## Conclusión
 
-Se incorporan dos expertos conservadores —Bayes regularizado y Markov regularizado— y aprendizaje del reintegro por pérdida de Brier. Son técnicas estadísticas generales: las fuentes no demuestran que puedan predecir La Primitiva ni garantizar premios. La muestra disponible contiene 125 sorteos; comparar muchas variantes sobre el mismo archivo produce evidencia exploratoria, no validación independiente.
+Se incorporan dos expertos conservadores —Bayes regularizado y Markov regularizado— y aprendizaje del reintegro por pérdida de Brier. Son técnicas estadísticas generales: las fuentes no demuestran que puedan predecir Bonoloto ni garantizar premios. La muestra disponible contiene 125 sorteos; comparar muchas variantes sobre el mismo archivo produce evidencia exploratoria, no validación independiente.
 
 ## Métodos estudiados y decisión
 
@@ -32,13 +32,13 @@ Se incorporan dos expertos conservadores —Bayes regularizado y Markov regulari
 4. **scikit-learn — TimeSeriesSplit.** Advierte sobre entrenar con futuro y evaluar pasado. El motor conserva una evaluación secuencial en orden de sorteos, sin barajar. Nuestra unidad temporal es el índice de sorteo; no se exige que transcurra el mismo número de días entre eventos. El diseño del modelo se ha desarrollado sobre un histórico ya examinado, por lo que la validación prospectiva real requiere nuevos sorteos.
    https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html
 
-5. **Coronel-Brizio et al. (2008), Statistical auditing and randomness test of lotto k/N-type games.** Presenta una auditoría basada en la distribución hipergeométrica, con aplicaciones históricas y comparación Monte Carlo. Detectar desviaciones estadísticas y obtener capacidad predictiva fuera de muestra son cuestiones distintas; el artículo no demuestra que nuestro motor prediga La Primitiva.
+5. **Coronel-Brizio et al. (2008), Statistical auditing and randomness test of lotto k/N-type games.** Presenta una auditoría basada en la distribución hipergeométrica, con aplicaciones históricas y comparación Monte Carlo. Detectar desviaciones estadísticas y obtener capacidad predictiva fuera de muestra son cuestiones distintas; el artículo no demuestra que nuestro motor prediga Bonoloto.
    https://arxiv.org/abs/0806.4595
 
 6. **John Haigh (1997), The Statistics of the National Lottery.** El resumen informa que las primeras 96 extracciones británicas estudiadas eran compatibles con el azar en frecuencias y tiempos de espera. Es evidencia de ese estudio, no certificación de todas las loterías.
    https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/1467-985X.00056
 
-7. **vietvudanh/vietlott-data — Markov strategy.** Código primario de un experimento abierto que describe transiciones entre sorteos y reconoce que no existiría dependencia de primer orden en una lotería justa. Sirve de ejemplo de la hipótesis, no de evidencia de ganancias. La implementación de PrimitivaGPT es propia y simplificada: para reintegro cuenta transiciones desde el último dígito; para números agrega transiciones desde los seis valores del último sorteo. Todas las transiciones usan únicamente el pasado.
+7. **vietvudanh/vietlott-data — Markov strategy.** Código primario de un experimento abierto que describe transiciones entre sorteos y reconoce que no existiría dependencia de primer orden en una lotería justa. Sirve de ejemplo de la hipótesis, no de evidencia de ganancias. La implementación de BonolotoGPT es propia y simplificada: para reintegro cuenta transiciones desde el último dígito; para números agrega transiciones desde los seis valores del último sorteo. Todas las transiciones usan únicamente el pasado.
    https://github.com/vietvudanh/vietlott-data/blob/main/src/machine_learning/strategies/markov_chain.py
 
 ## Protocolo de combinación
