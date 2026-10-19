@@ -47,7 +47,15 @@ function renderAi(report){
  $('ai-forecast-date').textContent='Sorteo del '+format(report.forecast.targetDate,{day:'numeric',month:'long',year:'numeric'});
  $('ai-forecast').innerHTML='<div class="forecast-numbers"><span class="forecast-label">Combinación de seis números</span><div class="forecast-main-balls">'+report.forecast.numbers.map(aiBall).join('')+'</div></div>';
  $('ai-forecast-info').textContent=report.drawCount+' sorteos analizados · hasta el '+format(report.sourceLastDate,{day:'2-digit',month:'2-digit',year:'numeric'});
- $('ai-forecast-result').innerHTML='';
+ if(report.lastEvaluation){
+  const ev=report.lastEvaluation;
+  const pred=ev.numbers||[],actual=ev.actual||[];
+  const predBalls=pred.map(n=>'<span class="ball '+(actual.includes(n)?'hit':'')+'">'+pad(n)+'</span>').join('');
+  const actualBalls=actual.map(n=>'<span class="ball '+(pred.includes(n)?'hit':'')+'">'+pad(n)+'</span>').join('');
+  const reasons=(ev.selectionReasons||[]).map(x=>'<li><b>'+pad(x.number)+'</b>: puesto '+x.rank+' por puntuación combinada ('+Number(x.score).toFixed(4)+'); apareció '+x.totalFrequency+' veces en el histórico previo y '+x.recentFrequency+' veces en los últimos 15 sorteos previos.</li>').join('');
+  $('ai-forecast-result').innerHTML='<div class="ai-card" style="margin-top:16px"><h3>Contraste de la predicción anterior · '+format(ev.targetDate,{day:'numeric',month:'long',year:'numeric'})+'</h3><p>Predicción publicada con datos hasta '+format(ev.trainedThrough,{day:'2-digit',month:'2-digit',year:'numeric'})+'</p><div class="detail-lines"><div><label>Predicción</label><div class="detail-balls">'+predBalls+'</div></div><div><label>Resultado real · seis números</label><div class="detail-balls">'+actualBalls+'</div></div></div><p><b>Aciertos: '+ev.hits+'/6.</b> Los números resaltados coinciden. '+(ev.hits===0?'Esta combinación no acertó ninguno de los seis números.':'Se han encontrado '+ev.hits+' coincidencias.')+'</p><h4>¿Por qué se eligieron?</h4><p>El modelo ordenó los 49 números mediante una puntuación combinada de siete métodos: azar uniforme, frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado. La puntuación no significa que tengan mayor probabilidad real en un sorteo justo.</p><ul>'+reasons+'</ul></div>';
+ }else{$('ai-forecast-result').innerHTML='<p>Aún no hay una predicción anterior guardada para contrastar.</p>';}
+
  $('ai-forecast-explanation').innerHTML='<h4>Cómo se calcula</h4><p>El motor combina siete métodos estadísticos utilizando exclusivamente los seis números principales.</p><p>La combinación es experimental, no una garantía: en un sorteo justo todas las combinaciones tienen la misma probabilidad.</p>';
  $('ai-forecast-history').innerHTML='';
  $('ai-frequency').innerHTML=scoreBars(report.patterns.frequency.slice().sort((a,b)=>b.count-a.count||a.number-b.number).slice(0,12));
