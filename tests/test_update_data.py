@@ -36,7 +36,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertEqual(record['numbers'], [8, 11, 21, 41, 47, 48])
         self.assertEqual(set(record), {'id', 'date', 'numbers', 'source'})
         self.assertEqual(record['id'], 'BONO-20261014')
-        self.assertIn('bonoloto.html?game_id=BONO&fecha_sorteo=20261014', record['source'])
+        self.assertEqual(record['source'], 'https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-14-de-octubre-de-2026')
 
     def test_parses_widget_without_optional_labels(self):
         record = normalize_widget(
