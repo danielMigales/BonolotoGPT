@@ -3,7 +3,7 @@ const SEED = /*SEED*/;
 const HTML = /*HTML*/;
 const ICON = /*ICON*/;
 const MAX_AGE=3*60*60*1000;
-const KEY='history/draws.json';
+const KEY='bonoloto/history/draws.json';
 export function parseDraw(row){
  const m=/^\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s+C\((\d+)\)\s+R\((\d+)\)\s*$/.exec(row.combinacion||'');
  if(!m||row.game_id!=='BONO')throw Error('Formato SELAE inesperado');
@@ -44,7 +44,7 @@ export async function saveArchive(env,input){
 export async function getData(env){
  let current=SEED;
  if(!env.BUCKET)return {...SEED,warning:'Almacenamiento no disponible. Se muestra la copia incluida en el proyecto.'};
- try{const obj=await env.BUCKET.get(KEY);if(obj)current=await obj.json();else await env.BUCKET.put(KEY,JSON.stringify(SEED));}
+ try{const obj=await env.BUCKET.get(KEY);if(obj){const stored=await obj.json();if(stored?.source==='SELAE'&&Array.isArray(stored.draws)&&stored.draws.every(d=>Array.isArray(d.numbers)&&d.numbers.length===6&&typeof d.date==='string'&&typeof d.id==='string'&&String(d.source||'').includes('game_id=BONO')))current=stored;else return {...SEED,warning:'Se ha aislado el almacenamiento heredado. Se espera el histórico oficial de Bonoloto.'};}else await env.BUCKET.put(KEY,JSON.stringify(SEED));}
  catch{return {...SEED,warning:'No se pudo leer el archivo del servidor. Se muestra la última copia incluida en el proyecto.'};}
  if(Date.now()-Date.parse(current.checkedAt)>MAX_AGE)return {...current,warning:'La última consulta a SELAE tiene más de tres horas. Se conservan los resultados guardados mientras se reintenta la sincronización.'};
  return current;
@@ -54,7 +54,7 @@ export async function trackAnalysis(env,archive,report){
  if(report.status!=='ready')return {...report,warning:archive.warning};
  const base={...report,forecast:{...report.forecast,targetDate:nextDrawDate(report.sourceLastDate)},warning:archive.warning};
  if(!env.BUCKET)return {...base,tracking:{targetDate:base.forecast.targetDate,active:null,records:[],persisted:false}};
- const key='ai/tracking/'+report.window+'.json';
+ const key='bonoloto/ai/tracking/'+report.window+'.json';
  for(let attempt=0;attempt<4;attempt++){
   const object=await env.BUCKET.get(key),previous=object?await object.json():{records:[]};
   const tracking=reconcileForecasts(previous.records,base,archive.draws);
@@ -74,12 +74,12 @@ export async function getAnalysis(env,window=15){
  if(![5,10,15,20,30,50].includes(window))throw Error('Ventana permitida: 5, 10, 15, 20, 30 o 50');
  const archive=await getData(env);
  const signature=AI_CACHE_VERSION+':'+JSON.stringify(archive.draws.map(d=>[d.date,d.numbers]));
- const key='ai/reports/'+window+'.json';
+ const key='bonoloto/ai/reports/'+window+'.json';
  if(env.BUCKET){try{const saved=await env.BUCKET.get(key);if(saved){const cache=await saved.json();if(cache.signature===signature)return trackAnalysis(env,archive,cache.report);}}catch{/* Recalcular desde el histórico conservado. */}}
  const report=analyze(archive.draws,{window});
  if(env.BUCKET&&report.status==='ready'){
-  await env.BUCKET.put('ai/models/'+window+'.json',JSON.stringify(report.modelState),{httpMetadata:{contentType:'application/json'}});
-  const forecastKey='ai/forecasts/'+MODEL_VERSION+'/'+window+'/after-'+report.sourceLastDate+'.json';
+  await env.BUCKET.put('bonoloto/ai/models/'+window+'.json',JSON.stringify(report.modelState),{httpMetadata:{contentType:'application/json'}});
+  const forecastKey='bonoloto/ai/forecasts/'+MODEL_VERSION+'/'+window+'/after-'+report.sourceLastDate+'.json';
   if(!await env.BUCKET.get(forecastKey))await env.BUCKET.put(forecastKey,JSON.stringify({version:MODEL_VERSION,window,trainedThrough:report.sourceLastDate,trainingCount:report.drawCount,numbers:report.forecast.numbers}),{httpMetadata:{contentType:'application/json'}});
   await env.BUCKET.put(key,JSON.stringify({signature,report}),{httpMetadata:{contentType:'application/json'}});
  }
