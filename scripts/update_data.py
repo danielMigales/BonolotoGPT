@@ -1,4 +1,4 @@
-"""Actualiza el histórico oficial de BonoLoto desde el widget publicado por SELAE."""
+"""Actualiza el histórico oficial de BonoLoto desde las páginas públicas de SELAE."""
 import datetime as dt
 import html
 import json
@@ -89,8 +89,10 @@ def sorted_draws(merged):
 
 
 def fetch_day(day):
-    """Lee el resultado de la página oficial de SELAE mediante un proxy de texto porque SELAE bloquea las IP de GitHub Actions."""
-    url = 'https://r.jina.ai/https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + day.replace('-', '')
+    """Lee la página pública del sorteo en SELAE mediante Jina Reader para evitar el bloqueo de GitHub Actions."""
+    # El widget por fecha puede devolver una plantilla vacía desde servidores externos.
+    # La página pública individual contiene la combinación ganadora y es verificable.
+    url = 'https://r.jina.ai/' + official_url(day)
     last_error = None
     for attempt in range(3):
         try:
@@ -99,7 +101,6 @@ def fetch_day(day):
                     'curl', '--fail', '--silent', '--show-error', '--location',
                     '--connect-timeout', '15', '--max-time', '45',
                     '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                    '--header', 'Referer: https://www.loteriasyapuestas.es/es/bonoloto/resultados',
                     url,
                 ],
                 check=True, capture_output=True, text=True, encoding='utf-8',
