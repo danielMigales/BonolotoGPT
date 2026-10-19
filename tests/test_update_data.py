@@ -48,7 +48,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertEqual(record['numbers'], [7, 8, 10, 13, 41, 43])
 
     def test_bulk_csv_parses_dates_and_keeps_only_six_numbers(self):
-        body = 'Fecha,N1,N2,N3,N4,N5,N6,C\\n17/10/2026,18,32,37,38,42,49,20\\n18/10/2026,9,18,21,23,48,49,29\\n'
+        body = 'Fecha,N1,N2,N3,N4,N5,N6,C\n17/10/2026,18,32,37,38,42,49,20\n18/10/2026,9,18,21,23,48,49,29\n'
         rows = parse_bulk_csv(body, dt.date(2026, 10, 18))
         self.assertEqual(len(rows), 2)
         self.assertEqual(rows['2026-10-17']['numbers'], [18, 32, 37, 38, 42, 49])
