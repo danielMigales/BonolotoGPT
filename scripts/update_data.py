@@ -137,8 +137,8 @@ def parse_bulk_csv(body, end):
         if not row:
             continue
         first = ','.join(row[:2])
-        iso = re.search(r'(?<!\\d)(20\\d{2})[-/](\\d{1,2})[-/](\\d{1,2})(?!\\d)', first)
-        euro = re.search(r'(?<!\\d)(\\d{1,2})[/-](\\d{1,2})[/-](20\\d{2})(?!\\d)', first)
+        iso = re.search(r'(?<!\d)(20\d{2})[-/](\d{1,2})[-/](\d{1,2})(?!\d)', first)
+        euro = re.search(r'(?<!\d)(\d{1,2})[/-](\d{1,2})[/-](20\d{2})(?!\d)', first)
         try:
             if iso:
                 draw_date = dt.date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3)))
@@ -153,7 +153,7 @@ def parse_bulk_csv(body, end):
         values = []
         for cell in row[1:]:
             token = cell.strip()
-            if re.fullmatch(r'\\d{1,2}', token):
+            if re.fullmatch(r'\d{1,2}', token):
                 values.append(int(token))
         if len(values) < 6:
             continue
