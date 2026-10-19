@@ -1,0 +1,1168 @@
+[
+  {
+    "fecha_sorteo": "2026-10-17 21:42:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1325804125",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 125,
+    "premio_bote": "37500000",
+    "cdc": "13258",
+    "apuestas": "10978524",
+    "recaudacion": "1097852400",
+    "combinacion": "08 - 09 - 12 - 14 - 29 - 45 C(43) R(4)",
+    "combinacion_acta": "12 - 08 - 45 - 29 - 09 - 14 C(43) R(4)",
+    "premios": "603818820",
+    "fondo_bote": "3583389777",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1325810125",
+      "combinacion": "8525836",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1205214,25",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "39088,03",
+        "ganadores": "5"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1947,32",
+        "ganadores": "184"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "46,11",
+        "ganadores": "11304"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "210375"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1081845"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 15,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 111,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1249,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 11990,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 122156,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 17 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-17-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 17 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-17-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 17 de octubre de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-17-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 37.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-37-500-000euro-17-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 17/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_17_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-15 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1325604124",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 124,
+    "premio_bote": "36500000",
+    "cdc": "13256",
+    "apuestas": "11613570",
+    "recaudacion": "1161357000",
+    "combinacion": "06 - 17 - 24 - 35 - 39 - 47 C(18) R(3)",
+    "combinacion_acta": "24 - 17 - 35 - 47 - 06 - 39 C(18) R(3)",
+    "premios": "638746350",
+    "fondo_bote": "3474283542",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1325610124",
+      "combinacion": "2666233",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1345643,57",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "54553,12",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1688",
+        "ganadores": "237"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "41,23",
+        "ganadores": "14112"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "198654"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1187907"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 0,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 14,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 117,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1186,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 11935,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 121189,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 15 de octubre de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-15-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 15 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-15-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 15 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-15-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 36.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-36-500-000euro-15-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 15/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_15_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-12 21:43:00",
+    "dia_semana": "lunes",
+    "id_sorteo": "1325304123",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 123,
+    "premio_bote": "34800000",
+    "cdc": "13253",
+    "apuestas": "4801230",
+    "recaudacion": "480123000",
+    "combinacion": "02 - 05 - 26 - 40 - 42 - 45 C(23) R(9)",
+    "combinacion_acta": "40 - 26 - 42 - 02 - 45 - 05 C(23) R(9)",
+    "premios": "264067650",
+    "fondo_bote": "3371322129",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1325310123",
+      "combinacion": "4781884",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "46102,13",
+        "ganadores": "2"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2253,88",
+        "ganadores": "75"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "62,26",
+        "ganadores": "3949"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "77977"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "458451"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 6,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 51,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 594,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 5834,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 59228,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 34.800.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-34-800-000euro-12-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 12 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-12-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 12 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-12-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 12/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_LUNES_12_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-10 21:42:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1325104122",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 122,
+    "premio_bote": "34500000",
+    "cdc": "13251",
+    "apuestas": "11318030",
+    "recaudacion": "1131803000",
+    "combinacion": "10 - 16 - 18 - 20 - 22 - 29 C(11) R(7)",
+    "combinacion_acta": "16 - 18 - 20 - 22 - 29 - 10 C(11) R(7)",
+    "premios": "622491650",
+    "fondo_bote": "3267554484",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1325110122",
+      "combinacion": "9871681",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1279800,96",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "51883,82",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1430,38",
+        "ganadores": "266"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "47,62",
+        "ganadores": "11621"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "204274"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1277048"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 18,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 119,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1232,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 12598,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 136634,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 10 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-10-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 10 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-10-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 10 de octubre de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-10-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 34.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-34-500-000euro-10-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 10/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_10_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-08 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1324904121",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 121,
+    "premio_bote": "33500000",
+    "cdc": "13249",
+    "apuestas": "11576713",
+    "recaudacion": "1157671300",
+    "combinacion": "06 - 07 - 14 - 16 - 21 - 37 C(25) R(2)",
+    "combinacion_acta": "06 - 21 - 37 - 16 - 14 - 07 C(25) R(2)",
+    "premios": "636719215",
+    "fondo_bote": "3169129738",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1324910121",
+      "combinacion": "2445443",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1213905,19",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "32808,25",
+        "ganadores": "6"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1718,53",
+        "ganadores": "210"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "39,27",
+        "ganadores": "13367"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "241087"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1098833"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 8,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 117,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1187,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 12216,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 121841,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 08 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-08-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 08 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-08-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 08 de octubre de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-08-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 33.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-33-500-000euro-08-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 08/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_08_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-05 21:42:00",
+    "dia_semana": "lunes",
+    "id_sorteo": "1324604120",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 120,
+    "premio_bote": "31500000",
+    "cdc": "13246",
+    "apuestas": "6952196",
+    "recaudacion": "695219600",
+    "combinacion": "04 - 10 - 20 - 25 - 40 - 49 C(29) R(3)",
+    "combinacion_acta": "49 - 04 - 10 - 40 - 25 - 20 C(29) R(3)",
+    "premios": "382370780",
+    "fondo_bote": "3029377373",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1324610120",
+      "combinacion": "7459175",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "31287,84",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1274,69",
+        "ganadores": "180"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "34,11",
+        "ganadores": "9783"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "130329"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "711748"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 0,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 11,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 91,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 889,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 8815,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 109524,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 31.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-31-500-000euro-05-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 05 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-05-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 05 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-05-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 05/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_LUNES_5_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-03 21:42:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1324404119",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 119,
+    "premio_bote": "31000000",
+    "cdc": "13244",
+    "apuestas": "11230398",
+    "recaudacion": "1123039800",
+    "combinacion": "06 - 20 - 24 - 27 - 44 - 45 C(12) R(2)",
+    "combinacion_acta": "20 - 24 - 44 - 06 - 45 - 27 C(12) R(2)",
+    "premios": "617671890",
+    "fondo_bote": "2923197560",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1324410119",
+      "combinacion": "7407593",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "654775,52",
+        "ganadores": "2"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "35393,27",
+        "ganadores": "6"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2317,42",
+        "ganadores": "168"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "56,56",
+        "ganadores": "10013"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "189294"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1065957"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 15,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 180,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1587,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 15154,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 187691,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 03 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-03-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 03 de octubre de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-03-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 03 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-03-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 31.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-31-000-000euro-03-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 03/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_03_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-10-01 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1324204118",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 118,
+    "premio_bote": "29500000",
+    "cdc": "13242",
+    "apuestas": "11492317",
+    "recaudacion": "1149231700",
+    "combinacion": "04 - 14 - 16 - 22 - 33 - 45 C(46) R(7)",
+    "combinacion_acta": "14 - 16 - 45 - 22 - 33 - 04 C(46) R(7)",
+    "premios": "632077435",
+    "fondo_bote": "2820251520",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1324210118",
+      "combinacion": "6965325",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1269667,82",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "41178,42",
+        "ganadores": "5"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1205,97",
+        "ganadores": "313"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "41,93",
+        "ganadores": "13094"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "217501"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1291905"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 16,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 179,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1842,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 18144,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 145315,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 29.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-29-500-000euro-01-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 01 de octubre de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-01-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 01 de octubre de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-01-de-octubre-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 01 de octubre de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-01-de-octubre-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 01/10/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_01_10_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  }
+]
