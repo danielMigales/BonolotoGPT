@@ -113,22 +113,39 @@ def fetch_day(day):
     raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
 
 
+def is_bonoloto_rows(rows):
+    return bool(rows) and all(
+        str(row.get('id', '')).startswith('BONO-')
+        and '/bonoloto/resultados/bonoloto-resultados-del-' in str(row.get('source', '')).lower()
+        for row in rows
+    )
+
+
+def write_json_atomic(path, doc):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + '.tmp')
+    tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    tmp.replace(path)
+
+
 def main():
     now = dt.datetime.now(MADRID)
     today = now.date()
     path = ROOT / 'data/draws.json'
+    progress_path = ROOT / 'data/draws-progress.json'
     previous = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'draws': []}
     old_draws = previous.get('draws', [])
     # Los sorteos guardan como source la URL pública de resultados de SELAE,
-    # no la URL interna del widget (que contiene game_id=BONO). Detectarlos
-    # por el ID y la URL oficial permite continuar desde el último sorteo
-    # sin volver a descargar todo el histórico en cada ejecución.
-    is_bonoloto = bool(old_draws) and all(
-        str(row.get('id', '')).startswith('BONO-')
-        and '/bonoloto/resultados/bonoloto-resultados-del-' in str(row.get('source', '')).lower()
-        for row in old_draws
-    )
-    merged = {row['date']: row for row in old_draws} if is_bonoloto else {}
+    # no la URL interna del widget (que contiene game_id=BONO).
+    merged = {row['date']: row for row in old_draws} if is_bonoloto_rows(old_draws) else {}
+
+    # Recuperar el último punto de control si una ejecución anterior se interrumpió.
+    if progress_path.exists():
+        progress_doc = json.loads(progress_path.read_text(encoding='utf-8'))
+        progress_draws = progress_doc.get('draws', [])
+        if not is_bonoloto_rows(progress_draws):
+            raise ValueError('El archivo de progreso no contiene un histórico Bonoloto válido; no se sobrescribe.')
+        merged.update({row['date']: row for row in progress_draws})
     latest_date = max(merged, default=None)
 
     if latest_date:
@@ -151,7 +168,16 @@ def main():
         if day < start.isoformat():
             continue
         merged[day] = fetch_day(day)
-        print(f'{day}: resultado oficial validado', flush=True)
+        # Punto de control tras cada fecha validada para reanudar si falla una
+        # consulta posterior sin repetir las fechas completadas.
+        write_json_atomic(progress_path, {
+            'schemaVersion': 1,
+            'startDate': str(START),
+            'source': 'SELAE',
+            'latestDate': max(merged),
+            'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
+        })
+        print(f'{day}: resultado oficial validado y progreso guardado', flush=True)
 
     draws = sorted_draws(merged)
     latest = dt.date.fromisoformat(draws[0]['date'])
@@ -169,9 +195,8 @@ def main():
         'latestDate': draws[0]['date'],
         'draws': draws,
     }
-    tmp = path.with_suffix('.tmp')
-    tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    tmp.replace(path)
+    write_json_atomic(path, doc)
+    progress_path.unlink(missing_ok=True)
     print(f'Histórico oficial validado: {len(draws)} sorteos; último {draws[0]["date"]}')
 
 
