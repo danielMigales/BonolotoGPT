@@ -20,9 +20,13 @@ for(const obsoleteWindow of [5,10,20,30,50]){
 }
 const fixedWindow=15;
 const defaultAnalysis=analyze(seed.draws,{window:fixedWindow});
-if(defaultAnalysis.status!=='ready')throw new Error('No se pudo generar el análisis de 15 sorteos');
-await writeFile(`public/data/ai-analysis-${fixedWindow}.json`,JSON.stringify(defaultAnalysis));
-// El informe principal y el estado guardado del modelo también quedan alineados a 15.
-await writeFile('data/ai-analysis.json',JSON.stringify(defaultAnalysis,null,2)+'\n');
-await writeFile('data/ai-model.json',JSON.stringify(defaultAnalysis.modelState,null,2)+'\n');
-console.log(`Generados Worker y página estática: ${seed.draws.length} sorteos`);
+if(defaultAnalysis.status==='ready'){
+ await writeFile(`public/data/ai-analysis-${fixedWindow}.json`,JSON.stringify(defaultAnalysis));
+ await writeFile('data/ai-analysis.json',JSON.stringify(defaultAnalysis,null,2)+'\n');
+ await writeFile('data/ai-model.json',JSON.stringify(defaultAnalysis.modelState,null,2)+'\n');
+}else{
+ await rm(`public/data/ai-analysis-${fixedWindow}.json`,{force:true});
+ await rm('data/ai-analysis.json',{force:true});
+ await rm('data/ai-model.json',{force:true});
+}
+console.log(`Generados Worker y página estática: ${seed.draws.length} sorteos; análisis: ${defaultAnalysis.status}`);
