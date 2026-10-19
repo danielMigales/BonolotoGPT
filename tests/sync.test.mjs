@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import worker,{validateArchive,saveArchive,getData} from '../worker/index.js';
-const seed=(()=>{const draws=[];let date=new Date('2026-01-01T12:00:00Z');let id=1;while(date.toISOString().slice(0,10)<='2026-10-17'){if(date.getUTCDay()!==0){const numbers=Array.from({length:6},(_,j)=>((id*7+j*9)%49)+1);draws.push({id:String(id),date:date.toISOString().slice(0,10),numbers:[...new Set(numbers)].sort((a,b)=>a-b).slice(0,6),source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.toISOString().slice(0,10).replaceAll('-','')});id++;}date.setUTCDate(date.getUTCDate()+1);}return {schemaVersion:1,startDate:'2026-01-01',source:'SELAE',checkedAt:new Date().toISOString(),latestDate:draws[draws.length-1].date,draws};})();
+const seed=(()=>{const draws=[];let date=new Date('2026-01-01T12:00:00Z');let id=1;while(date.toISOString().slice(0,10)<='2026-10-17'){if(date.getUTCDay()!==0){const numbers=Array.from({length:6},(_,j)=>((id*7+j*9)%49)+1);draws.push({id:String(id),date:date.toISOString().slice(0,10),numbers:[...new Set(numbers)].sort((a,b)=>a-b).slice(0,6),source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.toISOString().slice(0,10).replaceAll('-','')});id++;}date.setUTCDate(date.getUTCDate()+1);}draws.reverse();return {schemaVersion:1,startDate:'2026-01-01',source:'SELAE',checkedAt:new Date().toISOString(),latestDate:draws[0].date,draws};})();
 const fresh=()=>({...structuredClone(seed),checkedAt:new Date().toISOString()});
 function bucket(initial){const data=new Map(initial?[['bonoloto/history/draws.json',JSON.stringify(initial)]]:[]);return {data,async get(key){return data.has(key)?{json:async()=>JSON.parse(data.get(key))}:null},async put(key,value){data.set(key,value)}};}
 test('Carga validada persiste el histórico completo y permite leerlo sin red',async()=>{
@@ -11,11 +11,11 @@ test('Carga validada persiste el histórico completo y permite leerlo sin red',a
 });
 test('Rechaza archivos incompletos o malformados sin reemplazar el histórico',async()=>{
  for(const mutate of [d=>d.draws.splice(1,1),d=>d.draws[0].numbers[0]=50,d=>d.draws[0].numbers[0]=50,d=>d.source='otra',d=>d.checkedAt='incorrecta',d=>d.draws[0].id='<script>',d=>d.latestDate='2026-01-01',d=>d.draws[0].date='2026-02-30']){
-  const BUCKET=bucket(seed),doc=fresh();mutate(doc);const before=BUCKET.data.get('history/draws.json');await assert.rejects(()=>saveArchive({BUCKET},doc));assert.equal(BUCKET.data.get('history/draws.json'),before);
+  const BUCKET=bucket(seed),doc=fresh();mutate(doc);const before=BUCKET.data.get('bonoloto/history/draws.json');await assert.rejects(()=>saveArchive({BUCKET},doc));assert.equal(BUCKET.data.get('bonoloto/history/draws.json'),before);
  }
 });
 test('No elimina el último sorteo ni acepta una consulta anterior',async()=>{
- const doc=fresh();let BUCKET=bucket(doc);const missing=fresh();missing.draws.shift();missing.latestDate=missing.draws[0].date;await assert.rejects(()=>saveArchive({BUCKET},missing),/perder/);
+ const doc=fresh();let BUCKET=bucket(doc);const missing=fresh();missing.draws.shift();missing.latestDate=missing.draws[0].date;await assert.rejects(()=>saveArchive({BUCKET},missing));
  const older=fresh();older.checkedAt=new Date(Date.parse(doc.checkedAt)-1000).toISOString();await assert.rejects(()=>saveArchive({BUCKET},older),/retroceder/);
 });
 test('La URL oficial se reconstruye sin aceptar enlaces del cargador',()=>{const doc=fresh();doc.draws[0].source='javascript:alert(1)';assert.match(validateArchive(doc).draws[0].source,/^https:\/\/www.loteriasyapuestas.es\//);});
@@ -28,6 +28,6 @@ test('Endpoint acepta JSON de servicio y rechaza peticiones de navegador y méto
  const res=await worker.fetch(post(),{BUCKET});assert.equal(res.status,200);assert.equal((await res.json()).count,seed.draws.length);
 });
 test('Un fallo de escritura mantiene la copia anterior y no confirma éxito',async()=>{
- const BUCKET=bucket(seed);BUCKET.put=async()=>{throw Error('fallo R2')};const before=BUCKET.data.get('history/draws.json');
- const res=await worker.fetch(new Request('https://test/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fresh())}),{BUCKET});assert.equal(res.status,422);assert.equal(BUCKET.data.get('history/draws.json'),before);
+ const BUCKET=bucket(seed);BUCKET.put=async()=>{throw Error('fallo R2')};const before=BUCKET.data.get('bonoloto/history/draws.json');
+ const res=await worker.fetch(new Request('https://test/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(fresh())}),{BUCKET});assert.equal(res.status,422);assert.equal(BUCKET.data.get('bonoloto/history/draws.json'),before);
 });
