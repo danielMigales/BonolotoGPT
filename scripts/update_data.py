@@ -89,8 +89,8 @@ def sorted_draws(merged):
 
 
 def fetch_day(day):
-    """Descarga el resultado de un día usando el endpoint oficial documentado por SELAE."""
-    url = official_url(day)
+    """Lee el resultado de la página oficial de SELAE mediante un proxy de texto porque SELAE bloquea las IP de GitHub Actions."""
+    url = 'https://r.jina.ai/' + official_url(day)
     last_error = None
     for attempt in range(3):
         try:
