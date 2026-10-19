@@ -37,21 +37,27 @@ assert.doesNotMatch(staticHtml, /id="ai-window"|Número de sorteos|<option value
 assert.doesNotMatch(staticHtml, /fetch\(['"]\/api\/(?:draws|ai)/, 'La web estática no debe depender de rutas API del Worker');
 assert.match(source, /url\.pathname===\x27\/icon\.svg\x27/);
 assert.match(staticIcon, /<svg[\s>]/);
-const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-15.json"), "utf8"));
-assert.equal(fixedReport.window, 15);
-assert.equal(fixedReport.status, "ready");
-assert.equal(fixedReport.drawCount, archive.draws.length);
-assert.equal(fixedReport.sourceLastDate, archive.latestDate);
-for (const obsoleteWindow of [5, 10, 20, 30, 50]) {
-  await assert.rejects(readFile(resolve(projectRoot, `public/data/ai-analysis-${obsoleteWindow}.json`), "utf8"));
+if (archive.draws.length > 15) {
+  const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-15.json"), "utf8"));
+  assert.equal(fixedReport.window, 15);
+  assert.equal(fixedReport.status, "ready");
+  assert.equal(fixedReport.drawCount, archive.draws.length);
+  assert.equal(fixedReport.sourceLastDate, archive.latestDate);
+  for (const obsoleteWindow of [5, 10, 20, 30, 50]) {
+    await assert.rejects(readFile(resolve(projectRoot, `public/data/ai-analysis-${obsoleteWindow}.json`), "utf8"));
+  }
+  const defaultReport = JSON.parse(await readFile(resolve(projectRoot, "data/ai-analysis.json"), "utf8"));
+  const defaultModel = JSON.parse(await readFile(resolve(projectRoot, "data/ai-model.json"), "utf8"));
+  assert.equal(defaultReport.window, 15);
+  assert.equal(defaultReport.status, "ready");
+  assert.equal(defaultReport.drawCount, archive.draws.length);
+  assert.equal(defaultReport.sourceLastDate, archive.latestDate);
+  assert.equal(defaultModel.window, 15);
+  assert.equal(defaultModel.version, defaultReport.modelState.version);
+} else {
+  await assert.rejects(readFile(resolve(projectRoot, "public/data/ai-analysis-15.json"), "utf8"));
+  await assert.rejects(readFile(resolve(projectRoot, "data/ai-analysis.json"), "utf8"));
+  await assert.rejects(readFile(resolve(projectRoot, "data/ai-model.json"), "utf8"));
 }
-const defaultReport = JSON.parse(await readFile(resolve(projectRoot, "data/ai-analysis.json"), "utf8"));
-const defaultModel = JSON.parse(await readFile(resolve(projectRoot, "data/ai-model.json"), "utf8"));
-assert.equal(defaultReport.window, 15);
-assert.equal(defaultReport.status, "ready");
-assert.equal(defaultReport.drawCount, archive.draws.length);
-assert.equal(defaultReport.sourceLastDate, archive.latestDate);
-assert.equal(defaultModel.window, 15);
-assert.equal(defaultModel.version, defaultReport.modelState.version);
 
 console.log("Artifact is valid ESM, exports default.fetch, and contains consistent AI reports");
