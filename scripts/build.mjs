@@ -21,6 +21,15 @@ for(const obsoleteWindow of [5,10,20,30,50]){
 const fixedWindow=15;
 const defaultAnalysis=analyze(seed.draws,{window:fixedWindow});
 if(defaultAnalysis.status==='ready'){
+ try{
+  const history=JSON.parse(await readFile('data/forecast-history.json','utf8'));
+  if(Array.isArray(history)&&history.length){
+   defaultAnalysis.lastEvaluation=history.at(-1);
+   defaultAnalysis.evaluationHistory=history.slice(-10);
+  }
+ }catch(error){if(error.code!=='ENOENT')throw error;}
+}
+if(defaultAnalysis.status==='ready'){
  await writeFile(`public/data/ai-analysis-${fixedWindow}.json`,JSON.stringify(defaultAnalysis));
  await writeFile('data/ai-analysis.json',JSON.stringify(defaultAnalysis,null,2)+'\n');
  await writeFile('data/ai-model.json',JSON.stringify(defaultAnalysis.modelState,null,2)+'\n');
