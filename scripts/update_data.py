@@ -119,8 +119,14 @@ def main():
     path = ROOT / 'data/draws.json'
     previous = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'draws': []}
     old_draws = previous.get('draws', [])
+    # Los sorteos guardan como source la URL pública de resultados de SELAE,
+    # no la URL interna del widget (que contiene game_id=BONO). Detectarlos
+    # por el ID y la URL oficial permite continuar desde el último sorteo
+    # sin volver a descargar todo el histórico en cada ejecución.
     is_bonoloto = bool(old_draws) and all(
-        'game_id=BONO' in str(row.get('source', '')) for row in old_draws
+        str(row.get('id', '')).startswith('BONO-')
+        and '/bonoloto/resultados/bonoloto-resultados-del-' in str(row.get('source', '')).lower()
+        for row in old_draws
     )
     merged = {row['date']: row for row in old_draws} if is_bonoloto else {}
     latest_date = max(merged, default=None)
