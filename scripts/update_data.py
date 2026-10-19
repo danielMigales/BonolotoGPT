@@ -37,7 +37,7 @@ def normalize_widget(day, body):
     )
     match = re.search(pattern, text, flags=re.IGNORECASE)
     if not match:
-        raise ValueError(f'SELAE no ha devuelto una combinación reconocible para {day}. Final de respuesta: {text[-3000:]}')
+        raise ValueError(f'SELAE no ha devuelto una combinación reconocible para {day}')
 
     values = list(map(int, match.groups()))
     nums, complementario, reintegro = values[:6], values[6], values[7]
@@ -90,7 +90,7 @@ def sorted_draws(merged):
 
 def fetch_day(day):
     """Lee el resultado de la página oficial de SELAE mediante un proxy de texto porque SELAE bloquea las IP de GitHub Actions."""
-    url = 'https://r.jina.ai/' + official_url(day)
+    url = 'https://r.jina.ai/https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + day.replace('-', '')
     last_error = None
     for attempt in range(3):
         try:
