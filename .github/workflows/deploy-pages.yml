@@ -21,7 +21,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Comprobar que son las 22:00 en España
+      - name: Comprobar que son las 23:00 en España
         id: schedule-time
         run: |
           if [ "$GITHUB_EVENT_NAME" != "schedule" ] || [ "$(TZ=Europe/Madrid date +%H)" = "23" ]; then
