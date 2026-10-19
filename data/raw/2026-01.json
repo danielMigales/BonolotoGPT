@@ -1,0 +1,2030 @@
+[
+  {
+    "fecha_sorteo": "2026-01-31 21:42:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1299904014",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 14,
+    "premio_bote": "92000000",
+    "cdc": "12999",
+    "apuestas": "12998023",
+    "recaudacion": "1299802300",
+    "combinacion": "01 - 10 - 19 - 32 - 33 - 36 C(09) R(7)",
+    "combinacion_acta": "01 - 32 - 19 - 33 - 10 - 36 C(09) R(7)",
+    "premios": "714891265",
+    "fondo_bote": "8999067595",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1299910014",
+      "combinacion": "1351487",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "519250,89",
+        "ganadores": "3"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "42101,42",
+        "ganadores": "6"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2631,34",
+        "ganadores": "176"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "66,26",
+        "ganadores": "10166"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "204871"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1453936"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 13,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 144,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1383,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 13400,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 132881,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 92.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-92-000-000euro-31-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 31 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-31-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 31 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-31-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 31/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_31_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-29 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1299704013",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 13,
+    "premio_bote": "90500000",
+    "cdc": "12997",
+    "apuestas": "13103492",
+    "recaudacion": "1310349200",
+    "combinacion": "02 - 21 - 23 - 39 - 44 - 47 C(32) R(8)",
+    "combinacion_acta": "02 - 47 - 44 - 21 - 39 - 23 C(32) R(8)",
+    "premios": "720692060",
+    "fondo_bote": "8873082853",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1299710013",
+      "combinacion": "7680340",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1553811,82",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "125984,74",
+        "ganadores": "2"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2405,96",
+        "ganadores": "192"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "61,22",
+        "ganadores": "10975"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "212135"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1365847"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 15,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 123,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1279,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 13105,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 129699,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 90.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-90-500-000euro-29-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 29 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-29-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 29 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-29-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 29 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-29-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 29/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_29_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-26 21:43:00",
+    "dia_semana": "lunes",
+    "id_sorteo": "1299404012",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 12,
+    "premio_bote": "88000000",
+    "cdc": "12994",
+    "apuestas": "8021333",
+    "recaudacion": "802133300",
+    "combinacion": "01 - 02 - 18 - 24 - 38 - 49 C(08) R(4)",
+    "combinacion_acta": "01 - 49 - 38 - 18 - 24 - 02 C(08) R(4)",
+    "premios": "441173315",
+    "fondo_bote": "8707909639",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1299410012",
+      "combinacion": "6774027",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "36979,08",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2421,25",
+        "ganadores": "112"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "51,09",
+        "ganadores": "7721"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "143041"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "801548"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 2,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 7,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 113,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 877,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 9072,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 90253,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 88.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-88-000-000euro-26-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 26 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-26-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 26 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-26-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 26/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_LUNES_26_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-24 21:42:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1299204011",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 11,
+    "premio_bote": "86500000",
+    "cdc": "12992",
+    "apuestas": "12618215",
+    "recaudacion": "1261821500",
+    "combinacion": "03 - 20 - 24 - 31 - 45 - 49 C(11) R(4)",
+    "combinacion_acta": "24 - 20 - 03 - 45 - 49 - 31 C(11) R(4)",
+    "premios": "694001825",
+    "fondo_bote": "8444386528",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1299210011",
+      "combinacion": "6654726",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "58997,71",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2174,12",
+        "ganadores": "199"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "53,61",
+        "ganadores": "11738"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "218127"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1256784"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 3,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 16,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 128,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1235,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 12677,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 128418,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 24 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-24-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 24 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-24-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 86.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-86-500-000euro-24-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 24/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_24_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-22 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1299004010",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 10,
+    "premio_bote": "84000000",
+    "cdc": "12990",
+    "apuestas": "12844061",
+    "recaudacion": "1284406100",
+    "combinacion": "02 - 05 - 09 - 14 - 22 - 36 C(34) R(5)",
+    "combinacion_acta": "22 - 02 - 36 - 14 - 05 - 09 C(34) R(5)",
+    "premios": "706423355",
+    "fondo_bote": "8201500040",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1299010010",
+      "combinacion": "1024630",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "31072,9",
+        "ganadores": "7"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1027,75",
+        "ganadores": "388"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "34,36",
+        "ganadores": "16881"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "269332"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1428701"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 2,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 11,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 114,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1254,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 12670,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 128161,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 22 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-22-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 22 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-22-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 84.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-84-000-000euro-22-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 22/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_22_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-19 21:42:00",
+    "dia_semana": "lunes",
+    "id_sorteo": "1298704009",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 9,
+    "premio_bote": "81500000",
+    "cdc": "12987",
+    "apuestas": "8104550",
+    "recaudacion": "810455000",
+    "combinacion": "15 - 16 - 23 - 27 - 37 - 39 C(13) R(2)",
+    "combinacion_acta": "15 - 39 - 27 - 16 - 37 - 23 C(13) R(2)",
+    "premios": "445750250",
+    "fondo_bote": "8034553761",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1298710009",
+      "combinacion": "0684105",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "37376,03",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1957,79",
+        "ganadores": "140"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "53,43",
+        "ganadores": "7462"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "144414"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "773507"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 4,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 100,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 934,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 9245,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 92098,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 81.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-81-500-000euro-19-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 19 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-19-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 19 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-19-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 19/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_LUNES_19_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-17 21:43:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1298504008",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 8,
+    "premio_bote": "81000000",
+    "cdc": "12985",
+    "apuestas": "13199674",
+    "recaudacion": "1319967400",
+    "combinacion": "02 - 04 - 12 - 22 - 35 - 47 C(10) R(5)",
+    "combinacion_acta": "12 - 02 - 04 - 35 - 47 - 22 C(10) R(5)",
+    "premios": "725982070",
+    "fondo_bote": "7916242002",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1298510008",
+      "combinacion": "9483933",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1459178,36",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "39437,25",
+        "ganadores": "6"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1413,06",
+        "ganadores": "307"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "45,05",
+        "ganadores": "14008"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "249516"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1452023"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 12,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 121,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1368,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 13503,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 135186,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 17 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-17-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 17 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-17-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 17 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-17-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 81.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-81-000-000euro-17-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 17/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_17_1_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-15 21:43:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1298304007",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 7,
+    "premio_bote": "78500000",
+    "cdc": "12983",
+    "apuestas": "13697397",
+    "recaudacion": "1369739700",
+    "combinacion": "09 - 14 - 17 - 18 - 36 - 44 C(22) R(7)",
+    "combinacion_acta": "09 - 17 - 36 - 44 - 14 - 18 C(22) R(7)",
+    "premios": "753356835",
+    "fondo_bote": "7631072538",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1298310007",
+      "combinacion": "5779933",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "36482,23",
+        "ganadores": "7"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2240,14",
+        "ganadores": "209"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "52,31",
+        "ganadores": "13018"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "238446"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1524852"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 2,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 9,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 131,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1309,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 13311,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 133379,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 15 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-15-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 15 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-15-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 78.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-78-500-000euro-15-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 15/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_15_1_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-12 21:43:00",
+    "dia_semana": "lunes",
+    "id_sorteo": "1298004006",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 6,
+    "premio_bote": "77000000",
+    "cdc": "12980",
+    "apuestas": "8507953",
+    "recaudacion": "850795300",
+    "combinacion": "02 - 16 - 18 - 20 - 43 - 46 C(19) R(6)",
+    "combinacion_acta": "43 - 16 - 18 - 02 - 46 - 20 C(19) R(6)",
+    "premios": "467937415",
+    "fondo_bote": "7548584932",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1298010006",
+      "combinacion": "1632681",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1017347,13",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "164975,21",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2223,93",
+        "ganadores": "136"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "59,56",
+        "ganadores": "7386"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "134874"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "818021"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 14,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 102,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 894,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 10315,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 166542,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 77.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-77-000-000euro-12-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 12 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-12-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 12 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-12-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 12 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-12-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 12/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_LUNES_12_1_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-10 21:43:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1297804005",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 5,
+    "premio_bote": "76500000",
+    "cdc": "12978",
+    "apuestas": "13638199",
+    "recaudacion": "1363819900",
+    "combinacion": "04 - 07 - 08 - 22 - 40 - 49 C(44) R(2)",
+    "combinacion_acta": "08 - 49 - 07 - 04 - 40 - 22 C(44) R(2)",
+    "premios": "750100945",
+    "fondo_bote": "7428031565",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1297810005",
+      "combinacion": "3387681",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1486824,85",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "16073,78",
+        "ganadores": "15"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1733,45",
+        "ganadores": "255"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "43,03",
+        "ganadores": "14942"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "264843"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1321547"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 2,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 11,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 125,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1379,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 13590,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 135036,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 10 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-10-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 10 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-10-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 10 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-10-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 76.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-76-500-000euro-10-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 10/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_10_1_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-08 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1297604004",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 4,
+    "premio_bote": "74500000",
+    "cdc": "12976",
+    "apuestas": "14139252",
+    "recaudacion": "1413925200",
+    "combinacion": "04 - 09 - 14 - 25 - 27 - 34 C(45) R(0)",
+    "combinacion_acta": "04 - 34 - 09 - 14 - 25 - 27 C(45) R(0)",
+    "premios": "777658860",
+    "fondo_bote": "7301760623",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1297610004",
+      "combinacion": "3300922",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "778670,81",
+        "ganadores": "2"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "22958,35",
+        "ganadores": "11"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1714,79",
+        "ganadores": "270"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "44,94",
+        "ganadores": "14987"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "269204"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1271202"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 1,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 14,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 136,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1332,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 13494,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 134376,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 08 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-08-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 08 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-08-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 08 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-08-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 74.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-74-500-000euro-08-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 08/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_8_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-05 21:42:00",
+    "dia_semana": "lunes",
+    "id_sorteo": "1297304003",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 3,
+    "premio_bote": "73500000",
+    "cdc": "12973",
+    "apuestas": "7952033",
+    "recaudacion": "795203300",
+    "combinacion": "02 - 03 - 17 - 21 - 33 - 34 C(11) R(7)",
+    "combinacion_acta": "33 - 21 - 34 - 17 - 03 - 02 C(11) R(7)",
+    "premios": "437361815",
+    "fondo_bote": "7229640417",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1297310003",
+      "combinacion": "0687730",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "444741,27",
+        "ganadores": "2"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "36060,1",
+        "ganadores": "4"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2049,93",
+        "ganadores": "129"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "46,82",
+        "ganadores": "8215"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "146801"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "905081"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 2,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 7,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 87,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 944,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 8828,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 106280,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 73.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-73-500-000euro-05-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 05 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-05-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 05 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-05-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 05 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-05-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 05/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_LUNES_05_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-03 21:43:00",
+    "dia_semana": "sábado",
+    "id_sorteo": "1297104002",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 2,
+    "premio_bote": "73000000",
+    "cdc": "12971",
+    "apuestas": "12367540",
+    "recaudacion": "1236754000",
+    "combinacion": "06 - 15 - 20 - 22 - 26 - 36 C(18) R(6)",
+    "combinacion_acta": "22 - 06 - 36 - 26 - 15 - 20 C(18) R(6)",
+    "premios": "680214700",
+    "fondo_bote": "7119393267",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1297110002",
+      "combinacion": "6480511",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "453238,28",
+        "ganadores": "3"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "24499,37",
+        "ganadores": "9"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "1837,45",
+        "ganadores": "220"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "45,78",
+        "ganadores": "12845"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "236311"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1199268"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 2,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 9,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 129,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1207,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 12578,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 125756,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 73.000.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-73-000-000euro-03-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 03 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-03-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 03 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-03-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 03 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-03-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 03/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_SÁBADO_3_1_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  },
+  {
+    "fecha_sorteo": "2026-01-01 21:42:00",
+    "dia_semana": "jueves",
+    "id_sorteo": "1296904001",
+    "game_id": "LAPR",
+    "anyo": "2026",
+    "numero": 1,
+    "premio_bote": "71500000",
+    "cdc": "12969",
+    "apuestas": "11588637",
+    "recaudacion": "1158863700",
+    "combinacion": "07 - 16 - 30 - 36 - 39 - 40 C(49) R(2)",
+    "combinacion_acta": "36 - 16 - 40 - 07 - 30 - 39 C(49) R(2)",
+    "premios": "637375035",
+    "fondo_bote": "7005172987",
+    "joker": {
+      "gameid": "LAJO",
+      "relsorteoid_asociado": "1296910001",
+      "combinacion": "6763723",
+      "bote_joker": 1000000,
+      "activo": "1"
+    },
+    "escrutinio": [
+      {
+        "tipo": "Especial (6 Aciertos + R) ",
+        "categoria": 1,
+        "premio": "0",
+        "ganadores": "0"
+      },
+      {
+        "tipo": "1ª (6 Aciertos) ",
+        "categoria": 2,
+        "premio": "1408716,78",
+        "ganadores": "1"
+      },
+      {
+        "tipo": "2ª (5 Aciertos + C) ",
+        "categoria": 3,
+        "premio": "45688,11",
+        "ganadores": "5"
+      },
+      {
+        "tipo": "3ª (5 Aciertos) ",
+        "categoria": 4,
+        "premio": "2949,35",
+        "ganadores": "142"
+      },
+      {
+        "tipo": "4ª (4 Aciertos) ",
+        "categoria": 5,
+        "premio": "68,91",
+        "ganadores": "8840"
+      },
+      {
+        "tipo": "5ª (3 Aciertos) ",
+        "categoria": 6,
+        "premio": "8",
+        "ganadores": "175943"
+      },
+      {
+        "tipo": "Reintegro",
+        "categoria": 7,
+        "premio": "1",
+        "ganadores": "1106937"
+      }
+    ],
+    "escrutinio_joker": [
+      {
+        "tipo": "1ª (todas las cifras)",
+        "ganadores": 0,
+        "premio": "1000000",
+        "orden_escrutinio": "1"
+      },
+      {
+        "tipo": "2ª (6 primeras o últimas cifras)",
+        "ganadores": 3,
+        "premio": "10000",
+        "orden_escrutinio": "2"
+      },
+      {
+        "tipo": "3ª (5 primeras o últimas cifras)",
+        "ganadores": 12,
+        "premio": "1000",
+        "orden_escrutinio": "3"
+      },
+      {
+        "tipo": "4ª (4 primeras o últimas cifras)",
+        "ganadores": 100,
+        "premio": "300",
+        "orden_escrutinio": "4"
+      },
+      {
+        "tipo": "5ª (3 primeras o últimas cifras)",
+        "ganadores": 1167,
+        "premio": "50",
+        "orden_escrutinio": "5"
+      },
+      {
+        "tipo": "6ª (2 primeras o últimas cifras)",
+        "ganadores": 11426,
+        "premio": "5",
+        "orden_escrutinio": "6"
+      },
+      {
+        "tipo": "7ª (primera o última cifra)",
+        "ganadores": 116748,
+        "premio": "1",
+        "orden_escrutinio": "7"
+      }
+    ],
+    "contenidosRelacionados": {
+      "noticias": [
+        {
+          "tituloRelacion": "Resultado Automatico",
+          "tituloContenido": "La Primitiva: resultados del 01 de enero de 2026",
+          "urlContenido": "/la-primitiva/resultados/la-primitiva-resultados-del-01-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Escrutinio Automatico",
+          "tituloContenido": "La Primitiva: premios y ganadores del 01 de enero de 2026",
+          "urlContenido": "/la-primitiva/escrutinios/la-primitiva-premios-y-ganadores-del-01-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Premio Automatico 2",
+          "tituloContenido": "Primer Premio de La Primitiva del 01 de enero de 2026",
+          "urlContenido": "/premios/primer-premio-de-la-primitiva-del-01-de-enero-de-2026"
+        },
+        {
+          "tituloRelacion": "Bote Automatico",
+          "tituloContenido": "La Primitiva: bote de 71.500.000€",
+          "urlContenido": "/la-primitiva/botes/la-primitiva-bote-de-71-500-000euro-01-de-enero-de-2026"
+        }
+      ],
+      "enlaces": [],
+      "puntosDeVenta": [],
+      "documentos": [
+        {
+          "tituloRelacion": null,
+          "tituloContenido": "Nota de prensa del sorteo del 01/01/2026 La Primitiva",
+          "urlContenido": "/f/loterias/documentos/La Primitiva/Notas de prensa/NOTA_DE_PRENSA_LA_PRIMITIVA_JUEVES_1_01_26.pdf"
+        }
+      ],
+      "imagenes": [],
+      "preguntasFrecuentes": [],
+      "paginasLibres": []
+    }
+  }
+]
