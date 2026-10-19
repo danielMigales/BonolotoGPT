@@ -150,7 +150,7 @@ def main():
 
     if latest_date:
         wait, reason = should_wait_for_results(now, latest_date)
-        if wait:
+        if wait and not progress_path.exists():
             print(f'Sin consulta a SELAE: {reason}. Se conserva el histórico.')
             return
         start = dt.date.fromisoformat(latest_date) + dt.timedelta(days=1)
@@ -160,7 +160,7 @@ def main():
     end = today
     if now.time().replace(tzinfo=None) < RESULTS_AVAILABLE_AFTER:
         end -= dt.timedelta(days=1)
-    if start > end:
+    if start > end and not progress_path.exists():
         print('No hay fechas nuevas que consultar; se conserva el histórico.')
         return
 
