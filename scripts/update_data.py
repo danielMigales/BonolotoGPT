@@ -209,6 +209,54 @@ def validate_official_frequency_counts(draws):
         ]
         raise ValueError('El CSV no coincide con las frecuencias oficiales SELAE (hasta 2026-10-17): ' + '; '.join(mismatches[:10]))
 
+
+RECENT_HISTORY_URL = 'https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos'
+
+
+def parse_recent_history(day, body):
+    """Extrae un sorteo reciente del histórico público alternativo cuando SELAE limita la consulta."""
+    text = html.unescape(body)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    target = dt.date.fromisoformat(day)
+    weekday = r'(?:Dom|Lun|Mar|Mi[eé]|Jue|Vie|S[aá]b)'
+    pattern = (
+        weekday + r'-(\d{1,2})-(\d{1,2})-(20\d{2})\s+'
+        + r'(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})\s+'
+        + r'(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})'
+    )
+    for match in re.finditer(pattern, text, flags=re.IGNORECASE):
+        day_num, month_num, year_num = map(int, match.groups()[:3])
+        try:
+            found_date = dt.date(year_num, month_num, day_num)
+        except ValueError:
+            continue
+        if found_date != target:
+            continue
+        numbers = list(map(int, match.groups()[3:9]))
+        if len(set(numbers)) != 6 or not all(1 <= n <= 49 for n in numbers):
+            raise ValueError(f'Histórico alternativo contiene una combinación inválida para {day}')
+        return {
+            'id': 'BONO-' + target.strftime('%Y%m%d'),
+            'date': target.isoformat(),
+            'numbers': sorted(numbers),
+            'source': official_url(day),
+        }
+    raise ValueError(f'El histórico alternativo no contiene el sorteo {day}')
+
+
+def fetch_recent_history(day):
+    response = subprocess.run(
+        [
+            'curl', '--fail', '--silent', '--show-error', '--location',
+            '--connect-timeout', '8', '--max-time', '20',
+            '--user-agent', 'Mozilla/5.0 (compatible; BonolotoGPT/1.0)',
+            RECENT_HISTORY_URL,
+        ],
+        check=True, capture_output=True, text=True, encoding='utf-8',
+    )
+    return parse_recent_history(day, response.stdout)
+
 def is_bonoloto_rows(rows):
     return bool(rows) and all(
         str(row.get('id', '')).startswith('BONO-')
@@ -236,9 +284,12 @@ def main():
     if progress_path.exists():
         progress_doc = json.loads(progress_path.read_text(encoding='utf-8'))
         progress_draws = progress_doc.get('draws', [])
+        progress_import_source = progress_doc.get('importSource')
         if not is_bonoloto_rows(progress_draws):
             raise ValueError('El archivo de progreso no contiene un histórico Bonoloto válido; no se sobrescribe.')
         merged.update({row['date']: row for row in progress_draws})
+    else:
+        progress_import_source = None
 
     end = today
     if now.time().replace(tzinfo=None) < RESULTS_AVAILABLE_AFTER:
@@ -246,7 +297,7 @@ def main():
     expected = list(expected_dates(end))
     missing = [day for day in expected if day not in merged]
 
-    import_source = previous.get('importSource')
+    import_source = previous.get('importSource') or progress_import_source
     if len(missing) > 3:
         print(f'Faltan {len(missing)} fechas: descargando el histórico CSV en una sola petición.', flush=True)
         try:
@@ -274,7 +325,15 @@ def main():
 
     for day in missing:
         try:
-            merged[day] = fetch_day(day)
+            try:
+                merged[day] = fetch_day(day)
+                print(f'{day}: resultado obtenido desde SELAE', flush=True)
+            except Exception as selae_error:
+                # SELAE bloquea algunas IP de GitHub Actions; el CSV masivo ya ha
+                # aportado el histórico y esta página pública cubre solo fechas recientes.
+                merged[day] = fetch_recent_history(day)
+                import_source = f'{import_source or BULK_SOURCE_PAGE}; complemento reciente: {RECENT_HISTORY_URL}'
+                print(f'{day}: recuperado desde histórico alternativo tras fallo SELAE ({selae_error})', flush=True)
             write_json_atomic(progress_path, {
                 'schemaVersion': 1,
                 'startDate': str(START),
