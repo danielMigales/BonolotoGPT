@@ -89,22 +89,24 @@ def sorted_draws(merged):
 
 
 def fetch_day(day):
-    """Obtiene el resultado de SELAE, con alternativa directa si falla el lector."""
+    """Consulta primero el widget oficial de SELAE a través de Jina Reader."""
+    widget = 'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo=' + day.replace('-', '')
     urls = [
+        'https://r.jina.ai/' + widget,
         'https://r.jina.ai/' + official_url(day),
+        widget,
         official_url(day),
     ]
     last_error = None
     for url in urls:
-        # Si la respuesta es válida HTTP pero no contiene el resultado esperado,
-        # probar la página oficial directamente en vez de abortar todo el histórico.
-        for attempt in range(2):
+        for attempt in range(3):
             try:
                 response = subprocess.run(
                     [
                         'curl', '--fail', '--silent', '--show-error', '--location',
                         '--connect-timeout', '15', '--max-time', '45',
                         '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                        '--header', 'Referer: https://www.loteriasyapuestas.es/es/bonoloto/resultados',
                         url,
                     ],
                     check=True, capture_output=True, text=True, encoding='utf-8',
@@ -116,7 +118,7 @@ def fetch_day(day):
                     break
             except Exception as exc:
                 last_error = exc
-                if attempt < 1:
+                if attempt < 2:
                     time.sleep(2)
     detail = getattr(last_error, 'stderr', '') or str(last_error)
     raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
