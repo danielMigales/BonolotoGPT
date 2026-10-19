@@ -29,7 +29,7 @@ def normalize_widget(day, body):
     text = re.sub(r'\s+', ' ', text).strip()
 
     n = r'(\d{1,2})'
-    sep = r'\s*[-–]\s*'
+    sep = r'(?:\s*[-–]\s*|\s+)'
     pattern = (
         n + sep + n + sep + n + sep + n + sep + n + sep + n
         + r'\s*(?:Complementario\s*:\s*)?C\s*\(\s*(\d{1,2})\s*\)'
@@ -89,30 +89,37 @@ def sorted_draws(merged):
 
 
 def fetch_day(day):
-    """Lee la página pública del sorteo en SELAE mediante Jina Reader para evitar el bloqueo de GitHub Actions."""
-    # El widget por fecha puede devolver una plantilla vacía desde servidores externos.
-    # La página pública individual contiene la combinación ganadora y es verificable.
-    url = 'https://r.jina.ai/' + official_url(day)
+    """Obtiene el resultado de SELAE, con alternativa directa si falla el lector."""
+    urls = [
+        'https://r.jina.ai/' + official_url(day),
+        official_url(day),
+    ]
     last_error = None
-    for attempt in range(3):
-        try:
-            response = subprocess.run(
-                [
-                    'curl', '--fail', '--silent', '--show-error', '--location',
-                    '--connect-timeout', '15', '--max-time', '45',
-                    '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                    url,
-                ],
-                check=True, capture_output=True, text=True, encoding='utf-8',
-            )
-            return normalize_widget(day, response.stdout)
-        except Exception as exc:
-            last_error = exc
-            if attempt < 2:
-                time.sleep(2)
+    for url in urls:
+        # Si la respuesta es válida HTTP pero no contiene el resultado esperado,
+        # probar la página oficial directamente en vez de abortar todo el histórico.
+        for attempt in range(2):
+            try:
+                response = subprocess.run(
+                    [
+                        'curl', '--fail', '--silent', '--show-error', '--location',
+                        '--connect-timeout', '15', '--max-time', '45',
+                        '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                        url,
+                    ],
+                    check=True, capture_output=True, text=True, encoding='utf-8',
+                )
+                try:
+                    return normalize_widget(day, response.stdout)
+                except ValueError as exc:
+                    last_error = exc
+                    break
+            except Exception as exc:
+                last_error = exc
+                if attempt < 1:
+                    time.sleep(2)
     detail = getattr(last_error, 'stderr', '') or str(last_error)
     raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
-
 
 def is_bonoloto_rows(rows):
     return bool(rows) and all(

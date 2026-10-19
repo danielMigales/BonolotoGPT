@@ -38,6 +38,14 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertEqual(record['id'], 'BONO-20261014')
         self.assertEqual(record['source'], 'https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-14-de-octubre-de-2026')
 
+    def test_parses_official_html_when_numbers_are_separated_by_whitespace(self):
+        # SELAE puede devolver los números en spans separados, sin guiones.
+        record = normalize_widget(
+            '2026-01-01',
+            '<div>07</div><div>08</div><div>10</div><div>13</div><div>41</div><div>43</div> Complementario C(30) Reintegro R(5)',
+        )
+        self.assertEqual(record['numbers'], [7, 8, 10, 13, 41, 43])
+
     def test_parses_widget_without_optional_labels(self):
         record = normalize_widget(
             '2026-10-17',

@@ -46,6 +46,16 @@ jobs:
         id: update-data
         if: steps.schedule-time.outputs.run == 'true'
         run: npm run update-data
+      - name: Guardar el histórico validado antes de construir y probar
+        if: steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/draws.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Guardar histórico oficial validado de BonoLoto"
+            git push
+          fi
       - name: Guardar el punto de control si falla SELAE
         if: always() && steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'failure'
         run: |
