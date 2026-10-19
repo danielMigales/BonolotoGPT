@@ -47,7 +47,7 @@ Abrir http://localhost:8000.
 
 Repositorio: https://github.com/danielMigales/BonolotoGPT
 
-El workflow **Publicar BonolotoGPT en GitHub Pages** intenta descargar y validar el histórico oficial, construye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta al hacer push a `main` o manualmente desde GitHub Actions; no hay una programación horaria configurada en este repositorio. La publicación solo queda confirmada cuando el workflow termina correctamente.
+El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una comprobación diaria programada para las 23:00 de Madrid (GitHub Actions comprueba las 21:00 y las 22:00 UTC para cubrir horario de verano e invierno). La actualización automática depende de que la descarga y validación de datos finalice correctamente.
 
 El workflow **Validar BonolotoGPT** ejecuta las pruebas y comprueba que el Worker generado esté sincronizado con sus fuentes.
 
