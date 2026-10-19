@@ -98,7 +98,8 @@ def fetch_day(day):
                 [
                     'curl', '--fail', '--silent', '--show-error', '--location',
                     '--connect-timeout', '15', '--max-time', '45',
-                    '--user-agent', 'BonolotoGPT/1.0 (official results archive)',
+                    '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                    '--header', 'Referer: https://www.loteriasyapuestas.es/es/bonoloto/resultados',
                     url,
                 ],
                 check=True, capture_output=True, text=True, encoding='utf-8',
@@ -108,7 +109,8 @@ def fetch_day(day):
             last_error = exc
             if attempt < 2:
                 time.sleep(2)
-    raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {last_error}') from last_error
+    detail = getattr(last_error, 'stderr', '') or str(last_error)
+    raise RuntimeError(f'No se pudo obtener el resultado oficial de SELAE para {day}: {detail}') from last_error
 
 
 def main():
