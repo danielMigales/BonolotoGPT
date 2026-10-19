@@ -13,7 +13,7 @@ El motor combina siete métodos experimentales: azar uniforme, frecuencia acumul
 - La primera evaluación requiere 16 sorteos oficiales.
 - Se comparan la media de aciertos y el número de sorteos con tres o más y cuatro o más aciertos frente a una referencia aleatoria reproducible.
 - Las frecuencias y coapariciones describen el histórico, pero no demuestran que una combinación futura sea más probable.
-- El histórico de producción está vacío; no hay resultados actuales que permitan publicar métricas empíricas.
+- El histórico del repositorio contiene sorteos desde enero de 2026. Las métricas deben interpretarse con cautela: validar frecuencias agregadas no garantiza que cada fila se haya verificado individualmente contra SELAE.
 
 ## Límites
 En un sorteo justo, todas las combinaciones de seis números tienen la misma probabilidad. Un resultado histórico favorable no demuestra una ventaja predictiva. Las conclusiones deben actualizarse únicamente con datos oficiales y pruebas reproducibles.
