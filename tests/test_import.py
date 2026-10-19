@@ -24,12 +24,26 @@ class ImportTests(unittest.TestCase):
             ['2026-01-01', '2026-01-02', '2026-01-03', '2026-01-04'],
         )
 
-    def test_empty_archive_is_clean_bonoloto_schema(self):
+    def test_archive_has_clean_bonoloto_schema(self):
         root = pathlib.Path(__file__).resolve().parents[1]
         doc = json.loads((root / 'data/draws.json').read_text())
-        self.assertEqual(doc['draws'], [])
-        self.assertIsNone(doc['latestDate'])
-        self.assertIsNone(doc['checkedAt'])
+        self.assertEqual(doc['schemaVersion'], 1)
+        self.assertEqual(doc['source'], 'SELAE')
+        self.assertEqual(doc['startDate'], '2026-01-01')
+        self.assertIsInstance(doc['draws'], list)
+
+        # El archivo puede estar vacío en un checkout limpio o contener el
+        # histórico oficial cuando Actions lo descarga antes de ejecutar tests.
+        if doc['draws']:
+            self.assertEqual(doc['latestDate'], doc['draws'][0]['date'])
+            self.assertTrue(doc['checkedAt'])
+            self.assertEqual(
+                doc['draws'],
+                sorted(doc['draws'], key=lambda row: row['date'], reverse=True),
+            )
+        else:
+            self.assertIsNone(doc['latestDate'])
+            self.assertIsNone(doc['checkedAt'])
 
     def test_archive_rows_never_store_auxiliary_fields(self):
         root = pathlib.Path(__file__).resolve().parents[1]
