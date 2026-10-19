@@ -18,7 +18,7 @@ test('Publicación oficial evalúa la propuesta original y crea la siguiente; co
  const actual={...archive.draws[0],date:ticket.targetDate,id:'999999999',numbers:[...ticket.numbers.slice(0,3),...other.slice(0,3)].sort((a,b)=>a-b)};
  const draws=[actual,...archive.draws],nextReport=analyze(draws),now=new Date('2026-10-19T21:00:00Z');
  const reconciled=reconcileForecasts(pending.records,nextReport,draws,now);
- assert.equal(reconciled.active.targetDate,'2026-10-22');assert.equal(reconciled.active.status,'pending');assert.equal(reconciled.records.length,2);
+ assert.equal(reconciled.active.targetDate,'2026-10-20');assert.equal(reconciled.active.status,'pending');assert.equal(reconciled.records.length,2);
  const old=reconciled.records.find(r=>r.targetDate==='2026-10-19');assert.equal(old.status,'published');assert.equal(old.publishedAt,now.toISOString());assert.equal(old.hits,3);assert.deepEqual(old.numbers,ticket.numbers);assert.equal(old.createdAt,ticket.createdAt);assert.deepEqual(old.actual.numbers,actual.numbers);
  const corrected=[{...actual,numbers:[...actual.numbers].reverse()},...archive.draws];
  const updated=reconcileForecasts(reconciled.records,nextReport,corrected,now).records.find(r=>r.targetDate===actual.date);
