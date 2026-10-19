@@ -10,10 +10,16 @@ from zoneinfo import ZoneInfo
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 START = dt.date(2026, 1, 1)
-BASE = 'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html'
+BASE = 'https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-'
 MADRID = ZoneInfo('Europe/Madrid')
 DRAW_WEEKDAYS = set(range(7))  # SELAE publica sorteos de BonoLoto todos los días
 RESULTS_AVAILABLE_AFTER = dt.time(23, 0)
+SPANISH_MONTHS = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre')
+
+
+def official_url(day):
+    date = dt.date.fromisoformat(day)
+    return BASE + f'{date.day:02d}-de-{SPANISH_MONTHS[date.month - 1]}-de-{date.year}'
 
 
 def normalize_widget(day, body):
@@ -47,7 +53,7 @@ def normalize_widget(day, body):
         'id': 'BONO-' + date.strftime('%Y%m%d'),
         'date': date.isoformat(),
         'numbers': sorted(nums),
-        'source': BASE + '?game_id=BONO&fecha_sorteo=' + date.strftime('%Y%m%d'),
+        'source': official_url(day),
     }
 
 
@@ -84,7 +90,7 @@ def sorted_draws(merged):
 
 def fetch_day(day):
     """Descarga el resultado de un día usando el endpoint oficial documentado por SELAE."""
-    url = BASE + '?game_id=BONO&fecha_sorteo=' + day.replace('-', '')
+    url = official_url(day)
     last_error = None
     for attempt in range(3):
         try:
