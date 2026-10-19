@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 from scripts.update_data import (
     expected_dates,
     latest_scheduled_date,
-    normalize,
+    normalize_widget,
     should_wait_for_results,
     sorted_draws,
 )
@@ -18,34 +18,41 @@ class UpdateDataScheduleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'ningún sorteo válido'):
             sorted_draws({})
 
-    def test_bonoloto_is_scheduled_monday_to_saturday(self):
+    def test_bonoloto_is_scheduled_every_day_including_sunday(self):
         self.assertEqual(
             latest_scheduled_date(dt.date(2026, 10, 18)),
-            dt.date(2026, 10, 17),
+            dt.date(2026, 10, 18),
         )
         dates = list(expected_dates(dt.date(2026, 1, 3)))
         self.assertEqual(dates, ['2026-01-01', '2026-01-02', '2026-01-03'])
 
-    def test_normalizes_official_bonoloto_record(self):
-        record = normalize({
-            'game_id': 'BONO',
-            'id_sorteo': 'official-20260101',
-            'fecha_sorteo': '2026-01-01 21:42:00',
-            'combinacion': '07 - 08 - 10 - 13 - 41 - 43 C(30) R(5)',
-        })
-        self.assertEqual(record['date'], '2026-01-01')
-        self.assertEqual(record['numbers'], [7, 8, 10, 13, 41, 43])
+    def test_parses_official_selae_widget_and_keeps_only_six_numbers(self):
+        body = '''
+        <div>08 - 11 - 21 - 41 - 47 - 48
+        Complementario: C(34) Reintegro: R(4)</div>
+        '''
+        record = normalize_widget('2026-10-14', body)
+        self.assertEqual(record['date'], '2026-10-14')
+        self.assertEqual(record['numbers'], [8, 11, 21, 41, 47, 48])
         self.assertEqual(set(record), {'id', 'date', 'numbers', 'source'})
-        self.assertIn('bonoloto.html?game_id=BONO', record['source'])
+        self.assertEqual(record['id'], 'BONO-20261014')
+        self.assertIn('bonoloto.html?game_id=BONO&fecha_sorteo=20261014', record['source'])
 
-    def test_rejects_other_game_record(self):
-        with self.assertRaisesRegex(ValueError, 'Registro SELAE no reconocido'):
-            normalize({
-                'game_id': 'OTRO',
-                'id_sorteo': 'wrong-game',
-                'fecha_sorteo': '2026-01-01 21:42:00',
-                'combinacion': '07 - 08 - 10 - 13 - 41 - 43 C(30) R(5)',
-            })
+    def test_parses_widget_without_optional_labels(self):
+        record = normalize_widget(
+            '2026-10-17',
+            '<p>18 - 32 - 37 - 38 - 42 - 49 C(20) R(7)</p>',
+        )
+        self.assertEqual(record['numbers'], [18, 32, 37, 38, 42, 49])
+
+    def test_rejects_unrecognized_or_invalid_official_result(self):
+        with self.assertRaisesRegex(ValueError, 'combinación reconocible'):
+            normalize_widget('2026-10-14', '<p>Resultados pendientes</p>')
+        with self.assertRaisesRegex(ValueError, 'Combinación oficial inválida'):
+            normalize_widget(
+                '2026-10-14',
+                '<p>08 - 08 - 21 - 41 - 47 - 48 C(34) R(4)</p>',
+            )
 
     def test_waits_until_2300_on_expected_draw_day(self):
         now = dt.datetime(2026, 10, 19, 22, 59, tzinfo=MADRID)
