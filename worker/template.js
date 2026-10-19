@@ -6,16 +6,16 @@ const MAX_AGE=3*60*60*1000;
 const KEY='history/draws.json';
 export function parseDraw(row){
  const m=/^\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s+C\((\d+)\)\s+R\((\d+)\)\s*$/.exec(row.combinacion||'');
- if(!m||row.game_id!=='LAPR')throw Error('Formato SELAE inesperado');
+ if(!m||row.game_id!=='BONO')throw Error('Formato SELAE inesperado');
  const v=m.slice(1).map(Number),numbers=v.slice(0,6).sort((a,b)=>a-b),date=row.fecha_sorteo.slice(0,10);
  if(new Set(numbers).size!==6||numbers.some(n=>n<1||n>49)||v[6]<1||v[6]>49||numbers.includes(v[6])||v[7]<0||v[7]>9||date<'2026-01-01'||!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(Date.parse(date)))throw Error('Resultado inválido');
- return {id:String(row.id_sorteo),date,numbers,complementary:v[6],refund:v[7],source:'https://www.loteriasyapuestas.es/f/loterias/resultados/primitiva.html?game_id=LAPR&fecha_sorteo='+date.replaceAll('-','')};
+ return {id:String(row.id_sorteo),date,numbers,complementary:v[6],refund:v[7],source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.replaceAll('-','')};
 }
 export function validateHistory(draws){
  if(!draws.length)throw Error('Histórico vacío');
  if(new Set(draws.map(d=>d.date)).size!==draws.length||new Set(draws.map(d=>d.id)).size!==draws.length)throw Error('Duplicados');
  const dates=new Set(draws.map(d=>d.date)),end=draws[0].date;
- for(let d=new Date('2026-01-01T12:00:00Z');d.toISOString().slice(0,10)<=end;d.setUTCDate(d.getUTCDate()+1))if([1,4,6].includes(d.getUTCDay())&&!dates.has(d.toISOString().slice(0,10)))throw Error('Cobertura incompleta');
+ for(let d=new Date('2026-01-01T12:00:00Z');d.toISOString().slice(0,10)<=end;d.setUTCDate(d.getUTCDate()+1))if(!dates.has(d.toISOString().slice(0,10)))throw Error('Cobertura incompleta');
 }
 export function validateArchive(input){
  if(!input||input.schemaVersion!==1||input.source!=='SELAE'||input.startDate!=='2026-01-01'||!Array.isArray(input.draws))throw Error('Archivo no reconocido');
@@ -24,7 +24,7 @@ export function validateArchive(input){
  const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Madrid'}).format(new Date());
  const draws=input.draws.map(d=>{
   if(!d||!Array.isArray(d.numbers)||d.numbers.length!==6||![...d.numbers,d.complementary,d.refund].every(Number.isInteger)||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||!Number.isFinite(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date||d.date>today||typeof d.id!=='string'||!/^\d+$/.test(d.id))throw Error('Sorteo inválido');
-  return parseDraw({game_id:'LAPR',fecha_sorteo:d.date,id_sorteo:d.id,combinacion:d.numbers.join(' - ')+' C('+d.complementary+') R('+d.refund+')'});
+  return parseDraw({game_id:'BONO',fecha_sorteo:d.date,id_sorteo:d.id,combinacion:d.numbers.join(' - ')+' C('+d.complementary+') R('+d.refund+')'});
  }).sort((a,b)=>b.date.localeCompare(a.date));
  validateHistory(draws);
  if(input.latestDate!==draws[0].date)throw Error('Última fecha inconsistente');
