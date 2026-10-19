@@ -65,7 +65,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertIn('ya llega', reason)
 
     def test_checks_if_expected_draw_is_missing_from_archive(self):
-        now = dt.datetime(2026, 10, 20, 10, 0, tzinfo=MADRID)
+        now = dt.datetime(2026, 10, 20, 23, 1, tzinfo=MADRID)
         wait, _ = should_wait_for_results(now, '2026-10-19')
         self.assertFalse(wait)
 
