@@ -38,10 +38,10 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertEqual(set(record), {'id', 'date', 'numbers', 'source'})
         self.assertIn('bonoloto.html?game_id=BONO', record['source'])
 
-    def test_rejects_primitiva_record(self):
+    def test_rejects_other_game_record(self):
         with self.assertRaisesRegex(ValueError, 'Registro SELAE no reconocido'):
             normalize({
-                'game_id': 'LAPR',
+                'game_id': 'OTRO',
                 'id_sorteo': 'wrong-game',
                 'fecha_sorteo': '2026-01-01 21:42:00',
                 'combinacion': '07 - 08 - 10 - 13 - 41 - 43 C(30) R(5)',
