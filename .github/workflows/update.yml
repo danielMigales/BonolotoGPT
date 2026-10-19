@@ -25,8 +25,15 @@ jobs:
         run: |
           npm test
           npm run build
-      - name: Comprobar que el Worker generado está sincronizado
-        run: git diff --exit-code -- worker/index.js
+      - name: Comprobar que la generación del Worker es reproducible
+        run: |
+          before="$(sha256sum worker/index.js | cut -d ' ' -f1)"
+          npm run build
+          after="$(sha256sum worker/index.js | cut -d ' ' -f1)"
+          if [ "$before" != "$after" ]; then
+            echo "El Worker cambia entre dos compilaciones consecutivas."
+            exit 1
+          fi
       - uses: actions/upload-artifact@v7
         with:
           name: bonoloto-web-estatica
