@@ -33,6 +33,7 @@ assert.doesNotMatch(staticHtml, /SELAE se consulta cada hora|tarea programada co
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), 'La web estática debe cargar el histórico versionado');
 assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), 'La web estática debe cargar el informe fijo de 7 sorteos');
 assert.match(staticHtml, /Ventana de análisis[\s\S]*?7 sorteos/);
+assert.match(staticHtml, /Ventana reciente fija de 7 sorteos; aprendizaje y evaluación sobre el histórico disponible/);
 assert.doesNotMatch(staticHtml, /id="ai-window"|Número de sorteos|<option value="(?:5|10|15|20|30|50)">/);
 assert.doesNotMatch(staticHtml, /fetch\(['"]\/api\/(?:draws|ai)/, 'La web estática no debe depender de rutas API del Worker');
 assert.match(source, /url\.pathname===\x27\/icon\.svg\x27/);
