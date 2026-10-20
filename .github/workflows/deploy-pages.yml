@@ -71,9 +71,12 @@ jobs:
               git push
             fi
           fi
-      - name: Construir la aplicación con el histórico oficial
+      - name: Construir, registrar la predicción futura y regenerar el informe
         if: steps.schedule-time.outputs.run == 'true'
-        run: npm run build
+        run: |
+          npm run build
+          python scripts/record_forecast.py
+          npm run build
       - name: Ejecutar las pruebas
         if: steps.schedule-time.outputs.run == 'true'
         run: npm test
