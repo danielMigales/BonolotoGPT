@@ -17,6 +17,10 @@ El motor usa una ventana fija de 15 sorteos iniciales y combina siete enfoques e
 
 La interfaz de análisis requiere al menos **16 sorteos oficiales**: 15 para iniciar la ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
 
+## Registro prospectivo de predicciones
+
+El workflow guarda cada combinación en `data/forecast-issued.json` antes de que exista el resultado de su fecha objetivo. Cada registro conserva la fecha de emisión, los datos usados, la versión, la ventana, los seis números y una huella SHA-256; si ya existe una predicción para esa fecha, no se reemplaza. Cuando se publica el resultado oficial, `scripts/archive_forecast.py` evalúa la combinación original y guarda los aciertos en `data/forecast-history.json`. Las predicciones históricas anteriores al registro prospectivo no se consideran evidencia independiente. La comparación prospectiva empieza con los registros emitidos por este mecanismo y no garantiza ventaja predictiva.
+
 ## Archivos principales
 
 - `engine/model.js`: motor estadístico basado exclusivamente en los seis números principales.
