@@ -25,12 +25,17 @@ if(defaultAnalysis.status==='ready'){
  defaultAnalysis.audit=auditBacktest(defaultAnalysis.rows);
  try{
   const history=JSON.parse(await readFile('data/forecast-history.json','utf8'));
+  const issued=JSON.parse(await readFile('data/forecast-issued.json','utf8').catch(error=>{if(error.code==='ENOENT')return '[]';throw error;}));
   if(Array.isArray(history)&&history.length){
    const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
    if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
    defaultAnalysis.lastEvaluation=history.at(-1);
    defaultAnalysis.evaluationHistory=history.slice(-10);
   }
+  const prospectiveEvaluations=Array.isArray(history)?history.filter(item=>item.evaluationType==='prospective'):[];
+  const issuedList=Array.isArray(issued)?issued:[];
+  const evaluatedTargets=new Set(prospectiveEvaluations.map(item=>item.targetDate));
+  defaultAnalysis.prospective={issuedCount:issuedList.length,evaluatedCount:prospectiveEvaluations.length,pendingCount:issuedList.filter(item=>!evaluatedTargets.has(item.targetDate)).length,latestTargetDate:issuedList.at(-1)?.targetDate??null};
  }catch(error){if(error.code!=='ENOENT')throw error;}
 }
 if(defaultAnalysis.status==='ready'){
