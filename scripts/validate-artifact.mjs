@@ -31,31 +31,31 @@ assert.match(staticHtml, /<img src="\.\/icon\.svg" alt="">/);
 assert.match(staticHtml, /La actualización puede no ser inmediata/);
 assert.doesNotMatch(staticHtml, /SELAE se consulta cada hora|tarea programada consulta SELAE cada hora/);
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), 'La web estática debe cargar el histórico versionado');
-assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), 'La web estática debe cargar el informe fijo de 15 sorteos');
-assert.match(staticHtml, /Ventana de análisis[\s\S]*?15 sorteos/);
+assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), 'La web estática debe cargar el informe fijo de 7 sorteos');
+assert.match(staticHtml, /Ventana de análisis[\s\S]*?7 sorteos/);
 assert.doesNotMatch(staticHtml, /id="ai-window"|Número de sorteos|<option value="(?:5|10|15|20|30|50)">/);
 assert.doesNotMatch(staticHtml, /fetch\(['"]\/api\/(?:draws|ai)/, 'La web estática no debe depender de rutas API del Worker');
 assert.match(source, /url\.pathname===\x27\/icon\.svg\x27/);
 assert.match(staticIcon, /<svg[\s>]/);
-if (archive.draws.length > 15) {
-  const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-15.json"), "utf8"));
-  assert.equal(fixedReport.window, 15);
+if (archive.draws.length > 7) {
+  const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
+  assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
   assert.equal(fixedReport.drawCount, archive.draws.length);
   assert.equal(fixedReport.sourceLastDate, archive.latestDate);
-  for (const obsoleteWindow of [5, 10, 20, 30, 50]) {
+  for (const obsoleteWindow of [5, 10, 15, 20, 30, 50]) {
     await assert.rejects(readFile(resolve(projectRoot, `public/data/ai-analysis-${obsoleteWindow}.json`), "utf8"));
   }
   const defaultReport = JSON.parse(await readFile(resolve(projectRoot, "data/ai-analysis.json"), "utf8"));
   const defaultModel = JSON.parse(await readFile(resolve(projectRoot, "data/ai-model.json"), "utf8"));
-  assert.equal(defaultReport.window, 15);
+  assert.equal(defaultReport.window, 7);
   assert.equal(defaultReport.status, "ready");
   assert.equal(defaultReport.drawCount, archive.draws.length);
   assert.equal(defaultReport.sourceLastDate, archive.latestDate);
-  assert.equal(defaultModel.window, 15);
+  assert.equal(defaultModel.window, 7);
   assert.equal(defaultModel.version, defaultReport.modelState.version);
 } else {
-  await assert.rejects(readFile(resolve(projectRoot, "public/data/ai-analysis-15.json"), "utf8"));
+  await assert.rejects(readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
   await assert.rejects(readFile(resolve(projectRoot, "data/ai-analysis.json"), "utf8"));
   await assert.rejects(readFile(resolve(projectRoot, "data/ai-model.json"), "utf8"));
 }
