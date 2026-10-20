@@ -42,6 +42,11 @@ assert.match(staticIcon, /<svg[\s>]/);
 if (archive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
   assert.equal(fixedReport.window, 7);
+  assert.equal(fixedReport.audit.simulations, fixedReport.metrics.simulations);
+  assert.ok(fixedReport.audit.randomTrialsPerDraw >= 100);
+  assert.ok(fixedReport.audit.nullReplicates >= 1000);
+  assert.equal(fixedReport.audit.ci95Delta.length, 2);
+  assert.ok(Number.isFinite(fixedReport.audit.pValueOneSided));
   assert.equal(fixedReport.status, "ready");
   assert.equal(fixedReport.drawCount, archive.draws.length);
   assert.equal(fixedReport.sourceLastDate, archive.latestDate);

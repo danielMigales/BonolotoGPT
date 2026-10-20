@@ -1,5 +1,6 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 import {analyze,avoidExactRepeat} from '../engine/model.js';
+import {auditBacktest} from '../engine/evaluation.js';
 const seed=JSON.parse(await readFile('data/draws.json','utf8'));
 const engine=await readFile('engine/model.js','utf8');
 const logic=await readFile('web/logic.js','utf8');
@@ -21,6 +22,7 @@ for(const obsoleteWindow of [5,10,15,20,30,50]){
 const fixedWindow=7;
 const defaultAnalysis=analyze(seed.draws,{window:fixedWindow});
 if(defaultAnalysis.status==='ready'){
+ defaultAnalysis.audit=auditBacktest(defaultAnalysis.rows);
  try{
   const history=JSON.parse(await readFile('data/forecast-history.json','utf8'));
   if(Array.isArray(history)&&history.length){
