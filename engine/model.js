@@ -1,6 +1,6 @@
 // Modelo Bonoloto: analiza exclusivamente los seis números principales.
 // El motor opera exclusivamente con seis números principales.
-export const MODEL_VERSION='2.3.0';
+export const MODEL_VERSION='2.4.0';
 const range=n=>Array.from({length:n},(_,i)=>i);
 const normalize=v=>{const total=v.reduce((a,b)=>a+b,0);return total?v.map(x=>x/total):v.map(()=>1/v.length);};
 const softmax=v=>{const max=Math.max(...v);return normalize(v.map(x=>Math.exp(x-max)));};
@@ -48,8 +48,8 @@ function explainSelection(history,prediction,window){
   return {number,rank:rank.rank,score:rank.score,totalFrequency:frequency[number-1],recentFrequency:recent[number-1],recentWindow:window,selectedPairs};
  });
 }
-export function analyze(draws,{window=15}={}){
- if(![5,10,15,20,30,50].includes(window))throw Error('Ventana no válida: usa 5, 10, 15, 20, 30 o 50');
+export function analyze(draws,{window=7}={}){
+ if(![5,7,10,15,20,30,50].includes(window))throw Error('Ventana no válida: usa 5, 7, 10, 15, 20, 30 o 50');
  const ordered=draws.map(d=>({date:d.date,numbers:d.numbers.slice().sort((a,b)=>a-b)})).sort((a,b)=>a.date.localeCompare(b.date));
  if(new Set(ordered.map(d=>d.date)).size!==ordered.length)throw Error('Fechas duplicadas');
  for(const d of ordered)if(!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||d.numbers.length!==6||new Set(d.numbers).size!==6||d.numbers.some(n=>!Number.isInteger(n)||n<1||n>49))throw Error('Sorteo inválido');
