@@ -54724,6 +54724,26 @@
       0.23910093534834534
     ]
   },
+  "audit": {
+    "method": "Auditoría retrospectiva por fecha: múltiples controles aleatorios independientes por sorteo, prueba unilateral de aleatorización y bootstrap por bloques temporales.",
+    "simulations": 285,
+    "randomTrialsPerDraw": 200,
+    "nullReplicates": 5000,
+    "bootstrapReplicates": 3000,
+    "blockLength": 7,
+    "modelMeanHits": 0.7298,
+    "randomMeanHits": 0.7354,
+    "expectedUniformMeanHits": 0.7347,
+    "deltaVsRandom": -0.0056,
+    "ci95Delta": [
+      -0.0954,
+      0.082
+    ],
+    "pValueOneSided": 0.5575,
+    "supportsHistoricalSignal": false,
+    "conclusion": "No hay evidencia estadística clara de ventaja frente al azar en esta evaluación histórica.",
+    "caution": "Análisis retrospectivo exploratorio. El histórico ya ha sido usado durante el desarrollo; no equivale a una prueba independiente ni garantiza resultados futuros."
+  },
   "evaluationHistory": [
     {
       "targetDate": "2026-10-19",
