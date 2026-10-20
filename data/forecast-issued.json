@@ -1,0 +1,19 @@
+[
+  {
+    "targetDate": "2026-10-20",
+    "trainedThrough": "2026-10-19",
+    "version": "2.4.1",
+    "window": 7,
+    "numbers": [
+      18,
+      23,
+      32,
+      41,
+      42,
+      48
+    ],
+    "issuedAt": "2026-10-20T20:16:04+02:00",
+    "forecastHash": "4049b142463a36c733a3863c2dd6079e22952c80c4511e149fecb724119fba5c",
+    "status": "pending"
+  }
+]
