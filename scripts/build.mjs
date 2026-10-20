@@ -14,11 +14,11 @@ await writeFile('public/index.html',staticHtml);
 await cp('web/icon.svg','public/icon.svg');
 await mkdir('public/data',{recursive:true});
 await cp('data/draws.json','public/data/draws.json');
-// La interfaz usa una única ventana fija: 15 sorteos.
-for(const obsoleteWindow of [5,10,20,30,50]){
+// La interfaz usa una única ventana fija: 7 sorteos.
+for(const obsoleteWindow of [5,10,15,20,30,50]){
  await rm(`public/data/ai-analysis-${obsoleteWindow}.json`,{force:true});
 }
-const fixedWindow=15;
+const fixedWindow=7;
 const defaultAnalysis=analyze(seed.draws,{window:fixedWindow});
 if(defaultAnalysis.status==='ready'){
  try{
