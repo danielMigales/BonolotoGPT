@@ -89,6 +89,24 @@ export async function getAnalysis(env,window=7){
 }
 export default {async fetch(request,env){
  const url=new URL(request.url);
+ if(url.pathname==='/api/refresh'){
+  const allowedOrigin='https://danielmigales.github.io';
+  const origin=request.headers.get('Origin');
+  const cors={'Access-Control-Allow-Origin':allowedOrigin,'Vary':'Origin','Cache-Control':'no-store'};
+  if(origin!==allowedOrigin)return Response.json({error:'Origen no autorizado'},{status:403,headers:cors});
+  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{...cors,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Access-Control-Max-Age':'600'}});
+  if(request.method!=='POST')return new Response('Método no permitido',{status:405,headers:{...cors,Allow:'POST, OPTIONS'}});
+  if(!env.GH_ACTIONS_TOKEN)return Response.json({error:'Falta configurar el secreto GH_ACTIONS_TOKEN en Cloudflare.'},{status:503,headers:cors});
+  if(!env.BUCKET)return Response.json({error:'No está disponible el almacenamiento necesario para limitar las actualizaciones.'},{status:503,headers:cors});
+  const key='bonoloto/refresh/last-request.json',now=Date.now();
+  let object;try{object=await env.BUCKET.get(key);}catch{return Response.json({error:'No se pudo comprobar el límite de actualización.'},{status:503,headers:cors});}
+  if(object){try{const previous=await object.json();if(now-previous.requestedAt<20*60*1000)return Response.json({error:'Ya se solicitó una actualización recientemente. Espera unos minutos antes de volver a intentarlo.'},{status:429,headers:cors});}catch{return Response.json({error:'No se pudo verificar el límite de actualización.'},{status:503,headers:cors});}}
+  const lock=await env.BUCKET.put(key,JSON.stringify({requestedAt:now}),{httpMetadata:{contentType:'application/json'},onlyIf:object?.etag?{etagMatches:object.etag}:{etagDoesNotMatch:'*'}});
+  if(lock===null)return Response.json({error:'Ya hay otra actualización en curso. Espera unos minutos.'},{status:429,headers:cors});
+  let dispatched;try{dispatched=await fetch('https://api.github.com/repos/danielMigales/BonolotoGPT/actions/workflows/deploy-pages.yml/dispatches',{method:'POST',headers:{Authorization:'Bearer '+env.GH_ACTIONS_TOKEN,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});}catch{return Response.json({error:'No se pudo contactar con GitHub Actions.'},{status:502,headers:cors});}
+  if(dispatched.status!==204)return Response.json({error:dispatched.status===401||dispatched.status===403?'GitHub rechazó el token. Revisa sus permisos Actions: write.':'GitHub no aceptó el inicio del workflow (HTTP '+dispatched.status+').'},{status:502,headers:cors});
+  return Response.json({ok:true,message:'Actualización iniciada en GitHub Actions.'},{status:202,headers:cors});
+ }
  if(url.pathname==='/api/sync'){
   if(request.method!=='POST')return new Response('Método no permitido',{status:405,headers:{Allow:'POST'}});
   // La puerta de acceso privada de Sites autentica al propietario y el acceso de servicio.
@@ -105,6 +123,6 @@ export default {async fetch(request,env){
  if(url.pathname==='/api/ai'){const requestedWindow=Number(url.searchParams.get('window')||7);if(requestedWindow!==7)return Response.json({error:'El laboratorio usa una ventana fija de 7 sorteos'},{status:400});const window=7;try{return Response.json(await getAnalysis(env,window),{headers:{...headers,'Cache-Control':'no-store',...(url.searchParams.has('download')?{'Content-Disposition':'attachment; filename=\"bonoloto-analisis.json\"'}:{})}});}catch{return Response.json({error:'No se pudo calcular el análisis. El histórico sigue disponible.'},{status:503});}}
  if(url.pathname==='/api/draws'){const data=await getData(env);return Response.json(data,{headers:{...headers,'Cache-Control':'no-store',...(url.searchParams.has('download')?{'Content-Disposition':'attachment; filename="bonoloto-historico.json"'}:{})}});}
  if(url.pathname==='/icon.svg')return new Response(ICON,{headers:{...headers,'Content-Type':'image/svg+xml;charset=utf-8','Cache-Control':'public, max-age=86400'}});
- if(url.pathname==='/')return new Response(HTML,{headers:{...headers,'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-cache','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'self'; form-action 'self'"}});
+ if(url.pathname==='/')return new Response(HTML,{headers:{...headers,'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-cache','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://bonolotogpt.daniel-migales-puertas.workers.dev; img-src 'self' data:; base-uri 'none'; frame-ancestors 'self'; form-action 'self'"}});
  return new Response('No encontrado',{status:404,headers});
 }};

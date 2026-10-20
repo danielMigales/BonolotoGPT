@@ -10,7 +10,7 @@ const icon=await readFile('web/icon.svg','utf8');
 await writeFile('worker/index.js',template.replace('/*SEED*/',()=>JSON.stringify(seed)).replace('/*HTML*/',()=>JSON.stringify(html)).replace('/*ICON*/',()=>JSON.stringify(icon)).replace('/*AI_ENGINE*/',()=>engine.replaceAll('export ','')));
 await mkdir('public',{recursive:true});
 // GitHub Pages usa el mismo diseño con el JSON versionado; no depende del servidor Sites.
-const staticHtml=html.replaceAll("'/api/draws'","'./data/draws.json'").replace("'/api/ai?window='+window","'./data/ai-analysis-'+window+'.json'").replaceAll('/api/draws?download=1','./data/draws.json');
+const staticHtml=html.replaceAll("'/api/draws'","'./data/draws.json'").replace("'/api/draws?refresh='+Date.now()","'./data/draws.json?refresh='+Date.now()").replace("'/api/ai?window='+window","'./data/ai-analysis-'+window+'.json'").replaceAll('/api/draws?download=1','./data/draws.json');
 await writeFile('public/index.html',staticHtml);
 await cp('web/icon.svg','public/icon.svg');
 await mkdir('public/data',{recursive:true});
