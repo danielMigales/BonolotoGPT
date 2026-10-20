@@ -1,69 +1,72 @@
 #!/usr/bin/env python3
-"""Guarda la predicción publicada cuando ya existe el resultado de ese día."""
+"""Evalúa predicciones guardadas antes del sorteo, sin sustituirlas por el informe actual."""
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAWS_PATH = ROOT / "data/draws.json"
-REPORT_PATH = ROOT / "public/data/ai-analysis-15.json"
+ISSUED_PATH = ROOT / "data/forecast-issued.json"
 HISTORY_PATH = ROOT / "data/forecast-history.json"
 
 
-def main():
-    if not DRAWS_PATH.exists() or not REPORT_PATH.exists():
-        print("Sin datos/reportes previos; no hay predicción que archivar.")
-        return
-    draws_doc = json.loads(DRAWS_PATH.read_text(encoding="utf-8"))
-    report = json.loads(REPORT_PATH.read_text(encoding="utf-8"))
-    history = json.loads(HISTORY_PATH.read_text(encoding="utf-8")) if HISTORY_PATH.exists() else []
-    if report.get("status") != "ready" or not report.get("forecast"):
-        print("No hay predicción lista para contrastar.")
-        return
-    forecast = report["forecast"]
-    target = forecast.get("targetDate")
-    actual = next((d for d in draws_doc.get("draws", []) if d.get("date") == target), None)
-    if not actual:
-        print(f"El resultado de {target} aún no está en el histórico; se conserva la predicción pendiente.")
-        return
-    if any(item.get("targetDate") == target for item in history):
-        print(f"La predicción de {target} ya estaba archivada; no se duplica.")
-        return
-    numbers = sorted(set(forecast.get("numbers", [])))
-    actual_numbers = sorted(set(actual.get("numbers", [])))
-    if len(numbers) != 6 or len(actual_numbers) != 6:
-        raise ValueError("Predicción o resultado inválido: se esperaban seis números.")
-    scores = forecast.get("numberScores", [])
-    rank = {item["number"]: i + 1 for i, item in enumerate(scores)}
-    score_map = {item["number"]: item["score"] for item in scores}
-    prior = [d for d in draws_doc.get("draws", []) if d.get("date", "") <= report.get("sourceLastDate", "")]
-    recent = sorted(prior, key=lambda d: d["date"], reverse=True)[:15]
-    frequency = {n: sum(n in d["numbers"] for d in prior) for n in range(1, 50)}
-    recent_frequency = {n: sum(n in d["numbers"] for d in recent) for n in range(1, 50)}
-    record = {
-        "targetDate": target,
-        "trainedThrough": report.get("sourceLastDate"),
-        "version": report.get("version"),
-        "window": report.get("window"),
-        "numbers": numbers,
-        "actual": actual_numbers,
-        "hits": len(set(numbers) & set(actual_numbers)),
-        "source": actual.get("source"),
-        "selectionReasons": [
-            {
-                "number": n,
-                "rank": rank.get(n, 49),
-                "score": score_map.get(n, 0),
-                "totalFrequency": frequency[n],
-                "recentFrequency": recent_frequency[n],
-            }
-            for n in numbers
-        ],
-    }
-    history.append(record)
-    history.sort(key=lambda item: item["targetDate"])
-    HISTORY_PATH.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Predicción archivada: {target}; aciertos {record['hits']}/6.")
+def _valid_numbers(value):
+    return (
+        isinstance(value, list)
+        and len(value) == 6
+        and all(type(n) is int and 1 <= n <= 49 for n in value)
+        and len(set(value)) == 6
+    )
+
+
+def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
+                      history_path=HISTORY_PATH):
+    if not draws_path.exists() or not issued_path.exists():
+        print("Sin histórico o registro prospectivo; no hay predicciones que evaluar.")
+        return 0
+
+    draws_doc = json.loads(draws_path.read_text(encoding="utf-8"))
+    issued = json.loads(issued_path.read_text(encoding="utf-8"))
+    history = json.loads(history_path.read_text(encoding="utf-8")) if history_path.exists() else []
+    if not isinstance(issued, list) or not isinstance(history, list):
+        raise ValueError("Los registros de predicciones deben ser listas JSON.")
+    draws_by_date = {d.get("date"): d for d in draws_doc.get("draws", [])}
+    evaluated_dates = {item.get("targetDate") for item in history}
+    added = 0
+
+    for forecast in sorted(issued, key=lambda item: item.get("targetDate", "")):
+        target = forecast.get("targetDate")
+        actual_draw = draws_by_date.get(target)
+        if not actual_draw or target in evaluated_dates:
+            continue
+        numbers = forecast.get("numbers")
+        actual = actual_draw.get("numbers")
+        if not _valid_numbers(numbers) or not _valid_numbers(actual):
+            raise ValueError(f"Predicción o resultado inválido para {target}: se esperaban seis números únicos.")
+        hits = len(set(numbers) & set(actual))
+        history.append({
+            "targetDate": target,
+            "issuedAt": forecast.get("issuedAt"),
+            "trainedThrough": forecast.get("trainedThrough"),
+            "version": forecast.get("version"),
+            "window": forecast.get("window"),
+            "numbers": sorted(numbers),
+            "actual": sorted(actual),
+            "hits": hits,
+            "source": actual_draw.get("source"),
+            "forecastHash": forecast.get("forecastHash"),
+            "evaluationType": "prospective",
+        })
+        evaluated_dates.add(target)
+        added += 1
+        print(f"Predicción prospectiva evaluada: {target}; aciertos {hits}/6.")
+
+    if added:
+        history.sort(key=lambda item: item.get("targetDate", ""))
+        history_path.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    else:
+        print("No hay predicciones prospectivas nuevas con resultado disponible.")
+    return added
 
 
 if __name__ == "__main__":
-    main()
+    archive_forecasts()
