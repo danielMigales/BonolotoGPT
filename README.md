@@ -27,10 +27,9 @@ El workflow guarda cada combinación en `data/forecast-issued.json` antes de que
 - `web/logic.js`: frecuencias y resumen de aciertos.
 - `web/index.html`: interfaz fuente.
 - `public/index.html`: interfaz estática publicada en GitHub Pages.
-- `worker/template.js`: plantilla del Worker y validación del histórico.
 - `data/draws.json`: archivo normalizado de resultados oficiales.
 - `scripts/update_data.py`: descarga y validación del histórico oficial de SELAE.
-- `scripts/build.mjs`: genera la interfaz, el Worker y el análisis cuando hay suficientes datos.
+- `scripts/build.mjs`: genera la web estática y el análisis cuando hay suficientes datos.
 
 Los archivos oficiales pueden contener campos auxiliares para verificar la fuente, pero la aplicación normaliza los sorteos y entrega al motor solo la fecha y los seis números principales.
 
@@ -53,6 +52,6 @@ Repositorio: https://github.com/danielMigales/BonolotoGPT
 
 El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una ejecución diaria que espera a las 23:00 de Madrid. El botón de recarga de la web solo vuelve a leer los datos ya publicados; la descarga oficial y la publicación las realiza el workflow. La actualización automática depende de que la descarga y validación de datos finalice correctamente.
 
-El workflow **Validar BonolotoGPT** ejecuta las pruebas y comprueba que el Worker generado esté sincronizado con sus fuentes.
+El workflow **Validar BonolotoGPT** ejecuta las pruebas y valida los archivos estáticos generados para GitHub Pages.
 
 Nunca se deben inventar resultados ni rellenar el histórico con datos de ejemplo. Si SELAE no proporciona datos válidos, la actualización debe fallar en vez de publicar resultados inventados.
