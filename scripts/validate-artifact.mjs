@@ -9,9 +9,6 @@ const staticIcon = await readFile(resolve(projectRoot, "public/icon.svg"), "utf8
 const archive = JSON.parse(await readFile(resolve(projectRoot, "data/draws.json"), "utf8"));
 
 // Validate that the static UI's choices have matching, freshly generated reports.
-const staticHtml = await readFile(resolve(projectRoot, "public/index.html"), "utf8");
-const staticIcon = await readFile(resolve(projectRoot, "public/icon.svg"), "utf8");
-const archive = JSON.parse(await readFile(resolve(projectRoot, "data/draws.json"), "utf8"));
 assert.match(staticHtml, /rel="icon" type="image\/svg\+xml" href="\.\/icon\.svg"/);
 assert.match(staticHtml, /<img src="\.\/icon\.svg" alt="">/);
 assert.match(staticHtml, /La actualización puede no ser inmediata/);
