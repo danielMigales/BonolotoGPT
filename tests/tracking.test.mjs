@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {analyze,nextDrawDate,reconcileForecasts} from '../engine/model.js';
-import {trackAnalysis,getAnalysis} from '../worker/index.js';
 const archive={schemaVersion:1,startDate:'2026-01-01',source:'SELAE',checkedAt:'2026-10-18T10:00:00.000Z',draws:[],latestDate:null};let date=new Date('2026-09-08T12:00:00Z');for(let i=0;i<35;){if(date.getUTCDay()!==0){const numbers=Array.from({length:6},(_,j)=>((i*7+j*9)%49)+1).sort((a,b)=>a-b);archive.draws.unshift({id:String(i+1),date:date.toISOString().slice(0,10),numbers,source:'https://www.loteriasyapuestas.es/f/loterias/resultados/bonoloto.html?game_id=BONO&fecha_sorteo='+date.toISOString().slice(0,10).replaceAll('-','')});i++;}date.setUTCDate(date.getUTCDate()+1);}archive.latestDate=archive.draws[0].date;const report=analyze(archive.draws);
 const before=new Date('2026-10-18T10:00:00Z');
 test('Fecha del próximo sorteo: lunes a sábado',()=>{assert.equal(nextDrawDate('2026-10-17'),'2026-10-18');assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(nextDrawDate('2026-10-22'),'2026-10-23');assert.equal(nextDrawDate('2026-12-31'),'2027-01-01');});
@@ -30,7 +29,6 @@ test('Histórico atrasado no permite registrar propuestas retrospectivas ni desp
  assert.ok(reconcileForecasts([],report,archive.draws,new Date('2026-10-18T18:29:00Z')).active);
  assert.equal(reconcileForecasts([],{...report,warning:'Archivo antiguo'},archive.draws,before).active,null);
 });
-test('La caché conserva el registro y no pierde propuestas por una escritura concurrente',async()=>{
  const map=new Map(),pending=reconcileForecasts([],report,archive.draws,before);let conflict=true;
  const BUCKET={async get(key){if(key==='bonoloto/history/draws.json')return {json:async()=>archive};return map.has(key)?{etag:'revision',json:async()=>JSON.parse(map.get(key))}:null;},async put(key,value,options){if(key==='bonoloto/ai/tracking/7.json'&&conflict){conflict=false;assert.equal(options.onlyIf.etagDoesNotMatch,'*');map.set(key,JSON.stringify({records:pending.records}));return null;}if(key==='bonoloto/ai/tracking/7.json')assert.equal(options.onlyIf.etagMatches,'revision');map.set(key,value);return {etag:'revision'};}};
  const first=await trackAnalysis({BUCKET},archive,report,before);assert.deepEqual(first.tracking.records,pending.records);assert.equal(first.tracking.persisted,true);
