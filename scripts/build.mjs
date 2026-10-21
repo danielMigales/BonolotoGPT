@@ -29,7 +29,8 @@ if(defaultAnalysis.status==='ready'){
   if(Array.isArray(history)&&history.length){
    const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
    if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
-   defaultAnalysis.lastEvaluation=history.at(-1);
+   // La última aserción visible pertenece al análisis recién calculado con la ventana fija actual (7 sorteos).
+   // El historial prospectivo puede contener versiones antiguas; no debe sobrescribir la aserción del laboratorio.
    defaultAnalysis.evaluationHistory=history.slice(-10);
   }
   const prospectiveEvaluations=Array.isArray(history)?history.filter(item=>item.evaluationType==='prospective'):[];
