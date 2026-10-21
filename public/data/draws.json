@@ -3,9 +3,22 @@
   "startDate": "2026-01-01",
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-10-20T20:12:09.827220+00:00",
-  "latestDate": "2026-10-19",
+  "checkedAt": "2026-10-21T05:19:00.694678+00:00",
+  "latestDate": "2026-10-20",
   "draws": [
+    {
+      "id": "BONO-20261020",
+      "date": "2026-10-20",
+      "numbers": [
+        3,
+        22,
+        23,
+        26,
+        33,
+        38
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-20-de-octubre-de-2026"
+    },
     {
       "id": "BONO-20261019",
       "date": "2026-10-19",
