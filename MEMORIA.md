@@ -11,7 +11,7 @@ Cada sorteo se almacena como fecha, identificador oficial, URL oficial y los sei
 - Versión del motor: 2.2.0.
 - Universo: números del 1 al 49; seis números distintos por combinación.
 - La interfaz muestra los cinco sorteos más recientes y permite consultar el histórico.
-- El Laboratorio IA usa una ventana fija de 15 sorteos y requiere 16 sorteos oficiales para evaluar la primera predicción.
+- El Laboratorio IA usa una ventana fija de 7 sorteos y requiere 8 sorteos oficiales para evaluar la primera predicción.
 - Siete métodos estadísticos se combinan y se evalúan secuencialmente usando exclusivamente los seis números principales.
 - La evaluación registra aciertos de 0 a 6 y compara con una referencia aleatoria reproducible. No implica que el método supere al azar.
 
@@ -23,14 +23,9 @@ El calendario de fechas esperadas se define en `scripts/update_data.py` y en sus
 - `engine/model.js`: estadísticas, predicción y seguimiento de aciertos.
 - `web/logic.js`: frecuencias y resumen de los seis números.
 - `web/index.html`: interfaz fuente.
-- `worker/template.js`: validación, endpoints y persistencia.
-- `worker/index.js`: Worker generado.
 - `public/index.html` y `public/data/`: versión estática para GitHub Pages.
 - `scripts/update_data.py`: descarga y validación de SELAE; conserva seis números en el archivo normalizado.
-- `scripts/build.mjs`: genera Worker y sitio estático.
-
-## Aislamiento de almacenamiento
-El Worker usa el espacio de claves `bonoloto/` para el histórico, informes, modelos y seguimiento. No lee claves heredadas sin ese prefijo. Si encuentra datos que no parecen corresponder a Bonoloto, los aísla y muestra un aviso hasta recibir datos oficiales válidos.
+- `scripts/build.mjs`: genera el sitio estático y el análisis.
 
 ## Estado
 El repositorio contiene histórico y evaluación de predicciones de Bonoloto. La importación histórica combina el CSV auxiliar y consultas de resultados; el control de frecuencias SELAE es agregado y no equivale a verificar uno por uno todos los sorteos. La publicación más reciente debe confirmarse mediante el estado de GitHub Actions.

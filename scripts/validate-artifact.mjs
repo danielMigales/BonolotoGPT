@@ -1,31 +1,14 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
-const workerPath = resolve(projectRoot, "dist/server/index.js");
-const manifestPath = resolve(projectRoot, "dist/.openai/hosting.json");
-
-const [source, manifest] = await Promise.all([
-  readFile(workerPath, "utf8"),
-  readFile(manifestPath, "utf8"),
-]);
-JSON.parse(manifest);
-
-// A data URL forces ESM parsing even though the generated output has no package.json.
-const moduleUrl = `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
-const workerModule = await import(moduleUrl);
-assert.equal(
-  typeof workerModule.default?.fetch,
-  "function",
-  `${pathToFileURL(workerPath)} must export default.fetch`,
-);
-
-// Validate that the static UI's choices have matching, freshly generated reports.
 const staticHtml = await readFile(resolve(projectRoot, "public/index.html"), "utf8");
 const staticIcon = await readFile(resolve(projectRoot, "public/icon.svg"), "utf8");
 const archive = JSON.parse(await readFile(resolve(projectRoot, "data/draws.json"), "utf8"));
+
+// Validate that the static UI's choices have matching, freshly generated reports.
 assert.match(staticHtml, /rel="icon" type="image\/svg\+xml" href="\.\/icon\.svg"/);
 assert.match(staticHtml, /<img src="\.\/icon\.svg" alt="">/);
 assert.match(staticHtml, /La actualización puede no ser inmediata/);
@@ -37,7 +20,6 @@ assert.match(staticHtml, /Ventana de análisis[\s\S]*?7 sorteos/);
 assert.match(staticHtml, /Ventana reciente fija de 7 sorteos; aprendizaje y evaluación sobre el histórico disponible/);
 assert.doesNotMatch(staticHtml, /id="ai-window"|Número de sorteos|<option value="(?:5|10|15|20|30|50)">/);
 assert.doesNotMatch(staticHtml, /fetch\(['"]\/api\/(?:draws|ai)/, 'La web estática no debe depender de rutas API del Worker');
-assert.match(source, /url\.pathname===\x27\/icon\.svg\x27/);
 assert.match(staticIcon, /<svg[\s>]/);
 if (archive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
@@ -67,4 +49,4 @@ if (archive.draws.length > 7) {
   await assert.rejects(readFile(resolve(projectRoot, "data/ai-model.json"), "utf8"));
 }
 
-console.log("Artifact is valid ESM, exports default.fetch, and contains consistent AI reports");
+console.log("Static Pages artifact and AI reports are valid");

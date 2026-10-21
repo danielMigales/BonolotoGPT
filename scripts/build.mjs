@@ -2,16 +2,11 @@ import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 import {analyze,avoidExactRepeat} from '../engine/model.js';
 import {auditBacktest} from '../engine/evaluation.js';
 const seed=JSON.parse(await readFile('data/draws.json','utf8'));
-const engine=await readFile('engine/model.js','utf8');
 const logic=await readFile('web/logic.js','utf8');
 const html=(await readFile('web/index.html','utf8')).replace('/*LOGIC*/',logic.replaceAll('export ',''));
-const template=await readFile('worker/template.js','utf8');
-const icon=await readFile('web/icon.svg','utf8');
-await writeFile('worker/index.js',template.replace('/*SEED*/',()=>JSON.stringify(seed)).replace('/*HTML*/',()=>JSON.stringify(html)).replace('/*ICON*/',()=>JSON.stringify(icon)).replace('/*AI_ENGINE*/',()=>engine.replaceAll('export ','')));
 await mkdir('public',{recursive:true});
-// GitHub Pages usa el mismo diseño con el JSON versionado; no depende del servidor Sites.
-const staticHtml=html.replaceAll("'/api/draws'","'./data/draws.json'").replace("'/api/ai?window='+window","'./data/ai-analysis-'+window+'.json'").replaceAll('/api/draws?download=1','./data/draws.json');
-await writeFile('public/index.html',staticHtml);
+// GitHub Pages publica una aplicación estática que lee los JSON versionados.
+await writeFile('public/index.html',html);
 await cp('web/icon.svg','public/icon.svg');
 await mkdir('public/data',{recursive:true});
 await cp('data/draws.json','public/data/draws.json');
@@ -48,4 +43,4 @@ if(defaultAnalysis.status==='ready'){
  await rm('data/ai-analysis.json',{force:true});
  await rm('data/ai-model.json',{force:true});
 }
-console.log(`Generados Worker y página estática: ${seed.draws.length} sorteos; análisis: ${defaultAnalysis.status}`);
+console.log(`Generada página estática: ${seed.draws.length} sorteos; análisis: ${defaultAnalysis.status}`);
