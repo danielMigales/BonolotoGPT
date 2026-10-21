@@ -1,9 +1,8 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
   schedule:
-    # Se comprueban ambas horas UTC para ejecutar a las 23:00 de Madrid en invierno y verano.
+    # 21:00 UTC: 23:00 en Madrid durante el horario de verano; en invierno se espera hasta las 23:00 locales.
     - cron: '0 21 * * *'
-    - cron: '0 22 * * *'
   push:
     branches: [main]
   workflow_dispatch:
@@ -21,14 +20,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Comprobar que son las 23:00 en España
+      - name: Esperar a las 23:00 de Madrid cuando sea una ejecución programada
         id: schedule-time
         run: |
-          if [ "$GITHUB_EVENT_NAME" != "schedule" ] || [ "$(TZ=Europe/Madrid date +%H)" = "23" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+            while [ "$(TZ=Europe/Madrid date +%H)" != "23" ]; do
+              sleep 30
+            done
           fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
       - name: Obtener código
         if: steps.schedule-time.outputs.run == 'true'
         uses: actions/checkout@v7
