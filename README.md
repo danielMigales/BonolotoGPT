@@ -13,9 +13,9 @@ Aplicación web en español para consultar los últimos cinco sorteos de Bonolot
 
 ## Laboratorio de análisis
 
-El motor usa una ventana fija de 15 sorteos iniciales y combina siete enfoques estadísticos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
+El motor usa una ventana fija de **7 sorteos** y combina siete enfoques estadísticos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
 
-La interfaz de análisis requiere al menos **16 sorteos oficiales**: 15 para iniciar la ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
+La interfaz de análisis requiere al menos **8 sorteos oficiales**: 7 para formar la primera ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
 
 ## Registro prospectivo de predicciones
 
@@ -51,7 +51,7 @@ Abrir http://localhost:8000.
 
 Repositorio: https://github.com/danielMigales/BonolotoGPT
 
-El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una comprobación diaria programada para las 23:00 de Madrid (GitHub Actions comprueba las 21:00 y las 22:00 UTC para cubrir horario de verano e invierno). La actualización automática depende de que la descarga y validación de datos finalice correctamente.
+El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una ejecución diaria que espera a las 23:00 de Madrid. El botón de recarga de la web solo vuelve a leer los datos ya publicados; la descarga oficial y la publicación las realiza el workflow. La actualización automática depende de que la descarga y validación de datos finalice correctamente.
 
 El workflow **Validar BonolotoGPT** ejecuta las pruebas y comprueba que el Worker generado esté sincronizado con sus fuentes.
 
