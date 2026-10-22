@@ -18,6 +18,14 @@ const fixedWindow=7;
 const defaultAnalysis=analyze(seed.draws,{window:fixedWindow});
 if(defaultAnalysis.status==='ready'){
  defaultAnalysis.audit=auditBacktest(defaultAnalysis.rows);
+ // Estudio exploratorio de todas las ventanas admitidas; no elige automáticamente
+ // un ganador para evitar convertir una comparación retrospectiva en una promesa predictiva.
+ defaultAnalysis.windowStudy=[5,7,10,15,20,30,50].map(window=>{
+  const candidate=analyze(seed.draws,{window});
+  if(candidate.status!=='ready')return {window,status:'insufficient',required:candidate.required,available:candidate.available};
+  const audit=auditBacktest(candidate.rows,{randomTrialsPerDraw:100,nullReplicates:1000,bootstrapReplicates:1000,blockLength:window,seed:20261020+window});
+  return {window,status:'ready',simulations:candidate.metrics.simulations,meanHits:candidate.metrics.meanHits,atLeastFour:candidate.metrics.atLeastFour,atLeastFourRate:candidate.metrics.atLeastFour/candidate.metrics.simulations,randomAtLeastFourProbability:candidate.baseline.atLeastFourProbability,randomMeanHits:audit.randomMeanHits,deltaVsRandom:audit.deltaVsRandom,ci95Delta:audit.ci95Delta,pValueOneSided:audit.pValueOneSided,supportsHistoricalSignal:audit.supportsHistoricalSignal};
+ });
  try{
   const history=JSON.parse(await readFile('data/forecast-history.json','utf8'));
   const issued=JSON.parse(await readFile('data/forecast-issued.json','utf8').catch(error=>{if(error.code==='ENOENT')return '[]';throw error;}));
