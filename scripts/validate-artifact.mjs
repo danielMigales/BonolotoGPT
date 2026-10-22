@@ -17,6 +17,7 @@ assert.doesNotMatch(staticHtml, /SELAE se consulta cada hora|tarea programada co
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), 'La web estática debe cargar el histórico versionado');
 assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), 'La web estática debe cargar el informe fijo de 7 sorteos');
 assert.match(staticHtml, /Ventana de análisis[\s\S]*?7 sorteos/);
+assert.ok(staticHtml.includes('id="ai-window-comparison"'), "El laboratorio debe mostrar el estudio comparativo de ventanas");
 assert.match(staticHtml, /Ventana reciente fija de 7 sorteos; aprendizaje y evaluación sobre el histórico disponible/);
 assert.doesNotMatch(staticHtml, /id="ai-window"|Número de sorteos|<option value="(?:5|10|15|20|30|50)">/);
 assert.doesNotMatch(staticHtml, /fetch\(['"]\/api\/(?:draws|ai)/, 'La web estática no debe depender de rutas API del Worker');
@@ -30,6 +31,8 @@ if (archive.draws.length > 7) {
   assert.equal(fixedReport.audit.ci95Delta.length, 2);
   assert.ok(Number.isFinite(fixedReport.audit.pValueOneSided));
   assert.equal(fixedReport.status, "ready");
+  assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5, 7, 10, 15, 20, 30, 50]);
+  assert.ok(fixedReport.windowStudy.every(item => item.status === "ready" && Number.isFinite(item.meanHits) && Number.isFinite(item.atLeastFourRate) && item.ci95Delta.length === 2));
   assert.equal(fixedReport.drawCount, archive.draws.length);
   assert.equal(fixedReport.sourceLastDate, archive.latestDate);
   for (const obsoleteWindow of [5, 10, 15, 20, 30, 50]) {
