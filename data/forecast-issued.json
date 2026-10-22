@@ -49,5 +49,22 @@
     "issuedAt": "2026-10-22T07:04:38+02:00",
     "forecastHash": "7fc7842a15f506608aecb7b87202032cc711259432b87dc127515d17edb8cc43",
     "status": "pending"
+  },
+  {
+    "targetDate": "2026-10-23",
+    "trainedThrough": "2026-10-22",
+    "version": "2.4.2",
+    "window": 7,
+    "numbers": [
+      18,
+      22,
+      23,
+      26,
+      32,
+      46
+    ],
+    "issuedAt": "2026-10-22T22:36:49+02:00",
+    "forecastHash": "d8356bf072a309cafa36c609ccc17f884f2d4a07720a38816d44e45dad016575",
+    "status": "pending"
   }
 ]
