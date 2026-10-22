@@ -120,5 +120,32 @@
     "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-21-de-octubre-de-2026",
     "forecastHash": "00a19028f7bd5430fc7da0036b5269d99888bcaf4db27df8617c218b2f20fe05",
     "evaluationType": "prospective"
+  },
+  {
+    "targetDate": "2026-10-22",
+    "issuedAt": "2026-10-22T07:04:38+02:00",
+    "trainedThrough": "2026-10-21",
+    "version": "2.4.1",
+    "window": 7,
+    "numbers": [
+      18,
+      22,
+      23,
+      32,
+      46,
+      48
+    ],
+    "actual": [
+      5,
+      18,
+      22,
+      34,
+      43,
+      46
+    ],
+    "hits": 3,
+    "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-22-de-octubre-de-2026",
+    "forecastHash": "7fc7842a15f506608aecb7b87202032cc711259432b87dc127515d17edb8cc43",
+    "evaluationType": "prospective"
   }
 ]
