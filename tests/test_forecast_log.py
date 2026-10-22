@@ -21,7 +21,7 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.write(self.report, {
             "status": "ready", "version": "2.4.1", "window": 7,
             "sourceLastDate": "2026-10-19",
-            "forecast": {"targetDate": "2026-10-21", "numbers": [7, 8, 9, 10, 11, 12]}
+            "forecast": {"targetDate": "2026-10-21", "numbers": [7, 8, 9, 10, 11, 12], "secondNumbers": [13, 14, 15, 16, 17, 18]}
         })
 
     def tearDown(self):
@@ -37,6 +37,8 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.assertTrue(record_forecast(self.draws, self.report, self.issued, "2026-10-20T23:00:00+02:00"))
         original = self.read(self.issued)[0]
         self.assertEqual(original["numbers"], [7, 8, 9, 10, 11, 12])
+        self.assertEqual(original["secondNumbers"], [13, 14, 15, 16, 17, 18])
+        self.assertEqual(original["combinations"], [[7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18]])
         self.assertEqual(original["trainedThrough"], "2026-10-19")
         self.assertEqual(original["status"], "pending")
         self.assertFalse(record_forecast(self.draws, self.report, self.issued, "2026-10-20T23:05:00+02:00"))
@@ -60,6 +62,8 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.assertEqual(evaluated["numbers"], [7, 8, 9, 10, 11, 12])
         self.assertEqual(evaluated["actual"], [7, 8, 20, 21, 22, 23])
         self.assertEqual(evaluated["hits"], 2)
+        self.assertEqual(evaluated["combinationHits"], [2, 0])
+        self.assertEqual(evaluated["secondNumbers"], [13, 14, 15, 16, 17, 18])
         self.assertEqual(evaluated["evaluationType"], "prospective")
         self.assertEqual(archive_forecasts(self.draws, self.issued, self.history), 0)
         self.assertEqual(len(self.read(self.history)), 1)
@@ -71,6 +75,17 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "seis números únicos"):
             record_forecast(self.draws, self.report, self.issued)
 
+    def test_archives_legacy_single_combination_record_without_breaking_history(self):
+        self.write(self.issued, [{
+            "targetDate": "2026-10-21", "numbers": [7, 8, 9, 10, 11, 12],
+            "issuedAt": "2026-10-20T23:00:00+02:00", "trainedThrough": "2026-10-19",
+            "version": "2.4.2", "window": 7, "status": "pending"
+        }])
+        self.assertEqual(archive_forecasts(self.draws, self.issued, self.history), 1)
+        evaluated = self.read(self.history)[0]
+        self.assertEqual(evaluated["hits"], 0)
+        self.assertEqual(evaluated["combinationHits"], [0])
+        self.assertIsNone(evaluated["secondNumbers"])
 
 if __name__ == "__main__":
     unittest.main()

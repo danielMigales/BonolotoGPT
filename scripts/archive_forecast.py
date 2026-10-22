@@ -39,10 +39,14 @@ def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
         if not actual_draw or target in evaluated_dates:
             continue
         numbers = forecast.get("numbers")
+        combinations = forecast.get("combinations") or ([numbers, forecast.get("secondNumbers")] if forecast.get("secondNumbers") else [numbers])
         actual = actual_draw.get("numbers")
-        if not _valid_numbers(numbers) or not _valid_numbers(actual):
-            raise ValueError(f"Predicción o resultado inválido para {target}: se esperaban seis números únicos.")
-        hits = len(set(numbers) & set(actual))
+        if not _valid_numbers(numbers) or not _valid_numbers(actual) or not isinstance(combinations, list) or len(combinations) not in (1, 2) or any(not _valid_numbers(ticket) for ticket in combinations):
+            raise ValueError(f"Predicción o resultado inválido para {target}: se esperaban combinaciones válidas y un resultado de seis números.")
+        if len(combinations) == 2 and sorted(combinations[0]) == sorted(combinations[1]):
+            raise ValueError(f"Las dos combinaciones registradas para {target} deben ser distintas.")
+        combination_hits = [len(set(ticket) & set(actual)) for ticket in combinations]
+        hits = combination_hits[0]
         history.append({
             "targetDate": target,
             "issuedAt": forecast.get("issuedAt"),
@@ -50,6 +54,9 @@ def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
             "version": forecast.get("version"),
             "window": forecast.get("window"),
             "numbers": sorted(numbers),
+            "secondNumbers": sorted(combinations[1]) if len(combinations) == 2 else None,
+            "combinations": [sorted(ticket) for ticket in combinations],
+            "combinationHits": combination_hits,
             "actual": sorted(actual),
             "hits": hits,
             "source": actual_draw.get("source"),

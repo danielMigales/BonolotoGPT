@@ -37,11 +37,14 @@ def record_forecast(draws_path=DRAWS_PATH, report_path=REPORT_PATH,
     target = forecast.get("targetDate")
     trained_through = report.get("sourceLastDate")
     numbers = forecast.get("numbers")
+    second_numbers = forecast.get("secondNumbers")
     if not isinstance(target, str) or not isinstance(trained_through, str) or target <= trained_through:
         print("Predicción omitida: la fecha objetivo no es posterior al último dato usado.")
         return False
-    if not _valid_numbers(numbers):
-        raise ValueError("Predicción inválida: se esperaban seis números únicos entre 1 y 49.")
+    if not _valid_numbers(numbers) or not _valid_numbers(second_numbers):
+        raise ValueError("Predicción inválida: se esperaban dos combinaciones de seis números únicos entre 1 y 49.")
+    if sorted(numbers) == sorted(second_numbers):
+        raise ValueError("Las dos combinaciones deben ser distintas.")
 
     draws = draws_doc.get("draws", [])
     if any(d.get("date") == target for d in draws):
@@ -61,6 +64,8 @@ def record_forecast(draws_path=DRAWS_PATH, report_path=REPORT_PATH,
         "version": report.get("version"),
         "window": report.get("window"),
         "numbers": sorted(numbers),
+        "secondNumbers": sorted(second_numbers),
+        "combinations": [sorted(numbers), sorted(second_numbers)],
     }
     fingerprint = hashlib.sha256(
         json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")

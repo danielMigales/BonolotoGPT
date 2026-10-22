@@ -28,3 +28,4 @@ test('Histórico atrasado no permite registrar propuestas retrospectivas ni desp
  assert.ok(reconcileForecasts([],report,archive.draws,new Date('2026-10-18T18:29:00Z')).active);
  assert.equal(reconcileForecasts([],{...report,warning:'Archivo antiguo'},archive.draws,before).active,null);
 });
+test('La predicción próxima contiene dos combinaciones distintas de seis números',()=>{const first=report.forecast.numbers,second=report.forecast.secondNumbers;assert.equal(first.length,6);assert.equal(second.length,6);assert.equal(new Set(first).size,6);assert.equal(new Set(second).size,6);assert.ok([...first,...second].every(n=>Number.isInteger(n)&&n>=1&&n<=49));assert.notDeepEqual(first,second);assert.equal(second.some(n=>first.includes(n)),false);});

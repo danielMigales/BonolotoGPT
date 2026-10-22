@@ -32,6 +32,7 @@ if(defaultAnalysis.status==='ready'){
   if(Array.isArray(history)&&history.length){
    const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
    if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
+   defaultAnalysis.forecast.secondNumbers=defaultAnalysis.forecast.numberScores.filter(x=>!defaultAnalysis.forecast.numbers.includes(x.number)).slice(0,6).map(x=>x.number).sort((a,b)=>a-b);
    // La última aserción visible pertenece al análisis recién calculado con la ventana fija actual (7 sorteos).
    // El historial prospectivo puede contener versiones antiguas; no debe sobrescribir la aserción del laboratorio.
    defaultAnalysis.evaluationHistory=history.slice(-10);
