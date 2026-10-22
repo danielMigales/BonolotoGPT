@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evalúa predicciones guardadas antes del sorteo, sin sustituirlas por el informe actual."""
+"""Evalúa predicciones guardadas antes del sorteo y sincroniza su estado."""
 import json
 from pathlib import Path
 
@@ -18,6 +18,25 @@ def _valid_numbers(value):
     )
 
 
+def _sync_issued_status(forecast, history_item):
+    """Sincroniza un registro emitido con su evaluación histórica ya guardada."""
+    if not history_item or history_item.get("evaluationType") != "prospective":
+        return False
+    updated = dict(forecast)
+    updated.update({
+        "status": "evaluated",
+        "evaluatedAt": history_item.get("evaluatedAt") or history_item.get("targetDate"),
+        "actual": sorted(history_item.get("actual", [])),
+        "hits": history_item.get("hits"),
+        "combinationHits": history_item.get("combinationHits", [history_item.get("hits")]),
+    })
+    changed = updated != forecast
+    if changed:
+        forecast.clear()
+        forecast.update(updated)
+    return changed
+
+
 def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
                       history_path=HISTORY_PATH):
     if not draws_path.exists() or not issued_path.exists():
@@ -30,24 +49,41 @@ def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
     if not isinstance(issued, list) or not isinstance(history, list):
         raise ValueError("Los registros de predicciones deben ser listas JSON.")
     draws_by_date = {d.get("date"): d for d in draws_doc.get("draws", [])}
-    evaluated_dates = {item.get("targetDate") for item in history}
+    history_by_date = {item.get("targetDate"): item for item in history}
     added = 0
+    issued_changed = False
 
     for forecast in sorted(issued, key=lambda item: item.get("targetDate", "")):
         target = forecast.get("targetDate")
-        actual_draw = draws_by_date.get(target)
-        if not actual_draw or target in evaluated_dates:
+        if target in history_by_date:
+            issued_changed = _sync_issued_status(forecast, history_by_date[target]) or issued_changed
             continue
+        actual_draw = draws_by_date.get(target)
+        if not actual_draw:
+            continue
+
         numbers = forecast.get("numbers")
-        combinations = forecast.get("combinations") or ([numbers, forecast.get("secondNumbers")] if forecast.get("secondNumbers") else [numbers])
+        combinations = forecast.get("combinations") or (
+            [numbers, forecast.get("secondNumbers")]
+            if forecast.get("secondNumbers") else [numbers]
+        )
         actual = actual_draw.get("numbers")
-        if not _valid_numbers(numbers) or not _valid_numbers(actual) or not isinstance(combinations, list) or len(combinations) not in (1, 2) or any(not _valid_numbers(ticket) for ticket in combinations):
-            raise ValueError(f"Predicción o resultado inválido para {target}: se esperaban combinaciones válidas y un resultado de seis números.")
+        if (
+            not _valid_numbers(numbers)
+            or not _valid_numbers(actual)
+            or not isinstance(combinations, list)
+            or len(combinations) not in (1, 2)
+            or any(not _valid_numbers(ticket) for ticket in combinations)
+        ):
+            raise ValueError(
+                f"Predicción o resultado inválido para {target}: "
+                "se esperaban combinaciones válidas y un resultado de seis números."
+            )
         if len(combinations) == 2 and sorted(combinations[0]) == sorted(combinations[1]):
             raise ValueError(f"Las dos combinaciones registradas para {target} deben ser distintas.")
+
         combination_hits = [len(set(ticket) & set(actual)) for ticket in combinations]
-        hits = combination_hits[0]
-        history.append({
+        item = {
             "targetDate": target,
             "issuedAt": forecast.get("issuedAt"),
             "trainedThrough": forecast.get("trainedThrough"),
@@ -58,19 +94,24 @@ def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
             "combinations": [sorted(ticket) for ticket in combinations],
             "combinationHits": combination_hits,
             "actual": sorted(actual),
-            "hits": hits,
+            "hits": combination_hits[0],
             "source": actual_draw.get("source"),
             "forecastHash": forecast.get("forecastHash"),
             "evaluationType": "prospective",
-        })
-        evaluated_dates.add(target)
+        }
+        history.append(item)
+        history_by_date[target] = item
+        issued_changed = _sync_issued_status(forecast, item) or issued_changed
         added += 1
-        print(f"Predicción prospectiva evaluada: {target}; aciertos {hits}/6.")
+        print(f"Predicción prospectiva evaluada: {target}; aciertos {combination_hits[0]}/6.")
 
     if added:
         history.sort(key=lambda item: item.get("targetDate", ""))
+        history_path.parent.mkdir(parents=True, exist_ok=True)
         history_path.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    else:
+    if added or issued_changed:
+        issued_path.write_text(json.dumps(issued, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if not added:
         print("No hay predicciones prospectivas nuevas con resultado disponible.")
     return added
 

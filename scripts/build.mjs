@@ -1,5 +1,5 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
-import {analyze,avoidExactRepeat,diversifyCombination} from '../engine/model.js';
+import {analyze,avoidExactRepeat,diversifyCombination,explainSelection} from '../engine/model.js';
 import {auditBacktest} from '../engine/evaluation.js';
 const seed=JSON.parse(await readFile('data/draws.json','utf8'));
 const logic=await readFile('web/logic.js','utf8');
@@ -33,6 +33,8 @@ if(defaultAnalysis.status==='ready'){
    const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
    if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
    defaultAnalysis.forecast.secondNumbers=diversifyCombination(defaultAnalysis.forecast.numbers,defaultAnalysis.forecast.numberScores,3);
+   // Mantiene las explicaciones alineadas con la combinación final tras evitar repeticiones.
+   defaultAnalysis.forecast.selectionReasons=explainSelection(seed.draws,defaultAnalysis.forecast,fixedWindow);
    // La última aserción visible pertenece al análisis recién calculado con la ventana fija actual (7 sorteos).
    // El historial prospectivo puede contener versiones antiguas; no debe sobrescribir la aserción del laboratorio.
    defaultAnalysis.evaluationHistory=history.slice(-10);

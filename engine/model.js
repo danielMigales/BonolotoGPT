@@ -37,7 +37,7 @@ function distributions(history,window,count){const recent=history.slice(-window)
 function predict(history,window,weights,step){const data=distributions(history,window,weights.length),random=rng(73471+step*101),shape=structure(data.recent),experts=data.numbers.map((p,i)=>i===0?ticket(p,random):i===4?propose(p,shape,random):best(p)),mixed=range(49).map(i=>data.numbers.reduce((s,p,j)=>s+weights[j]*p[i],0));return {numbers:propose(mixed,shape,random),experts,numberScores:mixed.map((score,i)=>({number:i+1,score:round(score)})).sort((a,b)=>b.score-a.score)};}
 function choose(n,k){if(k<0||k>n)return 0;let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;return v;}
 export function randomBaseline(){const den=choose(49,6),hitProbabilities=range(7).map(k=>choose(6,k)*choose(43,6-k)/den);return {expectedHits:36/49,atLeastThreeProbability:hitProbabilities.slice(3).reduce((a,b)=>a+b,0),atLeastFourProbability:hitProbabilities.slice(4).reduce((a,b)=>a+b,0),hitProbabilities};}
-function explainSelection(history,prediction,window){
+export function explainSelection(history,prediction,window){
  const frequency=Array(49).fill(0),recent=Array(49).fill(0),pairCounts=new Map();
  for(const draw of history)for(const n of draw.numbers)frequency[n-1]++;
  const recentDraws=history.slice(-window);
