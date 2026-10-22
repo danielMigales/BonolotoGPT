@@ -1,8 +1,9 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
   schedule:
-    # 21:00 UTC: 23:00 en Madrid durante el horario de verano; en invierno se espera hasta las 23:00 locales.
-    - cron: '0 21,22 * * *'
+    # 23:07 hora de Madrid. Se evita el minuto 00 y no se descartan ejecuciones si GitHub las retrasa.
+    - cron: '7 23 * * *'
+      timezone: 'Europe/Madrid'
   push:
     branches: [main]
   workflow_dispatch:
@@ -20,37 +21,24 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Ejecutar solo a las 23:00 de Madrid en ejecuciones programadas
-        id: schedule-time
-        run: |
-          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$(TZ=Europe/Madrid date +%H)" != "23" ]; then
-            echo "Ejecución programada fuera de las 23:00 de Madrid; se omite sin bloquear el runner."
-            echo "run=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "run=true" >> "$GITHUB_OUTPUT"
       - name: Obtener código
-        if: steps.schedule-time.outputs.run == 'true'
         uses: actions/checkout@v7
       - name: Configurar Python
-        if: steps.schedule-time.outputs.run == 'true'
         uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Configurar Node.js
-        if: steps.schedule-time.outputs.run == 'true'
         uses: actions/setup-node@v7
         with:
           node-version: '22'
       - name: Descargar y validar el histórico oficial de BonoLoto
         id: update-data
-        if: steps.schedule-time.outputs.run == 'true'
         run: npm run update-data
       - name: Contrastar y archivar la predicción que acaba de resolverse
-        if: steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'success'
+        if: steps.update-data.outcome == 'success'
         run: python scripts/archive_forecast.py
       - name: Guardar el histórico y la evaluación antes de construir y probar
-        if: steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'success'
+        if: steps.update-data.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -60,7 +48,7 @@ jobs:
             git push
           fi
       - name: Guardar el punto de control si falla SELAE
-        if: always() && steps.schedule-time.outputs.run == 'true' && steps.update-data.outcome == 'failure'
+        if: always() && steps.update-data.outcome == 'failure'
         run: |
           if [ -f data/draws-progress.json ]; then
             git config user.name "github-actions[bot]"
@@ -72,16 +60,13 @@ jobs:
             fi
           fi
       - name: Construir, registrar la predicción futura y regenerar el informe
-        if: steps.schedule-time.outputs.run == 'true'
         run: |
           npm run build
           python scripts/record_forecast.py
           npm run build
       - name: Ejecutar las pruebas
-        if: steps.schedule-time.outputs.run == 'true'
         run: npm test
       - name: Guardar el histórico oficial y los artefactos generados
-        if: steps.schedule-time.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -91,16 +76,13 @@ jobs:
             git push
           fi
       - name: Configurar GitHub Pages
-        if: steps.schedule-time.outputs.run == 'true'
         uses: actions/configure-pages@v6
         with:
           enablement: true
       - name: Preparar archivos públicos
-        if: steps.schedule-time.outputs.run == 'true'
         uses: actions/upload-pages-artifact@v5
         with:
           path: public
       - name: Publicar BonolotoGPT
-        if: steps.schedule-time.outputs.run == 'true'
         id: deployment
         uses: actions/deploy-pages@v5
