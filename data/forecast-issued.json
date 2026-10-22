@@ -14,7 +14,20 @@
     ],
     "issuedAt": "2026-10-20T20:16:04+02:00",
     "forecastHash": "4049b142463a36c733a3863c2dd6079e22952c80c4511e149fecb724119fba5c",
-    "status": "pending"
+    "status": "evaluated",
+    "evaluatedAt": "2026-10-20",
+    "actual": [
+      3,
+      22,
+      23,
+      26,
+      33,
+      38
+    ],
+    "hits": 1,
+    "combinationHits": [
+      1
+    ]
   },
   {
     "targetDate": "2026-10-21",
@@ -31,7 +44,20 @@
     ],
     "issuedAt": "2026-10-21T07:19:06+02:00",
     "forecastHash": "00a19028f7bd5430fc7da0036b5269d99888bcaf4db27df8617c218b2f20fe05",
-    "status": "pending"
+    "status": "evaluated",
+    "evaluatedAt": "2026-10-21",
+    "actual": [
+      8,
+      13,
+      23,
+      32,
+      46,
+      48
+    ],
+    "hits": 2,
+    "combinationHits": [
+      2
+    ]
   },
   {
     "targetDate": "2026-10-22",
@@ -48,7 +74,20 @@
     ],
     "issuedAt": "2026-10-22T07:04:38+02:00",
     "forecastHash": "7fc7842a15f506608aecb7b87202032cc711259432b87dc127515d17edb8cc43",
-    "status": "pending"
+    "status": "evaluated",
+    "evaluatedAt": "2026-10-22",
+    "actual": [
+      5,
+      18,
+      22,
+      34,
+      43,
+      46
+    ],
+    "hits": 3,
+    "combinationHits": [
+      3
+    ]
   },
   {
     "targetDate": "2026-10-23",
