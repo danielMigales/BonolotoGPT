@@ -56,7 +56,7 @@ export function analyze(draws,{window=7}={}){
  for(const d of ordered)if(!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||d.numbers.length!==6||new Set(d.numbers).size!==6||d.numbers.some(n=>!Number.isInteger(n)||n<1||n>49))throw Error('Sorteo inválido');
  if(ordered.length<=window)return {version:MODEL_VERSION,status:'insufficient',window,required:window+1,available:ordered.length};
  const names=['Azar uniforme','Frecuencia acumulada','Frecuencia reciente','Recencia ponderada','Parejas y estructura','Bayes regularizado','Markov regularizado'],logs=Array(names.length).fill(0),rows=[],histogram=Array(7).fill(0);
- let totalHits=0,totalRandom=0,randomHistogram=Array(7).fill(0);
+ const baseline=randomBaseline();let totalHits=0,totalRandom=0,randomHistogram=Array(7).fill(0);
  for(let i=window;i<ordered.length;i++){
   const past=ordered.slice(0,i),weights=softmax(logs),prediction=predict(past,window,weights,i),actual=ordered[i],count=hits(prediction.numbers,actual.numbers),random=ticket(Array(49).fill(1/49),rng(92003+i*313)),randomHits=hits(random,actual.numbers),expertHits=prediction.experts.map(p=>hits(p,actual.numbers));
   rows.push({date:actual.date,trainingCount:i,trainingStart:past[0].date,trainingEnd:past.at(-1).date,windowStart:past.slice(-window)[0].date,predicted:prediction.numbers,actual:actual.numbers,hits:count,randomNumbers:random,randomHits,expertHits,weightsBefore:weights.map(round),selectionReasons:explainSelection(past,prediction,window)});
