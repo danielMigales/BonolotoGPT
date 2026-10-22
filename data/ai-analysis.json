@@ -1,5 +1,5 @@
 {
-  "version": "2.4.2",
+  "version": "2.5.0",
   "status": "ready",
   "window": 7,
   "sourceLastDate": "2026-10-22",
@@ -18,6 +18,14 @@
       26,
       32,
       46
+    ],
+    "secondNumbers": [
+      8,
+      9,
+      42,
+      43,
+      48,
+      49
     ],
     "numberScores": [
       {
@@ -55384,7 +55392,7 @@
     }
   ],
   "modelState": {
-    "version": "2.4.2",
+    "version": "2.5.0",
     "window": 7,
     "trainedThrough": "2026-10-22",
     "numberLogWeights": [
