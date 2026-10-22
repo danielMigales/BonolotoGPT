@@ -13,7 +13,7 @@ Aplicación web en español para consultar los últimos cinco sorteos de Bonolot
 
 ## Laboratorio de análisis
 
-El motor usa una ventana fija de **7 sorteos** y combina siete enfoques estadísticos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
+El motor publicado usa una ventana fija de **7 sorteos** y combina siete enfoques estadísticos. El aprendizaje secuencial actualiza los pesos de los métodos frente al valor esperado teórico del azar uniforme (**36/49 aciertos por combinación**), en vez de usar una sola combinación aleatoria como referencia para ajustar los pesos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. La comparación retrospectiva con controles aleatorios sigue siendo exploratoria: no demuestra por sí sola una ventaja futura ni garantiza cuatro aciertos. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
 
 La interfaz de análisis requiere al menos **8 sorteos oficiales**: 7 para formar la primera ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
 
