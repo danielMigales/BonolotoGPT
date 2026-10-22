@@ -21,7 +21,7 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.write(self.report, {
             "status": "ready", "version": "2.4.1", "window": 7,
             "sourceLastDate": "2026-10-19",
-            "forecast": {"targetDate": "2026-10-20", "numbers": [7, 8, 9, 10, 11, 12], "secondNumbers": [13, 14, 15, 16, 17, 18]}
+            "forecast": {"targetDate": "2026-10-21", "numbers": [7, 8, 9, 10, 11, 12], "secondNumbers": [13, 14, 15, 16, 17, 18]}
         })
 
     def tearDown(self):
@@ -77,7 +77,7 @@ class ProspectiveForecastLogTests(unittest.TestCase):
 
     def test_archives_legacy_single_combination_record_without_breaking_history(self):
         self.write(self.issued, [{
-            "targetDate": "2026-10-21", "numbers": [7, 8, 9, 10, 11, 12],
+            "targetDate": "2026-10-20", "numbers": [7, 8, 9, 10, 11, 12],
             "issuedAt": "2026-10-20T23:00:00+02:00", "trainedThrough": "2026-10-19",
             "version": "2.4.2", "window": 7, "status": "pending"
         }])
