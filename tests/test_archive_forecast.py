@@ -37,7 +37,7 @@ class ArchiveForecastTests(unittest.TestCase):
         record = self.read_issued()[0]
         self.assertEqual(record["status"], "evaluated")
         self.assertEqual(record["hits"], 3)
-        self.assertEqual(record["combinationHits"], [3, 0])
+        self.assertEqual(record["combinationHits"], [3, 3])
         self.assertEqual(record["actual"], self.actual)
         self.assertTrue(record.get("evaluatedAt"))
         self.assertEqual(len(json.loads(self.history.read_text(encoding="utf-8"))), 1)
