@@ -54,8 +54,16 @@ def record_forecast(draws_path=DRAWS_PATH, report_path=REPORT_PATH,
     issued = json.loads(issued_path.read_text(encoding="utf-8")) if issued_path.exists() else []
     if not isinstance(issued, list):
         raise ValueError("El registro de predicciones debe ser una lista JSON.")
-    if any(item.get("targetDate") == target for item in issued):
-        print(f"La predicción de {target} ya estaba registrada; se conserva sin cambios.")
+    existing = next((item for item in issued if item.get("targetDate") == target), None)
+    if existing is not None:
+        if not existing.get("secondNumbers") and not existing.get("combinations"):
+            print(
+                f"AVISO: la predicción de {target} ya está registrada como legado "
+                "con una sola combinación. Se conserva inmutable; no se añadirá "
+                "una segunda combinación retrospectivamente."
+            )
+        else:
+            print(f"La predicción de {target} ya estaba registrada; se conserva sin cambios.")
         return False
 
     payload = {
