@@ -1,6 +1,6 @@
 # BonolotoGPT · Archivo y análisis de Bonoloto
 
-Aplicación web en español para consultar los últimos cinco sorteos de Bonoloto, el histórico oficial desde el **1 de enero de 2026** y un laboratorio experimental de análisis.
+Aplicación web en español para consultar los últimos siete sorteos de Bonoloto, el histórico desde el **1 de enero de 2026** y un laboratorio experimental de análisis.
 
 ## Qué hace
 
@@ -13,13 +13,13 @@ Aplicación web en español para consultar los últimos cinco sorteos de Bonolot
 
 ## Laboratorio de análisis
 
-La predicción ofrece **dos combinaciones distintas de seis números**: la primera sigue la puntuación combinada y la segunda conserva tres números de la principal y cambia los otros tres por alternativas con mejor puntuación disponible. Ambas usan una ventana fija de **7 sorteos** y combina siete enfoques estadísticos. El laboratorio añade un estudio retrospectivo de ventanas de **5, 7, 10, 15, 20, 30 y 50 sorteos**, con controles aleatorios, intervalo de confianza y valor p; no selecciona automáticamente una ventana por sus resultados históricos para evitar sobreajuste. El aprendizaje secuencial actualiza los pesos de los métodos frente al valor esperado teórico del azar uniforme (**36/49 aciertos por combinación**), en vez de usar una sola combinación aleatoria como referencia para ajustar los pesos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. La comparación retrospectiva con controles aleatorios sigue siendo exploratoria: no demuestra por sí sola una ventaja futura ni garantiza cuatro aciertos. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
+La predicción ofrece **dos combinaciones distintas de seis números**: la primera sigue la puntuación combinada y la segunda conserva tres números de la principal y cambia los otros tres por alternativas con mejor puntuación disponible. Ambas usan una ventana fija de **7 sorteos** y combinan siete enfoques estadísticos. El laboratorio añade un estudio retrospectivo de ventanas de **5, 7, 10, 15, 20, 30 y 50 sorteos**, con controles aleatorios, intervalo de confianza y valor p; no selecciona automáticamente una ventana por sus resultados históricos para evitar sobreajuste. El aprendizaje secuencial actualiza los pesos de los métodos frente al valor esperado teórico del azar uniforme (**36/49 aciertos por combinación**), en vez de usar una sola combinación aleatoria como referencia para ajustar los pesos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. La comparación retrospectiva con controles aleatorios sigue siendo exploratoria: no demuestra por sí sola una ventaja futura ni garantiza cuatro aciertos. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
 
-La interfaz de análisis requiere al menos **8 sorteos oficiales**: 7 para formar la primera ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
+La interfaz de análisis requiere al menos **8 sorteos**: 7 para formar la primera ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
 
 ## Registro prospectivo de predicciones
 
-El workflow guarda cada combinación en `data/forecast-issued.json` antes de que exista el resultado de su fecha objetivo. Cada registro conserva la fecha de emisión, los datos usados, la versión, la ventana, las dos combinaciones de seis números y una huella SHA-256; si ya existe una predicción para esa fecha, no se reemplaza. Cuando se publica el resultado oficial, `scripts/archive_forecast.py` evalúa ambas combinaciones originales y guarda los aciertos de cada una en `data/forecast-history.json`. Las predicciones históricas anteriores al registro prospectivo no se consideran evidencia independiente. La comparación prospectiva empieza con los registros emitidos por este mecanismo y no garantiza ventaja predictiva.
+El workflow guarda cada combinación en `data/forecast-issued.json` antes de que exista el resultado de su fecha objetivo. Cada registro conserva la fecha de emisión, los datos usados, la versión, la ventana, las dos combinaciones de seis números y una huella SHA-256; si ya existe una predicción para esa fecha, no se reemplaza. Cuando se publica el resultado, `scripts/archive_forecast.py` evalúa ambas combinaciones originales y guarda los aciertos de cada una en `data/forecast-history.json`. Las predicciones históricas anteriores al registro prospectivo no se consideran evidencia independiente. La comparación prospectiva empieza con los registros emitidos por este mecanismo y no garantiza ventaja predictiva.
 
 ## Archivos principales
 
@@ -27,11 +27,13 @@ El workflow guarda cada combinación en `data/forecast-issued.json` antes de que
 - `web/logic.js`: frecuencias y resumen de aciertos.
 - `web/index.html`: interfaz fuente.
 - `public/index.html`: interfaz estática publicada en GitHub Pages.
-- `data/draws.json`: archivo normalizado de resultados oficiales.
-- `scripts/update_data.py`: descarga y validación del histórico oficial de SELAE.
+- `data/draws.json`: archivo normalizado de resultados.
+- `scripts/update_data.py`: descarga y validación del histórico; intenta SELAE y puede usar fuentes auxiliares cuando SELAE no responde.
 - `scripts/build.mjs`: genera la web estática y el análisis cuando hay suficientes datos.
 
-Los archivos oficiales pueden contener campos auxiliares para verificar la fuente, pero la aplicación normaliza los sorteos y entrega al motor solo la fecha y los seis números principales.
+El campo `source` de cada fila contiene el enlace de la página de resultados de SELAE para esa fecha; **no demuestra por sí solo que esa fila se haya descargado o contrastado individualmente con SELAE**. El metadato `importSource` describe la fuente usada para la importación masiva y/o el complemento reciente. El importador contrasta además las frecuencias agregadas de un tramo con estadísticas publicadas por SELAE, pero ese control agregado no certifica cada combinación individual.
+
+El motor recibe solo la fecha y los seis números principales. Los campos auxiliares no intervienen en los cálculos.
 
 ## Ejecutar localmente
 
@@ -50,8 +52,8 @@ Abrir http://localhost:8000.
 
 Repositorio: https://github.com/danielMigales/BonolotoGPT
 
-El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una ejecución diaria que espera a las 23:00 de Madrid. El botón de recarga de la web solo vuelve a leer los datos ya publicados; la descarga oficial y la publicación las realiza el workflow. La actualización automática depende de que la descarga y validación de datos finalice correctamente.
+El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una ejecución diaria que espera a las 23:00 de Madrid. El botón de recarga de la web solo vuelve a leer los datos ya publicados; la descarga de datos y la publicación las realiza el workflow. La actualización automática depende de que la descarga y validación de datos finalice correctamente.
 
 El workflow **Validar BonolotoGPT** ejecuta las pruebas y valida los archivos estáticos generados para GitHub Pages.
 
-Nunca se deben inventar resultados ni rellenar el histórico con datos de ejemplo. Si SELAE no proporciona datos válidos, la actualización debe fallar en vez de publicar resultados inventados.
+Nunca se deben inventar resultados ni rellenar el histórico con datos de ejemplo. Si las fuentes no proporcionan datos válidos, la actualización debe fallar en vez de publicar resultados inventados.
