@@ -1,5 +1,7 @@
 import json
 import tempfile
+from contextlib import redirect_stdout
+from io import StringIO
 import unittest
 from pathlib import Path
 
@@ -43,6 +45,25 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.assertEqual(original["status"], "pending")
         self.assertFalse(record_forecast(self.draws, self.report, self.issued, "2026-10-20T23:05:00+02:00"))
         self.assertEqual(self.read(self.issued), [original])
+
+    def test_legacy_duplicate_warns_without_reconstructing_second_combination(self):
+        legacy = {
+            "targetDate": "2026-10-21", "trainedThrough": "2026-10-19",
+            "version": "2.4.2", "window": 7,
+            "numbers": [7, 8, 9, 10, 11, 12],
+            "issuedAt": "2026-10-20T23:00:00+02:00",
+            "forecastHash": "legacy-hash", "status": "pending"
+        }
+        self.write(self.issued, [legacy])
+        output = StringIO()
+        with redirect_stdout(output):
+            self.assertFalse(record_forecast(
+                self.draws, self.report, self.issued,
+                "2026-10-21T08:00:00+02:00"
+            ))
+        self.assertIn("una sola combinación", output.getvalue())
+        self.assertIn("no se añadirá", output.getvalue())
+        self.assertEqual(self.read(self.issued), [legacy])
 
     def test_refuses_to_record_a_forecast_after_its_target_result_exists(self):
         report = self.read(self.report)
