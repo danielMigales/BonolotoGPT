@@ -42,7 +42,9 @@ if(defaultAnalysis.status==='ready'){
   const prospectiveEvaluations=Array.isArray(history)?history.filter(item=>item.evaluationType==='prospective'):[];
   const issuedList=Array.isArray(issued)?issued:[];
   const evaluatedTargets=new Set(prospectiveEvaluations.map(item=>item.targetDate));
-  defaultAnalysis.prospective={issuedCount:issuedList.length,evaluatedCount:prospectiveEvaluations.length,pendingCount:issuedList.filter(item=>!evaluatedTargets.has(item.targetDate)).length,latestTargetDate:issuedList.at(-1)?.targetDate??null};
+  const prospectiveRecords=issuedList.map(item=>({targetDate:item.targetDate,trainedThrough:item.trainedThrough??null,issuedAt:item.issuedAt??null,version:item.version??null,window:item.window??null,status:item.status??(evaluatedTargets.has(item.targetDate)?'evaluated':'pending'),numbers:Array.isArray(item.numbers)?item.numbers:null,secondNumbers:Array.isArray(item.secondNumbers)?item.secondNumbers:null,actual:Array.isArray(item.actual)?item.actual:null,hits:Number.isInteger(item.hits)?item.hits:null,secondHits:Number.isInteger(item.secondHits)?item.secondHits:(Array.isArray(item.combinationHits)&&Number.isInteger(item.combinationHits[1])?item.combinationHits[1]:null)})).sort((a,b)=>b.targetDate.localeCompare(a.targetDate));
+  const evaluatedIssued=prospectiveRecords.filter(item=>item.status==='evaluated'&&Array.isArray(item.actual)&&Number.isInteger(item.hits));
+  defaultAnalysis.prospective={issuedCount:issuedList.length,evaluatedCount:evaluatedIssued.length,pendingCount:prospectiveRecords.filter(item=>item.status==='pending').length,latestTargetDate:issuedList.at(-1)?.targetDate??null,records:prospectiveRecords.slice(0,20)};
  }catch(error){if(error.code!=='ENOENT')throw error;}
 }
 if(defaultAnalysis.status==='ready'){
