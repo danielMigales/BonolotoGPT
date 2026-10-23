@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Evalúa predicciones guardadas antes del sorteo y sincroniza su estado."""
+import hashlib
 import json
 from pathlib import Path
 
@@ -17,6 +18,31 @@ def _valid_numbers(value):
         and len(set(value)) == 6
     )
 
+
+def _verify_forecast_hash(forecast):
+    """Rechaza alteraciones en registros nuevos antes de evaluarlos."""
+    # Los registros antiguos no firmaban ambas combinaciones; se conservan.
+    if not forecast.get("combinations") and not forecast.get("secondNumbers"):
+        return
+    numbers = forecast.get("numbers")
+    second_numbers = forecast.get("secondNumbers")
+    payload = {
+        "targetDate": forecast.get("targetDate"),
+        "trainedThrough": forecast.get("trainedThrough"),
+        "version": forecast.get("version"),
+        "window": forecast.get("window"),
+        "numbers": sorted(numbers) if isinstance(numbers, list) else numbers,
+        "secondNumbers": sorted(second_numbers) if isinstance(second_numbers, list) else second_numbers,
+        "combinations": [sorted(ticket) if isinstance(ticket, list) else ticket for ticket in forecast.get("combinations", [])],
+    }
+    expected = hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    if not forecast.get("forecastHash") or forecast["forecastHash"] != expected:
+        raise ValueError(
+            "Huella SHA-256 inválida para la predicción " + str(forecast.get("targetDate")) +
+            "; el registro pudo alterarse después de emitirse."
+        )
 
 def _sync_issued_status(forecast, history_item):
     """Sincroniza un registro emitido con su evaluación histórica ya guardada."""
@@ -62,6 +88,7 @@ def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
         if not actual_draw:
             continue
 
+        _verify_forecast_hash(forecast)
         numbers = forecast.get("numbers")
         combinations = forecast.get("combinations") or (
             [numbers, forecast.get("secondNumbers")]

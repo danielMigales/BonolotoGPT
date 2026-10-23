@@ -87,5 +87,18 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.assertEqual(evaluated["combinationHits"], [0])
         self.assertIsNone(evaluated["secondNumbers"])
 
+    def test_rejects_tampered_forecast_before_scoring_hits(self):
+        record_forecast(self.draws, self.report, self.issued, "2026-10-20T23:00:00+02:00")
+        issued = self.read(self.issued)
+        issued[0]["secondNumbers"] = [19, 20, 21, 22, 23, 24]
+        issued[0]["combinations"][1] = [19, 20, 21, 22, 23, 24]
+        self.write(self.issued, issued)
+        draws = self.read(self.draws)
+        draws["draws"].append({"date": "2026-10-21", "numbers": [7, 8, 20, 21, 22, 23], "source": "official"})
+        self.write(self.draws, draws)
+        with self.assertRaisesRegex(ValueError, "Huella SHA-256 inválida"):
+            archive_forecasts(self.draws, self.issued, self.history)
+        self.assertEqual(self.read(self.history, []), [])
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import tempfile
 import unittest
@@ -19,11 +20,17 @@ class ArchiveForecastTests(unittest.TestCase):
         self.draws.write_text(json.dumps({"draws": [{
             "date": "2026-10-20", "numbers": self.actual, "source": "SELAE"
         }]}), encoding="utf-8")
-        self.issued.write_text(json.dumps([{
+        payload = {
             "targetDate": "2026-10-20", "trainedThrough": "2026-10-19",
-            "numbers": self.prediction, "secondNumbers": self.second,
-            "combinations": [self.prediction, self.second], "status": "pending",
-            "forecastHash": "test-hash"
+            "version": None, "window": None,
+            "numbers": sorted(self.prediction), "secondNumbers": sorted(self.second),
+            "combinations": [sorted(self.prediction), sorted(self.second)],
+        }
+        fingerprint = hashlib.sha256(
+            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        self.issued.write_text(json.dumps([{
+            **payload, "status": "pending", "forecastHash": fingerprint
         }]), encoding="utf-8")
 
     def tearDown(self):
