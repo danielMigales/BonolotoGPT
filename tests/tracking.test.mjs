@@ -6,7 +6,7 @@ const before=new Date('2026-10-18T10:00:00Z');
 test('Fecha del próximo sorteo: lunes a sábado',()=>{assert.equal(nextDrawDate('2026-10-17'),'2026-10-18');assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(nextDrawDate('2026-10-22'),'2026-10-23');assert.equal(nextDrawDate('2026-12-31'),'2027-01-01');});
 test('Guarda una propuesta pendiente sin inventar resultado ni aciertos',()=>{
  const r=reconcileForecasts([],report,archive.draws,before);
- assert.equal(r.active.targetDate,'2026-10-18');assert.equal(r.active.status,'pending');assert.equal(r.active.createdAt,before.toISOString());assert.equal(r.active.actual,null);assert.equal(r.active.hits,null);
+ assert.equal(r.active.targetDate,'2026-10-18');assert.equal(r.active.status,'pending');assert.equal(r.active.createdAt,before.toISOString());assert.equal(r.active.actual,null);assert.equal(r.active.hits,null);assert.equal(r.active.secondHits,null);assert.equal(r.active.combinationHits,null);
  const changed={...report,version:'otra',forecast:{...report.forecast,numbers:[1,2,3,4,5,6]}};
  assert.deepEqual(reconcileForecasts(r.records,changed,archive.draws,new Date('2026-10-19T10:00:00Z')).records,r.records);
 });
@@ -17,7 +17,7 @@ test('Publicación oficial evalúa la propuesta original y crea la siguiente; co
  const draws=[actual,...archive.draws],nextReport=analyze(draws),now=new Date('2026-10-18T21:00:00Z');
  const reconciled=reconcileForecasts(pending.records,nextReport,draws,now);
  assert.equal(reconciled.active.targetDate,'2026-10-19');assert.equal(reconciled.active.status,'pending');assert.equal(reconciled.records.length,2);
- const old=reconciled.records.find(r=>r.targetDate==='2026-10-18');assert.equal(old.status,'published');assert.equal(old.publishedAt,now.toISOString());assert.equal(old.hits,3);assert.deepEqual(old.numbers,ticket.numbers);assert.equal(old.createdAt,ticket.createdAt);assert.deepEqual(old.actual.numbers,actual.numbers);
+ const old=reconciled.records.find(r=>r.targetDate==='2026-10-18');assert.equal(old.status,'published');assert.equal(old.publishedAt,now.toISOString());assert.equal(old.hits,3);assert.equal(old.secondHits,ticket.secondNumbers.filter(n=>actual.numbers.includes(n)).length);assert.deepEqual(old.combinationHits,[old.hits,old.secondHits]);assert.deepEqual(old.numbers,ticket.numbers);assert.equal(old.createdAt,ticket.createdAt);assert.deepEqual(old.actual.numbers,actual.numbers);
  const corrected=[{...actual,numbers:[...actual.numbers].reverse()},...archive.draws];
  const updated=reconcileForecasts(reconciled.records,nextReport,corrected,now).records.find(r=>r.targetDate===actual.date);
  assert.equal(updated.publishedAt,now.toISOString());assert.deepEqual(updated.numbers,ticket.numbers);
