@@ -36,7 +36,9 @@ class UpdateDataScheduleTests(unittest.TestCase):
         record = normalize_widget('2026-10-14', body)
         self.assertEqual(record['date'], '2026-10-14')
         self.assertEqual(record['numbers'], [8, 11, 21, 41, 47, 48])
-        self.assertEqual(set(record), {'id', 'date', 'numbers', 'source'})
+        self.assertEqual(set(record), {'id', 'date', 'numbers', 'complementario', 'reintegro', 'source'})
+        self.assertEqual(record['complementario'], 34)
+        self.assertEqual(record['reintegro'], 4)
         self.assertEqual(record['id'], 'BONO-20261014')
         self.assertEqual(record['source'], 'https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-14-de-octubre-de-2026')
 
