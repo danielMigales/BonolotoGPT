@@ -45,14 +45,20 @@ class ImportTests(unittest.TestCase):
             self.assertIsNone(doc['latestDate'])
             self.assertIsNone(doc['checkedAt'])
 
-    def test_archive_rows_never_store_auxiliary_fields(self):
+    def test_archive_rows_validate_main_numbers_and_optional_auxiliary_fields(self):
         root = pathlib.Path(__file__).resolve().parents[1]
         doc = json.loads((root / 'data/draws.json').read_text())
         for row in doc['draws']:
-            self.assertEqual(set(row), {'id', 'date', 'numbers', 'source'})
+            self.assertTrue({'id', 'date', 'numbers', 'source'}.issubset(row))
+            self.assertLessEqual(set(row), {'id', 'date', 'numbers', 'source', 'complementario', 'reintegro'})
             self.assertEqual(len(row['numbers']), 6)
             self.assertEqual(len(set(row['numbers'])), 6)
             self.assertTrue(all(1 <= n <= 49 for n in row['numbers']))
+            if 'complementario' in row:
+                self.assertTrue(1 <= row['complementario'] <= 49)
+                self.assertNotIn(row['complementario'], row['numbers'])
+            if 'reintegro' in row:
+                self.assertTrue(0 <= row['reintegro'] <= 9)
 
 
 if __name__ == '__main__':
