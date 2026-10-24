@@ -11,7 +11,9 @@ class ImportTests(unittest.TestCase):
             '<p>06 - 34 - 33 - 37 - 46 - 08 Complementario: C(47) Reintegro: R(5)</p>',
         )
         self.assertEqual(row['numbers'], [6, 8, 33, 34, 37, 46])
-        self.assertEqual(set(row), {'id', 'date', 'numbers', 'source'})
+        self.assertEqual(set(row), {'id', 'date', 'numbers', 'complementario', 'reintegro', 'source'})
+        self.assertEqual(row['complementario'], 47)
+        self.assertEqual(row['reintegro'], 5)
         self.assertIn('bonoloto-resultados-del-02-de-enero-de-2026', row['source'])
 
     def test_bad_data_is_rejected(self):
