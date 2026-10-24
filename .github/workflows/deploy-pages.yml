@@ -59,6 +59,11 @@ jobs:
               git push
             fi
           fi
+      - name: Detener la ejecución si falla la actualización del histórico
+        if: steps.update-data.outcome == 'failure'
+        run: |
+          echo "::error::No se publicará la web porque falló la descarga o validación del histórico de Bonoloto."
+          exit 1
       - name: Construir, registrar la predicción futura y regenerar el informe
         run: |
           npm run build
