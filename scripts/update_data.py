@@ -56,6 +56,8 @@ def normalize_widget(day, body):
         'id': 'BONO-' + date.strftime('%Y%m%d'),
         'date': date.isoformat(),
         'numbers': sorted(nums),
+        'complementario': complementario,
+        'reintegro': reintegro,
         'source': official_url(day),
     }
 
