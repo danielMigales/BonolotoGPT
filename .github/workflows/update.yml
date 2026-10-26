@@ -8,7 +8,8 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: bonoloto-publicacion
+  # Mismo grupo que la publicación: evita carreras entre pruebas y actualizaciones del histórico.
+  group: bonoloto-main-pipeline
   cancel-in-progress: false
 jobs:
   update:
