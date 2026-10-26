@@ -12,7 +12,8 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: github-pages
+  # Comparte grupo con la validación para evitar ejecuciones concurrentes que escriban en main.
+  group: bonoloto-main-pipeline
   cancel-in-progress: false
 jobs:
   build-and-deploy:
