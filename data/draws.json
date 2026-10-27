@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "startDate": "2026-01-01",
   "source": "SELAE",
-  "importSource": "SELAE — resultados oficiales; actualizado el 25/10/2026; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-10-27T01:23:37.286167+00:00",
+  "importSource": "SELAE — resultados oficiales; actualizado el 26/10/2026",
+  "checkedAt": "2026-10-27T07:03:49.782Z",
   "latestDate": "2026-10-26",
   "draws": [
     {
@@ -17,7 +17,9 @@
         35,
         40
       ],
-      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-26-de-octubre-de-2026"
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-26-de-octubre-de-2026",
+      "complementario": 22,
+      "reintegro": 5
     },
     {
       "id": "BONO-20261025",
