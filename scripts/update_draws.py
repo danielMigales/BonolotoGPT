@@ -37,7 +37,7 @@ class PageParser(HTMLParser):
             self._anchor_text = []
 
 def get(url):
-    req = Request(url, headers={"User-Agent":"BonolotoGPT/1.0 (results viewer)"})
+    req = Request(url, headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Language":"es-ES,es;q=0.9,en;q=0.8","Referer":"https://www.loteriasyapuestas.es/"})
     with urlopen(req, timeout=25) as response:
         if response.status != 200:
             raise RuntimeError(f"SELAE respondió HTTP {response.status} para {url}")
