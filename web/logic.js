@@ -1,5 +1,0 @@
-// Toda estadística se calcula solo con los seis números principales.
-export function frequencies(draws){const result=new Map();for(const draw of draws)for(const n of draw.numbers)result.set(n,(result.get(n)||0)+1);return result;}
-export function repeated(draws){return [...frequencies(draws)].filter(([,count])=>count>1).sort((a,b)=>a[0]-b[0]);}
-export function windowDraws(draws,end,size=5){return draws.filter(d=>!end||d.date<=end).slice(0,size);}
-export function summarizeIssued(records=[]){const published=records.filter(r=>r.status==='published'&&r.actual),rows=published.map(r=>r.numbers.filter(n=>r.actual.numbers.includes(n)).length),versions=[...new Set(published.map(r=>r.version))].sort().map(version=>{const trials=published.filter(r=>r.version===version);return {version,evaluated:trials.length,three:trials.filter(r=>r.numbers.filter(n=>r.actual.numbers.includes(n)).length>=3).length};});return {issued:records.length,pending:records.filter(r=>r.status!=='published'||!r.actual).length,evaluated:rows.length,three:rows.filter(n=>n>=3).length,meanHits:rows.length?rows.reduce((a,b)=>a+b,0)/rows.length:null,versions};}

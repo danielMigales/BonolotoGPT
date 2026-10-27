@@ -1,0 +1,58 @@
+name: Actualizar y publicar Bonoloto
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "50 22 * * *"
+  push:
+    branches: [main]
+    paths-ignore:
+      - "public/data/draws.json"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: bonoloto-minimal-site
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Obtener y validar los últimos diez sorteos oficiales
+        run: python scripts/update_draws.py
+      - name: Guardar datos si han cambiado
+        run: |
+          if ! git diff --quiet -- public/data/draws.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add public/data/draws.json
+            git commit -m "Actualizar los 10 últimos sorteos oficiales"
+            git push origin HEAD:main
+          else
+            echo "Los datos ya estaban actualizados."
+          fi
+      - name: Preparar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Subir web estática
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Publicar web
+        id: deployment
+        uses: actions/deploy-pages@v4
