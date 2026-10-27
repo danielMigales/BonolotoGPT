@@ -1,25 +1,21 @@
-name: Actualizar y publicar Bonoloto
+name: Publicar BonolotoGPT
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "50 22 * * *"
   push:
     branches: [main]
-    paths-ignore:
-      - "public/data/draws.json"
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: bonoloto-minimal-site
+  group: bonoloto-manual-pages
   cancel-in-progress: false
 
 jobs:
-  update-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -27,26 +23,30 @@ jobs:
     steps:
       - name: Descargar código
         uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-      - name: Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Obtener y validar los últimos diez sorteos oficiales
-        run: python scripts/update_draws.py
-      - name: Guardar datos si han cambiado
+      - name: Validar los diez sorteos guardados (sin consultar SELAE)
         run: |
-          if ! git diff --quiet -- public/data/draws.json; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add public/data/draws.json
-            git commit -m "Actualizar los 10 últimos sorteos oficiales"
-            git push origin HEAD:main
-          else
-            echo "Los datos ya estaban actualizados."
-          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("public/data/draws.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          draws = data.get("draws")
+          if not isinstance(draws, list) or len(draws) != 10:
+              raise SystemExit("ERROR: deben existir exactamente 10 sorteos.")
+          dates = set()
+          for d in draws:
+              nums = d.get("numbers")
+              if not isinstance(nums, list) or len(nums) != 6 or len(set(nums)) != 6:
+                  raise SystemExit("ERROR: un sorteo no contiene seis números únicos.")
+              if any(not isinstance(n, int) or n < 1 or n > 49 for n in nums):
+                  raise SystemExit("ERROR: número principal fuera del rango 1-49.")
+              if not d.get("date") or not d.get("source"):
+                  raise SystemExit("ERROR: falta fecha o referencia de fuente.")
+              dates.add(d["date"])
+          if len(dates) != 10:
+              raise SystemExit("ERROR: las fechas de los sorteos deben ser únicas.")
+          print("Validación correcta: 10 sorteos, seis números únicos por sorteo.")
+          PY
       - name: Preparar GitHub Pages
         uses: actions/configure-pages@v5
       - name: Subir web estática
