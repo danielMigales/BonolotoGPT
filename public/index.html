@@ -6,61 +6,62 @@
 <meta name="theme-color" content="#102a43">
 <title>BonolotoGPT · Últimos 10 sorteos</title>
 <style>
-:root{color-scheme:light;--ink:#152536;--muted:#627386;--line:#dce5ec;--paper:#f4f7fa;--blue:#1769aa;--repeat:#c62828;--repeat-bg:#fff0f0}
+:root{color-scheme:light;--ink:#152536;--muted:#627386;--line:#dce5ec;--paper:#f4f7fa;--blue:#1769aa;--repeat:#b42318;--repeat-bg:#fff0f0}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{background:#102a43;color:#fff;padding:30px 18px 26px}header .wrap,main{max-width:920px;margin:auto}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:0 0 8px}header p{margin:0;color:#d9e6f2;line-height:1.5}
-main{padding:22px 14px 40px}.legend,.summary,.draw{background:white;border:1px solid var(--line);border-radius:14px}
-.legend{padding:14px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:.94rem}
-.ball{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#e8f0f7;color:#123e63;font-weight:750;font-variant-numeric:tabular-nums;border:1px solid #d6e3ee}
-.ball.repeat{background:var(--repeat-bg);color:var(--repeat);border:2px solid #e9a0a0}
-.draws{display:grid;gap:10px}.draw{padding:15px 16px}.drawtop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.date{font-weight:750}.source{font-size:.78rem;color:var(--muted)}.numbers{display:flex;gap:7px;flex-wrap:wrap}.extras{margin-top:11px;font-size:.86rem;color:var(--muted)}.repeat-tag{display:inline-block;margin-left:7px;padding:3px 8px;border-radius:20px;background:var(--repeat-bg);color:var(--repeat);font-size:.78rem;font-weight:700}
-.summary{padding:16px;margin-top:14px}.summary h2{font-size:1rem;margin:0 0 10px}.repeat-list{display:flex;gap:7px;flex-wrap:wrap}.note{color:var(--muted);font-size:.82rem;line-height:1.5;margin:15px 2px}.status{padding:20px;background:#fff;border:1px solid var(--line);border-radius:14px}
-a{color:#0c609e}footer{max-width:920px;margin:auto;padding:0 16px 28px;color:var(--muted);font-size:.82rem}
+header{background:#102a43;color:white;padding:28px 18px}header .wrap,main,footer{max-width:900px;margin:auto}h1{font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 7px}header p{margin:0;color:#d9e6f2;line-height:1.5}
+main{padding:22px 14px 34px}.legend,.summary,.draw,.status{background:white;border:1px solid var(--line);border-radius:14px}.legend{padding:13px 15px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:.9rem}
+.ball{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#e8f0f7;color:#123e63;font-weight:750;font-variant-numeric:tabular-nums;border:1px solid #d6e3ee;flex-shrink:0}.ball.repeat{background:var(--repeat-bg);color:var(--repeat);border:2px solid #e9a0a0}
+.draws{display:grid;gap:10px}.draw{padding:15px 16px}.drawtop{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px}.date{font-weight:750}.numbers{display:flex;gap:7px;flex-wrap:wrap}.extras{margin-top:10px;font-size:.86rem;color:var(--muted)}.repeat-tag{display:inline-block;margin-left:7px;padding:3px 8px;border-radius:20px;background:var(--repeat-bg);color:var(--repeat);font-size:.76rem;font-weight:700}
+.summary{padding:15px;margin-top:14px}.summary h2{font-size:1rem;margin:0 0 10px}.repeat-list{display:flex;gap:7px;flex-wrap:wrap}.note,footer{color:var(--muted);font-size:.82rem;line-height:1.5}.note{margin:14px 2px}.status{padding:19px;line-height:1.55}.status strong{display:block;margin-bottom:4px}footer{padding:0 16px 26px}
 @media(max-width:480px){.draw{padding:13px}.ball{width:35px;height:35px}.numbers{gap:5px}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><h1>BonolotoGPT</h1><p>Los 10 últimos sorteos, con los números principales repetidos destacados.</p></div></header>
+<header><div class="wrap"><h1>BonolotoGPT</h1><p>Únicamente los 10 sorteos más recientes. Los números principales repetidos aparecen en rojo.</p></div></header>
 <main>
-<div class="legend"><span class="ball repeat">12</span><span>Rojo = número que aparece en más de uno de los 10 sorteos.</span><span class="ball">34</span><span>Azul = no repetido.</span></div>
-<div id="status" class="status" role="status">Cargando resultados…</div>
-<section id="summary" class="summary" hidden><h2>Números repetidos en la ventana de 10 sorteos</h2><div id="repeat-list" class="repeat-list"></div></section>
-<p class="note">Los repetidos se calculan solo con los seis números principales de cada sorteo. El complementario y el reintegro se muestran por separado y no cuentan para este cálculo. Las repeticiones pasadas no predicen los resultados futuros.</p>
+<div class="legend"><span class="ball repeat">12</span><span>Rojo: aparece en más de un sorteo de la lista.</span><span class="ball">34</span><span>Azul: no se repite.</span></div>
+<div id="status" class="status" role="status">Cargando sorteos…</div>
+<div id="draws" class="draws"></div>
+<section id="summary" class="summary" hidden><h2>Números repetidos entre los sorteos mostrados</h2><div id="repeat-list" class="repeat-list"></div></section>
+<p class="note">Solo se comparan los seis números principales. El complementario y el reintegro se muestran aparte. Las repeticiones anteriores no predicen futuros resultados.</p>
 </main>
-<footer>Fuente: <a href="https://www.loteriasyapuestas.es/es/bonoloto/resultados" target="_blank" rel="noopener">SELAE — resultados oficiales</a>. <span id="updated"></span></footer>
+<footer>Actualización manual: después de cada sorteo, facilita la fecha, los seis números, el complementario y el reintegro. No hay sincronización automática con SELAE.</footer>
 <script>
-(async function(){
- const status=document.getElementById('status');
+(async()=>{
+ const status=document.getElementById('status'),list=document.getElementById('draws');
  const fmtDate=s=>{const [y,m,d]=s.split('-');return d+'/'+m+'/'+y};
+ const ball=(n,repeat)=>{const el=document.createElement('span');el.className='ball'+(repeat?' repeat':'');el.textContent=String(n).padStart(2,'0');return el};
  try{
   const response=await fetch('data/draws.json',{cache:'no-store'});
-  if(!response.ok) throw new Error('No se pudieron cargar los datos ('+response.status+').');
-  const payload=await response.json();
-  if(!Array.isArray(payload.draws)||payload.draws.length!==10) throw new Error('Los datos no contienen exactamente 10 sorteos.');
+  if(!response.ok)throw new Error('No se pudo leer el archivo de sorteos (HTTP '+response.status+').');
+  const payload=await response.json(),draws=payload.draws;
+  if(!Array.isArray(draws)||draws.length>10)throw new Error('El archivo debe contener como máximo 10 sorteos.');
   const counts=new Map();
-  payload.draws.forEach(d=>d.numbers.forEach(n=>counts.set(n,(counts.get(n)||0)+1)));
+  for(const d of draws)for(const n of d.numbers)counts.set(n,(counts.get(n)||0)+1);
   const repeated=new Set([...counts].filter(([,count])=>count>1).map(([n])=>n));
-  status.remove();
-  const list=document.createElement('div');list.className='draws';
-  payload.draws.forEach(d=>{
+  status.replaceChildren();
+  if(!draws.length){
+   const strong=document.createElement('strong');strong.textContent='Todavía no hay sorteos cargados.';
+   status.append(strong,document.createTextNode('Cuando me facilites el resultado de un sorteo, lo añadiré manualmente. La aplicación conservará solo los 10 más recientes.'));
+   return;
+  }
+  status.textContent='Mostrando '+draws.length+' de los 10 sorteos permitidos, del más reciente al más antiguo.';
+  draws.forEach(d=>{
    const card=document.createElement('article');card.className='draw';
    const top=document.createElement('div');top.className='drawtop';
    const date=document.createElement('div');date.className='date';date.textContent=fmtDate(d.date);
-   const link=document.createElement('a');link.className='source';link.href=d.source;link.target='_blank';link.rel='noopener';link.textContent='Ver resultado oficial ↗';
-   top.append(date,link);
-   const nums=document.createElement('div');nums.className='numbers';
-   d.numbers.forEach(n=>{const ball=document.createElement('span');ball.className='ball'+(repeated.has(n)?' repeat':'');ball.textContent=String(n).padStart(2,'0');nums.appendChild(ball)});
-   const extras=document.createElement('div');extras.className='extras';extras.textContent='Complementario: '+String(d.complementario).padStart(2,'0')+' · Reintegro: '+d.reintegro;
    if(d.numbers.some(n=>repeated.has(n))){const tag=document.createElement('span');tag.className='repeat-tag';tag.textContent='Incluye repetidos';date.appendChild(tag)}
+   top.appendChild(date);
+   if(d.source){const a=document.createElement('a');a.href=d.source;a.target='_blank';a.rel='noopener';a.textContent='Referencia del resultado';top.appendChild(a)}
+   const nums=document.createElement('div');nums.className='numbers';d.numbers.forEach(n=>nums.appendChild(ball(n,repeated.has(n))));
+   const extras=document.createElement('div');extras.className='extras';extras.textContent='Complementario: '+String(d.complementario).padStart(2,'0')+' · Reintegro: '+d.reintegro;
    card.append(top,nums,extras);list.appendChild(card);
   });
-  document.querySelector('main').insertBefore(list,document.getElementById('summary'));
   const summary=document.getElementById('summary');summary.hidden=false;
   const repeatList=document.getElementById('repeat-list');
-  [...repeated].sort((a,b)=>a-b).forEach(n=>{const ball=document.createElement('span');ball.className='ball repeat';ball.textContent=String(n).padStart(2,'0');ball.title='Aparece '+counts.get(n)+' veces';repeatList.appendChild(ball)});
-  if(!repeated.size) repeatList.textContent='No hay números repetidos en estos 10 sorteos.';
-  document.getElementById('updated').textContent='Datos cargados: '+payload.updatedAt+'.';
- }catch(error){status.textContent='No se pueden mostrar los resultados: '+error.message+' Revisa la fuente oficial o vuelve a intentarlo más tarde.'}
+  [...repeated].sort((a,b)=>a-b).forEach(n=>{const el=ball(n,true);el.title='Aparece en '+counts.get(n)+' sorteos';repeatList.appendChild(el)});
+  if(!repeated.size)repeatList.textContent='No hay números repetidos en estos sorteos.';
+ }catch(error){status.textContent='Error al cargar los sorteos: '+error.message+' No se mostrarán datos incompletos.'}
 })();
 </script>
 </body></html>
