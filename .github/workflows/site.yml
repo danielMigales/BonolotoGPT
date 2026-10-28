@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: bonoloto-pages
+  group: bonoloto-manual-pages
   cancel-in-progress: false
 
 jobs:
