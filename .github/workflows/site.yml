@@ -1,9 +1,9 @@
-name: Publicar BonolotoGPT
+name: Validar y publicar BonolotoGPT
 
 on:
-  workflow_dispatch:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,11 +11,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: bonoloto-manual-pages
+  group: bonoloto-pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  validate-and-deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -23,29 +23,42 @@ jobs:
     steps:
       - name: Descargar código
         uses: actions/checkout@v4
-      - name: Validar los diez sorteos guardados (sin consultar SELAE)
+      - name: Validar datos manuales (sin consultar SELAE)
         run: |
           python - <<'PY'
           import json
+          from datetime import date
           from pathlib import Path
-          p = Path("public/data/draws.json")
-          data = json.loads(p.read_text(encoding="utf-8"))
-          draws = data.get("draws")
-          if not isinstance(draws, list) or len(draws) != 10:
-              raise SystemExit("ERROR: deben existir exactamente 10 sorteos.")
-          dates = set()
-          for d in draws:
-              nums = d.get("numbers")
-              if not isinstance(nums, list) or len(nums) != 6 or len(set(nums)) != 6:
-                  raise SystemExit("ERROR: un sorteo no contiene seis números únicos.")
-              if any(not isinstance(n, int) or n < 1 or n > 49 for n in nums):
-                  raise SystemExit("ERROR: número principal fuera del rango 1-49.")
-              if not d.get("date") or not d.get("source"):
-                  raise SystemExit("ERROR: falta fecha o referencia de fuente.")
-              dates.add(d["date"])
-          if len(dates) != 10:
-              raise SystemExit("ERROR: las fechas de los sorteos deben ser únicas.")
-          print("Validación correcta: 10 sorteos, seis números únicos por sorteo.")
+
+          path = Path("public/data/draws.json")
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          draws = payload.get("draws")
+          if not isinstance(draws, list) or len(draws) > 10:
+              raise SystemExit("ERROR: debe haber como máximo 10 sorteos.")
+          dates = []
+          for draw in draws:
+              try:
+                  date.fromisoformat(draw["date"])
+              except (KeyError, TypeError, ValueError):
+                  raise SystemExit("ERROR: fecha ausente o inválida.")
+              numbers = draw.get("numbers")
+              if not isinstance(numbers, list) or len(numbers) != 6 or any(type(n) is not int or n < 1 or n > 49 for n in numbers) or len(set(numbers)) != 6:
+                  raise SystemExit("ERROR: cada sorteo necesita seis números únicos entre 1 y 49.")
+              complementary = draw.get("complementario")
+              refund = draw.get("reintegro")
+              if type(complementary) is not int or not 1 <= complementary <= 49 or complementary in numbers:
+                  raise SystemExit("ERROR: complementario inválido.")
+              if type(refund) is not int or not 0 <= refund <= 9:
+                  raise SystemExit("ERROR: reintegro inválido.")
+              source = draw.get("source")
+              if source is not None and (not isinstance(source, str) or not source.startswith("https://")):
+                  raise SystemExit("ERROR: la referencia debe ser una URL HTTPS.")
+              dates.append(draw["date"])
+          if len(set(dates)) != len(dates):
+              raise SystemExit("ERROR: hay fechas duplicadas.")
+          if dates != sorted(dates, reverse=True):
+              raise SystemExit("ERROR: los sorteos deben estar ordenados del más reciente al más antiguo.")
+          print(f"Validación correcta: {len(draws)} sorteos manuales; no se consultó SELAE.")
           PY
       - name: Preparar GitHub Pages
         uses: actions/configure-pages@v5
