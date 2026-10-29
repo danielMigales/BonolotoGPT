@@ -14,7 +14,7 @@ MADRID = ZoneInfo("Europe/Madrid")
 
 def parse_draw(body, existing):
     fields = {}
-    for line in (body or "").splitlines():
+    for line in re.split(r"[\\n;]+", body or ""):
         match = re.match(r"^\s*(Fecha|Números|Numeros|Complementario|Reintegro)\s*:\s*(.*?)\s*$", line, re.I)
         if match:
             fields[match.group(1).lower().replace("ú", "u")] = match.group(2)
@@ -64,7 +64,7 @@ def parse_draw(body, existing):
 def main():
     output = os.environ.get("GITHUB_OUTPUT")
     try:
-        body = os.environ.get("ISSUE_BODY", "")
+        body = os.environ.get("ISSUE_BODY", "") or os.environ.get("INPUT_RESULTADO", "")
         path = ROOT / "data/draws.json"
         doc = json.loads(path.read_text(encoding="utf-8"))
         row = parse_draw(body, doc)
