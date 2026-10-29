@@ -11,7 +11,7 @@ class ImportTests(unittest.TestCase):
             '<p>06 - 34 - 33 - 37 - 46 - 08 Complementario: C(47) Reintegro: R(5)</p>',
         )
         self.assertEqual(row['numbers'], [6, 8, 33, 34, 37, 46])
-        self.assertEqual(set(row), {'id', 'date', 'numbers', 'source'})
+        self.assertEqual(set(row), {'id', 'date', 'numbers', 'source', 'complementario', 'reintegro'})
         self.assertIn('bonoloto-resultados-del-02-de-enero-de-2026', row['source'])
 
     def test_bad_data_is_rejected(self):
@@ -45,11 +45,12 @@ class ImportTests(unittest.TestCase):
             self.assertIsNone(doc['latestDate'])
             self.assertIsNone(doc['checkedAt'])
 
-    def test_archive_rows_never_store_auxiliary_fields(self):
+    def test_archive_rows_store_six_main_numbers_and_only_known_optional_fields(self):
         root = pathlib.Path(__file__).resolve().parents[1]
         doc = json.loads((root / 'data/draws.json').read_text())
         for row in doc['draws']:
-            self.assertEqual(set(row), {'id', 'date', 'numbers', 'source'})
+            self.assertTrue({'id', 'date', 'numbers', 'source'}.issubset(row))
+            self.assertTrue(set(row).issubset({'id', 'date', 'numbers', 'source', 'complementario', 'reintegro', 'entryMethod'}))
             self.assertEqual(len(row['numbers']), 6)
             self.assertEqual(len(set(row['numbers'])), 6)
             self.assertTrue(all(1 <= n <= 49 for n in row['numbers']))
