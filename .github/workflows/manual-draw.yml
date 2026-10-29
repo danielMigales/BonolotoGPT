@@ -1,0 +1,56 @@
+name: Guardar sorteo manual de Bonoloto
+on:
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  save-draw:
+    if: github.event.issue.user.login == 'danielMigales' && startsWith(github.event.issue.title, '[SORTEO MANUAL BONOLOTO]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v7
+      - name: Configurar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Validar y guardar el sorteo
+        id: save
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python scripts/import_manual_draw.py
+      - name: Publicar el histórico actualizado
+        if: steps.save.outputs.status == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/draws.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Guardar sorteo manual de Bonoloto [skip ci]"
+            git push
+          fi
+      - name: Confirmar resultado en GitHub
+        uses: actions/github-script@v8
+        if: always()
+        env:
+          SAVE_STATUS: ${{ steps.save.outputs.status }}
+          SAVE_MESSAGE: ${{ steps.save.outputs.message }}
+        with:
+          script: |
+            const status = process.env.SAVE_STATUS || 'error';
+            const message = process.env.SAVE_MESSAGE || 'No se pudo procesar el sorteo. Revisa la fecha y los campos del formulario.';
+            const prefix = status === 'success' ? 'Sorteo guardado' : 'No se ha guardado el sorteo';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `**${prefix}**\n\n${message}${status === 'success' ? '\n\nLa web y los análisis se regenerarán automáticamente tras publicarse el cambio.' : ''}`
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            });
