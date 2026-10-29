@@ -14,7 +14,7 @@ MADRID = ZoneInfo("Europe/Madrid")
 
 def parse_draw(body, existing):
     fields = {}
-    for line in re.split(r"[\\n;]+", body or ""):
+    for line in re.split(r"[\n;]+", body or ""):
         match = re.match(r"^\s*(Fecha|Números|Numeros|Complementario|Reintegro)\s*:\s*(.*?)\s*$", line, re.I)
         if match:
             fields[match.group(1).lower().replace("ú", "u")] = match.group(2)
