@@ -63,10 +63,12 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertEqual(row['complementario'], 9)
         self.assertEqual(row['reintegro'], 7)
 
-    def test_parses_recent_history_fallback_for_only_six_numbers(self):
+    def test_parses_recent_history_fallback_with_complementario_and_reintegro(self):
         body = '<tr><td>Dom-18-10-2026</td><td>9</td><td>18</td><td>21</td><td>23</td><td>48</td><td>49</td><td>29</td><td>1</td></tr>'
         row = parse_recent_history('2026-10-18', body)
         self.assertEqual(row['numbers'], [9, 18, 21, 23, 48, 49])
+        self.assertEqual(row['complementario'], 29)
+        self.assertEqual(row['reintegro'], 1)
         self.assertEqual(row['source'], 'https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-18-de-octubre-de-2026')
 
     def test_parses_widget_without_optional_labels(self):
