@@ -2,12 +2,18 @@ name: Guardar sorteo manual de Bonoloto
 on:
   issues:
     types: [opened]
+  workflow_dispatch:
+    inputs:
+      resultado:
+        description: 'Formato: Fecha: AAAA-MM-DD; Números: 1,2,3,4,5,6; Complementario: 7; Reintegro: 8'
+        required: true
+        type: string
 permissions:
   contents: write
   issues: write
 jobs:
   save-draw:
-    if: github.event.issue.user.login == 'danielMigales' && startsWith(github.event.issue.title, '[SORTEO MANUAL BONOLOTO]')
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue.user.login == 'danielMigales' && startsWith(github.event.issue.title, '[SORTEO MANUAL BONOLOTO]'))
     runs-on: ubuntu-latest
     steps:
       - name: Obtener código
@@ -20,7 +26,13 @@ jobs:
         id: save
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          INPUT_RESULTADO: ${{ inputs.resultado }}
         run: python scripts/import_manual_draw.py
+      - name: Marcar como fallida una entrada inválida
+        if: github.event_name == 'workflow_dispatch' && steps.save.outputs.status != 'success'
+        run: |
+          echo "No se ha guardado el sorteo: ${{ steps.save.outputs.message }}"
+          exit 1
       - name: Publicar el histórico actualizado
         if: steps.save.outputs.status == 'success'
         run: |
@@ -33,7 +45,7 @@ jobs:
           fi
       - name: Confirmar resultado en GitHub
         uses: actions/github-script@v8
-        if: always()
+        if: always() && github.event_name == 'issues'
         env:
           SAVE_STATUS: ${{ steps.save.outputs.status }}
           SAVE_MESSAGE: ${{ steps.save.outputs.message }}
