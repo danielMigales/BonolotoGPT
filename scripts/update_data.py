@@ -57,6 +57,8 @@ def normalize_widget(day, body):
         'date': date.isoformat(),
         'numbers': sorted(nums),
         'source': official_url(day),
+        'complementario': complementario,
+        'reintegro': reintegro,
     }
 
 
@@ -302,7 +304,15 @@ def main():
         print(f'Faltan {len(missing)} fechas: descargando el histórico CSV en una sola petición.', flush=True)
         try:
             bulk = fetch_bulk_history(end)
-            merged.update(bulk)
+            # Conserva complementario/reintegro ya registrados solo si la combinación
+            # principal coincide con el histórico importado.
+            for day, row in bulk.items():
+                previous_row = merged.get(day, {})
+                if previous_row.get('numbers') == row.get('numbers'):
+                    for key in ('complementario', 'reintegro'):
+                        if key in previous_row:
+                            row[key] = previous_row[key]
+                merged[day] = row
             import_source = BULK_SOURCE_PAGE
             write_json_atomic(progress_path, {
                 'schemaVersion': 1,
