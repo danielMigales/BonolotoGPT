@@ -57,7 +57,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertTrue(rows['2026-10-17']['source'].startswith('https://www.loteriasyapuestas.es/'))
 
     def test_bulk_csv_preserves_complementario_and_reintegro(self):
-        body = 'Fecha,N1,N2,N3,N4,N5,N6,Complementario,Reintegro\\n29/10/2026,11,13,24,26,42,48,9,7\\n'
+        body = 'Fecha,N1,N2,N3,N4,N5,N6,Complementario,Reintegro\n29/10/2026,11,13,24,26,42,48,9,7\n'
         row = parse_bulk_csv(body, dt.date(2026, 10, 29))['2026-10-29']
         self.assertEqual(row['numbers'], [11, 13, 24, 26, 42, 48])
         self.assertEqual(row['complementario'], 9)
