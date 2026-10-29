@@ -233,7 +233,7 @@ RECENT_HISTORY_URL = 'https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20s
 
 
 def parse_recent_history(day, body):
-    """Extrae un sorteo reciente del histórico público alternativo cuando SELAE limita la consulta."""
+    """Extrae seis números, complementario y reintegro del histórico público alternativo."""
     text = html.unescape(body)
     text = re.sub(r'<[^>]+>', ' ', text)
     text = re.sub(r'\s+', ' ', text).strip()
@@ -243,6 +243,7 @@ def parse_recent_history(day, body):
         weekday + r'-(\d{1,2})-(\d{1,2})-(20\d{2})\s+'
         + r'(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})\s+'
         + r'(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})'
+        + r'(?:\s+(\d{1,2})\s+(\d))?'
     )
     for match in re.finditer(pattern, text, flags=re.IGNORECASE):
         day_num, month_num, year_num = map(int, match.groups()[:3])
@@ -255,12 +256,19 @@ def parse_recent_history(day, body):
         numbers = list(map(int, match.groups()[3:9]))
         if len(set(numbers)) != 6 or not all(1 <= n <= 49 for n in numbers):
             raise ValueError(f'Histórico alternativo contiene una combinación inválida para {day}')
-        return {
+        row = {
             'id': 'BONO-' + target.strftime('%Y%m%d'),
             'date': target.isoformat(),
             'numbers': sorted(numbers),
             'source': official_url(day),
         }
+        if match.group(10) is not None and match.group(11) is not None:
+            complementario, reintegro = int(match.group(10)), int(match.group(11))
+            if not 1 <= complementario <= 49 or complementario in numbers or not 0 <= reintegro <= 9:
+                raise ValueError(f'Complementario o reintegro inválido para {day}')
+            row['complementario'] = complementario
+            row['reintegro'] = reintegro
+        return row
     raise ValueError(f'El histórico alternativo no contiene el sorteo {day}')
 
 
@@ -383,6 +391,47 @@ def main():
         raise ValueError('Faltan sorteos en el calendario diario: ' + ', '.join(missing_dates[:20]))
     if len({row['id'] for row in draws}) != len(draws):
         raise ValueError('Identificadores duplicados')
+
+    # Completa C y R de todo el histórico. Nunca se publican valores inferidos.
+    incomplete = [
+        row['date'] for row in draws
+        if not isinstance(row.get('complementario'), int)
+        or not isinstance(row.get('reintegro'), int)
+    ]
+    if incomplete:
+        print(f'Recuperando complementario y reintegro de {len(incomplete)} sorteos históricos.', flush=True)
+
+        def enrich_day(day):
+            try:
+                return fetch_day(day)
+            except Exception:
+                return fetch_recent_history(day)
+
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            futures = {pool.submit(enrich_day, day): day for day in incomplete}
+            for future in as_completed(futures):
+                day = futures[future]
+                fresh = future.result()
+                current = merged[day]
+                if fresh.get('numbers') != current.get('numbers'):
+                    raise ValueError(f'La combinación principal no coincide al completar C/R para {day}')
+                for key in ('complementario', 'reintegro'):
+                    if key not in fresh:
+                        raise ValueError(f'La fuente no proporciona {key} para {day}')
+                    current[key] = fresh[key]
+                write_json_atomic(progress_path, {
+                    'schemaVersion': 1,
+                    'startDate': str(START),
+                    'source': 'SELAE',
+                    'importSource': import_source,
+                    'latestDate': max(merged),
+                    'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
+                })
+                print(f'{day}: complementario y reintegro verificados.', flush=True)
+
+    draws = sorted_draws(merged)
+    if any(not isinstance(row.get('complementario'), int) or not isinstance(row.get('reintegro'), int) for row in draws):
+        raise ValueError('El histórico no está completo: faltan complementarios o reintegros.')
 
     # Verificación independiente del tramo histórico con la tabla de frecuencias publicada por SELAE.
     validate_official_frequency_counts(draws)
