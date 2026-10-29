@@ -132,7 +132,7 @@ SELAE_COUNTS_THROUGH_2026_10_17 = (
 
 
 def parse_bulk_csv(body, end):
-    """Lee el histórico CSV en una sola petición y conserva solo seis números."""
+    """Lee el histórico CSV y conserva también complementario y reintegro cuando existan."""
     parsed = {}
     reader = csv.reader(io.StringIO(body.lstrip('\ufeff')))
     for row in reader:
@@ -152,6 +152,9 @@ def parse_bulk_csv(body, end):
             continue
         if draw_date < START or draw_date > end:
             continue
+        # La hoja puede incluir encabezados para los campos extra; si no,
+        # se usa el orden habitual: seis números, complementario y reintegro.
+        header = [cell.strip().lower() for cell in row]
         values = []
         for cell in row[1:]:
             token = cell.strip()
@@ -160,6 +163,16 @@ def parse_bulk_csv(body, end):
         if len(values) < 6:
             continue
         numbers = values[:6]
+        complementario = values[6] if len(values) > 6 and 1 <= values[6] <= 49 else None
+        reintegro = values[7] if len(values) > 7 and 0 <= values[7] <= 9 else None
+        if len(row) > 7:
+            labels = {name: i for i, name in enumerate(header)}
+            c_index = next((i for name, i in labels.items() if 'complement' in name), None)
+            r_index = next((i for name, i in labels.items() if 'reintegro' in name), None)
+            if c_index is not None and c_index < len(row) and row[c_index].strip().isdigit():
+                complementario = int(row[c_index])
+            if r_index is not None and r_index < len(row) and row[r_index].strip().isdigit():
+                reintegro = int(row[r_index])
         if len(set(numbers)) != 6 or not all(1 <= n <= 49 for n in numbers):
             raise ValueError(f'CSV histórico contiene una combinación inválida para {draw_date.isoformat()}')
         day = draw_date.isoformat()
@@ -169,6 +182,10 @@ def parse_bulk_csv(body, end):
             'numbers': sorted(numbers),
             'source': official_url(day),
         }
+        if complementario is not None and 1 <= complementario <= 49 and complementario not in numbers:
+            record['complementario'] = complementario
+        if reintegro is not None and 0 <= reintegro <= 9:
+            record['reintegro'] = reintegro
         if day in parsed and parsed[day]['numbers'] != record['numbers']:
             raise ValueError(f'CSV histórico contiene dos combinaciones distintas para {day}')
         parsed[day] = record
