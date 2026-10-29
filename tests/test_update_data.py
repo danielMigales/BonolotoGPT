@@ -28,7 +28,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
         dates = list(expected_dates(dt.date(2026, 1, 3)))
         self.assertEqual(dates, ['2026-01-01', '2026-01-02', '2026-01-03'])
 
-    def test_parses_official_selae_widget_and_keeps_only_six_numbers(self):
+    def test_parses_official_selae_widget_with_six_numbers_and_bonus_fields(self):
         body = '''
         <div>08 - 11 - 21 - 41 - 47 - 48
         Complementario: C(34) Reintegro: R(4)</div>
