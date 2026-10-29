@@ -3,9 +3,25 @@
   "startDate": "2026-01-01",
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/",
-  "checkedAt": "2026-10-29T20:45:06.509318+00:00",
-  "latestDate": "2026-10-28",
+  "checkedAt": "2026-10-29T20:49:11.329859+00:00",
+  "latestDate": "2026-10-29",
   "draws": [
+    {
+      "id": "BONO-20261029",
+      "date": "2026-10-29",
+      "numbers": [
+        11,
+        13,
+        24,
+        26,
+        42,
+        48
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-29-de-octubre-de-2026",
+      "complementario": 9,
+      "reintegro": 7,
+      "entryMethod": "manual"
+    },
     {
       "id": "BONO-20261028",
       "date": "2026-10-28",
