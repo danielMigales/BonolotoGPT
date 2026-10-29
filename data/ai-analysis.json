@@ -54872,5 +54872,25 @@
         "secondHits": null
       }
     ]
+  },
+  "prospectiveAudit": {
+    "method": "Auditoría retrospectiva por fecha: múltiples controles aleatorios independientes por sorteo, prueba unilateral de aleatorización y bootstrap por bloques temporales.",
+    "simulations": 4,
+    "randomTrialsPerDraw": 500,
+    "nullReplicates": 5000,
+    "bootstrapReplicates": 3000,
+    "blockLength": 4,
+    "modelMeanHits": 1.75,
+    "randomMeanHits": 0.7315,
+    "expectedUniformMeanHits": 0.7347,
+    "deltaVsRandom": 1.0185,
+    "ci95Delta": [
+      1.0185,
+      1.0185
+    ],
+    "pValueOneSided": 0.019,
+    "supportsHistoricalSignal": true,
+    "conclusion": "Se observa una señal histórica favorable; requiere confirmación en sorteos futuros no usados para desarrollar el modelo.",
+    "caution": "Análisis retrospectivo exploratorio. El histórico ya ha sido usado durante el desarrollo; no equivale a una prueba independiente ni garantiza resultados futuros."
   }
 }
