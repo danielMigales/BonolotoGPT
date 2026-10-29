@@ -45,6 +45,8 @@ if(defaultAnalysis.status==='ready'){
   const prospectiveRecords=issuedList.map(item=>({targetDate:item.targetDate,trainedThrough:item.trainedThrough??null,issuedAt:item.issuedAt??null,version:item.version??null,window:item.window??null,status:item.status??(evaluatedTargets.has(item.targetDate)?'evaluated':'pending'),numbers:Array.isArray(item.numbers)?item.numbers:null,secondNumbers:Array.isArray(item.secondNumbers)?item.secondNumbers:null,actual:Array.isArray(item.actual)?item.actual:null,hits:Number.isInteger(item.hits)?item.hits:null,secondHits:Number.isInteger(item.secondHits)?item.secondHits:(Array.isArray(item.combinationHits)&&Number.isInteger(item.combinationHits[1])?item.combinationHits[1]:null)})).sort((a,b)=>b.targetDate.localeCompare(a.targetDate));
   const evaluatedIssued=prospectiveRecords.filter(item=>item.status==='evaluated'&&Array.isArray(item.actual)&&Number.isInteger(item.hits));
   defaultAnalysis.prospective={issuedCount:issuedList.length,evaluatedCount:evaluatedIssued.length,pendingCount:prospectiveRecords.filter(item=>item.status==='pending').length,latestTargetDate:issuedList.at(-1)?.targetDate??null,records:prospectiveRecords.slice(0,20)};
+  // La prueba prospectiva solo usa pronósticos registrados antes del sorteo; nunca reconstruye combinaciones antiguas.
+  defaultAnalysis.prospectiveAudit=evaluatedIssued.length?auditBacktest(evaluatedIssued.filter(item=>Array.isArray(item.numbers)&&item.numbers.length===6).map(item=>({date:item.targetDate,predicted:item.numbers,actual:item.actual})),{randomTrialsPerDraw:500,nullReplicates:5000,bootstrapReplicates:3000,blockLength:Math.min(7,evaluatedIssued.length),seed:20261029}):null;
  }catch(error){if(error.code!=='ENOENT')throw error;}
 }
 if(defaultAnalysis.status==='ready'){
