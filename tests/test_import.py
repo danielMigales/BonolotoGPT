@@ -5,7 +5,7 @@ import datetime as dt
 
 
 class ImportTests(unittest.TestCase):
-    def test_parse_official_bonoloto_page_keeps_only_six_main_numbers(self):
+    def test_parse_official_bonoloto_page_includes_six_main_numbers_and_bonus_fields(self):
         row = normalize_widget(
             '2026-01-02',
             '<p>06 - 34 - 33 - 37 - 46 - 08 Complementario: C(47) Reintegro: R(5)</p>',
