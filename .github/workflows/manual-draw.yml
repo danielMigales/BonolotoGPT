@@ -11,6 +11,8 @@ on:
 permissions:
   contents: write
   issues: write
+  pages: write
+  id-token: write
 jobs:
   save-draw:
     if: github.event_name == 'workflow_dispatch' || (github.event.issue.user.login == 'danielMigales' && startsWith(github.event.issue.title, '[SORTEO MANUAL BONOLOTO]'))
@@ -43,6 +45,31 @@ jobs:
             git commit -m "Guardar sorteo manual de Bonoloto"
             git push
           fi
+      - name: Configurar Node.js
+        if: steps.save.outputs.status == 'success'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Instalar dependencias y construir la web
+        if: steps.save.outputs.status == 'success'
+        run: |
+          npm ci
+          npm run build
+      - name: Configurar GitHub Pages
+        if: steps.save.outputs.status == 'success'
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Preparar archivos públicos
+        if: steps.save.outputs.status == 'success'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Publicar web actualizada
+        if: steps.save.outputs.status == 'success'
+        id: deployment
+        uses: actions/deploy-pages@v4
       - name: Confirmar resultado en GitHub
         uses: actions/github-script@v8
         if: always() && github.event_name == 'issues'
@@ -58,7 +85,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `**${prefix}**\n\n${message}${status === 'success' ? '\n\nLa web y los análisis se regenerarán automáticamente tras publicarse el cambio.' : ''}`
+              body: `**${prefix}**\n\n${message}${status === 'success' ? '\n\nEl sorteo se ha guardado y la publicación de la web se ha completado.' : ''}`
             });
             await github.rest.issues.update({
               owner: context.repo.owner,
