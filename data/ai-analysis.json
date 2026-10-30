@@ -513,6 +513,305 @@
           }
         ]
       }
+    ],
+    "eligibleReasons": [
+      {
+        "number": 22,
+        "rank": 1,
+        "score": 0.028,
+        "totalFrequency": 49,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 6,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              22
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              17,
+              22
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "rank": 2,
+        "score": 0.024,
+        "totalFrequency": 37,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              22
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              13,
+              24
+            ],
+            "count": 2
+          }
+        ]
+      },
+      {
+        "number": 24,
+        "rank": 3,
+        "score": 0.0236,
+        "totalFrequency": 36,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 3,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              24
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              24,
+              48
+            ],
+            "count": 2
+          }
+        ]
+      },
+      {
+        "number": 48,
+        "rank": 4,
+        "score": 0.024,
+        "totalFrequency": 40,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 5,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              24,
+              48
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              13,
+              48
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 17,
+        "rank": 5,
+        "score": 0.0232,
+        "totalFrequency": 36,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 3,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              17
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              17,
+              22
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 11,
+        "rank": 6,
+        "score": 0.0231,
+        "totalFrequency": 40,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              11,
+              13
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              11,
+              17
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 16,
+        "rank": 8,
+        "score": 0.0246,
+        "totalFrequency": 44,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              16,
+              22
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              16,
+              24
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 35,
+        "rank": 9,
+        "score": 0.0235,
+        "totalFrequency": 40,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 3,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              17,
+              35
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              22,
+              35
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 31,
+        "rank": 10,
+        "score": 0.0232,
+        "totalFrequency": 40,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              31
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              17,
+              31
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 26,
+        "rank": 11,
+        "score": 0.022,
+        "totalFrequency": 42,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 3,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              26
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              24,
+              26
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 42,
+        "rank": 13,
+        "score": 0.0211,
+        "totalFrequency": 39,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 3,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              42
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              24,
+              42
+            ],
+            "count": 1
+          }
+        ]
+      }
     ]
   },
   "lastEvaluation": {
