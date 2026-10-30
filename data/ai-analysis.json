@@ -540,7 +540,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 1
       },
       {
         "number": 13,
@@ -567,7 +568,8 @@
             ],
             "count": 2
           }
-        ]
+        ],
+        "candidateRank": 2
       },
       {
         "number": 24,
@@ -594,7 +596,8 @@
             ],
             "count": 2
           }
-        ]
+        ],
+        "candidateRank": 3
       },
       {
         "number": 48,
@@ -621,7 +624,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 4
       },
       {
         "number": 17,
@@ -648,7 +652,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 5
       },
       {
         "number": 11,
@@ -675,7 +680,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 6
       },
       {
         "number": 16,
@@ -702,7 +708,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 7
       },
       {
         "number": 35,
@@ -729,7 +736,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 8
       },
       {
         "number": 31,
@@ -756,7 +764,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 9
       },
       {
         "number": 26,
@@ -783,7 +792,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 10
       },
       {
         "number": 42,
@@ -810,7 +820,8 @@
             ],
             "count": 1
           }
-        ]
+        ],
+        "candidateRank": 11
       }
     ]
   },
