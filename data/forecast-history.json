@@ -245,5 +245,62 @@
     "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-29-de-octubre-de-2026",
     "forecastHash": "28d63a8a27951da3312ecdec1fd5da4bb91b57a5cf8127fdce17d77796e16888",
     "evaluationType": "prospective"
+  },
+  {
+    "targetDate": "2026-10-30",
+    "issuedAt": "2026-10-29T21:49:25+01:00",
+    "trainedThrough": "2026-10-29",
+    "version": "2.9.0",
+    "window": 7,
+    "numbers": [
+      13,
+      17,
+      22,
+      24,
+      35,
+      48
+    ],
+    "secondNumbers": [
+      13,
+      16,
+      22,
+      23,
+      46,
+      48
+    ],
+    "combinations": [
+      [
+        13,
+        17,
+        22,
+        24,
+        35,
+        48
+      ],
+      [
+        13,
+        16,
+        22,
+        23,
+        46,
+        48
+      ]
+    ],
+    "combinationHits": [
+      2,
+      3
+    ],
+    "actual": [
+      8,
+      13,
+      22,
+      23,
+      26,
+      27
+    ],
+    "hits": 2,
+    "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-30-de-octubre-de-2026",
+    "forecastHash": "d1add9c772e62836992ea1081df7907d3d3a7fd9ef3dd35f6f82b29132b483b8",
+    "evaluationType": "prospective"
   }
 ]
