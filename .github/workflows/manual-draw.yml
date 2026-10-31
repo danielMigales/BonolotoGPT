@@ -50,7 +50,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
       - name: Instalar dependencias y construir la web
         if: steps.save.outputs.status == 'success'
         run: |
