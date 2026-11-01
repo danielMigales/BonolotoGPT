@@ -34,7 +34,7 @@ if(defaultAnalysis.status==='ready'){
    if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
    defaultAnalysis.forecast.secondNumbers=diversifyCombination(defaultAnalysis.forecast.numbers,defaultAnalysis.forecast.numberScores,3);
    // Mantiene las explicaciones alineadas con la combinación final tras evitar repeticiones.
-   defaultAnalysis.forecast.selectionReasons=explainSelection(seed.draws,defaultAnalysis.forecast,fixedWindow);
+   defaultAnalysis.forecast.selectionReasons=explainSelection(seed.draws.slice().sort((a,b)=>a.date.localeCompare(b.date)),defaultAnalysis.forecast,fixedWindow);
    // La última aserción visible pertenece al análisis recién calculado con la ventana fija actual (7 sorteos).
    // El historial prospectivo puede contener versiones antiguas; no debe sobrescribir la aserción del laboratorio.
    defaultAnalysis.evaluationHistory=history.slice(-10);
