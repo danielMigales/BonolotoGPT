@@ -3,9 +3,25 @@
   "startDate": "2026-01-01",
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-11-01T01:02:14.724647+00:00",
-  "latestDate": "2026-10-31",
+  "checkedAt": "2026-11-01T21:26:15.646Z",
+  "latestDate": "2026-11-01",
   "draws": [
+    {
+      "id": "BONO-20261101",
+      "date": "2026-11-01",
+      "numbers": [
+        9,
+        27,
+        28,
+        35,
+        47,
+        48
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-01-de-noviembre-de-2026",
+      "complementario": 32,
+      "reintegro": 8,
+      "entryMethod": "manual"
+    },
     {
       "id": "BONO-20261031",
       "date": "2026-10-31",
