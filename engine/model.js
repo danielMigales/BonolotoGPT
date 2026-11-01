@@ -1,6 +1,6 @@
 // Modelo Bonoloto: analiza exclusivamente los seis números principales.
 // El motor opera exclusivamente con seis números principales.
-export const MODEL_VERSION='2.9.0';
+export const MODEL_VERSION='2.10.0';
 const range=n=>Array.from({length:n},(_,i)=>i);
 const normalize=v=>{const total=v.reduce((a,b)=>a+b,0);return total?v.map(x=>x/total):v.map(()=>1/v.length);};
 const softmax=v=>{const max=Math.max(...v);return normalize(v.map(x=>Math.exp(x-max)));};
@@ -43,7 +43,7 @@ function predict(history,window,weights,step,strictRecentFrequency=false){
  const repeat=repeatTransitionScores(history);
  const rawScores=mixed.map((score,i)=>({number:i+1,score:round(score),recent7:recent7[i],recent15:recent15[i],lastDraw:lastSet.has(i+1),repeatTrials:repeat[i].trials,repeatSuccesses:repeat[i].successes,repeatRates:repeat[i].rates.map(round),repeatSignal:round(repeat[i].repeatSignal)}));
  const scoreMin=Math.min(...mixed),scoreMax=Math.max(...mixed),repeatMin=Math.min(...repeat.map(x=>x.repeatSignal)),repeatMax=Math.max(...repeat.map(x=>x.repeatSignal));
- const numberScores=rawScores.map(x=>{const scaled=scoreMax>scoreMin?(x.score-scoreMin)/(scoreMax-scoreMin):.5,repeatScaled=repeatMax>repeatMin?(x.repeatSignal-repeatMin)/(repeatMax-repeatMin):.5;return {...x,selectionScore:round(scaled*.40+repeatScaled*.20+x.recent7*.10+x.recent15*.02+(x.lastDraw ? .12 : 0))};}).sort((a,b)=>b.selectionScore-a.selectionScore||b.score-a.score||a.number-b.number);
+ const numberScores=rawScores.map(x=>{const scaled=scoreMax>scoreMin?(x.score-scoreMin)/(scoreMax-scoreMin):.5,repeatScaled=repeatMax>repeatMin?(x.repeatSignal-repeatMin)/(repeatMax-repeatMin):.5;return {...x,selectionScore:round(scaled*.40+repeatScaled*.20+x.recent7*.10+x.recent15*.02+0)};}).sort((a,b)=>b.selectionScore-a.selectionScore||b.score-a.score||a.number-b.number);
  const eligibleScores=strictRecentFrequency?numberScores.filter(x=>x.recent7>=2||(x.lastDraw&&x.recent15>=3)):numberScores;
  if(!strictRecentFrequency){const numbers=propose(mixed,shape,random);return {numbers,secondNumbers:diversifyCombination(numbers,numberScores,3),experts,distributions:data.numbers,numberScores,eligibleNumbers:eligibleScores.length,minimumRecentFrequency:null,warning:null};}
  const eligiblePool=eligibleScores.slice(0,18),fallback=numberScores.filter(x=>!eligibleScores.some(y=>y.number===x.number)).slice(0,Math.max(0,6-eligiblePool.length));
