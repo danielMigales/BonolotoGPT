@@ -2,8 +2,8 @@
   "version": "2.10.0",
   "status": "ready",
   "window": 7,
-  "sourceLastDate": "2026-11-01",
-  "drawCount": 305,
+  "sourceLastDate": "2026-11-02",
+  "drawCount": 306,
   "objective": {
     "primary": "maximizeAtLeastFourHits",
     "predictionStrategy": "repeat-lags-1-3",
@@ -15,10 +15,10 @@
   },
   "method": "Aprendizaje secuencial frente a un control teórico: los pesos se actualizan según los aciertos de cada método frente al valor esperado exacto del azar uniforme (36/49 aciertos por combinación), evitando que una única combinación aleatoria ruidosa determine el aprendizaje; solo se usan resultados ya observados y los seis números principales.",
   "forecast": {
-    "targetDate": "2026-11-02",
-    "afterDate": "2026-11-01",
+    "targetDate": "2026-11-03",
+    "afterDate": "2026-11-02",
     "numbers": [
-      9,
+      8,
       13,
       22,
       26,
@@ -26,11 +26,11 @@
       48
     ],
     "secondNumbers": [
-      13,
-      16,
       22,
       23,
       26,
+      27,
+      35,
       46
     ],
     "numberScores": [
@@ -43,7 +43,7 @@
         "repeatTrials": [
           50,
           50,
-          49
+          50
         ],
         "repeatSuccesses": [
           8,
@@ -53,21 +53,45 @@
         "repeatRates": [
           0.1527,
           0.2172,
-          0.1716
+          0.1689
         ],
-        "repeatSignal": 0.1759,
-        "selectionScore": 0.651
+        "repeatSignal": 0.1753,
+        "selectionScore": 0.6513
+      },
+      {
+        "number": 26,
+        "score": 0.0262,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
+        "repeatTrials": [
+          43,
+          43,
+          43
+        ],
+        "repeatSuccesses": [
+          6,
+          8,
+          7
+        ],
+        "repeatRates": [
+          0.1358,
+          0.1722,
+          0.154
+        ],
+        "repeatSignal": 0.1504,
+        "selectionScore": 0.5472
       },
       {
         "number": 23,
-        "score": 0.0271,
+        "score": 0.027,
         "recent7": 1,
-        "recent15": 5,
+        "recent15": 4,
         "lastDraw": false,
         "repeatTrials": [
           54,
           54,
-          53
+          54
         ],
         "repeatSuccesses": [
           8,
@@ -77,34 +101,10 @@
         "repeatRates": [
           0.1435,
           0.1283,
-          0.1303
+          0.1283
         ],
-        "repeatSignal": 0.1363,
-        "selectionScore": 0.5235
-      },
-      {
-        "number": 46,
-        "score": 0.0242,
-        "recent7": 1,
-        "recent15": 5,
-        "lastDraw": false,
-        "repeatTrials": [
-          49,
-          48,
-          48
-        ],
-        "repeatSuccesses": [
-          10,
-          9,
-          7
-        ],
-        "repeatRates": [
-          0.188,
-          0.1745,
-          0.1412
-        ],
-        "repeatSignal": 0.1746,
-        "selectionScore": 0.4959
+        "repeatSignal": 0.1359,
+        "selectionScore": 0.5196
       },
       {
         "number": 13,
@@ -115,7 +115,7 @@
         "repeatTrials": [
           38,
           38,
-          37
+          38
         ],
         "repeatSuccesses": [
           5,
@@ -125,40 +125,88 @@
         "repeatRates": [
           0.1294,
           0.1694,
-          0.1524
+          0.1494
         ],
-        "repeatSignal": 0.146,
-        "selectionScore": 0.4938
+        "repeatSignal": 0.1454,
+        "selectionScore": 0.4945
       },
       {
-        "number": 26,
+        "number": 46,
         "score": 0.024,
-        "recent7": 2,
-        "recent15": 3,
+        "recent7": 1,
+        "recent15": 5,
         "lastDraw": false,
         "repeatTrials": [
-          43,
-          43,
-          42
+          49,
+          49,
+          48
         ],
         "repeatSuccesses": [
-          6,
-          8,
-          6
+          10,
+          9,
+          7
         ],
         "repeatRates": [
-          0.1358,
-          0.1722,
-          0.1383
+          0.188,
+          0.1716,
+          0.1412
         ],
-        "repeatSignal": 0.1472,
-        "selectionScore": 0.4572
+        "repeatSignal": 0.1737,
+        "selectionScore": 0.4902
+      },
+      {
+        "number": 27,
+        "score": 0.0245,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
+        "repeatTrials": [
+          28,
+          27,
+          27
+        ],
+        "repeatSuccesses": [
+          5,
+          1,
+          2
+        ],
+        "repeatRates": [
+          0.1617,
+          0.0633,
+          0.089
+        ],
+        "repeatSignal": 0.1177,
+        "selectionScore": 0.4423
+      },
+      {
+        "number": 48,
+        "score": 0.0243,
+        "recent7": 2,
+        "recent15": 4,
+        "lastDraw": false,
+        "repeatTrials": [
+          41,
+          40,
+          40
+        ],
+        "repeatSuccesses": [
+          5,
+          2,
+          7
+        ],
+        "repeatRates": [
+          0.1221,
+          0.0667,
+          0.1629
+        ],
+        "repeatSignal": 0.1136,
+        "selectionScore": 0.4152
       },
       {
         "number": 18,
-        "score": 0.0223,
+        "score": 0.0221,
         "recent7": 0,
-        "recent15": 2,
+        "recent15": 1,
         "lastDraw": false,
         "repeatTrials": [
           48,
@@ -176,16 +224,40 @@
           0.1245
         ],
         "repeatSignal": 0.1728,
-        "selectionScore": 0.4162
+        "selectionScore": 0.411
+      },
+      {
+        "number": 35,
+        "score": 0.025,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
+        "repeatTrials": [
+          41,
+          40,
+          40
+        ],
+        "repeatSuccesses": [
+          4,
+          2,
+          2
+        ],
+        "repeatRates": [
+          0.1032,
+          0.0667,
+          0.0667
+        ],
+        "repeatSignal": 0.085,
+        "selectionScore": 0.4047
       },
       {
         "number": 47,
-        "score": 0.0225,
+        "score": 0.0222,
         "recent7": 1,
         "recent15": 1,
-        "lastDraw": true,
+        "lastDraw": false,
         "repeatTrials": [
-          44,
+          45,
           44,
           44
         ],
@@ -195,40 +267,16 @@
           9
         ],
         "repeatRates": [
-          0.1512,
+          0.1486,
           0.1512,
           0.187
         ],
-        "repeatSignal": 0.1584,
-        "selectionScore": 0.4121
-      },
-      {
-        "number": 48,
-        "score": 0.024,
-        "recent7": 2,
-        "recent15": 5,
-        "lastDraw": true,
-        "repeatTrials": [
-          40,
-          40,
-          40
-        ],
-        "repeatSuccesses": [
-          5,
-          2,
-          7
-        ],
-        "repeatRates": [
-          0.1244,
-          0.0667,
-          0.1629
-        ],
-        "repeatSignal": 0.1148,
-        "selectionScore": 0.4078
+        "repeatSignal": 0.1571,
+        "selectionScore": 0.403
       },
       {
         "number": 44,
-        "score": 0.0223,
+        "score": 0.022,
         "recent7": 1,
         "recent15": 1,
         "lastDraw": false,
@@ -248,11 +296,11 @@
           0.1334
         ],
         "repeatSignal": 0.1441,
-        "selectionScore": 0.3829
+        "selectionScore": 0.3758
       },
       {
         "number": 24,
-        "score": 0.0221,
+        "score": 0.022,
         "recent7": 2,
         "recent15": 3,
         "lastDraw": false,
@@ -272,11 +320,11 @@
           0.1764
         ],
         "repeatSignal": 0.1202,
-        "selectionScore": 0.3553
+        "selectionScore": 0.3542
       },
       {
         "number": 43,
-        "score": 0.0218,
+        "score": 0.0217,
         "recent7": 1,
         "recent15": 2,
         "lastDraw": false,
@@ -296,83 +344,59 @@
           0.1383
         ],
         "repeatSignal": 0.1291,
-        "selectionScore": 0.3447
+        "selectionScore": 0.3437
       },
       {
-        "number": 35,
-        "score": 0.0235,
-        "recent7": 3,
-        "recent15": 3,
-        "lastDraw": true,
-        "repeatTrials": [
-          40,
-          40,
-          40
-        ],
-        "repeatSuccesses": [
-          3,
-          2,
-          2
-        ],
-        "repeatRates": [
-          0.0859,
-          0.0667,
-          0.0667
-        ],
-        "repeatSignal": 0.0763,
-        "selectionScore": 0.342
-      },
-      {
-        "number": 17,
-        "score": 0.0216,
+        "number": 8,
+        "score": 0.0217,
         "recent7": 2,
-        "recent15": 3,
-        "lastDraw": false,
+        "recent15": 4,
+        "lastDraw": true,
         "repeatTrials": [
           36,
           36,
           36
         ],
         "repeatSuccesses": [
-          4,
-          5,
-          4
-        ],
-        "repeatRates": [
-          0.1139,
-          0.1348,
-          0.1139
-        ],
-        "repeatSignal": 0.1202,
-        "selectionScore": 0.3399
-      },
-      {
-        "number": 31,
-        "score": 0.0216,
-        "recent7": 1,
-        "recent15": 2,
-        "lastDraw": false,
-        "repeatTrials": [
-          40,
-          40,
-          40
-        ],
-        "repeatSuccesses": [
-          5,
-          5,
+          2,
+          6,
           6
         ],
         "repeatRates": [
-          0.1244,
-          0.1244,
-          0.1436
+          0.0723,
+          0.1556,
+          0.1556
         ],
-        "repeatSignal": 0.1283,
-        "selectionScore": 0.3373
+        "repeatSignal": 0.1139,
+        "selectionScore": 0.3361
+      },
+      {
+        "number": 19,
+        "score": 0.0209,
+        "recent7": 1,
+        "recent15": 1,
+        "lastDraw": true,
+        "repeatTrials": [
+          34,
+          34,
+          34
+        ],
+        "repeatSuccesses": [
+          6,
+          3,
+          3
+        ],
+        "repeatRates": [
+          0.1624,
+          0.0972,
+          0.0972
+        ],
+        "repeatSignal": 0.1298,
+        "selectionScore": 0.319
       },
       {
         "number": 16,
-        "score": 0.023,
+        "score": 0.0229,
         "recent7": 1,
         "recent15": 2,
         "lastDraw": false,
@@ -392,17 +416,17 @@
           0.1155
         ],
         "repeatSignal": 0.0905,
-        "selectionScore": 0.3196
+        "selectionScore": 0.3181
       },
       {
         "number": 32,
-        "score": 0.0199,
+        "score": 0.0198,
         "recent7": 1,
         "recent15": 3,
         "lastDraw": false,
         "repeatTrials": [
           33,
-          32,
+          33,
           32
         ],
         "repeatSuccesses": [
@@ -412,87 +436,15 @@
         ],
         "repeatRates": [
           0.1215,
-          0.1925,
+          0.1882,
           0.147
         ],
-        "repeatSignal": 0.1479,
-        "selectionScore": 0.3178
-      },
-      {
-        "number": 40,
-        "score": 0.0217,
-        "recent7": 2,
-        "recent15": 2,
-        "lastDraw": false,
-        "repeatTrials": [
-          36,
-          35,
-          35
-        ],
-        "repeatSuccesses": [
-          3,
-          2,
-          7
-        ],
-        "repeatRates": [
-          0.0931,
-          0.0738,
-          0.1802
-        ],
-        "repeatSignal": 0.1047,
-        "selectionScore": 0.3167
-      },
-      {
-        "number": 28,
-        "score": 0.0204,
-        "recent7": 1,
-        "recent15": 1,
-        "lastDraw": true,
-        "repeatTrials": [
-          35,
-          35,
-          35
-        ],
-        "repeatSuccesses": [
-          5,
-          5,
-          5
-        ],
-        "repeatRates": [
-          0.1376,
-          0.1376,
-          0.1376
-        ],
-        "repeatSignal": 0.1376,
-        "selectionScore": 0.314
-      },
-      {
-        "number": 27,
-        "score": 0.0216,
-        "recent7": 2,
-        "recent15": 3,
-        "lastDraw": true,
-        "repeatTrials": [
-          27,
-          27,
-          26
-        ],
-        "repeatSuccesses": [
-          4,
-          1,
-          1
-        ],
-        "repeatRates": [
-          0.1402,
-          0.0633,
-          0.065
-        ],
-        "repeatSignal": 0.1021,
-        "selectionScore": 0.3107
+        "repeatSignal": 0.1466,
+        "selectionScore": 0.3152
       },
       {
         "number": 42,
-        "score": 0.0212,
+        "score": 0.0211,
         "recent7": 1,
         "recent15": 2,
         "lastDraw": false,
@@ -512,59 +464,59 @@
           0.0876
         ],
         "repeatSignal": 0.1151,
-        "selectionScore": 0.3037
+        "selectionScore": 0.3027
       },
       {
-        "number": 9,
-        "score": 0.0199,
-        "recent7": 1,
-        "recent15": 3,
-        "lastDraw": true,
-        "repeatTrials": [
-          29,
-          29,
-          29
-        ],
-        "repeatSuccesses": [
-          4,
-          5,
-          3
-        ],
-        "repeatRates": [
-          0.1334,
-          0.1578,
-          0.109
-        ],
-        "repeatSignal": 0.1358,
-        "selectionScore": 0.2983
-      },
-      {
-        "number": 8,
-        "score": 0.0212,
+        "number": 17,
+        "score": 0.0205,
         "recent7": 1,
         "recent15": 3,
         "lastDraw": false,
         "repeatTrials": [
           36,
           36,
+          36
+        ],
+        "repeatSuccesses": [
+          4,
+          5,
+          4
+        ],
+        "repeatRates": [
+          0.1139,
+          0.1348,
+          0.1139
+        ],
+        "repeatSignal": 0.1202,
+        "selectionScore": 0.294
+      },
+      {
+        "number": 28,
+        "score": 0.0197,
+        "recent7": 1,
+        "recent15": 1,
+        "lastDraw": false,
+        "repeatTrials": [
+          36,
+          35,
           35
         ],
         "repeatSuccesses": [
-          2,
-          6,
+          5,
+          5,
           5
         ],
         "repeatRates": [
-          0.0723,
-          0.1556,
+          0.1348,
+          0.1376,
           0.1376
         ],
-        "repeatSignal": 0.1104,
-        "selectionScore": 0.2975
+        "repeatSignal": 0.1362,
+        "selectionScore": 0.2927
       },
       {
         "number": 11,
-        "score": 0.0217,
+        "score": 0.0216,
         "recent7": 1,
         "recent15": 2,
         "lastDraw": false,
@@ -584,11 +536,11 @@
           0.1052
         ],
         "repeatSignal": 0.0975,
-        "selectionScore": 0.2908
+        "selectionScore": 0.2896
       },
       {
         "number": 41,
-        "score": 0.0209,
+        "score": 0.0207,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -608,17 +560,41 @@
           0.1334
         ],
         "repeatSignal": 0.1227,
-        "selectionScore": 0.2898
+        "selectionScore": 0.2858
       },
       {
-        "number": 21,
-        "score": 0.0213,
-        "recent7": 1,
+        "number": 31,
+        "score": 0.0203,
+        "recent7": 0,
         "recent15": 2,
         "lastDraw": false,
         "repeatTrials": [
+          40,
+          40,
+          40
+        ],
+        "repeatSuccesses": [
+          5,
+          5,
+          6
+        ],
+        "repeatRates": [
+          0.1244,
+          0.1244,
+          0.1436
+        ],
+        "repeatSignal": 0.1283,
+        "selectionScore": 0.2853
+      },
+      {
+        "number": 21,
+        "score": 0.0212,
+        "recent7": 1,
+        "recent15": 1,
+        "lastDraw": false,
+        "repeatTrials": [
           38,
-          37,
+          38,
           37
         ],
         "repeatSuccesses": [
@@ -628,21 +604,21 @@
         ],
         "repeatRates": [
           0.0894,
-          0.0912,
+          0.0894,
           0.1524
         ],
-        "repeatSignal": 0.1025,
-        "selectionScore": 0.2865
+        "repeatSignal": 0.102,
+        "selectionScore": 0.2833
       },
       {
         "number": 5,
-        "score": 0.0206,
+        "score": 0.0205,
         "recent7": 1,
         "recent15": 2,
         "lastDraw": false,
         "repeatTrials": [
           37,
-          36,
+          37,
           36
         ],
         "repeatSuccesses": [
@@ -652,15 +628,39 @@
         ],
         "repeatRates": [
           0.1116,
-          0.1348,
+          0.132,
           0.0723
         ],
-        "repeatSignal": 0.1107,
-        "selectionScore": 0.2782
+        "repeatSignal": 0.1099,
+        "selectionScore": 0.276
+      },
+      {
+        "number": 40,
+        "score": 0.0205,
+        "recent7": 1,
+        "recent15": 2,
+        "lastDraw": false,
+        "repeatTrials": [
+          36,
+          36,
+          35
+        ],
+        "repeatSuccesses": [
+          3,
+          2,
+          7
+        ],
+        "repeatRates": [
+          0.0931,
+          0.0723,
+          0.1802
+        ],
+        "repeatSignal": 0.1043,
+        "selectionScore": 0.2669
       },
       {
         "number": 6,
-        "score": 0.02,
+        "score": 0.0198,
         "recent7": 1,
         "recent15": 1,
         "lastDraw": false,
@@ -680,11 +680,35 @@
           0.2015
         ],
         "repeatSignal": 0.1164,
-        "selectionScore": 0.2675
+        "selectionScore": 0.2637
+      },
+      {
+        "number": 9,
+        "score": 0.0188,
+        "recent7": 1,
+        "recent15": 2,
+        "lastDraw": false,
+        "repeatTrials": [
+          30,
+          29,
+          29
+        ],
+        "repeatSuccesses": [
+          4,
+          5,
+          3
+        ],
+        "repeatRates": [
+          0.1302,
+          0.1578,
+          0.109
+        ],
+        "repeatSignal": 0.1343,
+        "selectionScore": 0.2634
       },
       {
         "number": 12,
-        "score": 0.0189,
+        "score": 0.0187,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -704,11 +728,11 @@
           0.1465
         ],
         "repeatSignal": 0.1425,
-        "selectionScore": 0.26
+        "selectionScore": 0.2566
       },
       {
         "number": 15,
-        "score": 0.0208,
+        "score": 0.0206,
         "recent7": 0,
         "recent15": 2,
         "lastDraw": false,
@@ -728,11 +752,11 @@
           0.0828
         ],
         "repeatSignal": 0.0939,
-        "selectionScore": 0.243
+        "selectionScore": 0.2389
       },
       {
         "number": 30,
-        "score": 0.019,
+        "score": 0.0188,
         "recent7": 0,
         "recent15": 1,
         "lastDraw": false,
@@ -752,11 +776,11 @@
           0.1094
         ],
         "repeatSignal": 0.1254,
-        "selectionScore": 0.2369
+        "selectionScore": 0.2334
       },
       {
         "number": 45,
-        "score": 0.0192,
+        "score": 0.0191,
         "recent7": 1,
         "recent15": 1,
         "lastDraw": false,
@@ -776,11 +800,11 @@
           0.1376
         ],
         "repeatSignal": 0.11,
-        "selectionScore": 0.2326
+        "selectionScore": 0.2319
       },
       {
         "number": 1,
-        "score": 0.0187,
+        "score": 0.0186,
         "recent7": 0,
         "recent15": 1,
         "lastDraw": false,
@@ -800,35 +824,11 @@
           0.1094
         ],
         "repeatSignal": 0.1274,
-        "selectionScore": 0.2309
-      },
-      {
-        "number": 2,
-        "score": 0.019,
-        "recent7": 1,
-        "recent15": 1,
-        "lastDraw": false,
-        "repeatTrials": [
-          34,
-          34,
-          34
-        ],
-        "repeatSuccesses": [
-          5,
-          2,
-          3
-        ],
-        "repeatRates": [
-          0.1406,
-          0.0754,
-          0.0972
-        ],
-        "repeatSignal": 0.1124,
-        "selectionScore": 0.2303
+        "selectionScore": 0.2305
       },
       {
         "number": 10,
-        "score": 0.018,
+        "score": 0.0179,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -848,35 +848,11 @@
           0.1094
         ],
         "repeatSignal": 0.1314,
-        "selectionScore": 0.2144
-      },
-      {
-        "number": 49,
-        "score": 0.0186,
-        "recent7": 0,
-        "recent15": 1,
-        "lastDraw": false,
-        "repeatTrials": [
-          36,
-          36,
-          36
-        ],
-        "repeatSuccesses": [
-          5,
-          3,
-          3
-        ],
-        "repeatRates": [
-          0.1348,
-          0.0931,
-          0.0931
-        ],
-        "repeatSignal": 0.1139,
-        "selectionScore": 0.2061
+        "selectionScore": 0.2142
       },
       {
         "number": 33,
-        "score": 0.0192,
+        "score": 0.0191,
         "recent7": 0,
         "recent15": 2,
         "lastDraw": false,
@@ -896,35 +872,59 @@
           0.0912
         ],
         "repeatSignal": 0.1014,
-        "selectionScore": 0.2058
+        "selectionScore": 0.2051
       },
       {
-        "number": 37,
-        "score": 0.0182,
+        "number": 49,
+        "score": 0.0184,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
         "repeatTrials": [
-          37,
-          37,
-          37
+          36,
+          36,
+          36
         ],
         "repeatSuccesses": [
-          4,
-          4,
-          5
+          5,
+          3,
+          3
         ],
         "repeatRates": [
-          0.1116,
-          0.1116,
-          0.132
+          0.1348,
+          0.0931,
+          0.0931
         ],
-        "repeatSignal": 0.1157,
-        "selectionScore": 0.1953
+        "repeatSignal": 0.1139,
+        "selectionScore": 0.2012
+      },
+      {
+        "number": 36,
+        "score": 0.0199,
+        "recent7": 2,
+        "recent15": 3,
+        "lastDraw": true,
+        "repeatTrials": [
+          30,
+          30,
+          30
+        ],
+        "repeatSuccesses": [
+          2,
+          0,
+          1
+        ],
+        "repeatRates": [
+          0.0826,
+          0.035,
+          0.0588
+        ],
+        "repeatSignal": 0.0636,
+        "selectionScore": 0.1984
       },
       {
         "number": 34,
-        "score": 0.0168,
+        "score": 0.0167,
         "recent7": 0,
         "recent15": 2,
         "lastDraw": false,
@@ -947,10 +947,34 @@
         "selectionScore": 0.1951
       },
       {
-        "number": 19,
-        "score": 0.0172,
+        "number": 37,
+        "score": 0.0181,
         "recent7": 0,
         "recent15": 0,
+        "lastDraw": false,
+        "repeatTrials": [
+          37,
+          37,
+          37
+        ],
+        "repeatSuccesses": [
+          4,
+          4,
+          5
+        ],
+        "repeatRates": [
+          0.1116,
+          0.1116,
+          0.132
+        ],
+        "repeatSignal": 0.1157,
+        "selectionScore": 0.1949
+      },
+      {
+        "number": 2,
+        "score": 0.0177,
+        "recent7": 0,
+        "recent15": 1,
         "lastDraw": false,
         "repeatTrials": [
           34,
@@ -958,27 +982,27 @@
           34
         ],
         "repeatSuccesses": [
-          6,
-          3,
+          5,
+          2,
           3
         ],
         "repeatRates": [
-          0.1624,
-          0.0972,
+          0.1406,
+          0.0754,
           0.0972
         ],
-        "repeatSignal": 0.1298,
-        "selectionScore": 0.1872
+        "repeatSignal": 0.1124,
+        "selectionScore": 0.1787
       },
       {
         "number": 4,
-        "score": 0.018,
+        "score": 0.0179,
         "recent7": 1,
         "recent15": 1,
         "lastDraw": false,
         "repeatTrials": [
           30,
-          29,
+          30,
           29
         ],
         "repeatSuccesses": [
@@ -988,15 +1012,15 @@
         ],
         "repeatRates": [
           0.1302,
-          0.0358,
+          0.035,
           0.109
         ],
-        "repeatSignal": 0.0977,
-        "selectionScore": 0.1758
+        "repeatSignal": 0.0974,
+        "selectionScore": 0.1748
       },
       {
         "number": 38,
-        "score": 0.0171,
+        "score": 0.017,
         "recent7": 0,
         "recent15": 1,
         "lastDraw": false,
@@ -1016,35 +1040,11 @@
           0.0807
         ],
         "repeatSignal": 0.1202,
-        "selectionScore": 0.17
-      },
-      {
-        "number": 14,
-        "score": 0.0177,
-        "recent7": 1,
-        "recent15": 1,
-        "lastDraw": false,
-        "repeatTrials": [
-          29,
-          29,
-          29
-        ],
-        "repeatSuccesses": [
-          2,
-          2,
-          4
-        ],
-        "repeatRates": [
-          0.0846,
-          0.0846,
-          0.1334
-        ],
-        "repeatSignal": 0.0944,
-        "selectionScore": 0.1613
+        "selectionScore": 0.1699
       },
       {
         "number": 3,
-        "score": 0.0181,
+        "score": 0.018,
         "recent7": 0,
         "recent15": 2,
         "lastDraw": false,
@@ -1064,11 +1064,11 @@
           0.0754
         ],
         "repeatSignal": 0.0928,
-        "selectionScore": 0.1581
+        "selectionScore": 0.1575
       },
       {
         "number": 7,
-        "score": 0.0167,
+        "score": 0.0166,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -1088,11 +1088,11 @@
           0.147
         ],
         "repeatSignal": 0.1175,
-        "selectionScore": 0.152
+        "selectionScore": 0.1519
       },
       {
         "number": 25,
-        "score": 0.0176,
+        "score": 0.0175,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -1112,35 +1112,11 @@
           0.0525
         ],
         "repeatSignal": 0.0908,
-        "selectionScore": 0.1368
-      },
-      {
-        "number": 36,
-        "score": 0.0183,
-        "recent7": 1,
-        "recent15": 2,
-        "lastDraw": false,
-        "repeatTrials": [
-          30,
-          30,
-          30
-        ],
-        "repeatSuccesses": [
-          2,
-          0,
-          1
-        ],
-        "repeatRates": [
-          0.0826,
-          0.035,
-          0.0588
-        ],
-        "repeatSignal": 0.0636,
-        "selectionScore": 0.1315
+        "selectionScore": 0.1363
       },
       {
         "number": 29,
-        "score": 0.0169,
+        "score": 0.0168,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -1160,11 +1136,35 @@
           0.0788
         ],
         "repeatSignal": 0.0948,
-        "selectionScore": 0.1217
+        "selectionScore": 0.1213
+      },
+      {
+        "number": 14,
+        "score": 0.0164,
+        "recent7": 0,
+        "recent15": 1,
+        "lastDraw": false,
+        "repeatTrials": [
+          29,
+          29,
+          29
+        ],
+        "repeatSuccesses": [
+          2,
+          2,
+          4
+        ],
+        "repeatRates": [
+          0.0846,
+          0.0846,
+          0.1334
+        ],
+        "repeatSignal": 0.0944,
+        "selectionScore": 0.1098
       },
       {
         "number": 39,
-        "score": 0.0175,
+        "score": 0.0173,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -1184,11 +1184,11 @@
           0.0561
         ],
         "repeatSignal": 0.0516,
-        "selectionScore": 0.0706
+        "selectionScore": 0.0668
       },
       {
         "number": 20,
-        "score": 0.0152,
+        "score": 0.0151,
         "recent7": 0,
         "recent15": 0,
         "lastDraw": false,
@@ -1208,51 +1208,51 @@
           0.0667
         ],
         "repeatSignal": 0.0911,
-        "selectionScore": 0.0634
+        "selectionScore": 0.0633
       }
     ],
-    "eligibleNumbers": 10,
+    "eligibleNumbers": 9,
     "minimumRecentFrequency": 2,
     "warning": null,
     "selectionReasons": [
       {
-        "number": 9,
-        "rank": 21,
-        "score": 0.0199,
-        "totalFrequency": 30,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 3,
+        "number": 8,
+        "rank": 14,
+        "score": 0.0217,
+        "totalFrequency": 37,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 4,
         "lastDraw": true,
         "repeatTrials": [
-          29,
-          29,
-          29
+          36,
+          36,
+          36
         ],
         "repeatSuccesses": [
-          4,
-          5,
-          3
+          2,
+          6,
+          6
         ],
         "repeatRates": [
-          0.1334,
-          0.1578,
-          0.109
+          0.0723,
+          0.1556,
+          0.1556
         ],
-        "repeatSignal": 0.1358,
+        "repeatSignal": 0.1139,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              9,
-              35
+              8,
+              26
             ],
-            "count": 1
+            "count": 2
           },
           {
             "numbers": [
-              9,
-              48
+              8,
+              13
             ],
             "count": 1
           }
@@ -1270,7 +1270,7 @@
         "repeatTrials": [
           38,
           38,
-          37
+          38
         ],
         "repeatSuccesses": [
           5,
@@ -1280,9 +1280,9 @@
         "repeatRates": [
           0.1294,
           0.1694,
-          0.1524
+          0.1494
         ],
-        "repeatSignal": 0.146,
+        "repeatSignal": 0.1454,
         "recentWindow": 7,
         "selectedPairs": [
           {
@@ -1313,7 +1313,7 @@
         "repeatTrials": [
           50,
           50,
-          49
+          50
         ],
         "repeatSuccesses": [
           8,
@@ -1323,9 +1323,9 @@
         "repeatRates": [
           0.1527,
           0.2172,
-          0.1716
+          0.1689
         ],
-        "repeatSignal": 0.1759,
+        "repeatSignal": 0.1753,
         "recentWindow": 7,
         "selectedPairs": [
           {
@@ -1337,8 +1337,8 @@
           },
           {
             "numbers": [
-              22,
-              26
+              8,
+              22
             ],
             "count": 1
           }
@@ -1346,77 +1346,77 @@
       },
       {
         "number": 26,
-        "rank": 5,
-        "score": 0.024,
-        "totalFrequency": 43,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
-        "lastDraw": false,
+        "rank": 2,
+        "score": 0.0262,
+        "totalFrequency": 44,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
         "repeatTrials": [
           43,
           43,
-          42
+          43
         ],
         "repeatSuccesses": [
           6,
           8,
-          6
+          7
         ],
         "repeatRates": [
           0.1358,
           0.1722,
-          0.1383
+          0.154
         ],
-        "repeatSignal": 0.1472,
+        "repeatSignal": 0.1504,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              13,
+              8,
               26
             ],
             "count": 2
           },
           {
             "numbers": [
-              22,
+              13,
               26
             ],
-            "count": 1
+            "count": 2
           }
         ]
       },
       {
         "number": 35,
-        "rank": 12,
-        "score": 0.0235,
-        "totalFrequency": 41,
+        "rank": 9,
+        "score": 0.025,
+        "totalFrequency": 42,
         "recentFrequency": 3,
         "recent7": 3,
-        "recent15": 3,
+        "recent15": 4,
         "lastDraw": true,
         "repeatTrials": [
-          40,
+          41,
           40,
           40
         ],
         "repeatSuccesses": [
-          3,
+          4,
           2,
           2
         ],
         "repeatRates": [
-          0.0859,
+          0.1032,
           0.0667,
           0.0667
         ],
-        "repeatSignal": 0.0763,
+        "repeatSignal": 0.085,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              9,
+              8,
               35
             ],
             "count": 1
@@ -1432,15 +1432,15 @@
       },
       {
         "number": 48,
-        "rank": 8,
-        "score": 0.024,
+        "rank": 7,
+        "score": 0.0243,
         "totalFrequency": 41,
         "recentFrequency": 2,
         "recent7": 2,
-        "recent15": 5,
-        "lastDraw": true,
+        "recent15": 4,
+        "lastDraw": false,
         "repeatTrials": [
-          40,
+          41,
           40,
           40
         ],
@@ -1450,23 +1450,23 @@
           7
         ],
         "repeatRates": [
-          0.1244,
+          0.1221,
           0.0667,
           0.1629
         ],
-        "repeatSignal": 0.1148,
+        "repeatSignal": 0.1136,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              9,
+              13,
               48
             ],
             "count": 1
           },
           {
             "numbers": [
-              13,
+              26,
               48
             ],
             "count": 1
@@ -1487,7 +1487,7 @@
         "repeatTrials": [
           50,
           50,
-          49
+          50
         ],
         "repeatSuccesses": [
           8,
@@ -1497,9 +1497,9 @@
         "repeatRates": [
           0.1527,
           0.2172,
-          0.1716
+          0.1689
         ],
-        "repeatSignal": 0.1759,
+        "repeatSignal": 0.1753,
         "recentWindow": 7,
         "selectedPairs": [
           {
@@ -1511,8 +1511,8 @@
           },
           {
             "numbers": [
-              22,
-              26
+              8,
+              22
             ],
             "count": 1
           }
@@ -1520,36 +1520,36 @@
         "candidateRank": 1
       },
       {
-        "number": 13,
-        "rank": 4,
-        "score": 0.0247,
-        "totalFrequency": 38,
+        "number": 26,
+        "rank": 2,
+        "score": 0.0262,
+        "totalFrequency": 44,
         "recentFrequency": 3,
         "recent7": 3,
-        "recent15": 5,
-        "lastDraw": false,
+        "recent15": 4,
+        "lastDraw": true,
         "repeatTrials": [
-          38,
-          38,
-          37
+          43,
+          43,
+          43
         ],
         "repeatSuccesses": [
-          5,
-          7,
-          6
+          6,
+          8,
+          7
         ],
         "repeatRates": [
-          0.1294,
-          0.1694,
-          0.1524
+          0.1358,
+          0.1722,
+          0.154
         ],
-        "repeatSignal": 0.146,
+        "repeatSignal": 0.1504,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              13,
-              22
+              8,
+              26
             ],
             "count": 2
           },
@@ -1564,60 +1564,104 @@
         "candidateRank": 2
       },
       {
-        "number": 26,
-        "rank": 5,
-        "score": 0.024,
-        "totalFrequency": 43,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
+        "number": 13,
+        "rank": 4,
+        "score": 0.0247,
+        "totalFrequency": 38,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 5,
         "lastDraw": false,
         "repeatTrials": [
-          43,
-          43,
-          42
+          38,
+          38,
+          38
         ],
         "repeatSuccesses": [
-          6,
-          8,
+          5,
+          7,
           6
         ],
         "repeatRates": [
-          0.1358,
-          0.1722,
-          0.1383
+          0.1294,
+          0.1694,
+          0.1494
         ],
-        "repeatSignal": 0.1472,
+        "repeatSignal": 0.1454,
         "recentWindow": 7,
         "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              22
+            ],
+            "count": 2
+          },
           {
             "numbers": [
               13,
               26
             ],
             "count": 2
-          },
-          {
-            "numbers": [
-              22,
-              26
-            ],
-            "count": 1
           }
         ],
         "candidateRank": 3
       },
       {
+        "number": 27,
+        "rank": 6,
+        "score": 0.0245,
+        "totalFrequency": 29,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
+        "repeatTrials": [
+          28,
+          27,
+          27
+        ],
+        "repeatSuccesses": [
+          5,
+          1,
+          2
+        ],
+        "repeatRates": [
+          0.1617,
+          0.0633,
+          0.089
+        ],
+        "repeatSignal": 0.1177,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              8,
+              27
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              26,
+              27
+            ],
+            "count": 2
+          }
+        ],
+        "candidateRank": 4
+      },
+      {
         "number": 48,
-        "rank": 8,
-        "score": 0.024,
+        "rank": 7,
+        "score": 0.0243,
         "totalFrequency": 41,
         "recentFrequency": 2,
         "recent7": 2,
-        "recent15": 5,
-        "lastDraw": true,
+        "recent15": 4,
+        "lastDraw": false,
         "repeatTrials": [
-          40,
+          41,
           40,
           40
         ],
@@ -1627,34 +1671,78 @@
           7
         ],
         "repeatRates": [
-          0.1244,
+          0.1221,
           0.0667,
           0.1629
         ],
-        "repeatSignal": 0.1148,
+        "repeatSignal": 0.1136,
         "recentWindow": 7,
         "selectedPairs": [
-          {
-            "numbers": [
-              9,
-              48
-            ],
-            "count": 1
-          },
           {
             "numbers": [
               13,
               48
             ],
             "count": 1
+          },
+          {
+            "numbers": [
+              26,
+              48
+            ],
+            "count": 1
           }
         ],
-        "candidateRank": 4
+        "candidateRank": 5
+      },
+      {
+        "number": 35,
+        "rank": 9,
+        "score": 0.025,
+        "totalFrequency": 42,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 4,
+        "lastDraw": true,
+        "repeatTrials": [
+          41,
+          40,
+          40
+        ],
+        "repeatSuccesses": [
+          4,
+          2,
+          2
+        ],
+        "repeatRates": [
+          0.1032,
+          0.0667,
+          0.0667
+        ],
+        "repeatSignal": 0.085,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              8,
+              35
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              22,
+              35
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 6
       },
       {
         "number": 24,
-        "rank": 10,
-        "score": 0.0221,
+        "rank": 12,
+        "score": 0.022,
         "totalFrequency": 36,
         "recentFrequency": 2,
         "recent7": 2,
@@ -1693,7 +1781,290 @@
             "count": 1
           }
         ],
-        "candidateRank": 5
+        "candidateRank": 7
+      },
+      {
+        "number": 8,
+        "rank": 14,
+        "score": 0.0217,
+        "totalFrequency": 37,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 4,
+        "lastDraw": true,
+        "repeatTrials": [
+          36,
+          36,
+          36
+        ],
+        "repeatSuccesses": [
+          2,
+          6,
+          6
+        ],
+        "repeatRates": [
+          0.0723,
+          0.1556,
+          0.1556
+        ],
+        "repeatSignal": 0.1139,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              8,
+              26
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              8,
+              13
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 8
+      },
+      {
+        "number": 36,
+        "rank": 37,
+        "score": 0.0199,
+        "totalFrequency": 31,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 3,
+        "lastDraw": true,
+        "repeatTrials": [
+          30,
+          30,
+          30
+        ],
+        "repeatSuccesses": [
+          2,
+          0,
+          1
+        ],
+        "repeatRates": [
+          0.0826,
+          0.035,
+          0.0588
+        ],
+        "repeatSignal": 0.0636,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              35,
+              36
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              8,
+              36
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 9
+      }
+    ]
+  },
+  "lastEvaluation": {
+    "targetDate": "2026-11-02",
+    "trainedThrough": "2026-11-01",
+    "numbers": [
+      9,
+      13,
+      22,
+      26,
+      35,
+      48
+    ],
+    "actual": [
+      8,
+      19,
+      26,
+      27,
+      35,
+      36
+    ],
+    "hits": 2,
+    "selectionReasons": [
+      {
+        "number": 9,
+        "rank": 21,
+        "score": 0.0199,
+        "totalFrequency": 30,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 3,
+        "lastDraw": true,
+        "repeatTrials": [
+          29,
+          29,
+          29
+        ],
+        "repeatSuccesses": [
+          4,
+          5,
+          3
+        ],
+        "repeatRates": [
+          0.1334,
+          0.1578,
+          0.109
+        ],
+        "repeatSignal": 0.1358,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              9,
+              35
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              9,
+              48
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "rank": 4,
+        "score": 0.0247,
+        "totalFrequency": 38,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 5,
+        "lastDraw": false,
+        "repeatTrials": [
+          38,
+          38,
+          37
+        ],
+        "repeatSuccesses": [
+          5,
+          7,
+          6
+        ],
+        "repeatRates": [
+          0.1294,
+          0.1694,
+          0.1524
+        ],
+        "repeatSignal": 0.146,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              22
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              13,
+              26
+            ],
+            "count": 2
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "rank": 1,
+        "score": 0.0282,
+        "totalFrequency": 50,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 6,
+        "lastDraw": false,
+        "repeatTrials": [
+          50,
+          50,
+          49
+        ],
+        "repeatSuccesses": [
+          8,
+          12,
+          9
+        ],
+        "repeatRates": [
+          0.1527,
+          0.2172,
+          0.1716
+        ],
+        "repeatSignal": 0.1759,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              22
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              22,
+              26
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 26,
+        "rank": 5,
+        "score": 0.024,
+        "totalFrequency": 43,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 3,
+        "lastDraw": false,
+        "repeatTrials": [
+          43,
+          43,
+          42
+        ],
+        "repeatSuccesses": [
+          6,
+          8,
+          6
+        ],
+        "repeatRates": [
+          0.1358,
+          0.1722,
+          0.1383
+        ],
+        "repeatSignal": 0.1472,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              13,
+              26
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              22,
+              26
+            ],
+            "count": 1
+          }
+        ]
       },
       {
         "number": 35,
@@ -1736,382 +2107,17 @@
             ],
             "count": 1
           }
-        ],
-        "candidateRank": 6
+        ]
       },
       {
-        "number": 17,
-        "rank": 13,
-        "score": 0.0216,
-        "totalFrequency": 36,
+        "number": 48,
+        "rank": 8,
+        "score": 0.024,
+        "totalFrequency": 41,
         "recentFrequency": 2,
         "recent7": 2,
-        "recent15": 3,
-        "lastDraw": false,
-        "repeatTrials": [
-          36,
-          36,
-          36
-        ],
-        "repeatSuccesses": [
-          4,
-          5,
-          4
-        ],
-        "repeatRates": [
-          0.1139,
-          0.1348,
-          0.1139
-        ],
-        "repeatSignal": 0.1202,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              13,
-              17
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              17,
-              22
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 7
-      },
-      {
-        "number": 40,
-        "rank": 17,
-        "score": 0.0217,
-        "totalFrequency": 36,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 2,
-        "lastDraw": false,
-        "repeatTrials": [
-          36,
-          35,
-          35
-        ],
-        "repeatSuccesses": [
-          3,
-          2,
-          7
-        ],
-        "repeatRates": [
-          0.0931,
-          0.0738,
-          0.1802
-        ],
-        "repeatSignal": 0.1047,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              35,
-              40
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 8
-      },
-      {
-        "number": 27,
-        "rank": 19,
-        "score": 0.0216,
-        "totalFrequency": 28,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
-        "lastDraw": true,
-        "repeatTrials": [
-          27,
-          27,
-          26
-        ],
-        "repeatSuccesses": [
-          4,
-          1,
-          1
-        ],
-        "repeatRates": [
-          0.1402,
-          0.0633,
-          0.065
-        ],
-        "repeatSignal": 0.1021,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              9,
-              27
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              13,
-              27
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 9
-      },
-      {
-        "number": 9,
-        "rank": 21,
-        "score": 0.0199,
-        "totalFrequency": 30,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 3,
-        "lastDraw": true,
-        "repeatTrials": [
-          29,
-          29,
-          29
-        ],
-        "repeatSuccesses": [
-          4,
-          5,
-          3
-        ],
-        "repeatRates": [
-          0.1334,
-          0.1578,
-          0.109
-        ],
-        "repeatSignal": 0.1358,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              9,
-              35
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              9,
-              48
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 10
-      }
-    ]
-  },
-  "lastEvaluation": {
-    "targetDate": "2026-11-01",
-    "trainedThrough": "2026-10-31",
-    "numbers": [
-      13,
-      17,
-      22,
-      26,
-      31,
-      46
-    ],
-    "actual": [
-      9,
-      27,
-      28,
-      35,
-      47,
-      48
-    ],
-    "hits": 0,
-    "selectionReasons": [
-      {
-        "number": 13,
-        "rank": 2,
-        "score": 0.026,
-        "totalFrequency": 38,
-        "recentFrequency": 4,
-        "recent7": 4,
         "recent15": 5,
-        "lastDraw": false,
-        "repeatTrials": [
-          38,
-          37,
-          36
-        ],
-        "repeatSuccesses": [
-          5,
-          7,
-          6
-        ],
-        "repeatRates": [
-          0.1294,
-          0.1728,
-          0.1556
-        ],
-        "repeatSignal": 0.1477,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              13,
-              22
-            ],
-            "count": 3
-          },
-          {
-            "numbers": [
-              13,
-              26
-            ],
-            "count": 2
-          }
-        ]
-      },
-      {
-        "number": 17,
-        "rank": 12,
-        "score": 0.0217,
-        "totalFrequency": 36,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
-        "lastDraw": false,
-        "repeatTrials": [
-          36,
-          36,
-          36
-        ],
-        "repeatSuccesses": [
-          4,
-          5,
-          4
-        ],
-        "repeatRates": [
-          0.1139,
-          0.1348,
-          0.1139
-        ],
-        "repeatSignal": 0.1202,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              13,
-              17
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              17,
-              22
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
-        "number": 22,
-        "rank": 1,
-        "score": 0.0296,
-        "totalFrequency": 50,
-        "recentFrequency": 4,
-        "recent7": 4,
-        "recent15": 6,
-        "lastDraw": false,
-        "repeatTrials": [
-          50,
-          49,
-          49
-        ],
-        "repeatSuccesses": [
-          8,
-          12,
-          9
-        ],
-        "repeatRates": [
-          0.1527,
-          0.2208,
-          0.1716
-        ],
-        "repeatSignal": 0.1769,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              13,
-              22
-            ],
-            "count": 3
-          },
-          {
-            "numbers": [
-              17,
-              22
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
-        "number": 26,
-        "rank": 5,
-        "score": 0.0242,
-        "totalFrequency": 43,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
-        "lastDraw": false,
-        "repeatTrials": [
-          43,
-          42,
-          41
-        ],
-        "repeatSuccesses": [
-          6,
-          8,
-          6
-        ],
-        "repeatRates": [
-          0.1358,
-          0.1754,
-          0.1409
-        ],
-        "repeatSignal": 0.1487,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              13,
-              26
-            ],
-            "count": 2
-          },
-          {
-            "numbers": [
-              22,
-              26
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
-        "number": 31,
-        "rank": 7,
-        "score": 0.0231,
-        "totalFrequency": 40,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 2,
-        "lastDraw": false,
+        "lastDraw": true,
         "repeatTrials": [
           40,
           40,
@@ -2119,84 +2125,56 @@
         ],
         "repeatSuccesses": [
           5,
-          5,
-          6
+          2,
+          7
         ],
         "repeatRates": [
           0.1244,
-          0.1244,
-          0.1436
+          0.0667,
+          0.1629
         ],
-        "repeatSignal": 0.1283,
+        "repeatSignal": 0.1148,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              13,
-              31
+              9,
+              48
             ],
             "count": 1
           },
           {
             "numbers": [
-              17,
-              31
+              13,
+              48
             ],
             "count": 1
           }
         ]
-      },
-      {
-        "number": 46,
-        "rank": 3,
-        "score": 0.0255,
-        "totalFrequency": 49,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 5,
-        "lastDraw": true,
-        "repeatTrials": [
-          48,
-          48,
-          48
-        ],
-        "repeatSuccesses": [
-          10,
-          9,
-          7
-        ],
-        "repeatRates": [
-          0.1912,
-          0.1745,
-          0.1412
-        ],
-        "repeatSignal": 0.1762,
-        "recentWindow": 7,
-        "selectedPairs": []
       }
     ]
   },
   "metrics": {
-    "simulations": 298,
-    "meanHits": 0.6644,
+    "simulations": 299,
+    "meanHits": 0.6689,
     "atLeastThree": 3,
     "atLeastFour": 0,
     "maxHits": 3,
     "histogram": [
       143,
       115,
-      37,
+      38,
       3,
       0,
       0,
       0
     ],
-    "randomMeanHits": 0.7383,
+    "randomMeanHits": 0.7391,
     "randomAtLeastThree": 9,
     "randomAtLeastFour": 0,
     "randomHistogram": [
       134,
-      117,
+      118,
       38,
       9,
       0,
@@ -2222,97 +2200,97 @@
     {
       "name": "Azar uniforme",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.7315,
+      "meanHits": 0.7291,
       "atLeastThree": 7,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": -0.0067,
-      "beatRandomRate": 0.3289,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": -0.01,
+      "beatRandomRate": 0.3278,
       "wins": 98,
       "ties": 107,
-      "losses": 93,
-      "numberWeight": 0.2134
+      "losses": 94,
+      "numberWeight": 0.2123
     },
     {
       "name": "Frecuencia acumulada",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.7483,
+      "meanHits": 0.7458,
       "atLeastThree": 6,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": 0.0101,
-      "beatRandomRate": 0.3255,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": 0.0067,
+      "beatRandomRate": 0.3244,
       "wins": 97,
       "ties": 102,
-      "losses": 99,
-      "numberWeight": 0.1896
+      "losses": 100,
+      "numberWeight": 0.1861
     },
     {
       "name": "Frecuencia reciente",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.6644,
+      "meanHits": 0.6689,
       "atLeastThree": 7,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": -0.0738,
-      "beatRandomRate": 0.2685,
-      "wins": 80,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": -0.0702,
+      "beatRandomRate": 0.2709,
+      "wins": 81,
       "ties": 124,
       "losses": 94,
-      "numberWeight": 0.0584
+      "numberWeight": 0.0627
     },
     {
       "name": "Recencia ponderada",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.7349,
+      "meanHits": 0.7391,
       "atLeastThree": 7,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": -0.0034,
-      "beatRandomRate": 0.3221,
-      "wins": 96,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": 0,
+      "beatRandomRate": 0.3244,
+      "wins": 97,
       "ties": 110,
       "losses": 92,
-      "numberWeight": 0.1148
+      "numberWeight": 0.1181
     },
     {
       "name": "Parejas y estructura",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.6946,
+      "meanHits": 0.699,
       "atLeastThree": 10,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": -0.0436,
-      "beatRandomRate": 0.3154,
-      "wins": 94,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": -0.0401,
+      "beatRandomRate": 0.3177,
+      "wins": 95,
       "ties": 100,
       "losses": 104,
-      "numberWeight": 0.0407
+      "numberWeight": 0.0445
     },
     {
       "name": "Bayes regularizado",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.7483,
+      "meanHits": 0.7458,
       "atLeastThree": 6,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": 0.0101,
-      "beatRandomRate": 0.3255,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": 0.0067,
+      "beatRandomRate": 0.3244,
       "wins": 97,
       "ties": 102,
-      "losses": 99,
-      "numberWeight": 0.2087
+      "losses": 100,
+      "numberWeight": 0.2057
     },
     {
       "name": "Markov regularizado",
       "initialWeight": 0.14285714285714285,
-      "meanHits": 0.7483,
+      "meanHits": 0.7458,
       "atLeastThree": 4,
-      "randomMeanHits": 0.7383,
-      "deltaVsRandom": 0.0101,
-      "beatRandomRate": 0.2852,
+      "randomMeanHits": 0.7391,
+      "deltaVsRandom": 0.0067,
+      "beatRandomRate": 0.2843,
       "wins": 85,
       "ties": 121,
-      "losses": 92,
-      "numberWeight": 0.1743
+      "losses": 93,
+      "numberWeight": 0.1707
     }
   ],
   "patterns": {
-    "drawCount": 305,
+    "drawCount": 306,
     "frequency": [
       {
         "number": 1,
@@ -2344,7 +2322,7 @@
       },
       {
         "number": 8,
-        "count": 36
+        "count": 37
       },
       {
         "number": 9,
@@ -2388,7 +2366,7 @@
       },
       {
         "number": 19,
-        "count": 34
+        "count": 35
       },
       {
         "number": 20,
@@ -2416,11 +2394,11 @@
       },
       {
         "number": 26,
-        "count": 43
+        "count": 44
       },
       {
         "number": 27,
-        "count": 28
+        "count": 29
       },
       {
         "number": 28,
@@ -2452,11 +2430,11 @@
       },
       {
         "number": 35,
-        "count": 41
+        "count": 42
       },
       {
         "number": 36,
-        "count": 30
+        "count": 31
       },
       {
         "number": 37,
@@ -2530,7 +2508,7 @@
       {
         "even": 3,
         "odd": 3,
-        "count": 92
+        "count": 93
       },
       {
         "even": 4,
@@ -2637,7 +2615,7 @@
     "gaps": [
       {
         "gap": 1,
-        "count": 189
+        "count": 191
       },
       {
         "gap": 2,
@@ -2661,11 +2639,11 @@
       },
       {
         "gap": 7,
-        "count": 84
+        "count": 85
       },
       {
         "gap": 8,
-        "count": 94
+        "count": 95
       },
       {
         "gap": 9,
@@ -2677,7 +2655,7 @@
       },
       {
         "gap": 11,
-        "count": 53
+        "count": 54
       },
       {
         "gap": 12,
@@ -2828,8 +2806,8 @@
         "count": 0
       }
     ],
-    "meanGap": 7.2216,
-    "meanSum": 152.7574
+    "meanGap": 7.2163,
+    "meanSum": 152.7516
   },
   "rows": [
     {
@@ -93553,47 +93531,358 @@
           "selectedPairs": []
         }
       ]
+    },
+    {
+      "date": "2026-11-02",
+      "trainingCount": 305,
+      "trainingStart": "2026-01-01",
+      "trainingEnd": "2026-11-01",
+      "windowStart": "2026-10-26",
+      "predicted": [
+        9,
+        13,
+        22,
+        26,
+        35,
+        48
+      ],
+      "actual": [
+        8,
+        19,
+        26,
+        27,
+        35,
+        36
+      ],
+      "hits": 2,
+      "randomNumbers": [
+        3,
+        16,
+        24,
+        25,
+        35,
+        44
+      ],
+      "randomHits": 1,
+      "expertHits": [
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "weightsBefore": [
+        0.2134,
+        0.1896,
+        0.0584,
+        0.1148,
+        0.0407,
+        0.2087,
+        0.1743
+      ],
+      "selectionReasons": [
+        {
+          "number": 9,
+          "rank": 21,
+          "score": 0.0199,
+          "totalFrequency": 30,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "lastDraw": true,
+          "repeatTrials": [
+            29,
+            29,
+            29
+          ],
+          "repeatSuccesses": [
+            4,
+            5,
+            3
+          ],
+          "repeatRates": [
+            0.1334,
+            0.1578,
+            0.109
+          ],
+          "repeatSignal": 0.1358,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                9,
+                35
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                9,
+                48
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 13,
+          "rank": 4,
+          "score": 0.0247,
+          "totalFrequency": 38,
+          "recentFrequency": 3,
+          "recent7": 3,
+          "recent15": 5,
+          "lastDraw": false,
+          "repeatTrials": [
+            38,
+            38,
+            37
+          ],
+          "repeatSuccesses": [
+            5,
+            7,
+            6
+          ],
+          "repeatRates": [
+            0.1294,
+            0.1694,
+            0.1524
+          ],
+          "repeatSignal": 0.146,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                13,
+                22
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                13,
+                26
+              ],
+              "count": 2
+            }
+          ]
+        },
+        {
+          "number": 22,
+          "rank": 1,
+          "score": 0.0282,
+          "totalFrequency": 50,
+          "recentFrequency": 3,
+          "recent7": 3,
+          "recent15": 6,
+          "lastDraw": false,
+          "repeatTrials": [
+            50,
+            50,
+            49
+          ],
+          "repeatSuccesses": [
+            8,
+            12,
+            9
+          ],
+          "repeatRates": [
+            0.1527,
+            0.2172,
+            0.1716
+          ],
+          "repeatSignal": 0.1759,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                13,
+                22
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                22,
+                26
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 26,
+          "rank": 5,
+          "score": 0.024,
+          "totalFrequency": 43,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "lastDraw": false,
+          "repeatTrials": [
+            43,
+            43,
+            42
+          ],
+          "repeatSuccesses": [
+            6,
+            8,
+            6
+          ],
+          "repeatRates": [
+            0.1358,
+            0.1722,
+            0.1383
+          ],
+          "repeatSignal": 0.1472,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                13,
+                26
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                22,
+                26
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 35,
+          "rank": 12,
+          "score": 0.0235,
+          "totalFrequency": 41,
+          "recentFrequency": 3,
+          "recent7": 3,
+          "recent15": 3,
+          "lastDraw": true,
+          "repeatTrials": [
+            40,
+            40,
+            40
+          ],
+          "repeatSuccesses": [
+            3,
+            2,
+            2
+          ],
+          "repeatRates": [
+            0.0859,
+            0.0667,
+            0.0667
+          ],
+          "repeatSignal": 0.0763,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                9,
+                35
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                22,
+                35
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 8,
+          "score": 0.024,
+          "totalFrequency": 41,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 5,
+          "lastDraw": true,
+          "repeatTrials": [
+            40,
+            40,
+            40
+          ],
+          "repeatSuccesses": [
+            5,
+            2,
+            7
+          ],
+          "repeatRates": [
+            0.1244,
+            0.0667,
+            0.1629
+          ],
+          "repeatSignal": 0.1148,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                9,
+                48
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                13,
+                48
+              ],
+              "count": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   "modelState": {
     "version": "2.10.0",
     "window": 7,
-    "trainedThrough": "2026-11-01",
+    "trainedThrough": "2026-11-02",
     "numberLogWeights": [
       0,
-      -0.11819647596494413,
-      -1.2957945731581422,
-      -0.620187674403682,
-      -1.6569478232109047,
-      -0.02229941445959493,
-      -0.20270633554553286
+      -0.131458144326051,
+      -1.2196555597294327,
+      -0.5866760734868935,
+      -1.5630278316655772,
+      -0.031579363814510354,
+      -0.2179246162325986
     ],
     "numberWeights": [
-      0.2134366552298906,
-      0.18964304902440224,
-      0.058413411863935005,
-      0.11479551525808848,
-      0.04070668251868017,
-      0.20872981769791935,
-      0.17427486840708417
+      0.21227268825994172,
+      0.18612408393004137,
+      0.06269089073739102,
+      0.11806031524647975,
+      0.044471293087677506,
+      0.2056739915057482,
+      0.17070673723272053
     ]
   },
   "audit": {
     "method": "Auditoría retrospectiva por fecha: múltiples controles aleatorios independientes por sorteo, prueba unilateral de aleatorización y bootstrap por bloques temporales.",
-    "simulations": 298,
+    "simulations": 299,
     "randomTrialsPerDraw": 200,
     "nullReplicates": 5000,
     "bootstrapReplicates": 3000,
     "blockLength": 7,
-    "modelMeanHits": 0.6644,
+    "modelMeanHits": 0.6689,
     "randomMeanHits": 0.7371,
     "expectedUniformMeanHits": 0.7347,
-    "deltaVsRandom": -0.0727,
+    "deltaVsRandom": -0.0682,
     "ci95Delta": [
-      -0.1612,
-      0.0173
+      -0.1627,
+      0.019
     ],
-    "pValueOneSided": 0.9484,
+    "pValueOneSided": 0.9356,
     "supportsHistoricalSignal": false,
     "conclusion": "No hay evidencia estadística clara de ventaja frente al azar en esta evaluación histórica.",
     "caution": "Análisis retrospectivo exploratorio. El histórico ya ha sido usado durante el desarrollo; no equivale a una prueba independiente ni garantiza resultados futuros."
@@ -93602,120 +93891,120 @@
     {
       "window": 5,
       "status": "ready",
-      "simulations": 300,
-      "meanHits": 0.6633,
+      "simulations": 301,
+      "meanHits": 0.6678,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
-      "randomMeanHits": 0.7351,
-      "deltaVsRandom": -0.0717,
+      "randomMeanHits": 0.7352,
+      "deltaVsRandom": -0.0674,
       "ci95Delta": [
-        -0.1667,
-        0.0204
+        -0.1652,
+        0.0207
       ],
-      "pValueOneSided": 0.9331,
+      "pValueOneSided": 0.9441,
       "supportsHistoricalSignal": false
     },
     {
       "window": 7,
       "status": "ready",
-      "simulations": 298,
-      "meanHits": 0.6644,
+      "simulations": 299,
+      "meanHits": 0.6689,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
-      "randomMeanHits": 0.7343,
-      "deltaVsRandom": -0.0699,
+      "randomMeanHits": 0.7344,
+      "deltaVsRandom": -0.0656,
       "ci95Delta": [
-        -0.1647,
-        0.0252
+        -0.1627,
+        0.0274
       ],
-      "pValueOneSided": 0.954,
+      "pValueOneSided": 0.9311,
       "supportsHistoricalSignal": false
     },
     {
       "window": 10,
       "status": "ready",
-      "simulations": 295,
-      "meanHits": 0.6678,
+      "simulations": 296,
+      "meanHits": 0.6723,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
-      "randomMeanHits": 0.7351,
-      "deltaVsRandom": -0.0673,
+      "randomMeanHits": 0.735,
+      "deltaVsRandom": -0.0627,
       "ci95Delta": [
-        -0.1711,
-        0.0211
+        -0.1693,
+        0.0199
       ],
-      "pValueOneSided": 0.9391,
+      "pValueOneSided": 0.9311,
       "supportsHistoricalSignal": false
     },
     {
       "window": 15,
       "status": "ready",
-      "simulations": 290,
-      "meanHits": 0.6655,
+      "simulations": 291,
+      "meanHits": 0.6701,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
-      "randomMeanHits": 0.7406,
-      "deltaVsRandom": -0.075,
+      "randomMeanHits": 0.7404,
+      "deltaVsRandom": -0.0703,
       "ci95Delta": [
-        -0.1841,
-        0.0124
+        -0.1853,
+        0.0169
       ],
-      "pValueOneSided": 0.9331,
+      "pValueOneSided": 0.9291,
       "supportsHistoricalSignal": false
     },
     {
       "window": 20,
       "status": "ready",
-      "simulations": 285,
-      "meanHits": 0.6632,
+      "simulations": 286,
+      "meanHits": 0.6678,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
-      "randomMeanHits": 0.7439,
-      "deltaVsRandom": -0.0807,
+      "randomMeanHits": 0.744,
+      "deltaVsRandom": -0.0762,
       "ci95Delta": [
-        -0.1962,
-        -0.0092
+        -0.1916,
+        -0.0056
       ],
-      "pValueOneSided": 0.951,
+      "pValueOneSided": 0.9311,
       "supportsHistoricalSignal": false
     },
     {
       "window": 30,
       "status": "ready",
-      "simulations": 275,
-      "meanHits": 0.6545,
+      "simulations": 276,
+      "meanHits": 0.6594,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
       "randomMeanHits": 0.7353,
-      "deltaVsRandom": -0.0808,
+      "deltaVsRandom": -0.0759,
       "ci95Delta": [
-        -0.206,
-        0.0177
+        -0.2052,
+        0.0199
       ],
-      "pValueOneSided": 0.956,
+      "pValueOneSided": 0.9391,
       "supportsHistoricalSignal": false
     },
     {
       "window": 50,
       "status": "ready",
-      "simulations": 255,
-      "meanHits": 0.6627,
+      "simulations": 256,
+      "meanHits": 0.668,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "randomAtLeastFourProbability": 0.000987141135152236,
-      "randomMeanHits": 0.7327,
-      "deltaVsRandom": -0.07,
+      "randomMeanHits": 0.7324,
+      "deltaVsRandom": -0.0645,
       "ci95Delta": [
-        -0.2162,
-        0.0216
+        -0.2132,
+        0.0225
       ],
-      "pValueOneSided": 0.9331,
+      "pValueOneSided": 0.9361,
       "supportsHistoricalSignal": false
     }
   ],
@@ -94137,21 +94426,105 @@
       "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-01-de-noviembre-de-2026",
       "forecastHash": "6ff30afad0265ec6ef48bed3b5604c1f483ddf7492865e8dbc94b17a603d28a8",
       "evaluationType": "prospective"
+    },
+    {
+      "targetDate": "2026-11-02",
+      "issuedAt": "2026-11-01T22:26:41+01:00",
+      "trainedThrough": "2026-11-01",
+      "version": "2.9.0",
+      "window": 7,
+      "numbers": [
+        9,
+        13,
+        22,
+        26,
+        35,
+        48
+      ],
+      "secondNumbers": [
+        13,
+        16,
+        22,
+        23,
+        26,
+        46
+      ],
+      "combinations": [
+        [
+          9,
+          13,
+          22,
+          26,
+          35,
+          48
+        ],
+        [
+          13,
+          16,
+          22,
+          23,
+          26,
+          46
+        ]
+      ],
+      "combinationHits": [
+        2,
+        1
+      ],
+      "actual": [
+        8,
+        19,
+        26,
+        27,
+        35,
+        36
+      ],
+      "hits": 2,
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-02-de-noviembre-de-2026",
+      "forecastHash": "0b8d2cb262cf40e271d54a5a20d3c3e0bdc8f789740c99c60ac5ccd8a803e263",
+      "evaluationType": "prospective"
     }
   ],
   "prospective": {
-    "issuedCount": 9,
-    "evaluatedCount": 8,
+    "issuedCount": 10,
+    "evaluatedCount": 9,
     "pendingCount": 1,
-    "latestTargetDate": "2026-11-02",
+    "latestTargetDate": "2026-11-03",
     "records": [
+      {
+        "targetDate": "2026-11-03",
+        "trainedThrough": "2026-11-02",
+        "issuedAt": "2026-11-02T21:54:10+01:00",
+        "version": "2.10.0",
+        "window": 7,
+        "status": "pending",
+        "numbers": [
+          8,
+          13,
+          22,
+          26,
+          35,
+          48
+        ],
+        "secondNumbers": [
+          22,
+          23,
+          26,
+          27,
+          35,
+          46
+        ],
+        "actual": null,
+        "hits": null,
+        "secondHits": null
+      },
       {
         "targetDate": "2026-11-02",
         "trainedThrough": "2026-11-01",
         "issuedAt": "2026-11-01T22:26:41+01:00",
         "version": "2.9.0",
         "window": 7,
-        "status": "pending",
+        "status": "evaluated",
         "numbers": [
           9,
           13,
@@ -94168,9 +94541,16 @@
           26,
           46
         ],
-        "actual": null,
-        "hits": null,
-        "secondHits": null
+        "actual": [
+          8,
+          19,
+          26,
+          27,
+          35,
+          36
+        ],
+        "hits": 2,
+        "secondHits": 1
       },
       {
         "targetDate": "2026-11-01",
@@ -94420,20 +94800,20 @@
   },
   "prospectiveAudit": {
     "method": "Auditoría retrospectiva por fecha: múltiples controles aleatorios independientes por sorteo, prueba unilateral de aleatorización y bootstrap por bloques temporales.",
-    "simulations": 8,
+    "simulations": 9,
     "randomTrialsPerDraw": 500,
     "nullReplicates": 5000,
     "bootstrapReplicates": 3000,
     "blockLength": 7,
-    "modelMeanHits": 1.125,
-    "randomMeanHits": 0.75,
+    "modelMeanHits": 1.2222,
+    "randomMeanHits": 0.7536,
     "expectedUniformMeanHits": 0.7347,
-    "deltaVsRandom": 0.375,
+    "deltaVsRandom": 0.4687,
     "ci95Delta": [
-      0.25,
-      0.375
+      0.1231,
+      0.4789
     ],
-    "pValueOneSided": 0.1182,
+    "pValueOneSided": 0.0536,
     "supportsHistoricalSignal": false,
     "conclusion": "No hay evidencia estadística clara de ventaja frente al azar en esta evaluación histórica.",
     "caution": "Análisis retrospectivo exploratorio. El histórico ya ha sido usado durante el desarrollo; no equivale a una prueba independiente ni garantiza resultados futuros."
