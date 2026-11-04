@@ -78,7 +78,7 @@ def main():
             doc["draws"] = draws
             doc["latestDate"] = draws[0]["date"]
             doc["checkedAt"] = dt.datetime.now(dt.timezone.utc).isoformat()
-            path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+            path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             status, message = "success", f"Sorteo {row['date']} guardado: {', '.join(map(str, row['numbers']))}; complementario {row['complementario']}; reintegro {row['reintegro']}."
 
     except Exception as exc:
