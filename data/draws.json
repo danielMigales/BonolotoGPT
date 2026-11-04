@@ -2,10 +2,25 @@
   "schemaVersion": 1,
   "startDate": "2026-01-01",
   "source": "SELAE",
-  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-11-03T03:27:24.252492+00:00",
-  "latestDate": "2026-11-02",
+  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
+  "checkedAt": "2026-11-04T02:13:27.246924+00:00",
+  "latestDate": "2026-11-03",
   "draws": [
+    {
+      "id": "BONO-20261103",
+      "date": "2026-11-03",
+      "numbers": [
+        11,
+        15,
+        22,
+        31,
+        32,
+        43
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-03-de-noviembre-de-2026",
+      "complementario": 35,
+      "reintegro": 0
+    },
     {
       "id": "BONO-20261102",
       "date": "2026-11-02",
