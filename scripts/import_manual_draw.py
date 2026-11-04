@@ -71,14 +71,16 @@ def main():
         by_date = {item["date"]: item for item in doc.get("draws", [])}
         previous = by_date.get(row["date"])
         if previous and previous.get("numbers") == row["numbers"] and previous.get("complementario") == row["complementario"] and previous.get("reintegro") == row["reintegro"]:
-            raise ValueError("Ese sorteo ya está guardado con los mismos datos; no se ha duplicado.")
-        by_date[row["date"]] = row
-        draws = sorted(by_date.values(), key=lambda item: item["date"], reverse=True)
-        doc["draws"] = draws
-        doc["latestDate"] = draws[0]["date"]
-        doc["checkedAt"] = dt.datetime.now(dt.timezone.utc).isoformat()
-        path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        status, message = "success", f"Sorteo {row['date']} guardado: {', '.join(map(str, row['numbers']))}; complementario {row['complementario']}; reintegro {row['reintegro']}."
+            status, message = "success", f"Sorteo {row['date']} ya estaba guardado con los mismos datos; se continúa con la publicación de la web."
+        else:
+            by_date[row["date"]] = row
+            draws = sorted(by_date.values(), key=lambda item: item["date"], reverse=True)
+            doc["draws"] = draws
+            doc["latestDate"] = draws[0]["date"]
+            doc["checkedAt"] = dt.datetime.now(dt.timezone.utc).isoformat()
+            path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+            status, message = "success", f"Sorteo {row['date']} guardado: {', '.join(map(str, row['numbers']))}; complementario {row['complementario']}; reintegro {row['reintegro']}."
+
     except Exception as exc:
         status, message = "error", str(exc)
     if output:
