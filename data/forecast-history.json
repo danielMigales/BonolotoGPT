@@ -587,5 +587,62 @@
     "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-04-de-noviembre-de-2026",
     "forecastHash": "917edfc184ed76462c8ec045dcb13cee1a9004335224fce1ff332a1aa69896c9",
     "evaluationType": "prospective"
+  },
+  {
+    "targetDate": "2026-11-05",
+    "issuedAt": "2026-11-04T22:02:36+01:00",
+    "trainedThrough": "2026-11-04",
+    "version": "2.10.0",
+    "window": 7,
+    "numbers": [
+      8,
+      11,
+      22,
+      26,
+      35,
+      48
+    ],
+    "secondNumbers": [
+      11,
+      13,
+      22,
+      23,
+      26,
+      46
+    ],
+    "combinations": [
+      [
+        8,
+        11,
+        22,
+        26,
+        35,
+        48
+      ],
+      [
+        11,
+        13,
+        22,
+        23,
+        26,
+        46
+      ]
+    ],
+    "combinationHits": [
+      2,
+      1
+    ],
+    "actual": [
+      10,
+      14,
+      20,
+      26,
+      35,
+      42
+    ],
+    "hits": 2,
+    "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-05-de-noviembre-de-2026",
+    "forecastHash": "b66e866938c192614c32de0cbe172d089388d3b48e76304f078494f9265db774",
+    "evaluationType": "prospective"
   }
 ]
