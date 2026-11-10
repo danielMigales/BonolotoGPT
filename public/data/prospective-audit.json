@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 2,
+  "generatedFrom": [
+    "data/forecast-history.json",
+    "data/draws.json"
+  ],
+  "scope": "Solo predicciones prospectivas guardadas antes del sorteo; no se reconstruyen combinaciones retrospectivas.",
+  "allRecorded": {
+    "n": 16,
+    "totalHits": 21,
+    "meanHits": 1.3125,
+    "expectedTotalHitsAtRandom": 11.755102040816327,
+    "exactOneSidedPValue": 0.0034427487430392753,
+    "hitCounts": {
+      "0": 3,
+      "1": 6,
+      "2": 6,
+      "3": 1,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    }
+  },
+  "cryptographicallyVerified": {
+    "n": 12,
+    "totalHits": 14,
+    "meanHits": 1.1666666666666667,
+    "expectedTotalHitsAtRandom": 8.816326530612244,
+    "exactOneSidedPValue": 0.042966943273510576,
+    "hitCounts": {
+      "0": 3,
+      "1": 4,
+      "2": 5,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    }
+  },
+  "verification": {
+    "verifiedCount": 12,
+    "legacyUnverifiableCount": 3,
+    "issueCount": 1,
+    "issues": [
+      "2026-10-23: hash SHA-256 inválido o versión desconocida"
+    ],
+    "warnings": [
+      "2026-10-20: registro heredado; hash de combinación no verificable",
+      "2026-10-21: registro heredado; hash de combinación no verificable",
+      "2026-10-22: registro heredado; hash de combinación no verificable"
+    ]
+  },
+  "coverage": {
+    "issuedCount": 16,
+    "drawDatesWithoutPrediction": [
+      "2026-10-24",
+      "2026-10-25",
+      "2026-10-26",
+      "2026-10-27",
+      "2026-10-28"
+    ],
+    "missingCount": 5
+  },
+  "randomModel": {
+    "expectedHitsPerCombination": 0.7346938775510204,
+    "hitDistribution": {
+      "0": 0.4359649755116915,
+      "1": 0.4130194504847604,
+      "2": 0.13237802900152576,
+      "3": 0.017650403866870102,
+      "4": 0.000968619724401408,
+      "5": 1.8449899512407772e-05,
+      "6": 7.151123842018516e-08
+    },
+    "method": "Distribución hipergeométrica exacta (49 números, 6 elegidos, 6 sorteados), convolución independiente y cola superior del total."
+  },
+  "interpretation": "El contraste de la muestra verificada es exploratorio. Hay pocos registros, se consulta repetidamente y el sistema no tenía un protocolo de análisis prerregistrado; por tanto el p-valor no confirma una ventaja predictiva. Mantener registro prospectivo continuo y validar en una muestra independiente mucho mayor."
+}
