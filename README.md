@@ -57,3 +57,10 @@ El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el hist�
 El workflow **Validar BonolotoGPT** ejecuta las pruebas y valida los archivos estáticos generados para GitHub Pages.
 
 Nunca se deben inventar resultados ni rellenar el histórico con datos de ejemplo. Si las fuentes no proporcionan datos válidos, la actualización debe fallar en vez de publicar resultados inventados.
+
+
+## Auditoría estadística prospectiva (automática)
+
+`scripts/audit_prospective.py` calcula una auditoría reproducible usando exclusivamente registros `evaluationType=prospective`: recalcula aciertos, detecta fechas duplicadas, resultados inconsistentes y posible fuga temporal (`trainedThrough >= targetDate`), cuantifica los sorteos sin predicción dentro del intervalo y compara el total de aciertos con el azar uniforme mediante la **cola exacta** de la convolución hipergeométrica (49 números, 6 elegidos, 6 sorteados). No simula ni reconstruye predicciones pasadas. El workflow ejecuta el auditor y publica su salida en `public/data/prospective-audit.json`; las pruebas cubren la distribución y el cálculo de la cola.
+
+El p-valor es descriptivo y unilateral, no una prueba definitiva de que el modelo tenga ventaja: las muestras pequeñas son muy inestables y cualquier análisis repetido/selección de modelos exige corrección por multiplicidad y validación prospectiva independiente. La auditoría no recomienda apuestas ni predice premios.
