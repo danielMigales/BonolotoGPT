@@ -44,6 +44,28 @@ class ProspectiveForecastLogTests(unittest.TestCase):
         self.assertFalse(record_forecast(self.draws, self.report, self.issued, "2026-10-20T23:05:00+02:00"))
         self.assertEqual(self.read(self.issued), [original])
 
+    def test_timestamp_is_bound_to_hash_and_timezone_is_required(self):
+        self.assertTrue(record_forecast(
+            self.draws, self.report, self.issued, "2026-10-20T23:00:00+02:00"
+        ))
+        issued = self.read(self.issued)
+        self.assertEqual(issued[0]["hashVersion"], 2)
+        issued[0]["issuedAt"] = "2026-10-20T22:00:00+02:00"
+        self.write(self.issued, issued)
+        draws = self.read(self.draws)
+        draws["draws"].append({
+            "date": "2026-10-21", "numbers": [7, 8, 20, 21, 22, 23], "source": "official"
+        })
+        self.write(self.draws, draws)
+        with self.assertRaisesRegex(ValueError, "Huella SHA-256 inválida"):
+            archive_forecasts(self.draws, self.issued, self.history)
+
+    def test_rejects_timezone_naive_and_post_cutoff_emission(self):
+        with self.assertRaisesRegex(ValueError, "zona horaria explícita"):
+            record_forecast(self.draws, self.report, self.issued, "2026-10-20T23:00:00")
+        with self.assertRaisesRegex(ValueError, "antes de las 21:30"):
+            record_forecast(self.draws, self.report, self.issued, "2026-10-21T21:30:00+02:00")
+
     def test_refuses_to_record_a_forecast_after_its_target_result_exists(self):
         report = self.read(self.report)
         report["forecast"]["targetDate"] = "2026-10-20"

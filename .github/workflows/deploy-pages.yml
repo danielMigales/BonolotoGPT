@@ -63,6 +63,7 @@ jobs:
         run: |
           npm run build
           python scripts/record_forecast.py
+          python scripts/audit_prospective.py
           npm run build
       - name: Ejecutar las pruebas
         run: npm test

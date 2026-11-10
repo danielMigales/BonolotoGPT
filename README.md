@@ -19,7 +19,7 @@ La interfaz de análisis requiere al menos **8 sorteos**: 7 para formar la prime
 
 ## Registro prospectivo de predicciones
 
-El workflow guarda cada combinación en `data/forecast-issued.json` antes de que exista el resultado de su fecha objetivo. Cada registro conserva la fecha de emisión, los datos usados, la versión, la ventana, las dos combinaciones de seis números y una huella SHA-256; si ya existe una predicción para esa fecha, no se reemplaza. Cuando se publica el resultado, `scripts/archive_forecast.py` evalúa ambas combinaciones originales y guarda los aciertos de cada una en `data/forecast-history.json`. Las predicciones históricas anteriores al registro prospectivo no se consideran evidencia independiente. La comparación prospectiva empieza con los registros emitidos por este mecanismo y no garantiza ventaja predictiva.
+El workflow guarda cada combinación en `data/forecast-issued.json` antes de que exista el resultado de su fecha objetivo. Cada registro conserva la fecha de emisión, los datos usados, la versión, la ventana, las dos combinaciones de seis números y una huella SHA-256. Desde la versión 2 de la huella, `issuedAt` también queda incluido en el contenido firmado: modificar la hora invalida la huella. El registrador exige una marca temporal ISO 8601 con zona horaria y rechaza emisiones desde las 21:30 (hora de Madrid) del día objetivo. Los registros históricos con huella v1 siguen siendo verificables con el formato anterior; si ya existe una predicción para esa fecha, no se reemplaza. Cuando se publica el resultado, `scripts/archive_forecast.py` evalúa ambas combinaciones originales y guarda los aciertos de cada una en `data/forecast-history.json`. Las predicciones históricas anteriores al registro prospectivo no se consideran evidencia independiente. La comparación prospectiva empieza con los registros emitidos por este mecanismo y no garantiza ventaja predictiva.
 
 ## Archivos principales
 
@@ -57,3 +57,10 @@ El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el hist�
 El workflow **Validar BonolotoGPT** ejecuta las pruebas y valida los archivos estáticos generados para GitHub Pages.
 
 Nunca se deben inventar resultados ni rellenar el histórico con datos de ejemplo. Si las fuentes no proporcionan datos válidos, la actualización debe fallar en vez de publicar resultados inventados.
+
+
+## Auditoría estadística prospectiva (automática)
+
+`scripts/audit_prospective.py` calcula una auditoría reproducible usando exclusivamente registros `evaluationType=prospective`: recalcula aciertos, detecta fechas duplicadas, resultados inconsistentes y posible fuga temporal (`trainedThrough >= targetDate`), cuantifica los sorteos sin predicción dentro del intervalo y compara el total de aciertos con el azar uniforme mediante la **cola exacta** de la convolución hipergeométrica (49 números, 6 elegidos, 6 sorteados). No simula ni reconstruye predicciones pasadas. El workflow ejecuta el auditor y publica su salida en `public/data/prospective-audit.json`; las pruebas cubren la distribución y el cálculo de la cola.
+
+El informe separa todos los registros de la muestra con integridad criptográfica verificable. Los registros heredados cuya huella no puede comprobarse se muestran como advertencias y no entran en la muestra verificada. Antes de contar un registro verificado se valida el hash, la hora de emisión con zona horaria, el corte conservador de las 21:30 de Madrid, la fecha de entrenamiento, el resultado contra el histórico y el recálculo de aciertos. También se detectan sorteos con resultado cargado pero sin predicción emitida. El p-valor exacto es exploratorio, no una prueba definitiva: hay pocos datos, observación repetida y ausencia de un protocolo prerregistrado. Se necesita una muestra prospectiva independiente mucho mayor y corrección por comparaciones múltiples. La auditoría no recomienda apuestas ni predice premios.
