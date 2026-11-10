@@ -35,6 +35,12 @@ def _verify_forecast_hash(forecast):
         "secondNumbers": sorted(second_numbers) if isinstance(second_numbers, list) else second_numbers,
         "combinations": [sorted(ticket) if isinstance(ticket, list) else ticket for ticket in forecast.get("combinations", [])],
     }
+    if forecast.get("hashVersion") == 2:
+        # V2 binds the timestamp to the prediction so it cannot be edited
+        # independently of the combination and training metadata.
+        payload["issuedAt"] = forecast.get("issuedAt")
+    elif forecast.get("hashVersion") not in (None, 1):
+        raise ValueError("Versión de huella desconocida para la predicción " + str(forecast.get("targetDate")))
     expected = hashlib.sha256(
         json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
