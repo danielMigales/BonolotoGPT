@@ -176,7 +176,7 @@ def main():
     draws_doc = json.loads(DRAWS.read_text(encoding="utf-8"))
     report = audit(history, draws_doc.get("draws", []))
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     v = report["cryptographicallyVerified"]
     print(f"Auditoría prospectiva: verificadas={v['n']}, aciertos={v['totalHits']}, "
           f"esperados={v['expectedTotalHitsAtRandom']:.2f}, "
