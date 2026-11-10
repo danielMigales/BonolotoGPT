@@ -103,7 +103,7 @@ def main():
     draws_doc = json.loads(DRAWS.read_text(encoding="utf-8"))
     report = audit(history, draws_doc.get("draws", []))
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    OUTPUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Auditoría prospectiva: n={report['sample']['n']}, aciertos={report['observed']['totalHits']}, "
           f"esperados={report['uniformRandomNull']['expectedTotalHits']:.2f}, "
           f"p={report['uniformRandomNull']['exactOneSidedPValue']:.4g}, "
