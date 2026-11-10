@@ -110,7 +110,12 @@ def audit(history, draws):
             problems.append("timestamp de emisión inválido o sin zona horaria")
         hash_ok = _verify_hash(item)
         if not hash_ok:
-            if not item.get("combinations") and not item.get("secondNumbers"):
+            combinations = item.get("combinations")
+            legacy_single = (item.get("hashVersion", 1) == 1
+                             and isinstance(combinations, list)
+                             and len(combinations) == 1
+                             and item.get("secondNumbers") is None)
+            if ((not combinations and not item.get("secondNumbers")) or legacy_single):
                 warnings.append(f"{target}: registro heredado; hash de combinación no verificable")
             else:
                 problems.append("hash SHA-256 inválido o versión desconocida")
