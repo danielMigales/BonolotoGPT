@@ -2,7 +2,7 @@
 """Registra de forma inmutable una predicción publicada antes de su sorteo."""
 import hashlib
 import json
-from datetime import datetime
+from datetime import date, datetime, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -58,6 +58,18 @@ def record_forecast(draws_path=DRAWS_PATH, report_path=REPORT_PATH,
         print(f"La predicción de {target} ya estaba registrada; se conserva sin cambios.")
         return False
 
+    timestamp = issued_at or datetime.now(ZoneInfo("Europe/Madrid")).isoformat(timespec="seconds")
+    try:
+        parsed_timestamp = datetime.fromisoformat(timestamp)
+        target_date = date.fromisoformat(target)
+    except (TypeError, ValueError) as error:
+        raise ValueError("Fecha de emisión u objetivo inválida; usa ISO 8601.") from error
+    if parsed_timestamp.tzinfo is None or parsed_timestamp.utcoffset() is None:
+        raise ValueError("La fecha de emisión debe incluir zona horaria explícita.")
+    draw_cutoff = datetime.combine(target_date, time(21, 30), ZoneInfo("Europe/Madrid"))
+    if parsed_timestamp.astimezone(ZoneInfo("Europe/Madrid")) >= draw_cutoff:
+        raise ValueError("La predicción debe emitirse antes de las 21:30 (hora de Madrid) del sorteo objetivo.")
+
     payload = {
         "targetDate": target,
         "trainedThrough": trained_through,
@@ -66,14 +78,14 @@ def record_forecast(draws_path=DRAWS_PATH, report_path=REPORT_PATH,
         "numbers": sorted(numbers),
         "secondNumbers": sorted(second_numbers),
         "combinations": [sorted(numbers), sorted(second_numbers)],
+        "issuedAt": timestamp,
     }
     fingerprint = hashlib.sha256(
         json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
-    timestamp = issued_at or datetime.now(ZoneInfo("Europe/Madrid")).isoformat(timespec="seconds")
     record = {
         **payload,
-        "issuedAt": timestamp,
+        "hashVersion": 2,
         "forecastHash": fingerprint,
         "status": "pending",
     }
