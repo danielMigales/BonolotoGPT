@@ -39,15 +39,14 @@
   },
   "verification": {
     "verifiedCount": 12,
-    "legacyUnverifiableCount": 3,
-    "issueCount": 1,
-    "issues": [
-      "2026-10-23: hash SHA-256 inválido o versión desconocida"
-    ],
+    "legacyUnverifiableCount": 4,
+    "issueCount": 0,
+    "issues": [],
     "warnings": [
       "2026-10-20: registro heredado; hash de combinación no verificable",
       "2026-10-21: registro heredado; hash de combinación no verificable",
-      "2026-10-22: registro heredado; hash de combinación no verificable"
+      "2026-10-22: registro heredado; hash de combinación no verificable",
+      "2026-10-23: registro heredado; hash de combinación no verificable"
     ]
   },
   "coverage": {
