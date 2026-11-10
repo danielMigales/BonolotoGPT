@@ -58,6 +58,17 @@ class ProspectiveAuditTests(unittest.TestCase):
         self.assertEqual(report["cryptographicallyVerified"]["n"], 0)
         self.assertGreater(report["verification"]["issueCount"], 0)
 
+    def test_legacy_single_combination_hash_is_unverifiable_not_tampered(self):
+        item = self.make_record()
+        item["secondNumbers"] = None
+        item["combinations"] = [item["numbers"]]
+        item["hashVersion"] = 1
+        item["forecastHash"] = "legacy-hash"
+        report = audit([item], [{"date": "2026-10-21", "numbers": [1, 2, 3, 4, 5, 6]}])
+        self.assertEqual(report["cryptographicallyVerified"]["n"], 0)
+        self.assertEqual(report["verification"]["legacyUnverifiableCount"], 1)
+        self.assertEqual(report["verification"]["issueCount"], 0)
+
     def test_legacy_record_is_disclosed_but_not_called_verified(self):
         item = self.make_record()
         item.pop("combinations")
