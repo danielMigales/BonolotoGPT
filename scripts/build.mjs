@@ -10,6 +10,7 @@ await writeFile('public/index.html',html);
 await cp('web/icon.svg','public/icon.svg');
 await mkdir('public/data',{recursive:true});
 await cp('data/draws.json','public/data/draws.json');
+await cp('data/jackpot.json','public/data/jackpot.json');
 // La interfaz usa una única ventana fija: 7 sorteos.
 for(const obsoleteWindow of [5,10,15,20,30,50]){
  await rm(`public/data/ai-analysis-${obsoleteWindow}.json`,{force:true});
