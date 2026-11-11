@@ -6,13 +6,13 @@
   ],
   "scope": "Solo predicciones prospectivas guardadas antes del sorteo; no se reconstruyen combinaciones retrospectivas.",
   "allRecorded": {
-    "n": 16,
+    "n": 17,
     "totalHits": 21,
-    "meanHits": 1.3125,
-    "expectedTotalHitsAtRandom": 11.755102040816327,
-    "exactOneSidedPValue": 0.0034427487430392753,
+    "meanHits": 1.2352941176470589,
+    "expectedTotalHitsAtRandom": 12.489795918367347,
+    "exactOneSidedPValue": 0.00768043402753195,
     "hitCounts": {
-      "0": 3,
+      "0": 4,
       "1": 6,
       "2": 6,
       "3": 1,
@@ -22,13 +22,13 @@
     }
   },
   "cryptographicallyVerified": {
-    "n": 12,
+    "n": 13,
     "totalHits": 14,
-    "meanHits": 1.1666666666666667,
-    "expectedTotalHitsAtRandom": 8.816326530612244,
-    "exactOneSidedPValue": 0.042966943273510576,
+    "meanHits": 1.0769230769230769,
+    "expectedTotalHitsAtRandom": 9.551020408163266,
+    "exactOneSidedPValue": 0.07903687776351961,
     "hitCounts": {
-      "0": 3,
+      "0": 4,
       "1": 4,
       "2": 5,
       "3": 0,
@@ -38,7 +38,7 @@
     }
   },
   "verification": {
-    "verifiedCount": 12,
+    "verifiedCount": 13,
     "legacyUnverifiableCount": 4,
     "issueCount": 0,
     "issues": [],
@@ -50,7 +50,7 @@
     ]
   },
   "coverage": {
-    "issuedCount": 16,
+    "issuedCount": 17,
     "drawDatesWithoutPrediction": [
       "2026-10-24",
       "2026-10-25",
