@@ -2,10 +2,25 @@
   "schemaVersion": 1,
   "startDate": "2026-01-01",
   "source": "SELAE",
-  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-11-10T19:30:12.005236+00:00",
-  "latestDate": "2026-11-09",
+  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
+  "checkedAt": "2026-11-11T01:53:07.901644+00:00",
+  "latestDate": "2026-11-10",
   "draws": [
+    {
+      "id": "BONO-20261110",
+      "date": "2026-11-10",
+      "numbers": [
+        4,
+        7,
+        30,
+        37,
+        38,
+        42
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-10-de-noviembre-de-2026",
+      "complementario": 13,
+      "reintegro": 7
+    },
     {
       "id": "BONO-20261109",
       "date": "2026-11-09",
