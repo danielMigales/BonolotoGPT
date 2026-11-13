@@ -986,5 +986,62 @@
     "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-11-de-noviembre-de-2026",
     "forecastHash": "324b17ded7aa7dbd0637d39c6f44c670bf9c2b546e8143799ae4bb8854890cbf",
     "evaluationType": "prospective"
+  },
+  {
+    "targetDate": "2026-11-12",
+    "issuedAt": "2026-11-12T03:54:09+01:00",
+    "trainedThrough": "2026-11-11",
+    "version": "2.10.0",
+    "window": 7,
+    "numbers": [
+      10,
+      14,
+      26,
+      30,
+      34,
+      42
+    ],
+    "secondNumbers": [
+      10,
+      13,
+      22,
+      26,
+      35,
+      42
+    ],
+    "combinations": [
+      [
+        10,
+        14,
+        26,
+        30,
+        34,
+        42
+      ],
+      [
+        10,
+        13,
+        22,
+        26,
+        35,
+        42
+      ]
+    ],
+    "combinationHits": [
+      3,
+      1
+    ],
+    "actual": [
+      3,
+      9,
+      25,
+      26,
+      30,
+      34
+    ],
+    "hits": 3,
+    "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-12-de-noviembre-de-2026",
+    "forecastHash": "4faf2a79c508d22f52091a12a9c811e4533cf2b40f01124e2ab9a643968b3b45",
+    "evaluationType": "prospective"
   }
 ]

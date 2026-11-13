@@ -2,10 +2,25 @@
   "schemaVersion": 1,
   "startDate": "2026-01-01",
   "source": "SELAE",
-  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-11-12T02:53:48.993583+00:00",
-  "latestDate": "2026-11-11",
+  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
+  "checkedAt": "2026-11-13T02:35:03.201089+00:00",
+  "latestDate": "2026-11-12",
   "draws": [
+    {
+      "id": "BONO-20261112",
+      "date": "2026-11-12",
+      "numbers": [
+        3,
+        9,
+        25,
+        26,
+        30,
+        34
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-12-de-noviembre-de-2026",
+      "complementario": 41,
+      "reintegro": 1
+    },
     {
       "id": "BONO-20261111",
       "date": "2026-11-11",
