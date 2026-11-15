@@ -2,10 +2,25 @@
   "schemaVersion": 1,
   "startDate": "2026-01-01",
   "source": "SELAE",
-  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
-  "checkedAt": "2026-11-14T02:18:52.119067+00:00",
-  "latestDate": "2026-11-13",
+  "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos; complemento reciente: https://lawebdelaprimitiva.com/Bonoloto/Historico%20de%20sorteos",
+  "checkedAt": "2026-11-15T01:49:38.384600+00:00",
+  "latestDate": "2026-11-14",
   "draws": [
+    {
+      "id": "BONO-20261114",
+      "date": "2026-11-14",
+      "numbers": [
+        1,
+        12,
+        27,
+        30,
+        36,
+        42
+      ],
+      "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-14-de-noviembre-de-2026",
+      "complementario": 13,
+      "reintegro": 3
+    },
     {
       "id": "BONO-20261113",
       "date": "2026-11-13",

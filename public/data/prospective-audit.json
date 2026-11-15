@@ -6,15 +6,15 @@
   ],
   "scope": "Solo predicciones prospectivas guardadas antes del sorteo; no se reconstruyen combinaciones retrospectivas.",
   "allRecorded": {
-    "n": 20,
-    "totalHits": 26,
-    "meanHits": 1.3,
-    "expectedTotalHitsAtRandom": 14.693877551020408,
-    "exactOneSidedPValue": 0.0014291837991102796,
+    "n": 21,
+    "totalHits": 28,
+    "meanHits": 1.3333333333333333,
+    "expectedTotalHitsAtRandom": 15.428571428571429,
+    "exactOneSidedPValue": 0.0006046282646837088,
     "hitCounts": {
       "0": 4,
       "1": 8,
-      "2": 6,
+      "2": 7,
       "3": 2,
       "4": 0,
       "5": 0,
@@ -40,11 +40,12 @@
   "verification": {
     "verifiedCount": 13,
     "legacyUnverifiableCount": 4,
-    "issueCount": 3,
+    "issueCount": 4,
     "issues": [
       "2026-11-11: hash SHA-256 inválido o versión desconocida",
       "2026-11-12: hash SHA-256 inválido o versión desconocida",
-      "2026-11-13: hash SHA-256 inválido o versión desconocida"
+      "2026-11-13: hash SHA-256 inválido o versión desconocida",
+      "2026-11-14: hash SHA-256 inválido o versión desconocida"
     ],
     "warnings": [
       "2026-10-20: registro heredado; hash de combinación no verificable",
@@ -54,7 +55,7 @@
     ]
   },
   "coverage": {
-    "issuedCount": 20,
+    "issuedCount": 21,
     "drawDatesWithoutPrediction": [
       "2026-10-24",
       "2026-10-25",
