@@ -1,0 +1,9 @@
+{
+  "appId": "com.bonolotogpt.app",
+  "appName": "BonolotoGPT",
+  "webDir": "public",
+  "server": {
+    "url": "https://danielmigales.github.io/BonolotoGPT/",
+    "cleartext": false
+  }
+}
