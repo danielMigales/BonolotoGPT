@@ -22,31 +22,26 @@
     }
   },
   "cryptographicallyVerified": {
-    "n": 13,
-    "totalHits": 14,
-    "meanHits": 1.0769230769230769,
-    "expectedTotalHitsAtRandom": 9.551020408163266,
-    "exactOneSidedPValue": 0.07903687776351961,
+    "n": 17,
+    "totalHits": 21,
+    "meanHits": 1.2352941176470589,
+    "expectedTotalHitsAtRandom": 12.489795918367347,
+    "exactOneSidedPValue": 0.00768043402753195,
     "hitCounts": {
       "0": 4,
-      "1": 4,
-      "2": 5,
-      "3": 0,
+      "1": 6,
+      "2": 6,
+      "3": 1,
       "4": 0,
       "5": 0,
       "6": 0
     }
   },
   "verification": {
-    "verifiedCount": 13,
+    "verifiedCount": 17,
     "legacyUnverifiableCount": 4,
-    "issueCount": 4,
-    "issues": [
-      "2026-11-11: hash SHA-256 inválido o versión desconocida",
-      "2026-11-12: hash SHA-256 inválido o versión desconocida",
-      "2026-11-13: hash SHA-256 inválido o versión desconocida",
-      "2026-11-14: hash SHA-256 inválido o versión desconocida"
-    ],
+    "issueCount": 0,
+    "issues": [],
     "warnings": [
       "2026-10-20: registro heredado; hash de combinación no verificable",
       "2026-10-21: registro heredado; hash de combinación no verificable",
