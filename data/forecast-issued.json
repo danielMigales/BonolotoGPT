@@ -1134,6 +1134,64 @@
     "issuedAt": "2026-11-15T02:49:58+01:00",
     "hashVersion": 2,
     "forecastHash": "b633c5328864466c3056899b31a8eea3c424cac04e541c6902473f2e3559ccaf",
+    "status": "evaluated",
+    "evaluatedAt": "2026-11-15",
+    "actual": [
+      2,
+      13,
+      19,
+      26,
+      36,
+      42
+    ],
+    "hits": 2,
+    "combinationHits": [
+      2,
+      4
+    ]
+  },
+  {
+    "targetDate": "2026-11-16",
+    "trainedThrough": "2026-11-15",
+    "version": "2.10.0",
+    "window": 7,
+    "numbers": [
+      4,
+      13,
+      26,
+      30,
+      36,
+      42
+    ],
+    "secondNumbers": [
+      17,
+      22,
+      30,
+      35,
+      36,
+      42
+    ],
+    "combinations": [
+      [
+        4,
+        13,
+        26,
+        30,
+        36,
+        42
+      ],
+      [
+        17,
+        22,
+        30,
+        35,
+        36,
+        42
+      ]
+    ],
+    "issuedAt": "2026-11-15T22:16:18+01:00",
+    "hashVersion": 2,
+    "forecastHash": "91d539c71a4d82f91448db51b04024dda53ae0a9970b4c43681688b521142359",
     "status": "pending"
   }
 ]

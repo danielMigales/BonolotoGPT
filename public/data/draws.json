@@ -3,9 +3,25 @@
   "startDate": "2026-01-01",
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/",
-  "checkedAt": "2026-11-15T21:12:00.584698+00:00",
-  "latestDate": "2026-11-14",
+  "checkedAt": "2026-11-15T21:16:03.798905+00:00",
+  "latestDate": "2026-11-15",
   "draws": [
+    {
+      "id": "BONO-20261115",
+      "date": "2026-11-15",
+      "numbers": [
+        2,
+        13,
+        19,
+        26,
+        36,
+        42
+      ],
+      "source": "TuLotero (resultado facilitado por el usuario; pendiente de contraste con SELAE)",
+      "complementario": 47,
+      "reintegro": 7,
+      "entryMethod": "manual"
+    },
     {
       "id": "BONO-20261114",
       "date": "2026-11-14",
