@@ -130,6 +130,7 @@ def archive_forecasts(draws_path=DRAWS_PATH, issued_path=ISSUED_PATH,
             "hits": combination_hits[0],
             "source": actual_draw.get("source"),
             "forecastHash": forecast.get("forecastHash"),
+            "hashVersion": forecast.get("hashVersion", 1),
             "evaluationType": "prospective",
         }
         history.append(item)
