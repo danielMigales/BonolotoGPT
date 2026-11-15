@@ -31,7 +31,11 @@ Por tanto:
 - no mejorar la primera a costa de ignorar la segunda;
 - evitar que la segunda sea simplemente una copia de la primera; pero cualquier diversificación debe respetar exactamente los filtros y restricciones del modelo.
 
-## 3. Reglas de trabajo obligatorias
+## 3. Regla específica de la segunda combinación (15-11-2026)
+
+El usuario establece que la segunda apuesta debe contener únicamente números que hayan aparecido **como máximo 3 veces en los últimos 7 sorteos**. Esta restricción se aplica a cada uno de sus seis números y también al backtest. Si no existen seis candidatos, no completar con números que incumplan la regla: mostrar la segunda combinación como no disponible y explicar cuántos candidatos válidos hay.
+
+## 4. Reglas de trabajo obligatorias
 
 1. **Hacer cambios reales** en el repositorio cuando el usuario pida actualizar, arreglar o modificar. No limitarse a dar consejos o planes.
 2. Antes de editar, consultar el código actual y el estado de GitHub Actions. No asumir que el resumen anterior sigue siendo el estado actual.
@@ -44,7 +48,7 @@ Por tanto:
 9. Evitar pedir al usuario que repita información ya presente en este archivo o en el repositorio.
 10. Responder en español, con claridad y sin promesas exageradas.
 
-## 4. Datos y cambios conocidos
+## 5. Datos y cambios conocidos
 
 ### Sorteo del 15-11-2026
 Datos facilitados por el usuario desde la app TuLotero:
@@ -71,7 +75,7 @@ Cambios previos:
 - Versión 2.11.0, commit `3f0a11a...`; test de versión, commit `80c84050...`.
 - Fallback para evitar que ambas combinaciones sean idénticas: commit `ad809d4...`.
 
-## 5. Incidencia técnica pendiente al 15-11-2026
+## 6. Incidencia técnica pendiente al 15-11-2026
 
 Los workflows de validación y despliegue fallaron tras el commit `ad809d4...`:
 - Validate: run `43763593356`
@@ -99,7 +103,7 @@ Enlaces:
 
 Este estado está desactualizable: comprobar ahora el estado real. También revisar si `diversifyCombination(numbers, eligibleScores, 3)` puede fallar cuando hay menos de tres alternativas elegibles. Si no hay candidatos suficientes, el comportamiento correcto es mostrar una advertencia y no saltarse el filtro para completar artificialmente la combinación.
 
-## 6. Siguiente trabajo técnico recomendado
+## 7. Siguiente trabajo técnico recomendado
 
 1. Consultar el último commit y los workflows de GitHub Actions.
 2. Si Validate falla, abrir el job y leer el log completo del test que falla.
@@ -110,7 +114,7 @@ Este estado está desactualizable: comprobar ahora el estado real. También revi
 7. Mostrar métricas comprensibles: distribución de aciertos por apuesta, frecuencia de 2/3/4/5/6 aciertos, media y comparación con azar. Incluir tamaño de muestra e incertidumbre. No confundir una racha o un resultado aislado con capacidad predictiva.
 8. Solo después de Validate y Deploy exitosos, comprobar la web desplegada y comunicarlo.
 
-## 7. Comunicación con el usuario
+## 8. Comunicación con el usuario
 
 El usuario está legítimamente frustrado por haber tenido que repetir requisitos y por cambios que han fallado. No responder con otra lista de promesas vagas. Tomar acción, comprobar y comunicar hechos concretos:
 - qué se ha cambiado;
@@ -122,3 +126,8 @@ No atribuir capacidad predictiva fiable a la IA. El objetivo es medir con rigor 
 
 ---
 **Regla principal para futuras sesiones:** leer este archivo antes de actuar y continuar desde el estado real del repositorio, sin hacer que el usuario vuelva a explicar que quiere dos apuestas igual de importantes y una evaluación estadística honesta desde el principio.
+
+
+## Actualización de la regla secundaria
+
+La versión 2.12.0 introduce el límite de tres apariciones en los últimos siete sorteos para cada número de la segunda combinación. Si no hay seis candidatos, no se completa artificialmente. La validación y el despliegue deben comprobarse antes de darlo por publicado.
