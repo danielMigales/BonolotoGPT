@@ -1,6 +1,6 @@
-// Modelo Bonoloto: analiza exclusivamente los seis números principales.
-// El motor opera exclusivamente con seis números principales.
-export const MODEL_VERSION='2.10.0';
+// Modelo Bonoloto: analiza dos apuestas independientes de seis números.
+// Ambas combinaciones reciben explicación y evaluación retrospectiva propia.
+export const MODEL_VERSION='2.11.0';
 const range=n=>Array.from({length:n},(_,i)=>i);
 const normalize=v=>{const total=v.reduce((a,b)=>a+b,0);return total?v.map(x=>x/total):v.map(()=>1/v.length);};
 const softmax=v=>{const max=Math.max(...v);return normalize(v.map(x=>Math.exp(x-max)));};
