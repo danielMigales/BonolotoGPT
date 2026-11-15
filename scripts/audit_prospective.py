@@ -55,15 +55,24 @@ def _verify_hash(item):
         "combinations": [sorted(ticket) if isinstance(ticket, list) else ticket
                          for ticket in item.get("combinations", [])],
     }
-    version = item.get("hashVersion", 1)
-    if version == 2:
-        payload["issuedAt"] = item.get("issuedAt")
-    elif version != 1:
-        return False
-    expected = hashlib.sha256(
-        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
-    ).hexdigest()
-    return bool(item.get("forecastHash")) and item["forecastHash"] == expected
+    version = item.get("hashVersion")
+    # archive_forecast historically omitted hashVersion when copying issued
+    # records into history. In that case, verify both known formats against
+    # the digest; never infer trust from metadata alone.
+    candidates = (1, 2) if version is None else (version,)
+    for candidate in candidates:
+        if candidate == 2:
+            versioned_payload = {**payload, "issuedAt": item.get("issuedAt")}
+        elif candidate == 1:
+            versioned_payload = payload
+        else:
+            continue
+        expected = hashlib.sha256(
+            json.dumps(versioned_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        if item.get("forecastHash") and item["forecastHash"] == expected:
+            return True
+    return False
 
 
 def audit(history, draws):
