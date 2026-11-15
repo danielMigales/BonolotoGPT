@@ -54,7 +54,7 @@ function predict(history,window,weights,step,strictRecentFrequency=false){
  const visit=start=>{if(chosen.length===6){const value=utility(chosen),combo=chosen.slice().sort((a,b)=>a-b);if(value>bestValue){bestValue=value;bestCombo=combo;}return;}for(let i=start;i<=pool.length-(6-chosen.length);i++){chosen.push(pool[i].number);visit(i+1);chosen.pop();}};
  visit(0);
  if(bestCombo){const visitSecond=start=>{if(chosen.length===6){const combo=chosen.slice().sort((a,b)=>a-b);if(combo.every((n,i)=>n===bestCombo[i]))return;const overlap=chosen.filter(n=>bestCombo.includes(n)).length;const value=utility(chosen)-.12*overlap;if(value>secondValue){secondValue=value;secondCombo=combo;}return;}for(let i=start;i<=pool.length-(6-chosen.length);i++){chosen.push(pool[i].number);visitSecond(i+1);chosen.pop();}};visitSecond(0);}
- const numbers=bestCombo||eligibleScores.slice(0,6).map(x=>x.number).sort((a,b)=>a-b),secondNumbers=secondCombo||diversifyCombination(numbers,numberScores,3);
+ const numbers=bestCombo||eligibleScores.slice(0,6).map(x=>x.number).sort((a,b)=>a-b),secondNumbers=secondCombo||diversifyCombination(numbers,eligibleScores,3);
  return {numbers,secondNumbers,experts,distributions:data.numbers,numberScores,eligibleNumbers:eligibleScores.length,minimumRecentFrequency:2,warning:eligibleScores.length<6?'Solo '+eligibleScores.length+' candidatos cumplen el criterio de repetición; se completa con '+(6-eligibleScores.length)+' números de mejor puntuación general.':null};
 }
 function choose(n,k){if(k<0||k>n)return 0;let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;return v;}
