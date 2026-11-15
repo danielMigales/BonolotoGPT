@@ -1157,5 +1157,63 @@
     "source": "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-14-de-noviembre-de-2026",
     "forecastHash": "9718946b84b772fbee6671da68fc8e4ca11241e063a72e097564a012f3cbdfde",
     "evaluationType": "prospective"
+  },
+  {
+    "targetDate": "2026-11-15",
+    "issuedAt": "2026-11-15T02:49:58+01:00",
+    "trainedThrough": "2026-11-14",
+    "version": "2.10.0",
+    "window": 7,
+    "numbers": [
+      10,
+      13,
+      25,
+      30,
+      37,
+      42
+    ],
+    "secondNumbers": [
+      13,
+      26,
+      30,
+      35,
+      36,
+      42
+    ],
+    "combinations": [
+      [
+        10,
+        13,
+        25,
+        30,
+        37,
+        42
+      ],
+      [
+        13,
+        26,
+        30,
+        35,
+        36,
+        42
+      ]
+    ],
+    "combinationHits": [
+      2,
+      4
+    ],
+    "actual": [
+      2,
+      13,
+      19,
+      26,
+      36,
+      42
+    ],
+    "hits": 2,
+    "source": "TuLotero (resultado facilitado por el usuario; pendiente de contraste con SELAE)",
+    "forecastHash": "b633c5328864466c3056899b31a8eea3c424cac04e541c6902473f2e3559ccaf",
+    "hashVersion": 2,
+    "evaluationType": "prospective"
   }
 ]
