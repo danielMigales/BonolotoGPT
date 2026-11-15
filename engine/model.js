@@ -20,7 +20,7 @@ export function diversifyCombination(primary,numberScores,shared=3){
 }
 // Evita publicar dos veces seguidas la misma combinación exacta. Es una regla de
 // diversificación editorial, no una ventaja estadística ni una mayor probabilidad.
-export // La segunda apuesta solo puede usar números que hayan aparecido como máximo
+// La segunda apuesta solo puede usar números que hayan aparecido como máximo
 // tres veces en los últimos siete sorteos. Si no hay seis candidatos, no se inventa.
 function secondCombination(primary,numberScores){
  const candidates=numberScores.filter(x=>x.recent7<=3).sort((a,b)=>b.selectionScore-a.selectionScore||a.number-b.number).slice(0,18);
@@ -29,7 +29,7 @@ function secondCombination(primary,numberScores){
  const visit=start=>{if(chosen.length===6){const overlap=chosen.filter(n=>primary.includes(n)).length;const score=chosen.reduce((sum,n)=>sum+(candidates.find(x=>x.number===n)?.selectionScore||0),0)-.05*overlap;if(score>bestValue){bestValue=score;bestCombo=chosen.slice().sort((a,b)=>a-b);}return;}for(let i=start;i<=candidates.length-(6-chosen.length);i++){chosen.push(candidates[i].number);visit(i+1);chosen.pop();}};
  visit(0);return bestCombo;
 }
-function avoidExactRepeat(numbers,previous,numberScores){
+export function avoidExactRepeat(numbers,previous,numberScores){
  const current=[...numbers].sort((a,b)=>a-b),prior=[...previous].sort((a,b)=>a-b);
  if(current.length!==6||prior.length!==6||current.some((n,i)=>n!==prior[i]))return current;
  const selected=new Set(current),score=new Map(numberScores.map(x=>[x.number,x.score]));
