@@ -287,7 +287,8 @@ def fetch_recent_history(day):
 def is_bonoloto_rows(rows):
     return bool(rows) and all(
         str(row.get('id', '')).startswith('BONO-')
-        and '/bonoloto/resultados/bonoloto-resultados-del-' in str(row.get('source', '')).lower()
+        and row.get('date') == str(row.get('id', '')).replace('BONO-', '')[:4] + '-' + str(row.get('id', '')).replace('BONO-', '')[4:6] + '-' + str(row.get('id', '')).replace('BONO-', '')[6:8]
+        and isinstance(row.get('numbers'), list) and len(row.get('numbers', [])) == 6
         for row in rows
     )
 
@@ -383,6 +384,12 @@ def main():
                 f'No se pudo completar {day} tras importar el histórico masivo: {exc}. '
                 'Los datos ya recuperados quedan guardados.'
             ) from exc
+
+    # Conserva sorteos introducidos manualmente (p. ej. TuLotero) si SELAE aún no los publica.
+    # Si ya existe un registro oficial para esa fecha, prevalece el oficial.
+    for row in old_draws:
+        if row.get('entryMethod') == 'manual' and row.get('date') not in merged:
+            merged[row['date']] = row
 
     draws = sorted_draws(merged)
     dates = {row['date'] for row in draws}
