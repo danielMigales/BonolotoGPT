@@ -45,7 +45,7 @@ jobs:
           git add data/draws.json data/forecast-history.json
           if ! git diff --cached --quiet; then
             git commit -m "Guardar histórico oficial validado de BonoLoto [skip ci]"
-            git pull --rebase origin main
+            git pull --rebase -X theirs origin main
             git push
           fi
       - name: Guardar el punto de control si falla SELAE
