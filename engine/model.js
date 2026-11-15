@@ -1,6 +1,6 @@
 // Modelo Bonoloto: analiza dos apuestas independientes de seis números.
 // Ambas combinaciones reciben explicación y evaluación retrospectiva propia.
-export const MODEL_VERSION='2.11.0';
+export const MODEL_VERSION='2.12.0';
 const range=n=>Array.from({length:n},(_,i)=>i);
 const normalize=v=>{const total=v.reduce((a,b)=>a+b,0);return total?v.map(x=>x/total):v.map(()=>1/v.length);};
 const softmax=v=>{const max=Math.max(...v);return normalize(v.map(x=>Math.exp(x-max)));};
@@ -20,7 +20,16 @@ export function diversifyCombination(primary,numberScores,shared=3){
 }
 // Evita publicar dos veces seguidas la misma combinación exacta. Es una regla de
 // diversificación editorial, no una ventaja estadística ni una mayor probabilidad.
-export function avoidExactRepeat(numbers,previous,numberScores){
+export // La segunda apuesta solo puede usar números que hayan aparecido como máximo
+// tres veces en los últimos siete sorteos. Si no hay seis candidatos, no se inventa.
+function secondCombination(primary,numberScores){
+ const candidates=numberScores.filter(x=>x.recent7<=3).sort((a,b)=>b.selectionScore-a.selectionScore||a.number-b.number).slice(0,18);
+ if(candidates.length<6)return [];
+ let bestCombo=[],bestValue=-Infinity;const chosen=[];
+ const visit=start=>{if(chosen.length===6){const overlap=chosen.filter(n=>primary.includes(n)).length;const score=chosen.reduce((sum,n)=>sum+(candidates.find(x=>x.number===n)?.selectionScore||0),0)-.05*overlap;if(score>bestValue){bestValue=score;bestCombo=chosen.slice().sort((a,b)=>a-b);}return;}for(let i=start;i<=candidates.length-(6-chosen.length);i++){chosen.push(candidates[i].number);visit(i+1);chosen.pop();}};
+ visit(0);return bestCombo;
+}
+function avoidExactRepeat(numbers,previous,numberScores){
  const current=[...numbers].sort((a,b)=>a-b),prior=[...previous].sort((a,b)=>a-b);
  if(current.length!==6||prior.length!==6||current.some((n,i)=>n!==prior[i]))return current;
  const selected=new Set(current),score=new Map(numberScores.map(x=>[x.number,x.score]));
@@ -45,17 +54,16 @@ function predict(history,window,weights,step,strictRecentFrequency=false){
  const scoreMin=Math.min(...mixed),scoreMax=Math.max(...mixed),repeatMin=Math.min(...repeat.map(x=>x.repeatSignal)),repeatMax=Math.max(...repeat.map(x=>x.repeatSignal));
  const numberScores=rawScores.map(x=>{const scaled=scoreMax>scoreMin?(x.score-scoreMin)/(scoreMax-scoreMin):.5,repeatScaled=repeatMax>repeatMin?(x.repeatSignal-repeatMin)/(repeatMax-repeatMin):.5;return {...x,selectionScore:round(scaled*.40+repeatScaled*.20+(x.recent7/7)*.10+(x.recent15/15)*.02)};}).sort((a,b)=>b.selectionScore-a.selectionScore||b.score-a.score||a.number-b.number);
  const eligibleScores=strictRecentFrequency?numberScores.filter(x=>x.recent7>=2||(x.lastDraw&&x.recent15>=3)):numberScores;
- if(!strictRecentFrequency){const numbers=propose(mixed,shape,random);return {numbers,secondNumbers:diversifyCombination(numbers,numberScores,3),experts,distributions:data.numbers,numberScores,eligibleNumbers:eligibleScores.length,minimumRecentFrequency:null,warning:null};}
+ if(!strictRecentFrequency){const numbers=propose(mixed,shape,random);const secondNumbers=secondCombination(numbers,numberScores);return {numbers,secondNumbers,experts,distributions:data.numbers,numberScores,eligibleNumbers:eligibleScores.length,minimumRecentFrequency:null,secondMaximumWeeklyFrequency:3,warning:secondNumbers.length<6?'No se completa la segunda combinación: solo hay '+numberScores.filter(x=>x.recent7<=3).length+' candidatos con un máximo de 3 apariciones en los últimos 7 sorteos.':null};}
  const eligiblePool=eligibleScores.slice(0,18),fallback=numberScores.filter(x=>!eligibleScores.some(y=>y.number===x.number)).slice(0,Math.max(0,6-eligiblePool.length));
  const pool=[...eligiblePool,...fallback],byNumber=new Map(pool.map(x=>[x.number,x]));
  const utility=combo=>{let value=combo.reduce((s,n)=>s+(byNumber.get(n)?.selectionScore||0),0);const bins=Array(5).fill(0);for(const n of combo)bins[Math.min(4,Math.floor((n-1)/10))]++;for(const count of bins){if(count===1)value+=.10;else if(count===2)value+=.025;else if(count>2)value-=.16*(count-2);}const sorted=combo.slice().sort((a,b)=>a-b);for(let i=1;i<sorted.length;i++)if(sorted[i]===sorted[i-1]+1)value-=.045;for(let i=2;i<sorted.length;i++)if(sorted[i]===sorted[i-1]+1&&sorted[i-1]===sorted[i-2]+1)value-=.32;return value;};
- let bestCombo=null,bestValue=-Infinity,secondCombo=null,secondValue=-Infinity;
- const chosen=[];
+ let bestCombo=null,bestValue=-Infinity;const chosen=[];
  const visit=start=>{if(chosen.length===6){const value=utility(chosen),combo=chosen.slice().sort((a,b)=>a-b);if(value>bestValue){bestValue=value;bestCombo=combo;}return;}for(let i=start;i<=pool.length-(6-chosen.length);i++){chosen.push(pool[i].number);visit(i+1);chosen.pop();}};
  visit(0);
- if(bestCombo){const visitSecond=start=>{if(chosen.length===6){const combo=chosen.slice().sort((a,b)=>a-b);if(combo.every((n,i)=>n===bestCombo[i]))return;const overlap=chosen.filter(n=>bestCombo.includes(n)).length;const value=utility(chosen)-.12*overlap;if(value>secondValue){secondValue=value;secondCombo=combo;}return;}for(let i=start;i<=pool.length-(6-chosen.length);i++){chosen.push(pool[i].number);visitSecond(i+1);chosen.pop();}};visitSecond(0);}
- const numbers=bestCombo||eligibleScores.slice(0,6).map(x=>x.number).sort((a,b)=>a-b),secondNumbers=secondCombo||diversifyCombination(numbers,eligibleScores,3);
- return {numbers,secondNumbers,experts,distributions:data.numbers,numberScores,eligibleNumbers:eligibleScores.length,minimumRecentFrequency:2,warning:eligibleScores.length<6?'Solo '+eligibleScores.length+' candidatos cumplen el criterio de repetición; se completa con '+(6-eligibleScores.length)+' números de mejor puntuación general.':null};
+ const numbers=bestCombo||eligibleScores.slice(0,6).map(x=>x.number).sort((a,b)=>a-b),secondNumbers=secondCombination(numbers,numberScores);
+ const warningParts=[];if(eligibleScores.length<6)warningParts.push('Solo '+eligibleScores.length+' candidatos cumplen el criterio de repetición para la principal.');if(secondNumbers.length<6)warningParts.push('No se completa la segunda combinación: solo hay '+numberScores.filter(x=>x.recent7<=3).length+' candidatos con un máximo de 3 apariciones en los últimos 7 sorteos.');
+ return {numbers,secondNumbers,experts,distributions:data.numbers,numberScores,eligibleNumbers:eligibleScores.length,minimumRecentFrequency:2,secondMaximumWeeklyFrequency:3,warning:warningParts.length?warningParts.join(' '):null};
 }
 function choose(n,k){if(k<0||k>n)return 0;let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;return v;}
 export function randomBaseline(){const den=choose(49,6),hitProbabilities=range(7).map(k=>choose(6,k)*choose(43,6-k)/den);return {expectedHits:36/49,atLeastThreeProbability:hitProbabilities.slice(3).reduce((a,b)=>a+b,0),atLeastFourProbability:hitProbabilities.slice(4).reduce((a,b)=>a+b,0),hitProbabilities};}
