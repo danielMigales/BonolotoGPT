@@ -51,6 +51,27 @@ class ProspectiveAuditTests(unittest.TestCase):
         self.assertEqual(report["cryptographicallyVerified"]["totalHits"], 3)
         self.assertEqual(report["verification"]["issueCount"], 0)
 
+    def test_v2_hash_is_verified_when_archive_omitted_hash_version(self):
+        item = self.make_record()
+        item.pop("hashVersion")
+        report = audit([item], [{"date": "2026-10-21", "numbers": [1, 2, 3, 4, 5, 6]}])
+        self.assertEqual(report["cryptographicallyVerified"]["n"], 1)
+        self.assertEqual(report["verification"]["issueCount"], 0)
+
+    def test_v1_hash_without_version_field_remains_verifiable(self):
+        item = self.make_record()
+        item.pop("hashVersion")
+        payload = {key: item[key] for key in (
+            "targetDate", "trainedThrough", "version", "window",
+            "numbers", "secondNumbers", "combinations"
+        )}
+        item["forecastHash"] = hashlib.sha256(
+            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        report = audit([item], [{"date": "2026-10-21", "numbers": [1, 2, 3, 4, 5, 6]}])
+        self.assertEqual(report["cryptographicallyVerified"]["n"], 1)
+        self.assertEqual(report["verification"]["issueCount"], 0)
+
     def test_tampered_prediction_is_excluded_from_verified_sample(self):
         item = self.make_record()
         item["numbers"] = [1, 2, 3, 4, 8, 9]
