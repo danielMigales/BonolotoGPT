@@ -1,5 +1,5 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
-import {analyze,diversifyCombination,explainSelection} from '../engine/model.js';
+import {analyze,avoidExactRepeat,diversifyCombination,explainSelection} from '../engine/model.js';
 import {auditBacktest} from '../engine/evaluation.js';
 const seed=JSON.parse(await readFile('data/draws.json','utf8'));
 const logic=await readFile('web/logic.js','utf8');
@@ -31,6 +31,8 @@ if(defaultAnalysis.status==='ready'){
   const history=JSON.parse(await readFile('data/forecast-history.json','utf8'));
   const issued=JSON.parse(await readFile('data/forecast-issued.json','utf8').catch(error=>{if(error.code==='ENOENT')return '[]';throw error;}));
   if(Array.isArray(history)&&history.length){
+   const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
+   if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
    // La segunda apuesta conserva su regla explícita: cada número debe aparecer como máximo 3 veces en los últimos 7 sorteos.
    const eligibleSecondScores=defaultAnalysis.forecast.numberScores.filter(x=>x.recent7<=3);
    defaultAnalysis.forecast.secondNumbers=diversifyCombination(defaultAnalysis.forecast.numbers,eligibleSecondScores);
