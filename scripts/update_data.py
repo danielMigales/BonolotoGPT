@@ -315,7 +315,8 @@ def main():
         progress_import_source = progress_doc.get('importSource')
         if not is_bonoloto_rows(progress_draws):
             raise ValueError('El archivo de progreso no contiene un histórico Bonoloto válido; no se sobrescribe.')
-        for row in progress_draws:\n            merged.setdefault(row['date'], row)
+        for row in progress_draws:
+            merged.setdefault(row['date'], row)
     else:
         progress_import_source = None
 
