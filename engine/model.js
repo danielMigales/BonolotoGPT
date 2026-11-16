@@ -54,13 +54,15 @@ function predict(history,window){
  const numberScores=frequency.map((count,i)=>({number:i+1,score:count,selectionScore:count,totalFrequency:count,recent7:recent7[i],recent15:recent15[i],lastDraw:lastSet.has(i+1),repeatTrials:[0,0,0],repeatSuccesses:[0,0,0],repeatRates:[0,0,0],repeatSignal:0}))
   .sort((a,b)=>b.score-a.score||a.number-b.number);
  const numbers=numberScores.slice(0,6).map(x=>x.number).sort((a,b)=>a-b);
- const eligible=numberScores.filter(x=>x.recent7<=3&&!numbers.includes(x.number));
- let secondNumbers=eligible.slice(0,6).map(x=>x.number).sort((a,b)=>a-b);
+ const eligible=numberScores.filter(x=>x.recent7<=3);
+ let secondCandidates=eligible.slice(0,6);
+ if(secondCandidates.length===6&&secondCandidates.every((x,i)=>x.number===numbers[i]))secondCandidates=eligible.slice(0,7).filter(x=>!numbers.includes(x.number)).slice(0,1).concat(secondCandidates.slice(0,5));
+ let secondNumbers=secondCandidates.length===6?secondCandidates.map(x=>x.number).sort((a,b)=>a-b):[];
  // Si la primera y la segunda no pueden ser distintas cumpliendo el filtro,
  // no se fabrica una combinación: se informa como no disponible.
  if(secondNumbers.length!==6)secondNumbers=[];
  const distribution=normalize(frequency.map(x=>x+1));
- return {numbers,secondNumbers,experts:[distribution],distributions:[distribution],numberScores,rankedNumbers:49,secondEligibleNumbers:numberScores.filter(x=>x.recent7<=3).length,minimumRecentFrequency:null,secondMaximumWeeklyFrequency:3,warning:secondNumbers.length===6?null:'No hay seis números elegibles distintos de la primera apuesta con un máximo de 3 apariciones en los últimos 7 sorteos.'};
+ return {numbers,secondNumbers,experts:[distribution],distributions:[distribution],numberScores,rankedNumbers:49,secondEligibleNumbers:eligible.length,minimumRecentFrequency:null,secondMaximumWeeklyFrequency:3,warning:secondNumbers.length===6?null:'No hay seis números elegibles distintos de la primera apuesta con un máximo de 3 apariciones en los últimos 7 sorteos.'};
 }
 function choose(n,k){if(k<0||k>n)return 0;let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;return v;}
 export function randomBaseline(){const den=choose(49,6),hitProbabilities=range(7).map(k=>choose(6,k)*choose(43,6-k)/den);return {expectedHits:36/49,atLeastThreeProbability:hitProbabilities.slice(3).reduce((a,b)=>a+b,0),atLeastFourProbability:hitProbabilities.slice(4).reduce((a,b)=>a+b,0),hitProbabilities};}
