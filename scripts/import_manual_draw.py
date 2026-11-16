@@ -42,9 +42,6 @@ def parse_draw(body, existing):
         raise ValueError("El reintegro debe estar entre 0 y 9.")
     date_text = date.isoformat()
     draws = existing.get("draws", [])
-    latest = max((str(row.get("date", "")) for row in draws), default="")
-    if latest and date_text < latest:
-        raise ValueError(f"Solo se admite el último sorteo o una fecha posterior. El histórico llega a {latest}.")
     row = {
         "id": "BONO-" + date.strftime("%Y%m%d"),
         "date": date_text,
