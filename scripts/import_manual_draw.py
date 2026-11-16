@@ -45,18 +45,12 @@ def parse_draw(body, existing):
     latest = max((str(row.get("date", "")) for row in draws), default="")
     if latest and date_text < latest:
         raise ValueError(f"Solo se admite el último sorteo o una fecha posterior. El histórico llega a {latest}.")
-    official_url = (
-        "https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-"
-        f"{date.day:02d}-de-{('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre')[date.month-1]}-de-{date.year}"
-    )
     row = {
         "id": "BONO-" + date.strftime("%Y%m%d"),
         "date": date_text,
         "numbers": sorted(numbers),
-        "source": official_url,
         "complementario": complementario,
         "reintegro": reintegro,
-        "entryMethod": "manual",
     }
     return row
 
