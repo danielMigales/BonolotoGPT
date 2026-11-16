@@ -131,3 +131,14 @@ No atribuir capacidad predictiva fiable a la IA. El objetivo es medir con rigor 
 ## Actualización de la regla secundaria
 
 La versión 2.12.0 introduce el límite de tres apariciones en los últimos siete sorteos para cada número de la segunda combinación. Si no hay seis candidatos, no se completa artificialmente. La validación y el despliegue deben comprobarse antes de darlo por publicado.
+
+
+## Corrección de criterios y auditoría (16-11-2026)
+
+El usuario ha aclarado expresamente que **nunca pidió que la segunda combinación compartiera exactamente tres números con la primera**. Esa condición procedía de documentación heredada y fue un error tratarla como requisito. Se elimina del motor, de las pruebas y de la descripción funcional.
+
+La única restricción explícitamente confirmada para la segunda apuesta es que cada uno de sus seis números haya aparecido como máximo tres veces en los últimos siete sorteos. La segunda apuesta debe ser distinta de la primera, pero no existe una cuota fija de solapamiento.
+
+Tampoco consta una decisión del usuario que imponga a la primera apuesta el filtro duro «al menos dos apariciones en 7 sorteos o presencia en el último y al menos tres en 15». Ese filtro hacía que el motor devolviera cero números en datos de prueba. Se retira como requisito excluyente: la primera se genera con la puntuación combinada y sus criterios estadísticos, sin descartar números por ese umbral no confirmado.
+
+La validación de 16-11-2026 detectó en el último commit un test fallido (tests/model.test.mjs, esperado 6 y recibido 0). La causa fue la aplicación del filtro principal no confirmado. No se debe volver a imponer ninguna restricción de combinaciones compartidas sin una instrucción explícita del usuario.
