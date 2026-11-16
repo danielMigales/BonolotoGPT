@@ -26,7 +26,8 @@ class ManualDrawTests(unittest.TestCase):
         self.assertEqual(row["numbers"], [7, 8, 9, 10, 11, 12])
         self.assertEqual(row["complementario"], 13)
         self.assertEqual(row["reintegro"], 4)
-        self.assertEqual(row["entryMethod"], "manual")
+        self.assertNotIn("entryMethod", row)
+        self.assertNotIn("source", row)
 
     def test_rejects_repeated_main_numbers(self):
         with self.assertRaisesRegex(ValueError, "seis números distintos"):
