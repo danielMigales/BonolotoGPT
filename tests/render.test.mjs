@@ -21,3 +21,10 @@ test('El panel prospectivo separa evaluadas y pendientes y muestra ambas combina
 test('El panel de rendimiento no presenta la expectativa aleatoria teórica como una simulación emparejada',async()=>{const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');assert.match(html,/Referencia teórica aleatoria/);assert.match(html,/no una simulación emparejada con estas fechas/);assert.match(html,/Muestra pequeña y sin garantía predictiva/);});
 
 test('La interfaz permite introducir manualmente el sorteo con validación de campos',async()=>{const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');assert.match(html,/Introducir resultado/);assert.match(html,/id="manual-draw-form"/);assert.match(html,/manual-complementario/);assert.match(html,/manual-reintegro/);assert.match(html,/SORTEO MANUAL BONOLOTO/);});
+
+test('La construcción estática respeta el filtro de la segunda apuesta y recalcula sus explicaciones',async()=>{
+ const build=await readFile(new URL('../scripts/build.mjs',import.meta.url),'utf8');
+ assert.match(build,/numberScores\.filter\(x=>x\.recent7<=3\)/);
+ assert.match(build,/secondSelectionReasons=explainSelection/);
+ assert.doesNotMatch(build,/diversifyCombination\([^;]+,3\)/);
+});
