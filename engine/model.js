@@ -51,7 +51,7 @@ function predict(history,window){
  for(const draw of history.slice(-7))for(const n of draw.numbers)recent7[n-1]++;
  for(const draw of history.slice(-15))for(const n of draw.numbers)recent15[n-1]++;
  const lastSet=new Set(history.at(-1)?.numbers||[]);
- const numberScores=frequency.map((count,i)=>({number:i+1,score:count,selectionScore:count,totalFrequency:count,recent7:recent7[i],recent15:recent15[i],lastDraw:lastSet.has(i+1),repeatTrials:[0,0,0],repeatSuccesses:[0,0,0],repeatRates:[0,0,0],repeatSignal:0}))
+ const numberScores=frequency.map((count,i)=>({number:i+1,score:count,selectionScore:count,totalFrequency:count,recent7:recent7[i],recent15:recent15[i],lastDraw:lastSet.has(i+1)}))
   .sort((a,b)=>b.score-a.score||a.number-b.number);
  const numbers=numberScores.slice(0,6).map(x=>x.number).sort((a,b)=>a-b);
  const eligible=numberScores.filter(x=>x.recent7<=3);
@@ -68,24 +68,14 @@ function predict(history,window){
 function choose(n,k){if(k<0||k>n)return 0;let v=1;for(let i=1;i<=k;i++)v=v*(n-i+1)/i;return v;}
 export function randomBaseline(){const den=choose(49,6),hitProbabilities=range(7).map(k=>choose(6,k)*choose(43,6-k)/den);return {expectedHits:36/49,atLeastThreeProbability:hitProbabilities.slice(3).reduce((a,b)=>a+b,0),atLeastFourProbability:hitProbabilities.slice(4).reduce((a,b)=>a+b,0),hitProbabilities};}
 export function explainSelection(history,prediction,window,numbers=prediction.numbers){
- const frequency=Array(49).fill(0),recent=Array(49).fill(0),recent15=Array(49).fill(0),lastSet=new Set(history.at(-1)?.numbers||[]),pairCounts=new Map();
+ const frequency=Array(49).fill(0),recent=Array(49).fill(0),recent15=Array(49).fill(0),lastSet=new Set(history.at(-1)?.numbers||[]);
  for(const draw of history)for(const n of draw.numbers)frequency[n-1]++;
- const recentDraws=history.slice(-window);for(const draw of history.slice(-15))for(const n of draw.numbers)recent15[n-1]++;
- for(const draw of recentDraws){
-  for(const n of draw.numbers)recent[n-1]++;
-  for(let i=0;i<draw.numbers.length;i++)for(let j=i+1;j<draw.numbers.length;j++){
-   const a=Math.min(draw.numbers[i],draw.numbers[j]),b=Math.max(draw.numbers[i],draw.numbers[j]),key=a+'-'+b;
-   pairCounts.set(key,(pairCounts.get(key)||0)+1);
-  }
- }
- const ranks=new Map(prediction.numberScores.map((x,i)=>[x.number,{rank:i+1,score:x.score,repeatTrials:x.repeatTrials,repeatSuccesses:x.repeatSuccesses,repeatRates:x.repeatRates,repeatSignal:x.repeatSignal}]));
+ for(const draw of history.slice(-15))for(const n of draw.numbers)recent15[n-1]++;
+ for(const draw of history.slice(-window))for(const n of draw.numbers)recent[n-1]++;
+ const ranks=new Map(prediction.numberScores.map((x,i)=>[x.number,{rank:i+1,score:x.score}]));
  return numbers.map(number=>{
-  const selectedPairs=numbers.filter(other=>other!==number).map(other=>{
-   const a=Math.min(number,other),b=Math.max(number,other);
-   return {numbers:[a,b],count:pairCounts.get(a+'-'+b)||0};
-  }).filter(x=>x.count>0).sort((a,b)=>b.count-a.count).slice(0,2);
-  const rank=ranks.get(number)||{rank:49,score:0};
-  return {number,rank:rank.rank,score:rank.score,totalFrequency:frequency[number-1],recentFrequency:recent[number-1],recent7:recent[number-1],recent15:recent15[number-1],lastDraw:lastSet.has(number),repeatTrials:rank.repeatTrials||[0,0,0],repeatSuccesses:rank.repeatSuccesses||[0,0,0],repeatRates:rank.repeatRates||[],repeatSignal:rank.repeatSignal||0,recentWindow:window,selectedPairs};
+  const rank=ranks.get(number)||{rank:49,score:frequency[number-1]};
+  return {number,rank:rank.rank,score:rank.score,totalFrequency:frequency[number-1],recentFrequency:recent[number-1],recent7:recent[number-1],recent15:recent15[number-1],lastDraw:lastSet.has(number),recentWindow:window,selectedPairs:[]};
  });
 }
 export function updateExpertWeights(logWeights,distributions,actual,learningRate=.04){if(!Array.isArray(logWeights)||!Array.isArray(distributions)||logWeights.length!==distributions.length||!Array.isArray(actual)||actual.length!==6||!Number.isFinite(learningRate)||learningRate<=0)throw Error('Datos inválidos para actualizar los pesos del modelo');const uniformLogProbability=6*Math.log(1/49);for(let j=1;j<distributions.length;j++){const p=distributions[j];if(!Array.isArray(p)||p.length!==49||p.some(x=>!Number.isFinite(x)||x<=0))throw Error('Distribución de experto inválida');const logSkill=actual.reduce((sum,n)=>sum+Math.log(p[n-1]),0)-uniformLogProbability;logWeights[j]=Math.max(-8,Math.min(8,.98*logWeights[j]+learningRate*logSkill));}logWeights[0]=0;return logWeights;}
