@@ -18,6 +18,6 @@ La Bonoloto es aleatoria. No se promete capacidad predictiva ni se presenta el a
 4. Mantener sincronizados motor, interfaz, datos generados y documentación.
 5. Comunicar con precisión qué se ha cambiado y qué se ha verificado.
 
-## Estado de la limpieza
+## Estado
 
-Se está simplificando el motor, la interfaz, los datos generados, las pruebas y los workflows para que solo exista un flujo de propuesta y evaluación. La lógica estadística de la propuesta principal debe permanecer intacta salvo los cambios mecánicos necesarios para eliminar código redundante.
+La limpieza está aplicada en el motor, la interfaz, los datos generados, las pruebas, la documentación y los workflows. El motor está en la versión 2.15.0. La lógica de selección principal se conserva; los cambios se limitaron a retirar dependencias obsoletas y simplificar el flujo.
