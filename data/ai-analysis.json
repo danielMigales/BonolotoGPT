@@ -1211,7 +1211,7 @@
         "selectionScore": 0.0618
       }
     ],
-    "eligibleNumbers": 49,
+    "rankedNumbers": 49,
     "secondEligibleNumbers": 47,
     "minimumRecentFrequency": null,
     "secondMaximumWeeklyFrequency": 3,
@@ -1685,7 +1685,7 @@
         "selectedPairs": []
       }
     ],
-    "eligibleReasons": [
+    "rankingReasons": [
       {
         "number": 42,
         "rank": 1,
