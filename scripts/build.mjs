@@ -33,9 +33,14 @@ if(defaultAnalysis.status==='ready'){
   if(Array.isArray(history)&&history.length){
    const latestForecast=history.slice().sort((a,b)=>b.targetDate.localeCompare(a.targetDate))[0];
    if(latestForecast?.numbers?.length===6)defaultAnalysis.forecast.numbers=avoidExactRepeat(defaultAnalysis.forecast.numbers,latestForecast.numbers,defaultAnalysis.forecast.numberScores);
-   defaultAnalysis.forecast.secondNumbers=diversifyCombination(defaultAnalysis.forecast.numbers,defaultAnalysis.forecast.numberScores,3);
-   // Mantiene las explicaciones alineadas con la combinación final tras evitar repeticiones.
-   defaultAnalysis.forecast.selectionReasons=explainSelection(seed.draws.slice().sort((a,b)=>a.date.localeCompare(b.date)),defaultAnalysis.forecast,fixedWindow);
+   // La segunda apuesta conserva su regla explícita: cada número debe aparecer como máximo 3 veces en los últimos 7 sorteos.
+   const eligibleSecondScores=defaultAnalysis.forecast.numberScores.filter(x=>x.recent7<=3);
+   defaultAnalysis.forecast.secondNumbers=diversifyCombination(defaultAnalysis.forecast.numbers,eligibleSecondScores);
+   defaultAnalysis.forecast.warning=defaultAnalysis.forecast.secondNumbers.length===6?null:'No se completa la segunda combinación: hay '+eligibleSecondScores.length+' candidatos con un máximo de 3 apariciones en los últimos 7 sorteos, o no hay una alternativa distinta suficiente.';
+   // Mantiene ambas explicaciones alineadas con las combinaciones finales.
+   const orderedDraws=seed.draws.slice().sort((a,b)=>a.date.localeCompare(b.date));
+   defaultAnalysis.forecast.selectionReasons=explainSelection(orderedDraws,defaultAnalysis.forecast,fixedWindow);
+   defaultAnalysis.forecast.secondSelectionReasons=explainSelection(orderedDraws,defaultAnalysis.forecast,fixedWindow,defaultAnalysis.forecast.secondNumbers);
    // La última aserción visible pertenece al análisis recién calculado con la ventana fija actual (7 sorteos).
    // El historial prospectivo puede contener versiones antiguas; no debe sobrescribir la aserción del laboratorio.
    defaultAnalysis.evaluationHistory=history.slice(-10);
