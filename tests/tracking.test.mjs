@@ -28,14 +28,14 @@ test('Histórico atrasado no permite registrar propuestas retrospectivas ni desp
  assert.ok(reconcileForecasts([],lifecycleReport,archive.draws,new Date('2026-10-18T18:29:00Z')).active);
  assert.equal(reconcileForecasts([],{...report,warning:'Archivo antiguo'},archive.draws,before).active,null);
 });
-test('La predicción principal respeta el filtro y la secundaria limita a tres apariciones semanales',()=>{const first=report.forecast.numbers,second=report.forecast.secondNumbers;assert.ok(first.length===0||first.length===6);assert.ok(second.length===0||second.length===6);const r7=new Map();archive.draws.slice(0,7).forEach(d=>d.numbers.forEach(n=>r7.set(n,(r7.get(n)||0)+1)));assert.ok(second.every(n=>(r7.get(n)||0)<=3));if(second.length===6)assert.equal(second.filter(n=>first.includes(n)).length,3);if(second.length<6)assert.match(report.forecast.warning,/No se completa la segunda combinación/);});
+test('La predicción principal respeta el filtro y la secundaria limita a tres apariciones semanales',()=>{const first=report.forecast.numbers,second=report.forecast.secondNumbers;assert.ok(first.length===0||first.length===6);assert.ok(second.length===0||second.length===6);const r7=new Map();archive.draws.slice(0,7).forEach(d=>d.numbers.forEach(n=>r7.set(n,(r7.get(n)||0)+1)));assert.ok(second.every(n=>(r7.get(n)||0)<=3));if(second.length===6)assert.notDeepEqual(second,first);if(second.length<6)assert.match(report.forecast.warning,/No se completa la segunda combinación/);});
 
-test('La segunda combinación conserva tres números principales y añade tres alternativos bien puntuados',()=>{
+test('La segunda combinación selecciona seis candidatos puntuados sin imponer solapamiento fijo',()=>{
  const primary=[1,2,3,4,5,6];
  const scores=Array.from({length:49},(_,i)=>({number:i+1,score:49-i}));
- const second=diversifyCombination(primary,scores,3);
+ const second=diversifyCombination(primary,scores);
  assert.equal(second.length,6);
  assert.equal(new Set(second).size,6);
- assert.equal(second.filter(n=>primary.includes(n)).length,3);
- assert.deepEqual(second,[1,2,3,7,8,9]);
+ assert.notDeepEqual(second,primary);
+ assert.deepEqual(second,[1,2,3,4,5,7]);
 });
