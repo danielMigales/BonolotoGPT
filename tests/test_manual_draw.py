@@ -41,10 +41,11 @@ class ManualDrawTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "reintegro"):
             manual_draw.parse_draw(self.body(reintegro="10"), self.existing)
 
-    def test_rejects_older_draw(self):
+    def test_accepts_older_draw_for_any_date_in_the_archive(self):
         old = (dt.date.fromisoformat(self.today) - dt.timedelta(days=1)).isoformat()
-        with self.assertRaisesRegex(ValueError, "histórico llega"):
-            manual_draw.parse_draw(self.body(date=old), self.existing)
+        row = manual_draw.parse_draw(self.body(date=old), self.existing)
+        self.assertEqual(row["date"], old)
+        self.assertNotIn("entryMethod", row)
 
 
 if __name__ == "__main__":
