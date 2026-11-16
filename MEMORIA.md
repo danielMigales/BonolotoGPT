@@ -8,7 +8,8 @@ BonolotoGPT es una aplicación independiente para consultar el histórico oficia
 Cada sorteo se almacena como fecha, identificador oficial, URL oficial y los seis números principales. No se guardan campos auxiliares en el archivo normalizado. La interfaz, las estadísticas, las predicciones, las métricas y el seguimiento utilizan exclusivamente esos seis números.
 
 ## Modelo
-- Versión del motor: 2.2.0.
+- Versión del motor: 2.15.0.
+- La aplicación genera y evalúa una única combinación de seis números.
 - Universo: números del 1 al 49; seis números distintos por combinación.
 - La interfaz muestra los cinco sorteos más recientes y permite consultar el histórico.
 - El Laboratorio IA usa una ventana fija de 7 sorteos y requiere 8 sorteos oficiales para evaluar la primera predicción.
