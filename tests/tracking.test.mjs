@@ -39,3 +39,12 @@ test('La segunda combinación selecciona seis candidatos puntuados sin imponer s
  assert.notDeepEqual(second,primary);
  assert.deepEqual(second,[1,2,3,4,5,7]);
 });
+
+test('La segunda apuesta detecta duplicados aunque el ranking y la combinación estén en distinto orden',()=>{
+ const primary=[18,22,23,26,46,47];
+ const ranked=[23,22,46,18,26,47,35,10].map((number,i)=>({number,score:100-i,selectionScore:100-i,recent7:0}));
+ const second=diversifyCombination(primary,ranked);
+ assert.equal(second.length,6);
+ assert.notDeepEqual(second,primary);
+ assert.deepEqual(second,[18,22,23,26,35,46]);
+});
