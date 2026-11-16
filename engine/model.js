@@ -13,10 +13,12 @@ export function diversifyCombination(primary,numberScores){
  if(!Array.isArray(primary)||primary.length!==6||new Set(primary).size!==6||!Array.isArray(numberScores))throw Error('Parámetros inválidos para diversificar la combinación');
  const ranked=numberScores.slice().sort((a,b)=>(b.selectionScore??b.score)-(a.selectionScore??a.score)||a.number-b.number);
  if(ranked.length<6)return [];
- const selected=ranked.slice(0,6),prior=primary.slice().sort((a,b)=>a-b);
- if(selected.every((x,i)=>x.number===prior[i])){
+ let selected=ranked.slice(0,6);
+ const prior=primary.slice().sort((a,b)=>a-b);
+ const selectedSet=selected.map(x=>x.number).sort((a,b)=>a-b);
+ if(selectedSet.every((n,i)=>n===prior[i])){
   if(!ranked[6])return [];
-  selected[5]=ranked[6];
+  selected=[...selected.slice(0,5),ranked[6]];
  }
  return selected.map(x=>x.number).sort((a,b)=>a-b);
 }
