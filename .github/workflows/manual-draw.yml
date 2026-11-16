@@ -15,7 +15,7 @@ permissions:
   id-token: write
 jobs:
   save-draw:
-    if: github.event_name == 'workflow_dispatch' || (github.event.issue.user.login == 'danielMigales' && startsWith(github.event.issue.title, '[SORTEO MANUAL BONOLOTO]'))
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue.user.login == 'danielMigales' && startsWith(github.event.issue.title, '[RESULTADO BONOLOTO]'))
     runs-on: ubuntu-latest
     steps:
       - name: Obtener código
