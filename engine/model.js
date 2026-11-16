@@ -26,7 +26,7 @@ function secondCombination(primary,numberScores){
  const candidates=numberScores.filter(x=>x.recent7<=3).sort((a,b)=>b.selectionScore-a.selectionScore||a.number-b.number).slice(0,18);
  if(candidates.length<6)return [];
  let bestCombo=[],bestValue=-Infinity;const chosen=[];
- const visit=start=>{if(chosen.length===6){const overlap=chosen.filter(n=>primary.includes(n)).length;const score=chosen.reduce((sum,n)=>sum+(candidates.find(x=>x.number===n)?.selectionScore||0),0)-.05*overlap;if(score>bestValue){bestValue=score;bestCombo=chosen.slice().sort((a,b)=>a-b);}return;}for(let i=start;i<=candidates.length-(6-chosen.length);i++){chosen.push(candidates[i].number);visit(i+1);chosen.pop();}};
+ const visit=start=>{if(chosen.length===6){const overlap=chosen.filter(n=>primary.includes(n)).length;if(overlap!==3)return;const score=chosen.reduce((sum,n)=>sum+(candidates.find(x=>x.number===n)?.selectionScore||0),0);if(score>bestValue){bestValue=score;bestCombo=chosen.slice().sort((a,b)=>a-b);}return;}for(let i=start;i<=candidates.length-(6-chosen.length);i++){chosen.push(candidates[i].number);visit(i+1);chosen.pop();}};
  visit(0);return bestCombo;
 }
 export function avoidExactRepeat(numbers,previous,numberScores){
