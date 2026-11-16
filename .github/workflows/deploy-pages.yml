@@ -1,7 +1,6 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
   schedule:
-    # 23:07 hora de Madrid. Se evita el minuto 00 y no se descartan ejecuciones si GitHub las retrasa.
     - cron: '7 23 * * *'
       timezone: 'Europe/Madrid'
   push:
@@ -34,15 +33,12 @@ jobs:
       - name: Descargar y validar el histórico oficial de BonoLoto
         id: update-data
         run: npm run update-data
-      - name: Contrastar y archivar la predicción que acaba de resolverse
-        if: steps.update-data.outcome == 'success'
-        run: python scripts/archive_forecast.py
-      - name: Guardar el histórico y la evaluación antes de construir y probar
+      - name: Guardar el histórico validado
         if: steps.update-data.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/draws.json data/forecast-history.json
+          git add data/draws.json
           if ! git diff --cached --quiet; then
             git commit -m "Guardar histórico oficial validado de BonoLoto [skip ci]"
             for attempt in 1 2 3; do
@@ -71,21 +67,17 @@ jobs:
               exit 1
             fi
           fi
-      - name: Construir, registrar la predicción futura y regenerar el informe
-        run: |
-          npm run build
-          python scripts/record_forecast.py
-          python scripts/audit_prospective.py
-          npm run build
+      - name: Construir la web y el informe
+        run: npm run build
       - name: Ejecutar las pruebas
         run: npm test
-      - name: Guardar el histórico oficial y los artefactos generados
+      - name: Guardar artefactos generados
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Actualizar histórico oficial de BonoLoto [skip ci]"
+            git commit -m "Actualizar histórico y artefactos de BonoLoto [skip ci]"
             for attempt in 1 2 3; do
               git pull --rebase -X theirs origin main && git push && exit 0
               git rebase --abort || true

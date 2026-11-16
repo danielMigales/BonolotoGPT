@@ -1,71 +1,38 @@
 # BonolotoGPT · Archivo y análisis de Bonoloto
 
-Aplicación web en español para consultar los últimos siete sorteos de Bonoloto, el histórico desde el **1 de enero de 2026** y un laboratorio experimental de análisis.
+Aplicación web en español para consultar los últimos siete sorteos, el histórico desde el 1 de enero de 2026 y un laboratorio de análisis estadístico.
 
-## Qué hace
+## Funciones
 
-- Muestra exclusivamente los **seis números principales** de cada sorteo.
-- Cuenta frecuencias, repeticiones, parejas, distancias y distribución de pares/impares usando únicamente esos seis números.
-- Guarda y analiza exclusivamente los seis números principales; los campos auxiliares no se almacenan en el histórico normalizado.
-- Permite consultar el histórico por fechas, paginar los resultados y descargar el archivo JSON.
-- Analiza secuencialmente las combinaciones anteriores y compara los aciertos con una referencia aleatoria reproducible.
-- Incluye una versión estática para GitHub Pages.
+- Consulta de resultados e histórico por fechas.
+- Recuento de frecuencias, repeticiones, parejas, distancias y distribución de pares/impares.
+- Una propuesta experimental de seis números, explicada con sus puntuaciones y señales históricas.
+- Backtesting secuencial sin utilizar resultados futuros.
+- Comparación con controles aleatorios, intervalos de confianza y valor p.
+- Versión estática para GitHub Pages.
 
-## Laboratorio de análisis
-
-La predicción ofrece **dos combinaciones distintas de seis números**: la primera sigue la puntuación combinada y la segunda selecciona de forma independiente seis números con mejor puntuación entre los que han aparecido como máximo tres veces en los últimos siete sorteos. No se fuerza ningún número compartido con la primera. Ambas usan una ventana fija de **7 sorteos** y combinan siete enfoques estadísticos. El laboratorio añade un estudio retrospectivo de ventanas de **5, 7, 10, 15, 20, 30 y 50 sorteos**, con controles aleatorios, intervalo de confianza y valor p; no selecciona automáticamente una ventana por sus resultados históricos para evitar sobreajuste. El aprendizaje secuencial actualiza los pesos de los métodos frente al valor esperado teórico del azar uniforme (**36/49 aciertos por combinación**), en vez de usar una sola combinación aleatoria como referencia para ajustar los pesos. Para cada prueba, la predicción se genera usando solo sorteos anteriores al resultado que se evalúa. La comparación retrospectiva con controles aleatorios sigue siendo exploratoria: no demuestra por sí sola una ventaja futura ni garantiza cuatro aciertos. El único objetivo del modelo es evaluar los aciertos de los seis números principales.
-
-La interfaz de análisis requiere al menos **8 sorteos**: 7 para formar la primera ventana y uno posterior para evaluar la primera predicción. Mientras no haya datos suficientes, la aplicación muestra un aviso y el proceso de construcción no falla. Las predicciones son experimentales; los patrones pasados no garantizan premios ni una ventaja frente al azar.
-
-## Registro prospectivo de predicciones
-
-El workflow guarda cada combinación en `data/forecast-issued.json` antes de que exista el resultado de su fecha objetivo. Cada registro conserva la fecha de emisión, los datos usados, la versión, la ventana, las dos combinaciones de seis números y una huella SHA-256. Desde la versión 2 de la huella, `issuedAt` también queda incluido en el contenido firmado: modificar la hora invalida la huella. El registrador exige una marca temporal ISO 8601 con zona horaria y rechaza emisiones desde las 21:30 (hora de Madrid) del día objetivo. Los registros históricos con huella v1 siguen siendo verificables con el formato anterior; si ya existe una predicción para esa fecha, no se reemplaza. Cuando se publica el resultado, `scripts/archive_forecast.py` evalúa ambas combinaciones originales y guarda los aciertos de cada una en `data/forecast-history.json`. Las predicciones históricas anteriores al registro prospectivo no se consideran evidencia independiente. La comparación prospectiva empieza con los registros emitidos por este mecanismo y no garantiza ventaja predictiva.
+La Bonoloto es aleatoria. Los patrones pasados no garantizan premios ni una ventaja frente al azar.
 
 ## Archivos principales
 
-- `engine/model.js`: motor estadístico basado exclusivamente en los seis números principales.
+- `engine/model.js`: motor estadístico y backtesting.
 - `web/logic.js`: frecuencias y resumen de aciertos.
 - `web/index.html`: interfaz fuente.
-- `public/index.html`: interfaz estática publicada en GitHub Pages.
-- `data/draws.json`: archivo normalizado de resultados.
-- `scripts/update_data.py`: descarga y validación del histórico; intenta SELAE y puede usar fuentes auxiliares cuando SELAE no responde.
-- `scripts/build.mjs`: genera la web estática y el análisis cuando hay suficientes datos.
+- `public/index.html`: interfaz estática generada.
+- `data/draws.json`: histórico normalizado.
+- `scripts/update_data.py`: descarga y validación del histórico.
+- `scripts/build.mjs`: generación del sitio y los informes.
 
-El campo `source` de cada fila contiene el enlace de la página de resultados de SELAE para esa fecha; **no demuestra por sí solo que esa fila se haya descargado o contrastado individualmente con SELAE**. El metadato `importSource` describe la fuente usada para la importación masiva y/o el complemento reciente. El importador contrasta además las frecuencias agregadas de un tramo con estadísticas publicadas por SELAE, pero ese control agregado no certifica cada combinación individual.
+El campo `source` de cada fila enlaza a la página de resultados de SELAE, pero no demuestra por sí solo que esa fila se haya descargado o contrastado individualmente con SELAE. El importador contrasta también frecuencias agregadas; ese control no certifica cada combinación individual.
 
-El motor recibe solo la fecha y los seis números principales. Los campos auxiliares no intervienen en los cálculos.
+## Ejecución local
 
-## Ejecutar localmente
+Requiere Node.js 22+ y Python 3.12+. Ejecuta `python scripts/update_data.py`, `npm test`, `npm run build` y `python -m http.server 8000 --directory public`. Abre http://localhost:8000.
 
-Requiere Node.js 22+ y Python 3.12+.
-
-```sh
-python scripts/update_data.py
-npm test
-npm run build
-python -m http.server 8000 --directory public
-```
-
-Abrir http://localhost:8000.
-
-## Publicación y actualización
+## Publicación
 
 Repositorio: https://github.com/danielMigales/BonolotoGPT
 
-El workflow **Publicar BonolotoGPT en GitHub Pages** intenta actualizar el histórico, valida los datos, archiva la predicción cuyo sorteo ya tenga resultado, reconstruye la aplicación, ejecuta las pruebas y publica `public/`. Se ejecuta con cada push a `main`, manualmente y mediante una ejecución diaria que espera a las 23:00 de Madrid. El botón de recarga de la web solo vuelve a leer los datos ya publicados; la descarga de datos y la publicación las realiza el workflow. La actualización automática depende de que la descarga y validación de datos finalice correctamente.
+GitHub Actions valida los datos, ejecuta las pruebas, construye la aplicación y publica `public/` en GitHub Pages. La actualización automática depende de que la descarga y validación del histórico finalice correctamente.
 
-El workflow **Validar BonolotoGPT** ejecuta las pruebas y valida los archivos estáticos generados para GitHub Pages.
-
-Nunca se deben inventar resultados ni rellenar el histórico con datos de ejemplo. Si las fuentes no proporcionan datos válidos, la actualización debe fallar en vez de publicar resultados inventados.
-
-
-## Auditoría estadística prospectiva (automática)
-
-`scripts/audit_prospective.py` calcula una auditoría reproducible usando exclusivamente registros `evaluationType=prospective`: recalcula aciertos, detecta fechas duplicadas, resultados inconsistentes y posible fuga temporal (`trainedThrough >= targetDate`), cuantifica los sorteos sin predicción dentro del intervalo y compara el total de aciertos con el azar uniforme mediante la **cola exacta** de la convolución hipergeométrica (49 números, 6 elegidos, 6 sorteados). No simula ni reconstruye predicciones pasadas. El workflow ejecuta el auditor y publica su salida en `public/data/prospective-audit.json`; las pruebas cubren la distribución y el cálculo de la cola.
-
-El informe separa todos los registros de la muestra con integridad criptográfica verificable. Los registros heredados cuya huella no puede comprobarse se muestran como advertencias y no entran en la muestra verificada. Antes de contar un registro verificado se valida el hash, la hora de emisión con zona horaria, el corte conservador de las 21:30 de Madrid, la fecha de entrenamiento, el resultado contra el histórico y el recálculo de aciertos. También se detectan sorteos con resultado cargado pero sin predicción emitida. El p-valor exacto es exploratorio, no una prueba definitiva: hay pocos datos, observación repetida y ausencia de un protocolo prerregistrado. Se necesita una muestra prospectiva independiente mucho mayor y corrección por comparaciones múltiples. La auditoría no recomienda apuestas ni predice premios.
-
-
-## Continuidad del proyecto (leer antes de modificar)
-
-La referencia principal para retomar el trabajo es **[CONTEXTO_PROYECTO.md](./CONTEXTO_PROYECTO.md)**. Contiene las decisiones del usuario, el historial de incidencias y los siguientes pasos. Léelo antes de cambiar código. Las dos apuestas tienen la misma importancia y deben generarse, analizarse y evaluarse por separado. No declares una corrección o publicación terminada sin comprobar los tests y el despliegue.
+Nunca se inventan resultados ni se rellenan datos ausentes con ejemplos.

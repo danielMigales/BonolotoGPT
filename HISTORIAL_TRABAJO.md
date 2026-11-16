@@ -1,24 +1,17 @@
 # Historial de trabajo — BonolotoGPT
-Última revisión: 19 de octubre de 2026.
+
+Última revisión: 16 de noviembre de 2026.
 
 ## Decisiones vigentes
+
 - El proyecto se dedica exclusivamente a Bonoloto.
-- La combinación analizada contiene únicamente seis números principales distintos entre 1 y 49.
-- El único objetivo es acertar los seis números. No existen métricas, prioridades, pesos, predicciones ni seguimiento para campos auxiliares.
-- El histórico normalizado contiene resultados desde el 1 de enero de 2026; su integridad se comprueba por calendario y por contraste agregado de frecuencias SELAE.
-- La ventana pública del Laboratorio IA es fija en 7 sorteos.
-- La aplicación requiere 8 sorteos para evaluar la primera predicción.
-- El importador usa el calendario diario configurado en `scripts/update_data.py`; cualquier cambio de calendario debe reflejarse también en las pruebas.
+- La combinación analizada contiene seis números principales distintos entre 1 y 49.
+- El único objetivo es evaluar aciertos sobre los seis números principales.
+- El histórico normalizado conserva los resultados y su procedencia.
+- La ventana pública del Laboratorio IA es fija en siete sorteos.
+- La aplicación requiere ocho sorteos para evaluar la primera predicción.
 - No se declara completada una tarea hasta ejecutar pruebas y revisar la publicación.
 
-## Limpieza aplicada
-- Modelo actualizado a 2.1.0, con seguimiento únicamente de aciertos sobre seis números.
-- Eliminada la interfaz y la lógica del laboratorio asociada a campos auxiliares.
-- El importador normaliza cada resultado a identificador, fecha, seis números y fuente oficial.
-- Se eliminan archivos brutos e informes obsoletos.
-- La documentación técnica describe únicamente las reglas de Bonoloto.
+## Limpieza vigente
 
-## Pendiente
-- Confirmar la descarga individual desde SELAE para cada fecha: el contraste de frecuencias valida el tramo agregado, no demuestra que cada registro haya sido verificado individualmente.
-- Revisar que la ejecución diaria posterior a las 23:00 de Madrid se complete correctamente.
-- No se deben crear sorteos de ejemplo ni presentar datos auxiliares como números principales.
+Se está simplificando el motor, la interfaz, los datos generados, las pruebas y los workflows para que solo exista un flujo de propuesta y evaluación. No deben quedar módulos obsoletos ni dependencias sin uso.
