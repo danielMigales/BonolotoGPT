@@ -315,7 +315,7 @@ def main():
         progress_import_source = progress_doc.get('importSource')
         if not is_bonoloto_rows(progress_draws):
             raise ValueError('El archivo de progreso no contiene un histórico Bonoloto válido; no se sobrescribe.')
-        merged.update({row['date']: row for row in progress_draws})
+        for row in progress_draws:\n            merged.setdefault(row['date'], row)
     else:
         progress_import_source = None
 
@@ -333,11 +333,10 @@ def main():
             # Conserva complementario/reintegro ya registrados solo si la combinación
             # principal coincide con el histórico importado.
             for day, row in bulk.items():
-                previous_row = merged.get(day, {})
-                if previous_row.get('numbers') == row.get('numbers'):
-                    for key in ('complementario', 'reintegro'):
-                        if key in previous_row:
-                            row[key] = previous_row[key]
+                previous_row = merged.get(day)
+                if previous_row is not None:
+                    # Un resultado ya incorporado por el usuario conserva prioridad.
+                    continue
                 merged[day] = row
             import_source = BULK_SOURCE_PAGE
             write_json_atomic(progress_path, {
