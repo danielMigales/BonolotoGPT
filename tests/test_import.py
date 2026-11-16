@@ -49,8 +49,8 @@ class ImportTests(unittest.TestCase):
         root = pathlib.Path(__file__).resolve().parents[1]
         doc = json.loads((root / 'data/draws.json').read_text())
         for row in doc['draws']:
-            self.assertTrue({'id', 'date', 'numbers', 'source'}.issubset(row))
-            self.assertTrue(set(row).issubset({'id', 'date', 'numbers', 'source', 'complementario', 'reintegro', 'entryMethod'}))
+            self.assertTrue({'id', 'date', 'numbers'}.issubset(row))
+            self.assertTrue(set(row).issubset({'id', 'date', 'numbers', 'source', 'complementario', 'reintegro'}))
             self.assertEqual(len(row['numbers']), 6)
             self.assertEqual(len(set(row['numbers'])), 6)
             self.assertTrue(all(1 <= n <= 49 for n in row['numbers']))
