@@ -149,7 +149,7 @@ function renderAi(report){
  aiReport=report;
  $('ai-content').hidden=false;
  $('ai-forecast-date').textContent='Sorteo del '+format(report.forecast.targetDate,{day:'numeric',month:'long',year:'numeric'});
- $('ai-forecast').innerHTML='<div class="forecast-main-balls">'+report.forecast.numbers.map(aiBall).join('')+'</div>';
+ const recentDraws=doc&&Array.isArray(doc.draws)?doc.draws.slice(0,7):[];const recentCounts=new Map();recentDraws.forEach(draw=>draw.numbers.forEach(n=>recentCounts.set(n,(recentCounts.get(n)||0)+1)));const repeatedNumbers=[...recentCounts.entries()].filter(([,count])=>count>1).sort((a,b)=>b[1]-a[1]||a[0]-b[0]);const repeatColors=new Map(repeatedNumbers.map(([n],i)=>[n,i]));const markedBall=n=>{const count=recentCounts.get(n)||0;return ball(n,count,repeatColors.get(n)||0);};$('ai-forecast').innerHTML='<div class="forecast-main-balls">'+report.forecast.numbers.map(markedBall).join('')+'</div>';
  const reasons=(report.forecast.selectionReasons||[]).map(x=>{
   const lags=[1,2,3].map((lag,i)=>{
    const trials=Number(x.repeatTrials?.[i]||0),successes=Number(x.repeatSuccesses?.[i]||0),rate=Number(x.repeatRates?.[i]||0);
