@@ -43,7 +43,7 @@ export function explainSelection(history,prediction,window,numbers=prediction.nu
    pairCounts.set(key,(pairCounts.get(key)||0)+1);
   }
  }
- const ranks=new Map(prediction.numberScores.map((x,i)=>[x.number,{rank:i+1,score:x.score,repeatTrials:x.repeatTrials,repeatSuccesses:x.repeatSuccesses,repeatRates:x.repeatRates,repeatSignal:x.repeatSignal}]));
+ const ranks=new Map(prediction.numberScores.map((x,i)=>[x.number,{rank:i+1,score:x.score,selectionScore:x.selectionScore,repeatTrials:x.repeatTrials,repeatSuccesses:x.repeatSuccesses,repeatRates:x.repeatRates,repeatSignal:x.repeatSignal}]));
  return numbers.map(number=>{
   const selectedPairs=numbers.filter(other=>other!==number).map(other=>{
    const a=Math.min(number,other),b=Math.max(number,other);
