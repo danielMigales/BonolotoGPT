@@ -12,6 +12,6 @@
 - La aplicación requiere ocho sorteos para evaluar la primera predicción.
 - No se declara completada una tarea hasta ejecutar pruebas y revisar la publicación.
 
-## Limpieza vigente
+## Limpieza aplicada
 
-Se está simplificando el motor, la interfaz, los datos generados, las pruebas y los workflows para que solo exista un flujo de propuesta y evaluación. No deben quedar módulos obsoletos ni dependencias sin uso.
+Motor, interfaz, datos generados, pruebas y workflows comparten ahora un único flujo de propuesta y evaluación. Los módulos heredados sin uso se han retirado.
