@@ -6,12 +6,12 @@ Aplicación web en español para consultar los últimos siete sorteos, el histó
 
 - Consulta de resultados e histórico por fechas.
 - Recuento de frecuencias, repeticiones, parejas, distancias y distribución de pares/impares.
-- Una propuesta experimental de seis números, explicada con sus puntuaciones y señales históricas.
+- Una propuesta experimental de seis números, cuya selección utiliza la misma puntuación que ordena el ranking (frecuencia, transición de repetición y recencia), con ajuste estructural de la combinación.
 - Backtesting secuencial sin utilizar resultados futuros.
 - Comparación con controles aleatorios, intervalos de confianza y valor p.
 - Versión estática para GitHub Pages.
 
-La Bonoloto es aleatoria. Los patrones pasados no garantizan premios ni una ventaja frente al azar.
+La Bonoloto es aleatoria. Los patrones pasados no garantizan premios ni una ventaja frente al azar. La coherencia entre ranking y selección no demuestra capacidad predictiva; el backtest debe confirmar cualquier señal.
 
 ## Archivos principales
 
