@@ -11,8 +11,8 @@ const archive = JSON.parse(await readFile(resolve(projectRoot, "data/draws.json"
 // Validate that the static UI's choices have matching, freshly generated reports.
 assert.match(staticHtml, /rel="icon" type="image\/svg\+xml" href="\.\/icon\.svg"/);
 assert.match(staticHtml, /<img src="\.\/icon\.svg" alt="">/);
-assert.match(staticHtml, /La actualización puede no ser inmediata/);
-assert.match(staticHtml, /no una prueba de la fuente de importación individual/);
+assert.match(staticHtml, /Histórico de resultados/);
+assert.doesNotMatch(staticHtml, /no una prueba de la fuente de importación individual|MANUAL · NO VERIFICADO|href="\$\{d\.source\}"/);
 assert.doesNotMatch(staticHtml, /SELAE se consulta cada hora|tarea programada consulta SELAE cada hora/);
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), 'La web estática debe cargar el histórico versionado');
 assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), 'La web estática debe cargar el informe fijo de 7 sorteos');
