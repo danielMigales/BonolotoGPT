@@ -385,10 +385,10 @@ def main():
                 'Los datos ya recuperados quedan guardados.'
             ) from exc
 
-    # Conserva sorteos introducidos manualmente (p. ej. TuLotero) si SELAE aún no los publica.
-    # Si ya existe un registro oficial para esa fecha, prevalece el oficial.
+    # Conserva cualquier resultado ya incorporado si la descarga no lo devuelve.
+    # Cuando la actualización aporta ese sorteo, la combinación actualizada prevalece.
     for row in old_draws:
-        if row.get('entryMethod') == 'manual' and row.get('date') not in merged:
+        if row.get('date') not in merged:
             merged[row['date']] = row
 
     draws = sorted_draws(merged)
