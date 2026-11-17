@@ -1,29 +1,32 @@
-# BonolotoGPT · Archivo y análisis de Bonoloto
+# BonolotoGPT · Archivo de sorteos
 
-Aplicación web en español para consultar los últimos siete sorteos, el histórico desde el 1 de enero de 2026 y un laboratorio de análisis estadístico.
+Aplicación web en español para consultar los últimos sorteos de Bonoloto y el histórico oficial guardado desde el 1 de enero de 2026.
 
-## Funciones
+## Funciones activas
 
-- Consulta de resultados e histórico por fechas.
-- Recuento de frecuencias, repeticiones, parejas, distancias y distribución de pares/impares.
-- Una propuesta experimental de seis números, cuya selección utiliza la misma puntuación que ordena el ranking (frecuencia, transición de repetición y recencia), con ajuste estructural de la combinación.
-- Backtesting secuencial sin utilizar resultados futuros.
-- Comparación con controles aleatorios, intervalos de confianza y valor p.
-- Versión estática para GitHub Pages.
+- Consulta de los últimos resultados oficiales.
+- Consulta del histórico por fechas.
+- Recuento y marcadores de números repetidos en los sorteos mostrados.
+- Complementario y reintegro cuando constan en el resultado.
+- Introducción controlada de un sorteo pendiente y actualización del histórico.
+- Enlaces a la fuente oficial de SELAE.
 
-La Bonoloto es aleatoria. Los patrones pasados no garantizan premios ni una ventaja frente al azar. La coherencia entre ranking y selección no demuestra capacidad predictiva; el backtest debe confirmar cualquier señal.
+## Sobre las predicciones
+
+Se ha retirado de la aplicación el laboratorio y la generación/publicación de predicciones. Las pruebas realizadas no demostraron una ventaja estadísticamente significativa frente a una selección aleatoria, por lo que no se presentan combinaciones como si tuvieran capacidad predictiva.
+
+El código experimental del motor se conserva en `engine/` y sus pruebas en `tests/model.test.mjs` como archivo técnico reversible, pero ya no forma parte de la aplicación publicada ni del proceso de construcción. Los informes y estados generados del modelo se eliminan.
+
+La Bonoloto es un sorteo aleatorio: los resultados pasados no permiten garantizar ni demostrar una ventaja para el siguiente sorteo.
 
 ## Archivos principales
 
-- `engine/model.js`: motor estadístico y backtesting.
-- `web/logic.js`: frecuencias y resumen de aciertos.
+- `data/draws.json`: histórico normalizado de sorteos.
 - `web/index.html`: interfaz fuente.
-- `public/index.html`: interfaz estática generada.
-- `data/draws.json`: histórico normalizado.
+- `web/logic.js`: lógica de consulta y presentación del histórico.
+- `public/`: sitio estático publicado.
 - `scripts/update_data.py`: descarga y validación del histórico.
-- `scripts/build.mjs`: generación del sitio y los informes.
-
-El campo `source` de cada fila enlaza a la página de resultados de SELAE, pero no demuestra por sí solo que esa fila se haya descargado o contrastado individualmente con SELAE. El importador contrasta también frecuencias agregadas; ese control no certifica cada combinación individual.
+- `scripts/build.mjs`: generación del sitio estático sin predicciones.
 
 ## Ejecución local
 
@@ -33,6 +36,6 @@ Requiere Node.js 22+ y Python 3.12+. Ejecuta `python scripts/update_data.py`, `n
 
 Repositorio: https://github.com/danielMigales/BonolotoGPT
 
-GitHub Actions valida los datos, ejecuta las pruebas, construye la aplicación y publica `public/` en GitHub Pages. La actualización automática depende de que la descarga y validación del histórico finalice correctamente.
+GitHub Actions valida el histórico, ejecuta las pruebas, construye la aplicación y publica `public/` en GitHub Pages. La actualización automática depende de que la descarga y validación del histórico finalice correctamente.
 
 Nunca se inventan resultados ni se rellenan datos ausentes con ejemplos.
