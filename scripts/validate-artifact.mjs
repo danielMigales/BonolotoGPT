@@ -23,7 +23,9 @@ assert.ok(staticHtml.includes("id=\"view-ai\""), "Debe existir la pestaña del L
 assert.ok(staticHtml.includes("id=\"ai-view\""), "Debe existir el panel del Laboratorio IA");
 assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), "El laboratorio debe cargar el informe generado");
 assert.ok(staticHtml.includes("function renderAi(report)"), "El laboratorio debe representar el informe");
-assert.ok(staticHtml.includes("Los patrones históricos no garantizan resultados futuros"), "Debe mostrarse la cautela estadística");
+assert.ok(staticHtml.includes('id="ai-sync-status" class="ai-sync-status" role="status" hidden'), "El estado técnico debe conservar su anclaje sin mostrarse");
+assert.ok(staticHtml.includes("Análisis completado"), "El laboratorio debe mostrar un estado breve");
+assert.ok(!staticHtml.includes("Los patrones históricos no garantizan resultados futuros"), "No debe mostrarse el aviso redundante");
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), "La web debe cargar el histórico oficial");
 assert.deepEqual(publicArchive, sourceArchive, "El histórico público debe coincidir con el histórico validado");
 assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservarse");
