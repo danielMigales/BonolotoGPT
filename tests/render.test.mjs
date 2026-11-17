@@ -6,8 +6,8 @@ test('El Laboratorio IA está disponible y presenta una propuesta experimental d
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/id="view-ai"[^>]*>Laboratorio IA/);
  assert.match(html,/id="ai-view"/);
- assert.match(html,/report\\.forecast\\.numbers\\.map/);
- assert.match(html,/function renderAi\\(report\\)/);
+ assert.ok(html.includes('report.forecast.numbers.map'));
+ assert.ok(html.includes('function renderAi(report)'));
  assert.match(html,/Se necesitan al menos 8 sorteos oficiales/);
  assert.match(html,/Los patrones históricos no garantizan resultados futuros/);
 });
@@ -38,7 +38,7 @@ test('La interfaz no muestra controles de recarga manual',async()=>{
 test('El listado reciente muestra diez sorteos y el histórico mantiene cinco por página',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/Últimos 10/);
- assert.match(html,/const pageSize=mode==='recent'\\?10:5/);
+ assert.ok(html.includes("const pageSize=mode==='recent'?10:5"));
  assert.match(html,/en esta ventana de 10/);
  assert.match(html,/dos de los diez sorteos visibles/);
 });
