@@ -2,6 +2,14 @@
 
 Aplicación web en español para consultar los últimos sorteos de Bonoloto y el histórico oficial guardado desde el 1 de enero de 2026.
 
+## Funciones
+
+- Laboratorio IA con una propuesta experimental de seis números y explicación de las señales utilizadas.
+- Backtesting secuencial y comparación retrospectiva con controles aleatorios e intervalos de confianza.
+- Estudio comparativo de ventanas analíticas de 5, 7, 10, 15, 20, 30 y 50 sorteos.
+
+El laboratorio no demuestra una ventaja predictiva: las evaluaciones anteriores no encontraron evidencia estadística clara frente al azar. La Bonoloto es aleatoria; las propuestas son experimentales y no garantizan premios.
+
 ## Funciones activas
 
 - Consulta de los últimos resultados oficiales.
@@ -13,9 +21,9 @@ Aplicación web en español para consultar los últimos sorteos de Bonoloto y el
 
 ## Sobre las predicciones
 
-Se ha retirado de la aplicación el laboratorio y la generación/publicación de predicciones. Las pruebas realizadas no demostraron una ventaja estadísticamente significativa frente a una selección aleatoria, por lo que no se presentan combinaciones como si tuvieran capacidad predictiva.
+El laboratorio está disponible como herramienta experimental y presenta sus límites estadísticos de forma explícita. Las pruebas realizadas no demostraron una ventaja estadísticamente significativa frente a una selección aleatoria; sus combinaciones no deben interpretarse como predicciones fiables.
 
-El código experimental del motor se conserva en `engine/` y sus pruebas en `tests/model.test.mjs` como archivo técnico reversible, pero ya no forma parte de la aplicación publicada ni del proceso de construcción. Los informes y estados generados del modelo se eliminan.
+El código experimental del motor se conserva en `engine/` y sus pruebas en `tests/model.test.mjs` como archivo técnico reversible, y forma parte del proceso de construcción para generar el informe analítico de la ventana fija de siete sorteos.
 
 La Bonoloto es un sorteo aleatorio: los resultados pasados no permiten garantizar ni demostrar una ventaja para el siguiente sorteo.
 
@@ -26,7 +34,7 @@ La Bonoloto es un sorteo aleatorio: los resultados pasados no permiten garantiza
 - `web/logic.js`: lógica de consulta y presentación del histórico.
 - `public/`: sitio estático publicado.
 - `scripts/update_data.py`: descarga y validación del histórico.
-- `scripts/build.mjs`: generación del sitio estático sin predicciones.
+- `scripts/build.mjs`: generación del sitio estático con el informe del laboratorio.
 
 ## Ejecución local
 
