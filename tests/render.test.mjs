@@ -10,7 +10,7 @@ test('La interfaz no ofrece laboratorio ni predicciones',async()=>{
 });
 test('La portada no muestra logotipo, eslogan ni encabezados redundantes',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.doesNotMatch(html,/<nav class="main-nav"|<h1>Resultados<\/h1>|bonoloto \/ archivo|Observa los números\. Encuentra las coincidencias\.|href="\.\/icon\.svg"|brand-icon|<header\b|<img[^>]+icon\.svg|\.brand\s*\\{/);
+ for(const marker of ['<nav class="main-nav"','<h1>Resultados</h1>','bonoloto / archivo','Observa los números. Encuentra las coincidencias.','href="./icon.svg"','brand-icon','<header','header{','header>div{','.brand{','.brand-icon','smallcaps']) assert.ok(!html.includes(marker),"No debe quedar en la interfaz: "+marker);
  assert.match(html,/id="results-view"/);
  assert.match(html,/fetch\('\.\/data\/draws\.json'/);
 });
