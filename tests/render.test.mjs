@@ -35,6 +35,8 @@ test('El listado reciente muestra diez sorteos y el histórico mantiene cinco po
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/Últimos 10/);
  assert.match(html,/const pageSize=mode==='recent'\?10:5/);
+ assert.match(html,/en esta ventana de 10/);
+ assert.match(html,/dos de los diez sorteos visibles/);
 });
 test('La portada no muestra el bote estimado ni el resumen de métricas',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
