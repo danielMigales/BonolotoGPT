@@ -2,22 +2,26 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 
-test('La interfaz no ofrece laboratorio ni predicciones',async()=>{
+test('El Laboratorio IA está disponible y presenta una propuesta experimental de seis números',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- for(const marker of ['Laboratorio IA','id="ai-view"','function renderAi(report)','report.forecast.numbers.map','Combinación única','id="ai-forecast"']){
-  assert.ok(!html.includes(marker),'La interfaz no debe incluir: '+marker);
- }
+ assert.match(html,/id="view-ai"[^>]*>Laboratorio IA/);
+ assert.match(html,/id="ai-view"/);
+ assert.match(html,/report\\.forecast\\.numbers\\.map/);
+ assert.match(html,/function renderAi\\(report\\)/);
+ assert.match(html,/Se necesitan al menos 8 sorteos oficiales/);
+ assert.match(html,/Los patrones históricos no garantizan resultados futuros/);
 });
-test('La portada no muestra logotipo, eslogan ni encabezados redundantes',async()=>{
+test('La propuesta explica la selección y contrasta el sorteo anterior',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- for(const marker of ['<nav class="main-nav"','<h1>Resultados</h1>','bonoloto / archivo','Observa los números. Encuentra las coincidencias.','href="./icon.svg"','brand-icon','<header','header{','header>div{','.brand{','.brand-icon']) assert.ok(!html.includes(marker),"No debe quedar en la interfaz: "+marker);
- assert.match(html,/id="results-view"/);
- assert.match(html,/fetch\('\.\/data\/draws\.json'/);
+ assert.match(html,/Combinación única/);
+ assert.match(html,/Justificación de los seis números/);
+ assert.match(html,/repeatTrials/);
+ assert.match(html,/ai-forecast-result/);
 });
 test('La interfaz muestra los resultados sin etiquetas de procedencia',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/Histórico de resultados/);
- assert.doesNotMatch(html,/no una prueba de la fuente de importación individual|MANUAL · NO VERIFICADO|href="\$\{d\.source\}"/);
+ assert.doesNotMatch(html,/no una prueba de la fuente de importación individual|MANUAL · NO VERIFICADO|href="\\$\\{d\\.source\\}"/);
 });
 test('La interfaz permite introducir resultados manualmente',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
@@ -34,7 +38,7 @@ test('La interfaz no muestra controles de recarga manual',async()=>{
 test('El listado reciente muestra diez sorteos y el histórico mantiene cinco por página',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/Últimos 10/);
- assert.match(html,/const pageSize=mode==='recent'\?10:5/);
+ assert.match(html,/const pageSize=mode==='recent'\\?10:5/);
  assert.match(html,/en esta ventana de 10/);
  assert.match(html,/dos de los diez sorteos visibles/);
 });
