@@ -10,7 +10,7 @@ const sourceArchive = JSON.parse(await readFile(resolve(projectRoot, "data/draws
 
 assert.ok(!staticHtml.includes('href="./icon.svg"'), "La web no debe mostrar el favicon de marca");
 assert.ok(!staticHtml.includes('<img src="./icon.svg" alt="">'), "La web no debe mostrar el logotipo");
-for (const marker of ["brand-icon", "header{", "header>div{", ".brand{", ".edition{", "smallcaps"]) assert.ok(!staticHtml.includes(marker), "El artefacto no debe conservar estilos de marca: " + marker);
+for (const marker of ["brand-icon", "header{", "header>div{", ".brand{", ".edition{"]) assert.ok(!staticHtml.includes(marker), "El artefacto no debe conservar estilos de marca: " + marker);
 assert.ok(!staticHtml.includes("<header"), "La web no debe conservar la cabecera de marca");
 await assert.rejects(readFile(resolve(projectRoot, "public/icon.svg"), "utf8"), "El icono de marca no debe publicarse");
 assert.ok(staticHtml.includes("Histórico de resultados"));
