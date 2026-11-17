@@ -31,10 +31,10 @@ test('La interfaz no muestra controles de recarga manual',async()=>{
  assert.doesNotMatch(html,/Recargar|force-update|id="refresh"|forceRefresh/);
  assert.match(html,/La actualización automática volverá a intentarlo/);
 });
-test('El listado reciente y el histórico mantienen su paginación',async()=>{
+test('El listado reciente muestra diez sorteos y el histórico mantiene cinco por página',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/Últimos 7/);
- assert.match(html,/const pageSize=mode==='recent'\?7:5/);
+ assert.match(html,/Últimos 10/);
+ assert.match(html,/const pageSize=mode==='recent'\?10:5/);
 });
 test('La portada no muestra el bote estimado ni el resumen de métricas',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
