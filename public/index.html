@@ -155,14 +155,10 @@ function renderAi(report){
  $('ai-forecast-date').textContent='Sorteo del '+format(report.forecast.targetDate,{day:'numeric',month:'long',year:'numeric'});
  const recentDraws=doc&&Array.isArray(doc.draws)?doc.draws.slice(0,7):[];const recentCounts=new Map();recentDraws.forEach(draw=>draw.numbers.forEach(n=>recentCounts.set(n,(recentCounts.get(n)||0)+1)));const repeatedNumbers=[...recentCounts.entries()].filter(([,count])=>count>1).sort((a,b)=>b[1]-a[1]||a[0]-b[0]);const repeatColors=new Map(repeatedNumbers.map(([n],i)=>[n,i]));const markedBall=n=>{const count=recentCounts.get(n)||0;return ball(n,count,repeatColors.get(n)||0);};$('ai-forecast').innerHTML='<div class="forecast-main-balls">'+report.forecast.numbers.map(markedBall).join('')+'</div>';
  const reasons=(report.forecast.selectionReasons||[]).map(x=>{
-  const lags=[1,2,3].map((lag,i)=>{
-   const trials=Number(x.repeatTrials?.[i]||0),successes=Number(x.repeatSuccesses?.[i]||0),rate=Number(x.repeatRates?.[i]||0);
-   return 'a '+lag+' sorteo(s): '+successes+'/'+trials+' ('+(rate*100).toFixed(1)+'%)';
-  }).join('; ');
   const pairs=x.selectedPairs&&x.selectedPairs.length?' Parejas con otros números de la combinación: '+x.selectedPairs.map(p=>p.numbers.map(pad).join('–')+' ('+p.count+' veces en los últimos '+x.recentWindow+' sorteos)').join(', ')+'.':'';
-  return '<li><b>'+pad(x.number)+'</b>: repetición histórica tras 1, 2 y 3 sorteos — '+lags+'. En los últimos '+x.recentWindow+' sorteos apareció '+x.recent7+' veces; en los últimos 15, '+x.recent15+' veces; '+(x.lastDraw?'también salió en el sorteo más reciente.':'no salió en el sorteo más reciente.')+pairs+'</li>';
+  return '<li><b>'+pad(x.number)+'</b>: frecuencia histórica '+x.totalFrequency+'; apareció '+x.recent7+' veces en los últimos '+x.recentWindow+' sorteos y '+x.recent15+' veces en los últimos 15; '+(x.lastDraw?'también salió en el sorteo más reciente.':'no salió en el sorteo más reciente.')+pairs+'</li>';
  }).join('');
- $('ai-forecast-explanation').innerHTML='<h4>Justificación de los seis números</h4><p>La combinación se construye combinando las señales de siete métodos con la estructura observada en el histórico. También se estudia la repetición de cada número cuando transcurre 1, 2 o 3 sorteos desde su aparición. Los porcentajes de repetición están suavizados estadísticamente; el número de casos observados se muestra para dar contexto.</p><ul>'+reasons+'</ul><p>La combinación se evalúa como un conjunto de seis números, teniendo en cuenta también el equilibrio de pares e impares, las distancias entre números y las parejas históricas.</p>';
+ $('ai-forecast-explanation').innerHTML='<h4>Justificación de los seis números</h4><p>La propuesta selecciona directamente los seis números mejor clasificados por la combinación ponderada de seis métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado. No utiliza transición de repetición ni búsqueda combinatoria.</p><ul>'+reasons+'</ul><p>Las parejas y la estructura de paridad y distancias se mantienen como información de análisis histórico, no como garantía de que una combinación vaya a repetirse.</p>';
  const ev=report.lastEvaluation;
  if(ev){
   const pred=ev.numbers||[],actual=ev.actual||[];
