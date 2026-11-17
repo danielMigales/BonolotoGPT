@@ -9,7 +9,10 @@ test('El Laboratorio IA está disponible y presenta una propuesta experimental d
  assert.ok(html.includes('report.forecast.numbers.map'));
  assert.ok(html.includes('function renderAi(report)'));
  assert.match(html,/Se necesitan al menos 8 sorteos oficiales/);
- assert.match(html,/Los patrones históricos no garantizan resultados futuros/);
+ assert.match(html,/id="ai-sync-status" class="ai-sync-status" role="status" hidden/);
+ assert.match(html,/<div class="ai-window-fixed"><span>Ventana de análisis<\/span><strong>7 sorteos<\/strong><\/div>/);
+ assert.match(html,/\$\('ai-state'\)\.textContent='Análisis completado';/);
+ assert.doesNotMatch(html,/Los patrones históricos no garantizan resultados futuros/);
 });
 test('La propuesta explica la selección y contrasta el sorteo anterior',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
