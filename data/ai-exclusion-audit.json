@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Auditoría prospectiva del filtro de exclusión del Laboratorio IA",
+  "rule": "Solo se evalúan descartes registrados antes del sorteo. Los números ganadores incluidos en la lista de descartes cuentan como falsos descartes.",
+  "entries": [
+    {
+      "drawId": "BONO-20261117",
+      "date": "2026-11-17",
+      "winningNumbers": [
+        16,
+        18,
+        22,
+        28,
+        29,
+        34
+      ],
+      "complementario": 11,
+      "reintegro": 0,
+      "exclusionSnapshot": null,
+      "status": "not_evaluable_missing_pre_draw_snapshot",
+      "falseExclusions": null,
+      "note": "Resultado incorporado a partir de los datos facilitados por el usuario. No consta una lista de exclusión fechada antes del sorteo; no se reconstruye retrospectivamente para evitar sesgo."
+    }
+  ]
+}
