@@ -5,7 +5,7 @@ const logic=await readFile('web/logic.js','utf8');
 const html=(await readFile('web/index.html','utf8')).replace('/*LOGIC*/',logic.replaceAll('export ',''));
 await mkdir('public',{recursive:true});
 await writeFile('public/index.html',html);
-await cp('web/icon.svg','public/icon.svg');
+await rm('public/icon.svg',{force:true});
 await mkdir('public/data',{recursive:true});
 await cp('data/draws.json','public/data/draws.json');
 await cp('data/jackpot.json','public/data/jackpot.json');
