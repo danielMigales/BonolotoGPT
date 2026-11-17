@@ -14,6 +14,10 @@ for (const marker of ["brand-icon", "header{", "header>div{", ".brand{", ".editi
 assert.ok(!staticHtml.includes("<header"), "La web no debe conservar la cabecera de marca");
 await assert.rejects(readFile(resolve(projectRoot, "public/icon.svg"), "utf8"), "El icono de marca no debe publicarse");
 assert.ok(staticHtml.includes("Histórico de resultados"));
+assert.ok(staticHtml.includes("Últimos 10"), "La portada debe mostrar diez sorteos recientes");
+assert.ok(staticHtml.includes("const pageSize=mode==='recent'?10:5"), "El histórico debe conservar cinco sorteos por página");
+assert.ok(staticHtml.includes("en esta ventana de 10"));
+assert.ok(staticHtml.includes("dos de los diez sorteos visibles"));
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), "La web debe cargar el histórico oficial");
 for (const marker of ["Laboratorio IA", "Predicción y análisis", "ai-analysis", "ai-forecast", "view-ai"]) {
   assert.ok(!staticHtml.includes(marker), "La web publicada no debe incluir: " + marker);
