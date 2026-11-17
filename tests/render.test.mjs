@@ -47,3 +47,9 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  assert.doesNotMatch(html,/next-jackpot|jackpot-amount|loadJackpot|Bote siguiente/);
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
 });
+
+test('La interfaz solo conserva los seis métodos acordados',async()=>{
+ const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
+ assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado/);
+ assert.doesNotMatch(html,/repeatTrials|repeatRates|transición de repetición|búsqueda combinatoria|siete métodos/);
+});
