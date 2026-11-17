@@ -10,6 +10,9 @@ const sourceArchive = JSON.parse(await readFile(resolve(projectRoot, "data/draws
 
 assert.ok(!staticHtml.includes('href="./icon.svg"'), "La web no debe mostrar el favicon de marca");
 assert.ok(!staticHtml.includes('<img src="./icon.svg" alt="">'), "La web no debe mostrar el logotipo");
+assert.ok(!staticHtml.includes("brand-icon"), "La web no debe conservar estilos ni clases del logotipo");
+assert.ok(!staticHtml.includes("<header"), "La web no debe conservar la cabecera de marca");
+await assert.rejects(readFile(resolve(projectRoot, "public/icon.svg"), "utf8"), "El icono de marca no debe publicarse");
 assert.ok(staticHtml.includes("Histórico de resultados"));
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), "La web debe cargar el histórico oficial");
 for (const marker of ["Laboratorio IA", "Predicción y análisis", "ai-analysis", "ai-forecast", "view-ai"]) {
