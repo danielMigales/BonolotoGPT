@@ -15,7 +15,7 @@ test('La propuesta explica la selección y contrasta el sorteo anterior',async()
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/Combinación única/);
  assert.match(html,/Justificación de los seis números/);
- assert.match(html,/repeatTrials/);
+ assert.match(html,/selectedPairs/);
  assert.match(html,/ai-forecast-result/);
 });
 test('La interfaz muestra los resultados sin etiquetas de procedencia',async()=>{
