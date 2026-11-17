@@ -25,8 +25,8 @@ if(report.status==='ready'){
     return {window,status:'ready',simulations:candidate.metrics.simulations,meanHits:candidate.metrics.meanHits,atLeastFour:candidate.metrics.atLeastFour,atLeastFourRate:candidate.metrics.atLeastFour/candidate.metrics.simulations,randomAtLeastFourProbability:candidate.baseline.atLeastFourProbability,randomMeanHits:audit.randomMeanHits,deltaVsRandom:audit.deltaVsRandom,ci95Delta:audit.ci95Delta,pValueOneSided:audit.pValueOneSided,supportsHistoricalSignal:audit.supportsHistoricalSignal};
   });
   await writeFile('public/data/ai-analysis-7.json',JSON.stringify(report));
-  await writeFile('data/ai-analysis.json',JSON.stringify(report,null,2)+'\\n');
-  await writeFile('data/ai-model.json',JSON.stringify(report.modelState,null,2)+'\\n');
+  await writeFile('data/ai-analysis.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('data/ai-model.json',JSON.stringify(report.modelState,null,2)+'\n');
 }else{
   await rm('public/data/ai-analysis-7.json',{force:true});
   await rm('data/ai-analysis.json',{force:true});
