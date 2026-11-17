@@ -15,7 +15,7 @@ test('La propuesta explica la selección y contrasta el sorteo anterior',async()
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/Combinación única/);
  assert.match(html,/Justificación de los seis números/);
- assert.match(html,/repeatTrials/);
+ assert.match(html,/selectedPairs/);
  assert.match(html,/ai-forecast-result/);
 });
 test('La interfaz muestra los resultados sin etiquetas de procedencia',async()=>{
@@ -46,4 +46,10 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.doesNotMatch(html,/next-jackpot|jackpot-amount|loadJackpot|Bote siguiente/);
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
+});
+
+test('La interfaz solo conserva los seis métodos acordados',async()=>{
+ const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
+ assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado/);
+ assert.doesNotMatch(html,/repeatTrials|repeatRates|siete métodos/);
 });

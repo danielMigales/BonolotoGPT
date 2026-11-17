@@ -35,12 +35,18 @@ if (sourceArchive.draws.length > 7) {
   assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
   assert.equal(fixedReport.sourceLastDate, sourceArchive.latestDate);
   assert.equal(fixedReport.audit.simulations, fixedReport.metrics.simulations);
-  assert.ok(fixedReport.audit.randomTrialsPerDraw >= 100);
-  assert.ok(fixedReport.audit.nullReplicates >= 1000);
-  assert.equal(fixedReport.audit.ci95Delta.length, 2);
-  assert.ok(Number.isFinite(fixedReport.audit.pValueOneSided));
+  assert.ok(fixedReport.audit.bootstrapReplicates >= 1000);
+  assert.equal(fixedReport.audit.ci95MeanHits.length, 2);
+  assert.ok(Number.isFinite(fixedReport.audit.meanHits));
+  assert.deepEqual(fixedReport.methods, ["Frecuencia acumulada", "Frecuencia reciente", "Recencia ponderada", "Parejas y estructura", "Bayes regularizado", "Markov regularizado"]);
+  assert.ok(!("randomMeanHits" in fixedReport.metrics));
+  assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
+  assert.ok(!("randomMeanHits" in fixedReport.audit));
+  assert.ok(fixedReport.windowStudy.every(item => !("randomMeanHits" in item) && !("pValueOneSided" in item)));
   assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5,7,10,15,20,30,50]);
   assert.ok(fixedReport.forecast.numbers.length === 6);
+  assert.ok(!staticHtml.includes("repeatTrials"));
+  assert.ok(!staticHtml.includes("repeatRates"));
 } else {
   await assert.rejects(readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
 }
