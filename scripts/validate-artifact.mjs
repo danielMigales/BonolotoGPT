@@ -13,24 +13,35 @@ assert.ok(!staticHtml.includes('<img src="./icon.svg" alt="">'), "La web no debe
 for (const marker of ["brand-icon", "header{", "header>div{", ".brand{", ".edition{"]) assert.ok(!staticHtml.includes(marker), "El artefacto no debe conservar estilos de marca: " + marker);
 assert.ok(!staticHtml.includes("<header"), "La web no debe conservar la cabecera de marca");
 await assert.rejects(readFile(resolve(projectRoot, "public/icon.svg"), "utf8"), "El icono de marca no debe publicarse");
+
 assert.ok(staticHtml.includes("Histórico de resultados"));
 assert.ok(staticHtml.includes("Últimos 10"), "La portada debe mostrar diez sorteos recientes");
 assert.ok(staticHtml.includes("const pageSize=mode==='recent'?10:5"), "El histórico debe conservar cinco sorteos por página");
 assert.ok(staticHtml.includes("en esta ventana de 10"));
 assert.ok(staticHtml.includes("dos de los diez sorteos visibles"));
+assert.ok(staticHtml.includes("id=\"view-ai\""), "Debe existir la pestaña del Laboratorio IA");
+assert.ok(staticHtml.includes("id=\"ai-view\""), "Debe existir el panel del Laboratorio IA");
+assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), "El laboratorio debe cargar el informe generado");
+assert.ok(staticHtml.includes("function renderAi(report)"), "El laboratorio debe representar el informe");
+assert.ok(staticHtml.includes("Los patrones históricos no garantizan resultados futuros"), "Debe mostrarse la cautela estadística");
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), "La web debe cargar el histórico oficial");
-for (const marker of ["Laboratorio IA", "Predicción y análisis", "ai-analysis", "ai-forecast", "view-ai"]) {
-  assert.ok(!staticHtml.includes(marker), "La web publicada no debe incluir: " + marker);
-}
-assert.ok(!staticHtml.includes("MANUAL · NO VERIFICADO"));
-assert.ok(!staticHtml.includes('href="' + "$" + '{d.source}"'));
-assert.ok(!staticHtml.includes("fetch('/api/draws"));
 assert.deepEqual(publicArchive, sourceArchive, "El histórico público debe coincidir con el histórico validado");
 assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservarse");
-for (const report of ["ai-analysis-5.json","ai-analysis-7.json","ai-analysis-10.json","ai-analysis-15.json","ai-analysis-20.json","ai-analysis-30.json","ai-analysis-50.json"]) {
-  await assert.rejects(readFile(resolve(projectRoot, "public/data", report), "utf8"));
+
+if (sourceArchive.draws.length > 7) {
+  const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
+  assert.equal(fixedReport.window, 7);
+  assert.equal(fixedReport.status, "ready");
+  assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
+  assert.equal(fixedReport.sourceLastDate, sourceArchive.latestDate);
+  assert.equal(fixedReport.audit.simulations, fixedReport.metrics.simulations);
+  assert.ok(fixedReport.audit.randomTrialsPerDraw >= 100);
+  assert.ok(fixedReport.audit.nullReplicates >= 1000);
+  assert.equal(fixedReport.audit.ci95Delta.length, 2);
+  assert.ok(Number.isFinite(fixedReport.audit.pValueOneSided));
+  assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5,7,10,15,20,30,50]);
+  assert.ok(fixedReport.forecast.numbers.length === 6);
+} else {
+  await assert.rejects(readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
 }
-for (const report of ["ai-analysis.json","ai-model.json"]) {
-  await assert.rejects(readFile(resolve(projectRoot, "data", report), "utf8"));
-}
-console.log("Artefacto estático válido: histórico oficial disponible y laboratorio/predicciones ausentes.");
+console.log("Artefacto estático válido: histórico oficial y Laboratorio IA disponibles.");

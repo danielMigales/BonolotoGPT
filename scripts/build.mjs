@@ -1,4 +1,6 @@
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
+import {analyze} from '../engine/model.js';
+import {auditBacktest} from '../engine/evaluation.js';
 
 const seed=JSON.parse(await readFile('data/draws.json','utf8'));
 const logic=await readFile('web/logic.js','utf8');
@@ -10,8 +12,24 @@ await mkdir('public/data',{recursive:true});
 await cp('data/draws.json','public/data/draws.json');
 await cp('data/jackpot.json','public/data/jackpot.json');
 
-// No se publican predicciones ni informes experimentales sin ventaja demostrada.
-for(const file of ['public/data/ai-analysis-5.json','public/data/ai-analysis-7.json','public/data/ai-analysis-10.json','public/data/ai-analysis-15.json','public/data/ai-analysis-20.json','public/data/ai-analysis-30.json','public/data/ai-analysis-50.json','data/ai-analysis.json','data/ai-model.json']){
-  await rm(file,{force:true});
+// El laboratorio usa una ventana analítica fija de siete sorteos,
+// independiente del listado reciente de diez sorteos.
+const fixedWindow=7;
+const report=analyze(seed.draws,{window:fixedWindow});
+if(report.status==='ready'){
+  report.audit=auditBacktest(report.rows);
+  report.windowStudy=[5,7,10,15,20,30,50].map(window=>{
+    const candidate=analyze(seed.draws,{window});
+    if(candidate.status!=='ready') return {window,status:'insufficient',required:candidate.required,available:candidate.available};
+    const audit=auditBacktest(candidate.rows,{randomTrialsPerDraw:100,nullReplicates:1000,bootstrapReplicates:1000,blockLength:window,seed:20261020+window});
+    return {window,status:'ready',simulations:candidate.metrics.simulations,meanHits:candidate.metrics.meanHits,atLeastFour:candidate.metrics.atLeastFour,atLeastFourRate:candidate.metrics.atLeastFour/candidate.metrics.simulations,randomAtLeastFourProbability:candidate.baseline.atLeastFourProbability,randomMeanHits:audit.randomMeanHits,deltaVsRandom:audit.deltaVsRandom,ci95Delta:audit.ci95Delta,pValueOneSided:audit.pValueOneSided,supportsHistoricalSignal:audit.supportsHistoricalSignal};
+  });
+  await writeFile('public/data/ai-analysis-7.json',JSON.stringify(report));
+  await writeFile('data/ai-analysis.json',JSON.stringify(report,null,2)+'\n');
+  await writeFile('data/ai-model.json',JSON.stringify(report.modelState,null,2)+'\n');
+}else{
+  await rm('public/data/ai-analysis-7.json',{force:true});
+  await rm('data/ai-analysis.json',{force:true});
+  await rm('data/ai-model.json',{force:true});
 }
-console.log('Generada página estática: '+seed.draws.length+' sorteos oficiales; sin laboratorio ni predicciones.');
+console.log('Generada página estática: '+seed.draws.length+' sorteos; laboratorio IA: '+report.status+'.');
