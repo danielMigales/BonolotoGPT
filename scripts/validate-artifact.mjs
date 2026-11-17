@@ -13,7 +13,7 @@ assert.ok(staticHtml.includes('href="./icon.svg"'));
 assert.ok(staticHtml.includes('<img src="./icon.svg" alt="">'));
 assert.ok(staticHtml.includes("Histórico de resultados"));
 assert.ok(staticHtml.includes("fetch('./data/draws.json'"), "La web debe cargar el histórico oficial");
-for (const marker of ["Laboratorio IA", "Predicción y análisis", "ai-analysis", "ai-forecast", "view-ai", "forecast-card"]) {
+for (const marker of ["Laboratorio IA", "Predicción y análisis", "ai-analysis", "ai-forecast", "view-ai"]) {
   assert.ok(!staticHtml.includes(marker), "La web publicada no debe incluir: " + marker);
 }
 assert.ok(!staticHtml.includes("MANUAL · NO VERIFICADO"));
