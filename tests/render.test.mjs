@@ -8,10 +8,9 @@ test('La interfaz no ofrece laboratorio ni predicciones',async()=>{
   assert.ok(!html.includes(marker),'La interfaz no debe incluir: '+marker);
  }
 });
-test('La navegación se limita a los resultados',async()=>{
+test('La portada no muestra logotipo, eslogan ni encabezados redundantes',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/<nav class="main-nav" aria-label="Secciones"><button id="view-results"/);
- assert.doesNotMatch(html,/id="view-ai"|ai-analysis|ai-forecast|loadAi/);
+ assert.doesNotMatch(html,/<nav class="main-nav"|<h1>Resultados<\/h1>|bonoloto \/ archivo|Observa los números\. Encuentra las coincidencias\.|href="\.\/icon\.svg"/);
  assert.match(html,/id="results-view"/);
  assert.match(html,/fetch\('\.\/data\/draws\.json'/);
 });
