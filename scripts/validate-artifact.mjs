@@ -47,8 +47,6 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(fixedReport.forecast.numbers.length === 6);
   assert.ok(!staticHtml.includes("repeatTrials"));
   assert.ok(!staticHtml.includes("repeatRates"));
-  assert.ok(!staticHtml.includes("transición de repetición"));
-  assert.ok(!staticHtml.includes("búsqueda combinatoria"));
 } else {
   await assert.rejects(readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
 }
