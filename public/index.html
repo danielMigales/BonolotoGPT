@@ -96,8 +96,8 @@ footer a{color:#9ddbb0}
 <aside class="panel"><div><div class="smallcaps eyebrow">Coincidencias</div><h2>Los que vuelven</h2><p>Números que aparecen más de una vez en los sorteos de esta ventana.</p><div class="mini-list" id="repeats"></div></div><div><div class="rule"></div><h2 style="font-size:14px">Cómo leer los resultados</h2><div class="legend-line"><span class="sample">6</span> Combinación de seis números</div><div class="rule"></div><div class="info-box">Un archivo que sigue creciendo.<br>Consulta guardada desde el <b>1 de enero de 2026</b>. Las coincidencias describen resultados pasados y no predicen futuros sorteos.</div></div></aside></div>
 
 </div><section id="ai-view" hidden aria-label="Laboratorio de inteligencia artificial">
-<div class="ai-head"><div><div class="eyebrow smallcaps">Laboratorio IA</div><h2>Predicción y análisis</h2></div></div><p id="ai-sync-status" class="ai-sync-status" role="status"></p>
-<div id="ai-caution" class="ai-caution"><b>Los patrones históricos no garantizan resultados futuros.</b></div>
+<div class="ai-head"><div><div class="eyebrow smallcaps">Laboratorio IA</div><h2>Predicción y análisis</h2></div></div><p id="ai-sync-status" class="ai-sync-status" role="status" hidden></p>
+
 <div id="ai-controls" class="ai-controls"><div class="ai-window-fixed"><span>Ventana de análisis</span><strong>7 sorteos</strong></div><span id="ai-state" class="ai-muted" role="status">Analizando…</span></div>
 <div id="ai-error" class="error" role="alert" hidden></div>
 <div id="ai-content" hidden>
@@ -171,6 +171,6 @@ function renderAi(report){
   $('ai-forecast-result').innerHTML='<p>Aún no hay una predicción anterior guardada para contrastar.</p>';
  }
 }
-async function loadAi(){ $('ai-state').textContent='Analizando los sorteos seleccionados…';$('ai-error').hidden=true;try{const window=7;if(doc&&doc.draws.length<=window)throw Error('Se necesitan al menos 8 sorteos oficiales para iniciar el análisis.');const res=await fetch('./data/ai-analysis-'+window+'.json',{cache:'no-store'});if(!res.ok)throw Error('No se pudo calcular el análisis. Puedes reintentarlo.');const report=await res.json();if(report.status!=='ready')throw Error('Se necesitan al menos '+(report.required||8)+' sorteos para esta ventana.');renderAi(report);$('ai-state').textContent='Análisis completado · '+report.metrics.simulations+' pruebas históricas · Modelo '+report.version;}catch(error){$('ai-error').hidden=false;$('ai-error').textContent=error.message;$('ai-state').textContent='El histórico de resultados sigue disponible.';}}
+async function loadAi(){ $('ai-state').textContent='Analizando los sorteos seleccionados…';$('ai-error').hidden=true;try{const window=7;if(doc&&doc.draws.length<=window)throw Error('Se necesitan al menos 8 sorteos oficiales para iniciar el análisis.');const res=await fetch('./data/ai-analysis-'+window+'.json',{cache:'no-store'});if(!res.ok)throw Error('No se pudo calcular el análisis. Puedes reintentarlo.');const report=await res.json();if(report.status!=='ready')throw Error('Se necesitan al menos '+(report.required||8)+' sorteos para esta ventana.');renderAi(report);$('ai-state').textContent='Análisis completado';}catch(error){$('ai-error').hidden=false;$('ai-error').textContent=error.message;$('ai-state').textContent='El histórico de resultados sigue disponible.';}}
 $('view-ai').onclick=()=>{$('results-view').hidden=true;$('ai-view').hidden=false;$('view-ai').setAttribute('aria-pressed','true');$('view-results').setAttribute('aria-pressed','false');if(!aiReport)loadAi();};$('view-results').onclick=()=>{$('results-view').hidden=false;$('ai-view').hidden=true;$('view-ai').setAttribute('aria-pressed','false');$('view-results').setAttribute('aria-pressed','true');};
 </script></body></html>
