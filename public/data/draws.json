@@ -3,24 +3,9 @@
   "startDate": "2026-01-01",
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/",
-  "checkedAt": "2026-11-18T03:39:40.555140+00:00",
-  "latestDate": "2026-11-18",
+  "checkedAt": "2026-11-18T21:42:21.171452+00:00",
+  "latestDate": "2026-11-17",
   "draws": [
-    {
-      "id": "BONO-20261118",
-      "date": "2026-11-18",
-      "numbers": [
-        4,
-        5,
-        9,
-        15,
-        37,
-        44
-      ],
-      "complementario": 24,
-      "reintegro": 7,
-      "source": "user-provided"
-    },
     {
       "id": "BONO-20261117",
       "date": "2026-11-17",
