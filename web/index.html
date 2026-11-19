@@ -101,7 +101,7 @@ footer a{color:#9ddbb0}
 <div id="ai-controls" class="ai-controls"><div class="ai-window-fixed"><span>Ventana de análisis</span><strong>7 sorteos</strong></div><span id="ai-state" class="ai-muted" role="status">Analizando…</span></div>
 <div id="ai-error" class="error" role="alert" hidden></div>
 <div id="ai-content" hidden>
-<div class="ai-grid ai-focus"><article class="ai-card forecast-card"><div class="smallcaps forecast-kicker">Combinación única</div><h3 id="ai-forecast-date">Para el próximo sorteo</h3><div class="forecast-line" id="ai-forecast"></div><section id="ai-forecast-explanation" class="forecast-explanation" aria-live="polite"></section><div id="ai-forecast-result" class="forecast-result" aria-live="polite"></div><p>Estimación experimental; no garantiza premios.</p></article></div></section><footer><a href="https://www.loteriasyapuestas.es/es/bonoloto" target="_blank" rel="noopener noreferrer">Consultar SELAE ↗</a></footer></main>
+<div class="ai-grid ai-focus"><article class="ai-card forecast-card"><div class="smallcaps forecast-kicker">Combinación única</div><h3 id="ai-forecast-date">Para el próximo sorteo</h3><div class="forecast-line" id="ai-forecast"></div><section id="ai-forecast-explanation" class="forecast-explanation" aria-live="polite"></section><div id="ai-forecast-result" class="forecast-result" aria-live="polite"></div><p>Estimación experimental; no garantiza premios.</p></article><article class="ai-card" id="frequent-pairs-card"><h3>Parejas frecuentes</h3><p id="frequent-pairs-caption">Parejas que más se repiten en los últimos 10 sorteos.</p><div class="pair-grid" id="frequent-pairs-list" aria-live="polite"></div><p class="ai-muted">Cada pareja se cuenta una sola vez por sorteo. Es un recuento descriptivo independiente de Bayes, Markov y de la clasificación de números.</p></article></div></section><footer><a href="https://www.loteriasyapuestas.es/es/bonoloto" target="_blank" rel="noopener noreferrer">Consultar SELAE ↗</a></footer></main>
 <script type="module">
 /*LOGIC*/
 const palette=[['#ecdbef','#633773','#d9bcdf'],['#dcece5','#2d6952','#badbca'],['#f7e5cb','#8a591e','#ead0a6'],['#dfe7f5','#3f5f96','#c3d0eb'],['#f5dfe2','#9c3d58','#e8bdc7'],['#e8e8c9','#666a25','#d5d8a3'],['#d8ecee','#256976','#b7d8de'],['#e5dff5','#5f4898','#cfc2e9'],['#f3e2d4','#8b4c2b','#e2c3ab'],['#e0ecce','#4f712c','#c8dbab'],['#e2e3e9','#505971','#c4c8d4'],['#f2e4ef','#86527e','#ddc7d9'],['#dfedf7','#336c8d','#bdd9ea'],['#ece4d5','#756138','#d9c9a8'],['#dbefe7','#23795d','#b6dfce']];
@@ -144,8 +144,22 @@ for(const m of ['recent','history'])$(m).onclick=()=>{mode=m;page=0;$('filters')
 let aiReport;
 const aiBall=n=>'<span class="ball">'+pad(n)+'</span>';
 function scoreBars(items,label){const max=Math.max(...items.map(x=>x.count),1);return items.map(x=>'<div class="score-row"><span style="'+(label?'width:90px;font-size:11px;font-weight:400':'')+'">'+(label?label(x):pad(x.number))+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(x.count/max*100)+'%"></div></div><small>'+x.count+' veces</small></div>').join('');}
+function renderFrequentPairs(){
+ const draws=doc&&Array.isArray(doc.draws)?doc.draws.slice(0,10):[];
+ const counts=new Map();
+ for(const draw of draws){
+  const numbers=[...new Set(draw.numbers)].sort((a,b)=>a-b);
+  for(let i=0;i<numbers.length;i++)for(let j=i+1;j<numbers.length;j++){
+   const key=numbers[i]+'-'+numbers[j];counts.set(key,(counts.get(key)||0)+1);
+  }
+ }
+ const top=[...counts.entries()].map(([key,count])=>({numbers:key.split('-').map(Number),count})).sort((a,b)=>b.count-a.count||a.numbers[0]-b.numbers[0]||a.numbers[1]-b.numbers[1]).slice(0,10);
+ $('frequent-pairs-caption').textContent='Recuento de los últimos '+draws.length+' sorteos.';
+ $('frequent-pairs-list').innerHTML=top.length?top.map(pair=>'<div class="pair-item"><b>'+pad(pair.numbers[0])+' – '+pad(pair.numbers[1])+'</b><small>'+pair.count+' '+(pair.count===1?'vez':'veces')+'</small></div>').join(''):'<p class="ai-muted">No hay suficientes datos para mostrar parejas.</p>';
+}
 function renderAi(report){
  aiReport=report;
+ renderFrequentPairs();
  $('ai-content').hidden=false;
  $('ai-forecast-date').textContent='Sorteo del '+format(report.forecast.targetDate,{day:'numeric',month:'long',year:'numeric'});
  const recentDraws=doc&&Array.isArray(doc.draws)?doc.draws.slice(0,7):[];const recentCounts=new Map();recentDraws.forEach(draw=>draw.numbers.forEach(n=>recentCounts.set(n,(recentCounts.get(n)||0)+1)));const repeatedNumbers=[...recentCounts.entries()].filter(([,count])=>count>1).sort((a,b)=>b[1]-a[1]||a[0]-b[0]);const repeatColors=new Map(repeatedNumbers.map(([n],i)=>[n,i]));const markedBall=n=>{const count=recentCounts.get(n)||0;return ball(n,count,repeatColors.get(n)||0);};$('ai-forecast').innerHTML='<div class="forecast-main-balls">'+report.forecast.numbers.map(markedBall).join('')+'</div>';
