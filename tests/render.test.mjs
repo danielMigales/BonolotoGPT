@@ -51,8 +51,10 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
 });
 
-test('La interfaz solo conserva los seis métodos acordados',async()=>{
+test('La interfaz conserva los siete métodos predictivos acordados',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado/);
- assert.doesNotMatch(html,/repeatTrials|repeatRates|siete métodos/);
+ assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, repetición y rachas recientes, parejas y estructura, Bayes Beta-Binomial y Markov regularizado/);
+ assert.match(html,/siete métodos/);
+ assert.match(html,/id="recent-repetitions-card"/);
+ assert.doesNotMatch(html,/repeatTrials|repeatRates/);
 });
