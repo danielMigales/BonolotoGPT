@@ -23,6 +23,7 @@ assert.ok(staticHtml.includes("id=\"view-ai\""), "Debe existir la pestaña del L
 assert.ok(staticHtml.includes("id=\"ai-view\""), "Debe existir el panel del Laboratorio IA");
 assert.ok(staticHtml.includes("fetch('./data/ai-analysis-'+window+'.json'"), "El laboratorio debe cargar el informe generado");
 assert.ok(staticHtml.includes("function renderAi(report)"), "El laboratorio debe representar el informe");
+assert.ok(staticHtml.includes('id="recent-repetitions-card"'), "El laboratorio debe mostrar las repeticiones de la última semana");
 assert.ok(staticHtml.includes('id="ai-sync-status" class="ai-sync-status" role="status" hidden'), "El estado técnico debe conservar su anclaje sin mostrarse");
 assert.ok(staticHtml.includes("Análisis completado"), "El laboratorio debe mostrar un estado breve");
 assert.ok(!staticHtml.includes("Los patrones históricos no garantizan resultados futuros"), "No debe mostrarse el aviso redundante");
@@ -32,6 +33,7 @@ assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservars
 
 if (sourceArchive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
+  assert.equal(fixedReport.version, "2.19.0");
   assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
   assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
