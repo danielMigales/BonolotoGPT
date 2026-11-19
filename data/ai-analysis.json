@@ -1,15 +1,15 @@
 {
-  "version": "2.19.0",
+  "version": "2.20.0",
   "status": "ready",
   "window": 7,
   "sourceLastDate": "2026-11-18",
   "drawCount": 322,
   "objective": {
-    "primary": "three-plus-hit-rate-evaluation",
-    "predictionStrategy": "seven-methods-with-recent-repeat-signal-and-pair-aware-selection",
+    "primary": "maximize-approximate-three-plus-probability",
+    "predictionStrategy": "seven-methods-with-recent-repeat-signal-and-three-plus-combination-objective",
     "expertUpdate": "composite-bernoulli-log-score-over-all-49-numbers"
   },
-  "method": "La propuesta combina siete métodos históricos y elige seis números entre los catorce candidatos con mayor puntuación marginal. Entre esas combinaciones aplica una bonificación pequeña y suavizada por coaparición histórica entre parejas. Los pesos de los expertos se actualizan con una puntuación logarítmica marginal aproximada para los 49 números: suma evidencia tanto de los seis presentes como de los 43 ausentes, en vez de puntuar solo los ganadores. Las probabilidades marginales se aproximan como seis veces la distribución de cada experto; es una aproximación compuesta, no un modelo exacto de dependencia entre números. Parejas y estructura se conservan como señal basada en coapariciones, además de estadísticas descriptivas de paridad y distancias. La señal de repetición reciente incorpora recuentos en siete y quince sorteos y rachas consecutivas. La selección conjunta explora combinaciones entre los catorce candidatos principales y pondera ligeramente las parejas históricas. El resultado es experimental y no implica ventaja predictiva.",
+  "method": "La propuesta combina siete métodos históricos y elige seis números entre los catorce candidatos con mayor puntuación marginal. El selector maximiza una aproximación de la probabilidad de lograr 3+ aciertos, calculada con probabilidades marginales independientes, y añade una bonificación pequeña y suavizada por coaparición histórica entre parejas. Los pesos de los expertos se actualizan con una puntuación logarítmica marginal aproximada para los 49 números: suma evidencia tanto de los seis presentes como de los 43 ausentes, en vez de puntuar solo los ganadores. Las probabilidades marginales se aproximan como seis veces la distribución de cada experto; es una aproximación compuesta, no un modelo exacto de dependencia entre números. Parejas y estructura se conservan como señal basada en coapariciones, además de estadísticas descriptivas de paridad y distancias. La señal de repetición reciente incorpora recuentos en siete y quince sorteos y rachas consecutivas. La selección conjunta explora combinaciones entre los catorce candidatos principales y pondera ligeramente las parejas históricas. El resultado es experimental y no implica ventaja predictiva.",
   "methods": [
     "Frecuencia acumulada",
     "Frecuencia reciente",
@@ -1980,30 +1980,30 @@
   },
   "metrics": {
     "simulations": 315,
-    "meanHits": 0.7524,
+    "meanHits": 0.7683,
     "recent50": {
       "simulations": 50,
       "atLeastThree": 5,
-      "atLeastFour": 0,
+      "atLeastFour": 2,
       "threePlusRate": 0.1,
-      "meanHits": 0.94
+      "meanHits": 0.98
     },
     "recent100": {
       "simulations": 100,
       "atLeastThree": 5,
-      "atLeastFour": 0,
+      "atLeastFour": 2,
       "threePlusRate": 0.05,
-      "meanHits": 0.81
+      "meanHits": 0.84
     },
     "atLeastThree": 8,
-    "atLeastFour": 0,
-    "maxHits": 3,
+    "atLeastFour": 2,
+    "maxHits": 4,
     "histogram": [
-      139,
-      123,
+      136,
+      126,
       45,
-      8,
-      0,
+      6,
+      2,
       0,
       0
     ]
@@ -9322,10 +9322,10 @@
       "windowStart": "2026-02-02",
       "predicted": [
         10,
-        12,
         13,
         26,
         37,
+        42,
         43
       ],
       "actual": [
@@ -9372,43 +9372,14 @@
             {
               "numbers": [
                 10,
-                12
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                10,
                 13
               ],
               "count": 1
-            }
-          ]
-        },
-        {
-          "number": 12,
-          "rank": 6,
-          "score": 0.0287,
-          "selectionScore": 0.8909,
-          "totalFrequency": 7,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                10,
-                12
-              ],
-              "count": 1
             },
             {
               "numbers": [
-                12,
-                26
+                10,
+                43
               ],
               "count": 1
             }
@@ -9455,15 +9426,7 @@
           "consecutive": 0,
           "lastDraw": false,
           "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                12,
-                26
-              ],
-              "count": 1
-            }
-          ]
+          "selectedPairs": []
         },
         {
           "number": 37,
@@ -9482,6 +9445,35 @@
               "numbers": [
                 13,
                 37
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                37,
+                42
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 42,
+          "rank": 7,
+          "score": 0.028,
+          "selectionScore": 0.8616,
+          "totalFrequency": 9,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                37,
+                42
               ],
               "count": 1
             }
@@ -9503,13 +9495,6 @@
             {
               "numbers": [
                 10,
-                43
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                12,
                 43
               ],
               "count": 1
@@ -10080,9 +10065,9 @@
       "windowStart": "2026-02-06",
       "predicted": [
         12,
-        20,
         23,
         26,
+        42,
         44,
         46
       ],
@@ -10144,35 +10129,6 @@
           ]
         },
         {
-          "number": 20,
-          "rank": 6,
-          "score": 0.0265,
-          "selectionScore": 0.5569,
-          "totalFrequency": 6,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                20,
-                23
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                20,
-                44
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 23,
           "rank": 2,
           "score": 0.0302,
@@ -10194,8 +10150,8 @@
             },
             {
               "numbers": [
-                20,
-                23
+                23,
+                46
               ],
               "count": 1
             }
@@ -10224,6 +10180,20 @@
           ]
         },
         {
+          "number": 42,
+          "rank": 7,
+          "score": 0.0261,
+          "selectionScore": 0.5445,
+          "totalFrequency": 9,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": []
+        },
+        {
           "number": 44,
           "rank": 1,
           "score": 0.04,
@@ -10238,15 +10208,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                20,
+                26,
                 44
               ],
               "count": 1
             },
             {
               "numbers": [
-                26,
-                44
+                44,
+                46
               ],
               "count": 1
             }
@@ -10274,7 +10244,7 @@
             },
             {
               "numbers": [
-                20,
+                23,
                 46
               ],
               "count": 1
@@ -11972,11 +11942,11 @@
       "windowStart": "2026-02-15",
       "predicted": [
         1,
-        18,
         22,
         23,
         44,
-        45
+        45,
+        49
       ],
       "actual": [
         6,
@@ -12029,36 +11999,7 @@
             {
               "numbers": [
                 1,
-                18
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 18,
-          "rank": 6,
-          "score": 0.028,
-          "selectionScore": 0.7999,
-          "totalFrequency": 8,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                18
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                18,
-                22
+                44
               ],
               "count": 1
             }
@@ -12079,15 +12020,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                18,
-                22
+                22,
+                23
               ],
               "count": 1
             },
             {
               "numbers": [
                 22,
-                23
+                49
               ],
               "count": 1
             }
@@ -12106,13 +12047,6 @@
           "lastDraw": true,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                18,
-                23
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 22,
@@ -12173,8 +12107,37 @@
             },
             {
               "numbers": [
-                18,
+                44,
                 45
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 49,
+          "rank": 10,
+          "score": 0.0269,
+          "selectionScore": 0.7499,
+          "totalFrequency": 7,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 4,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                1,
+                49
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                22,
+                49
               ],
               "count": 1
             }
@@ -14086,9 +14049,9 @@
       "trainingEnd": "2026-03-03",
       "windowStart": "2026-02-25",
       "predicted": [
-        4,
         8,
         12,
+        26,
         29,
         43,
         44
@@ -14121,35 +14084,6 @@
         0.1493
       ],
       "selectionReasons": [
-        {
-          "number": 4,
-          "rank": 6,
-          "score": 0.0264,
-          "selectionScore": 0.6056,
-          "totalFrequency": 9,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                4,
-                29
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                4,
-                43
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 8,
           "rank": 3,
@@ -14209,6 +14143,20 @@
           ]
         },
         {
+          "number": 26,
+          "rank": 7,
+          "score": 0.0257,
+          "selectionScore": 0.5832,
+          "totalFrequency": 12,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": []
+        },
+        {
           "number": 29,
           "rank": 5,
           "score": 0.0269,
@@ -14223,14 +14171,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                4,
+                8,
                 29
               ],
               "count": 1
             },
             {
               "numbers": [
-                8,
+                12,
                 29
               ],
               "count": 1
@@ -14252,15 +14200,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                4,
+                29,
                 43
               ],
               "count": 1
             },
             {
               "numbers": [
-                29,
-                43
+                43,
+                44
               ],
               "count": 1
             }
@@ -15162,12 +15110,12 @@
       "trainingEnd": "2026-03-08",
       "windowStart": "2026-03-02",
       "predicted": [
-        1,
         15,
         16,
         41,
         43,
-        44
+        44,
+        46
       ],
       "actual": [
         7,
@@ -15198,35 +15146,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 1,
-          "rank": 6,
-          "score": 0.0297,
-          "selectionScore": 0.8118,
-          "totalFrequency": 11,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 5,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                41
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                1,
-                15
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 15,
           "rank": 3,
           "score": 0.0321,
@@ -15248,8 +15167,8 @@
             },
             {
               "numbers": [
-                1,
-                15
+                15,
+                16
               ],
               "count": 1
             }
@@ -15270,15 +15189,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                15,
-                16
+                16,
+                46
               ],
-              "count": 1
+              "count": 2
             },
             {
               "numbers": [
-                16,
-                44
+                15,
+                16
               ],
               "count": 1
             }
@@ -15299,15 +15218,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
+                15,
                 41
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                15,
-                41
+                41,
+                43
               ],
               "count": 1
             }
@@ -15326,13 +15245,6 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                43
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 41,
@@ -15370,6 +15282,35 @@
               "count": 1
             }
           ]
+        },
+        {
+          "number": 46,
+          "rank": 9,
+          "score": 0.0281,
+          "selectionScore": 0.742,
+          "totalFrequency": 10,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 2,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                16,
+                46
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                15,
+                46
+              ],
+              "count": 1
+            }
+          ]
         }
       ]
     },
@@ -15380,12 +15321,12 @@
       "trainingEnd": "2026-03-09",
       "windowStart": "2026-03-03",
       "predicted": [
-        1,
         15,
         16,
         41,
         43,
-        44
+        44,
+        46
       ],
       "actual": [
         3,
@@ -15416,35 +15357,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 1,
-          "rank": 6,
-          "score": 0.0293,
-          "selectionScore": 0.7948,
-          "totalFrequency": 11,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 5,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                41
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                1,
-                15
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 15,
           "rank": 3,
           "score": 0.0313,
@@ -15459,15 +15371,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
-                15
+                15,
+                16
               ],
               "count": 1
             },
             {
               "numbers": [
                 15,
-                16
+                41
               ],
               "count": 1
             }
@@ -15488,15 +15400,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                15,
-                16
+                16,
+                46
               ],
-              "count": 1
+              "count": 2
             },
             {
               "numbers": [
-                16,
-                44
+                15,
+                16
               ],
               "count": 1
             }
@@ -15517,15 +15429,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
+                15,
                 41
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                15,
-                41
+                41,
+                43
               ],
               "count": 1
             }
@@ -15544,13 +15456,6 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                43
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 41,
@@ -15584,6 +15489,35 @@
               "numbers": [
                 16,
                 44
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0277,
+          "selectionScore": 0.7269,
+          "totalFrequency": 10,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                16,
+                46
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                15,
+                46
               ],
               "count": 1
             }
@@ -15816,11 +15750,11 @@
       "trainingEnd": "2026-03-11",
       "windowStart": "2026-03-05",
       "predicted": [
-        1,
         15,
         31,
         41,
         44,
+        46,
         48
       ],
       "actual": [
@@ -15852,35 +15786,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 1,
-          "rank": 5,
-          "score": 0.0276,
-          "selectionScore": 0.7311,
-          "totalFrequency": 11,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                41
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                1,
-                15
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 15,
           "rank": 4,
           "score": 0.0301,
@@ -15895,15 +15800,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
-                15
+                15,
+                31
               ],
               "count": 1
             },
             {
               "numbers": [
                 15,
-                31
+                41
               ],
               "count": 1
             }
@@ -15953,17 +15858,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
+                31,
                 41
               ],
               "count": 2
             },
             {
               "numbers": [
-                31,
+                15,
                 41
               ],
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -15984,6 +15889,42 @@
               "numbers": [
                 15,
                 44
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                44,
+                46
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0265,
+          "selectionScore": 0.6821,
+          "totalFrequency": 10,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                15,
+                46
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                44,
+                46
               ],
               "count": 1
             }
@@ -17525,7 +17466,7 @@
       "windowStart": "2026-03-13",
       "predicted": [
         4,
-        12,
+        11,
         16,
         22,
         42,
@@ -17539,7 +17480,7 @@
         28,
         43
       ],
-      "hits": 0,
+      "hits": 1,
       "expertHits": [
         1,
         1,
@@ -17589,22 +17530,29 @@
           ]
         },
         {
-          "number": 12,
-          "rank": 6,
-          "score": 0.0278,
-          "selectionScore": 0.8396,
-          "totalFrequency": 13,
+          "number": 11,
+          "rank": 7,
+          "score": 0.0275,
+          "selectionScore": 0.8245,
+          "totalFrequency": 11,
           "recentFrequency": 2,
           "recent7": 2,
-          "recent15": 2,
+          "recent15": 4,
           "consecutive": 0,
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
             {
               "numbers": [
-                12,
-                46
+                4,
+                11
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                11,
+                22
               ],
               "count": 1
             }
@@ -17661,7 +17609,7 @@
             },
             {
               "numbers": [
-                16,
+                11,
                 22
               ],
               "count": 1
@@ -17719,7 +17667,7 @@
             },
             {
               "numbers": [
-                12,
+                11,
                 46
               ],
               "count": 1
@@ -17957,8 +17905,8 @@
         11,
         20,
         26,
-        43,
-        48
+        41,
+        43
       ],
       "actual": [
         6,
@@ -18094,6 +18042,42 @@
                 26
               ],
               "count": 1
+            },
+            {
+              "numbers": [
+                26,
+                41
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 41,
+          "rank": 9,
+          "score": 0.0246,
+          "selectionScore": 0.6994,
+          "totalFrequency": 14,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                20,
+                41
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                26,
+                41
+              ],
+              "count": 1
             }
           ]
         },
@@ -18125,20 +18109,6 @@
               "count": 1
             }
           ]
-        },
-        {
-          "number": 48,
-          "rank": 5,
-          "score": 0.0254,
-          "selectionScore": 0.7362,
-          "totalFrequency": 9,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 5,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": []
         }
       ]
     },
@@ -18367,11 +18337,11 @@
       "trainingEnd": "2026-03-23",
       "windowStart": "2026-03-17",
       "predicted": [
-        4,
         11,
         15,
         26,
         30,
+        41,
         43
       ],
       "actual": [
@@ -18382,7 +18352,7 @@
         39,
         41
       ],
-      "hits": 1,
+      "hits": 2,
       "expertHits": [
         1,
         1,
@@ -18403,35 +18373,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 4,
-          "rank": 6,
-          "score": 0.0263,
-          "selectionScore": 0.7877,
-          "totalFrequency": 12,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                4,
-                11
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                4,
-                43
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 11,
           "rank": 5,
           "score": 0.028,
@@ -18450,13 +18391,6 @@
                 43
               ],
               "count": 2
-            },
-            {
-              "numbers": [
-                4,
-                11
-              ],
-              "count": 1
             }
           ]
         },
@@ -18548,6 +18482,35 @@
           ]
         },
         {
+          "number": 41,
+          "rank": 8,
+          "score": 0.0252,
+          "selectionScore": 0.736,
+          "totalFrequency": 14,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                15,
+                41
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                26,
+                41
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
           "number": 43,
           "rank": 3,
           "score": 0.0293,
@@ -18566,13 +18529,6 @@
                 43
               ],
               "count": 2
-            },
-            {
-              "numbers": [
-                4,
-                43
-              ],
-              "count": 1
             }
           ]
         }
@@ -24266,7 +24222,7 @@
         15,
         18,
         22,
-        42,
+        43,
         44,
         46
       ],
@@ -24386,11 +24342,11 @@
           ]
         },
         {
-          "number": 42,
-          "rank": 7,
-          "score": 0.0278,
-          "selectionScore": 0.696,
-          "totalFrequency": 17,
+          "number": 43,
+          "rank": 8,
+          "score": 0.0276,
+          "selectionScore": 0.6892,
+          "totalFrequency": 18,
           "recentFrequency": 2,
           "recent7": 2,
           "recent15": 2,
@@ -24400,8 +24356,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                42,
-                44
+                15,
+                43
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                18,
+                43
               ],
               "count": 1
             }
@@ -26218,10 +26181,10 @@
       "trainingEnd": "2026-04-29",
       "windowStart": "2026-04-23",
       "predicted": [
-        1,
         22,
         23,
         41,
+        42,
         45,
         47
       ],
@@ -26253,35 +26216,6 @@
         0.1472
       ],
       "selectionReasons": [
-        {
-          "number": 1,
-          "rank": 6,
-          "score": 0.0254,
-          "selectionScore": 0.5482,
-          "totalFrequency": 17,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 3,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                23
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                1,
-                41
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 22,
           "rank": 5,
@@ -26333,8 +26267,8 @@
             },
             {
               "numbers": [
-                1,
-                23
+                23,
+                45
               ],
               "count": 1
             }
@@ -26362,8 +26296,30 @@
             },
             {
               "numbers": [
-                1,
-                41
+                41,
+                45
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 42,
+          "rank": 9,
+          "score": 0.0248,
+          "selectionScore": 0.5231,
+          "totalFrequency": 19,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 4,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                42,
+                47
               ],
               "count": 1
             }
@@ -29854,9 +29810,9 @@
         13,
         18,
         23,
-        28,
         41,
-        44
+        44,
+        46
       ],
       "actual": [
         16,
@@ -29866,7 +29822,7 @@
         46,
         47
       ],
-      "hits": 0,
+      "hits": 1,
       "expertHits": [
         1,
         1,
@@ -29960,29 +29916,7 @@
             {
               "numbers": [
                 23,
-                28
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 28,
-          "rank": 3,
-          "score": 0.0266,
-          "selectionScore": 0.802,
-          "totalFrequency": 12,
-          "recentFrequency": 3,
-          "recent7": 3,
-          "recent15": 3,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                23,
-                28
+                44
               ],
               "count": 1
             }
@@ -30026,6 +29960,35 @@
               "numbers": [
                 23,
                 44
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 11,
+          "score": 0.0249,
+          "selectionScore": 0.7039,
+          "totalFrequency": 23,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                18,
+                46
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                23,
+                46
               ],
               "count": 1
             }
@@ -31982,11 +31945,11 @@
       "windowStart": "2026-05-20",
       "predicted": [
         1,
-        18,
         21,
         22,
         28,
-        46
+        46,
+        47
       ],
       "actual": [
         6,
@@ -32035,33 +31998,11 @@
                 21
               ],
               "count": 1
-            }
-          ]
-        },
-        {
-          "number": 18,
-          "rank": 5,
-          "score": 0.0254,
-          "selectionScore": 0.7093,
-          "totalFrequency": 20,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 3,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                18,
-                22
-              ],
-              "count": 1
             },
             {
               "numbers": [
-                18,
-                28
+                1,
+                47
               ],
               "count": 1
             }
@@ -32104,13 +32045,6 @@
           "selectedPairs": [
             {
               "numbers": [
-                18,
-                22
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
                 22,
                 28
               ],
@@ -32133,15 +32067,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                18,
+                22,
                 28
               ],
               "count": 1
             },
             {
               "numbers": [
-                22,
-                28
+                28,
+                46
               ],
               "count": 1
             }
@@ -32168,6 +32102,28 @@
               "count": 1
             }
           ]
+        },
+        {
+          "number": 47,
+          "rank": 8,
+          "score": 0.0245,
+          "selectionScore": 0.6666,
+          "totalFrequency": 22,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                1,
+                47
+              ],
+              "count": 1
+            }
+          ]
         }
       ]
     },
@@ -32180,9 +32136,9 @@
       "predicted": [
         1,
         11,
-        22,
         28,
         29,
+        46,
         48
       ],
       "actual": [
@@ -32258,43 +32214,14 @@
             {
               "numbers": [
                 11,
-                22
+                28
               ],
               "count": 1
             },
             {
               "numbers": [
                 11,
-                28
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 22,
-          "rank": 6,
-          "score": 0.0255,
-          "selectionScore": 0.9089,
-          "totalFrequency": 27,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 1,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                11,
-                22
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                22,
-                28
+                29
               ],
               "count": 1
             }
@@ -32322,8 +32249,8 @@
             },
             {
               "numbers": [
-                22,
-                28
+                28,
+                46
               ],
               "count": 1
             }
@@ -32353,6 +32280,28 @@
               "numbers": [
                 11,
                 29
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0249,
+          "selectionScore": 0.8726,
+          "totalFrequency": 25,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                28,
+                46
               ],
               "count": 1
             }
@@ -33908,8 +33857,8 @@
       "windowStart": "2026-05-29",
       "predicted": [
         1,
-        15,
         18,
+        22,
         23,
         41,
         46
@@ -33972,35 +33921,6 @@
           ]
         },
         {
-          "number": 15,
-          "rank": 6,
-          "score": 0.0269,
-          "selectionScore": 0.6434,
-          "totalFrequency": 24,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                15,
-                18
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                15,
-                23
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 18,
           "rank": 1,
           "score": 0.0353,
@@ -34015,15 +33935,44 @@
           "selectedPairs": [
             {
               "numbers": [
-                15,
+                1,
                 18
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
+                18,
+                23
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 22,
+          "rank": 7,
+          "score": 0.0265,
+          "selectionScore": 0.6281,
+          "totalFrequency": 29,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
                 1,
-                18
+                22
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                22,
+                41
               ],
               "count": 1
             }
@@ -34051,7 +34000,7 @@
             },
             {
               "numbers": [
-                15,
+                18,
                 23
               ],
               "count": 1
@@ -34080,7 +34029,7 @@
             },
             {
               "numbers": [
-                23,
+                22,
                 41
               ],
               "count": 1
@@ -34557,9 +34506,9 @@
         1,
         13,
         15,
-        18,
         23,
-        41
+        41,
+        46
       ],
       "actual": [
         6,
@@ -34569,7 +34518,7 @@
         39,
         48
       ],
-      "hits": 1,
+      "hits": 0,
       "expertHits": [
         0,
         0,
@@ -34612,7 +34561,7 @@
             {
               "numbers": [
                 1,
-                18
+                41
               ],
               "count": 1
             }
@@ -34670,36 +34619,7 @@
             {
               "numbers": [
                 15,
-                18
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 18,
-          "rank": 5,
-          "score": 0.0267,
-          "selectionScore": 0.8702,
-          "totalFrequency": 23,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                18
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                13,
-                18
+                23
               ],
               "count": 1
             }
@@ -34727,8 +34647,8 @@
             },
             {
               "numbers": [
-                18,
-                23
+                23,
+                46
               ],
               "count": 1
             }
@@ -34751,6 +34671,28 @@
               "numbers": [
                 1,
                 41
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0263,
+          "selectionScore": 0.8452,
+          "totalFrequency": 28,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                23,
+                46
               ],
               "count": 1
             }
@@ -35196,7 +35138,7 @@
       "predicted": [
         13,
         18,
-        35,
+        28,
         41,
         43,
         49
@@ -35245,6 +35187,13 @@
             {
               "numbers": [
                 13,
+                28
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                13,
                 18
               ],
               "count": 1
@@ -35270,33 +35219,40 @@
                 18
               ],
               "count": 1
+            },
+            {
+              "numbers": [
+                18,
+                28
+              ],
+              "count": 1
             }
           ]
         },
         {
-          "number": 35,
-          "rank": 7,
-          "score": 0.0253,
-          "selectionScore": 0.7921,
-          "totalFrequency": 20,
+          "number": 28,
+          "rank": 10,
+          "score": 0.025,
+          "selectionScore": 0.7737,
+          "totalFrequency": 18,
           "recentFrequency": 2,
           "recent7": 2,
-          "recent15": 3,
-          "consecutive": 2,
-          "lastDraw": true,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
             {
               "numbers": [
-                35,
-                49
+                13,
+                28
               ],
               "count": 2
             },
             {
               "numbers": [
-                35,
-                41
+                18,
+                28
               ],
               "count": 1
             }
@@ -35315,13 +35271,6 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                35,
-                41
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 41,
@@ -35350,13 +35299,6 @@
                 49
               ],
               "count": 2
-            },
-            {
-              "numbers": [
-                35,
-                43
-              ],
-              "count": 1
             }
           ]
         },
@@ -35375,17 +35317,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                35,
+                43,
                 49
               ],
               "count": 2
             },
             {
               "numbers": [
-                43,
+                41,
                 49
               ],
-              "count": 2
+              "count": 1
             }
           ]
         }
@@ -35602,11 +35544,11 @@
       "trainingEnd": "2026-06-12",
       "windowStart": "2026-06-06",
       "predicted": [
-        1,
         4,
         10,
         41,
-        48,
+        43,
+        47,
         49
       ],
       "actual": [
@@ -35638,35 +35580,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 1,
-          "rank": 5,
-          "score": 0.0258,
-          "selectionScore": 0.8983,
-          "totalFrequency": 25,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 4,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                4
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                1,
-                48
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 4,
           "rank": 1,
           "score": 0.0273,
@@ -35681,15 +35594,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
-                4
+                4,
+                10
               ],
               "count": 1
             },
             {
               "numbers": [
                 4,
-                10
+                47
               ],
               "count": 1
             }
@@ -35740,29 +35653,44 @@
           ]
         },
         {
-          "number": 48,
-          "rank": 4,
-          "score": 0.026,
-          "selectionScore": 0.9159,
-          "totalFrequency": 21,
+          "number": 43,
+          "rank": 8,
+          "score": 0.0251,
+          "selectionScore": 0.8542,
+          "totalFrequency": 22,
           "recentFrequency": 2,
           "recent7": 2,
-          "recent15": 3,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                43,
+                49
+              ],
+              "count": 2
+            }
+          ]
+        },
+        {
+          "number": 47,
+          "rank": 9,
+          "score": 0.025,
+          "selectionScore": 0.8482,
+          "totalFrequency": 24,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
           "consecutive": 1,
           "lastDraw": true,
           "recentWindow": 7,
           "selectedPairs": [
             {
               "numbers": [
-                1,
-                48
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
                 4,
-                48
+                47
               ],
               "count": 1
             }
@@ -35783,6 +35711,13 @@
           "selectedPairs": [
             {
               "numbers": [
+                43,
+                49
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
                 41,
                 49
               ],
@@ -35799,10 +35734,10 @@
       "trainingEnd": "2026-06-13",
       "windowStart": "2026-06-07",
       "predicted": [
-        4,
         35,
         37,
         41,
+        43,
         48,
         49
       ],
@@ -35834,28 +35769,6 @@
         0.1538
       ],
       "selectionReasons": [
-        {
-          "number": 4,
-          "rank": 5,
-          "score": 0.0259,
-          "selectionScore": 0.8155,
-          "totalFrequency": 21,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                4,
-                48
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 35,
           "rank": 1,
@@ -35908,7 +35821,7 @@
             {
               "numbers": [
                 37,
-                49
+                43
               ],
               "count": 1
             }
@@ -35944,6 +35857,35 @@
           ]
         },
         {
+          "number": 43,
+          "rank": 8,
+          "score": 0.025,
+          "selectionScore": 0.7655,
+          "totalFrequency": 22,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                43,
+                49
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                35,
+                43
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
           "number": 48,
           "rank": 3,
           "score": 0.0264,
@@ -35955,15 +35897,7 @@
           "consecutive": 0,
           "lastDraw": false,
           "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                4,
-                48
-              ],
-              "count": 1
-            }
-          ]
+          "selectedPairs": []
         },
         {
           "number": 49,
@@ -35987,10 +35921,10 @@
             },
             {
               "numbers": [
-                37,
+                43,
                 49
               ],
-              "count": 1
+              "count": 2
             }
           ]
         }
@@ -37664,11 +37598,11 @@
       "windowStart": "2026-06-16",
       "predicted": [
         14,
-        24,
         28,
         32,
         40,
-        43
+        43,
+        47
       ],
       "actual": [
         8,
@@ -37678,7 +37612,7 @@
         41,
         49
       ],
-      "hits": 1,
+      "hits": 0,
       "expertHits": [
         1,
         1,
@@ -37714,45 +37648,16 @@
             {
               "numbers": [
                 14,
-                24
+                28
               ],
               "count": 1
             },
             {
               "numbers": [
                 14,
-                28
+                32
               ],
               "count": 1
-            }
-          ]
-        },
-        {
-          "number": 24,
-          "rank": 6,
-          "score": 0.0245,
-          "selectionScore": 0.7302,
-          "totalFrequency": 21,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                24,
-                28
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                24,
-                40
-              ],
-              "count": 2
             }
           ]
         },
@@ -37771,17 +37676,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                24,
-                28
+                28,
+                40
               ],
               "count": 2
             },
             {
               "numbers": [
-                28,
-                40
+                14,
+                28
               ],
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -37807,7 +37712,7 @@
             },
             {
               "numbers": [
-                24,
+                28,
                 32
               ],
               "count": 1
@@ -37829,17 +37734,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                24,
+                28,
                 40
               ],
               "count": 2
             },
             {
               "numbers": [
-                28,
+                14,
                 40
               ],
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -37860,6 +37765,28 @@
               "numbers": [
                 14,
                 43
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 47,
+          "rank": 10,
+          "score": 0.0239,
+          "selectionScore": 0.6913,
+          "totalFrequency": 26,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                40,
+                47
               ],
               "count": 1
             }
@@ -38681,10 +38608,10 @@
       "trainingEnd": "2026-06-27",
       "windowStart": "2026-06-21",
       "predicted": [
-        5,
         12,
         22,
         23,
+        34,
         41,
         47
       ],
@@ -38717,35 +38644,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 5,
-          "rank": 5,
-          "score": 0.0248,
-          "selectionScore": 0.7333,
-          "totalFrequency": 21,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                12
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                5,
-                41
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 12,
           "rank": 3,
           "score": 0.0284,
@@ -38760,15 +38658,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                5,
-                12
+                12,
+                23
               ],
               "count": 1
             },
             {
               "numbers": [
                 12,
-                23
+                34
               ],
               "count": 1
             }
@@ -38807,6 +38705,42 @@
                 23
               ],
               "count": 1
+            },
+            {
+              "numbers": [
+                23,
+                34
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 34,
+          "rank": 7,
+          "score": 0.0243,
+          "selectionScore": 0.6996,
+          "totalFrequency": 16,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 2,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                12,
+                34
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                23,
+                34
+              ],
+              "count": 1
             }
           ]
         },
@@ -38822,15 +38756,7 @@
           "consecutive": 0,
           "lastDraw": false,
           "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                41
-              ],
-              "count": 1
-            }
-          ]
+          "selectedPairs": []
         },
         {
           "number": 47,
@@ -38847,14 +38773,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                5,
+                12,
                 47
               ],
               "count": 1
             },
             {
               "numbers": [
-                12,
+                34,
                 47
               ],
               "count": 1
@@ -38870,9 +38796,9 @@
       "trainingEnd": "2026-06-28",
       "windowStart": "2026-06-22",
       "predicted": [
-        5,
         12,
         15,
+        22,
         41,
         43,
         47
@@ -38885,7 +38811,7 @@
         42,
         46
       ],
-      "hits": 1,
+      "hits": 2,
       "expertHits": [
         2,
         1,
@@ -38906,35 +38832,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 5,
-          "rank": 5,
-          "score": 0.0246,
-          "selectionScore": 0.7231,
-          "totalFrequency": 21,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                12
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                5,
-                41
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 12,
           "rank": 4,
           "score": 0.026,
@@ -38947,13 +38844,6 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                12
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 12,
@@ -38979,7 +38869,36 @@
             {
               "numbers": [
                 15,
+                22
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                15,
                 43
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 22,
+          "rank": 7,
+          "score": 0.0242,
+          "selectionScore": 0.702,
+          "totalFrequency": 31,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                15,
+                22
               ],
               "count": 1
             }
@@ -38998,13 +38917,6 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                41
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 41,
@@ -39029,14 +38941,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                5,
+                15,
                 43
               ],
               "count": 1
             },
             {
               "numbers": [
-                15,
+                41,
                 43
               ],
               "count": 1
@@ -39056,13 +38968,6 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                47
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 12,
@@ -39490,10 +39395,10 @@
       "predicted": [
         11,
         12,
-        22,
         42,
         43,
-        47
+        47,
+        48
       ],
       "actual": [
         3,
@@ -39546,7 +39451,7 @@
             {
               "numbers": [
                 11,
-                22
+                42
               ],
               "count": 1
             }
@@ -39578,35 +39483,6 @@
                 42
               ],
               "count": 2
-            }
-          ]
-        },
-        {
-          "number": 22,
-          "rank": 6,
-          "score": 0.0258,
-          "selectionScore": 0.5598,
-          "totalFrequency": 32,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                11,
-                22
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                12,
-                22
-              ],
-              "count": 1
             }
           ]
         },
@@ -39685,6 +39561,35 @@
               "numbers": [
                 43,
                 47
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 8,
+          "score": 0.0254,
+          "selectionScore": 0.5433,
+          "totalFrequency": 23,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 2,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                12,
+                48
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                11,
+                48
               ],
               "count": 1
             }
@@ -41377,11 +41282,11 @@
       "trainingEnd": "2026-07-10",
       "windowStart": "2026-07-04",
       "predicted": [
-        12,
         15,
         26,
         45,
         46,
+        47,
         48
       ],
       "actual": [
@@ -41412,35 +41317,6 @@
         0.1587
       ],
       "selectionReasons": [
-        {
-          "number": 12,
-          "rank": 6,
-          "score": 0.0263,
-          "selectionScore": 0.7167,
-          "totalFrequency": 29,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 6,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                12,
-                26
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                12,
-                45
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 15,
           "rank": 1,
@@ -41485,13 +41361,6 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
-                26
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
                 26,
                 45
               ],
@@ -41514,14 +41383,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
+                15,
                 45
               ],
               "count": 1
             },
             {
               "numbers": [
-                15,
+                26,
                 45
               ],
               "count": 1
@@ -41552,6 +41421,35 @@
               "numbers": [
                 45,
                 46
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 47,
+          "rank": 9,
+          "score": 0.0249,
+          "selectionScore": 0.6441,
+          "totalFrequency": 30,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                46,
+                47
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                47,
+                48
               ],
               "count": 1
             }
@@ -41597,9 +41495,9 @@
       "predicted": [
         15,
         23,
-        24,
         26,
         45,
+        46,
         48
       ],
       "actual": [
@@ -41678,42 +41576,6 @@
                 23
               ],
               "count": 1
-            },
-            {
-              "numbers": [
-                23,
-                24
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 24,
-          "rank": 6,
-          "score": 0.0258,
-          "selectionScore": 0.6971,
-          "totalFrequency": 24,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                23,
-                24
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                24,
-                48
-              ],
-              "count": 1
             }
           ]
         },
@@ -41769,6 +41631,28 @@
           ]
         },
         {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0251,
+          "selectionScore": 0.6599,
+          "totalFrequency": 32,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                46,
+                48
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
           "number": 48,
           "rank": 3,
           "score": 0.0273,
@@ -41790,7 +41674,7 @@
             },
             {
               "numbers": [
-                24,
+                46,
                 48
               ],
               "count": 1
@@ -42010,12 +41894,12 @@
       "trainingEnd": "2026-07-13",
       "windowStart": "2026-07-07",
       "predicted": [
-        12,
         15,
         24,
         26,
         45,
-        46
+        46,
+        48
       ],
       "actual": [
         10,
@@ -42046,35 +41930,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 12,
-          "rank": 6,
-          "score": 0.0248,
-          "selectionScore": 0.6579,
-          "totalFrequency": 29,
-          "recentFrequency": 1,
-          "recent7": 1,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                12,
-                26
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                12,
-                45
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 15,
           "rank": 2,
           "score": 0.0277,
@@ -42091,6 +41946,13 @@
               "numbers": [
                 15,
                 45
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                15,
+                48
               ],
               "count": 1
             }
@@ -42140,15 +42002,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
+                24,
                 26
               ],
               "count": 1
             },
             {
               "numbers": [
-                24,
-                26
+                26,
+                45
               ],
               "count": 1
             }
@@ -42169,14 +42031,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
+                15,
                 45
               ],
               "count": 1
             },
             {
               "numbers": [
-                15,
+                26,
                 45
               ],
               "count": 1
@@ -42207,6 +42069,28 @@
               "numbers": [
                 26,
                 46
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 9,
+          "score": 0.0236,
+          "selectionScore": 0.5971,
+          "totalFrequency": 26,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 4,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                15,
+                48
               ],
               "count": 1
             }
@@ -44708,12 +44592,12 @@
       "trainingEnd": "2026-07-26",
       "windowStart": "2026-07-20",
       "predicted": [
-        19,
         23,
         26,
         44,
         45,
-        46
+        46,
+        47
       ],
       "actual": [
         15,
@@ -44744,35 +44628,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 19,
-          "rank": 5,
-          "score": 0.0262,
-          "selectionScore": 0.8455,
-          "totalFrequency": 24,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                19,
-                23
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                19,
-                44
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 23,
           "rank": 2,
           "score": 0.0283,
@@ -44787,8 +44642,8 @@
           "selectedPairs": [
             {
               "numbers": [
-                19,
-                23
+                23,
+                47
               ],
               "count": 1
             }
@@ -44831,13 +44686,6 @@
           "selectedPairs": [
             {
               "numbers": [
-                19,
-                44
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
                 44,
                 45
               ],
@@ -44860,14 +44708,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                19,
+                26,
                 45
               ],
               "count": 1
             },
             {
               "numbers": [
-                26,
+                44,
                 45
               ],
               "count": 1
@@ -44887,6 +44735,28 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": []
+        },
+        {
+          "number": 47,
+          "rank": 10,
+          "score": 0.0244,
+          "selectionScore": 0.7375,
+          "totalFrequency": 33,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                23,
+                47
+              ],
+              "count": 1
+            }
+          ]
         }
       ]
     },
@@ -44897,11 +44767,11 @@
       "trainingEnd": "2026-07-27",
       "windowStart": "2026-07-21",
       "predicted": [
-        15,
         23,
         26,
         44,
         45,
+        47,
         48
       ],
       "actual": [
@@ -44933,35 +44803,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 15,
-          "rank": 6,
-          "score": 0.0254,
-          "selectionScore": 0.8036,
-          "totalFrequency": 32,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                15,
-                44
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                15,
-                45
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 23,
           "rank": 3,
           "score": 0.0275,
@@ -44974,6 +44815,13 @@
           "lastDraw": false,
           "recentWindow": 7,
           "selectedPairs": [
+            {
+              "numbers": [
+                23,
+                47
+              ],
+              "count": 1
+            },
             {
               "numbers": [
                 23,
@@ -45020,13 +44868,6 @@
           "selectedPairs": [
             {
               "numbers": [
-                15,
-                44
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
                 44,
                 45
               ],
@@ -45049,15 +44890,37 @@
           "selectedPairs": [
             {
               "numbers": [
-                15,
+                26,
                 45
               ],
               "count": 1
             },
             {
               "numbers": [
-                26,
+                44,
                 45
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 47,
+          "rank": 10,
+          "score": 0.0242,
+          "selectionScore": 0.7275,
+          "totalFrequency": 33,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                23,
+                47
               ],
               "count": 1
             }
@@ -45076,13 +44939,6 @@
           "lastDraw": true,
           "recentWindow": 7,
           "selectedPairs": [
-            {
-              "numbers": [
-                15,
-                48
-              ],
-              "count": 1
-            },
             {
               "numbers": [
                 23,
@@ -45741,12 +45597,12 @@
       "trainingEnd": "2026-07-31",
       "windowStart": "2026-07-25",
       "predicted": [
-        1,
         9,
         17,
         18,
         19,
-        31
+        31,
+        48
       ],
       "actual": [
         1,
@@ -45756,7 +45612,7 @@
         28,
         39
       ],
-      "hits": 2,
+      "hits": 1,
       "expertHits": [
         1,
         1,
@@ -45776,35 +45632,6 @@
         0.1565
       ],
       "selectionReasons": [
-        {
-          "number": 1,
-          "rank": 5,
-          "score": 0.0258,
-          "selectionScore": 0.6412,
-          "totalFrequency": 30,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                17
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                1,
-                9
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 9,
           "rank": 1,
@@ -45849,17 +45676,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                1,
+                9,
                 17
               ],
               "count": 2
             },
             {
               "numbers": [
-                9,
-                17
+                17,
+                18
               ],
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -45914,7 +45741,7 @@
             },
             {
               "numbers": [
-                1,
+                17,
                 19
               ],
               "count": 1
@@ -45947,6 +45774,35 @@
                 31
               ],
               "count": 2
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 7,
+          "score": 0.0249,
+          "selectionScore": 0.5984,
+          "totalFrequency": 28,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                9,
+                48
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                19,
+                48
+              ],
+              "count": 1
             }
           ]
         }
@@ -46826,10 +46682,10 @@
       "predicted": [
         1,
         2,
-        19,
         22,
         28,
-        37
+        37,
+        40
       ],
       "actual": [
         5,
@@ -46875,14 +46731,14 @@
             {
               "numbers": [
                 1,
-                19
+                22
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
                 1,
-                22
+                28
               ],
               "count": 1
             }
@@ -46911,38 +46767,9 @@
             {
               "numbers": [
                 2,
-                22
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 19,
-          "rank": 6,
-          "score": 0.0255,
-          "selectionScore": 0.7741,
-          "totalFrequency": 26,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                1,
-                19
+                40
               ],
               "count": 2
-            },
-            {
-              "numbers": [
-                19,
-                22
-              ],
-              "count": 1
             }
           ]
         },
@@ -46997,10 +46824,10 @@
             },
             {
               "numbers": [
-                1,
-                28
+                28,
+                40
               ],
-              "count": 1
+              "count": 2
             }
           ]
         },
@@ -47030,6 +46857,35 @@
                 37
               ],
               "count": 1
+            }
+          ]
+        },
+        {
+          "number": 40,
+          "rank": 8,
+          "score": 0.0245,
+          "selectionScore": 0.7144,
+          "totalFrequency": 24,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                2,
+                40
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                28,
+                40
+              ],
+              "count": 2
             }
           ]
         }
@@ -47263,9 +47119,9 @@
         2,
         22,
         28,
-        33,
         37,
-        43
+        43,
+        46
       ],
       "actual": [
         19,
@@ -47275,7 +47131,7 @@
         43,
         46
       ],
-      "hits": 1,
+      "hits": 2,
       "expertHits": [
         1,
         0,
@@ -47376,38 +47232,9 @@
             {
               "numbers": [
                 28,
-                33
+                37
               ],
               "count": 2
-            }
-          ]
-        },
-        {
-          "number": 33,
-          "rank": 6,
-          "score": 0.0246,
-          "selectionScore": 0.6151,
-          "totalFrequency": 24,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                28,
-                33
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                2,
-                33
-              ],
-              "count": 1
             }
           ]
         },
@@ -47464,6 +47291,35 @@
               "numbers": [
                 37,
                 43
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0241,
+          "selectionScore": 0.5902,
+          "totalFrequency": 36,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 1,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                37,
+                46
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                43,
+                46
               ],
               "count": 1
             }
@@ -49981,9 +49837,9 @@
       "windowStart": "2026-08-14",
       "predicted": [
         1,
-        16,
         23,
         28,
+        35,
         44,
         47
       ],
@@ -50031,43 +49887,14 @@
             {
               "numbers": [
                 1,
-                16
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                1,
                 23
               ],
               "count": 1
-            }
-          ]
-        },
-        {
-          "number": 16,
-          "rank": 6,
-          "score": 0.026,
-          "selectionScore": 0.71,
-          "totalFrequency": 31,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                16,
-                47
-              ],
-              "count": 2
             },
             {
               "numbers": [
                 1,
-                16
+                28
               ],
               "count": 1
             }
@@ -50132,6 +49959,28 @@
           ]
         },
         {
+          "number": 35,
+          "rank": 7,
+          "score": 0.0258,
+          "selectionScore": 0.6991,
+          "totalFrequency": 30,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                35,
+                47
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
           "number": 44,
           "rank": 2,
           "score": 0.0311,
@@ -50175,17 +50024,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                16,
+                28,
                 47
               ],
               "count": 2
             },
             {
               "numbers": [
-                28,
+                1,
                 47
               ],
-              "count": 2
+              "count": 1
             }
           ]
         }
@@ -50614,9 +50463,9 @@
       "windowStart": "2026-08-17",
       "predicted": [
         2,
-        6,
         16,
         19,
+        23,
         46,
         47
       ],
@@ -50678,35 +50527,6 @@
           ]
         },
         {
-          "number": 6,
-          "rank": 6,
-          "score": 0.0247,
-          "selectionScore": 0.7715,
-          "totalFrequency": 28,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 2,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                6,
-                16
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                6,
-                19
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 16,
           "rank": 3,
           "score": 0.0269,
@@ -50728,8 +50548,8 @@
             },
             {
               "numbers": [
-                6,
-                16
+                16,
+                19
               ],
               "count": 1
             }
@@ -50757,12 +50577,26 @@
             },
             {
               "numbers": [
-                6,
+                16,
                 19
               ],
               "count": 1
             }
           ]
+        },
+        {
+          "number": 23,
+          "rank": 9,
+          "score": 0.024,
+          "selectionScore": 0.7234,
+          "totalFrequency": 36,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": []
         },
         {
           "number": 46,
@@ -50776,15 +50610,7 @@
           "consecutive": 1,
           "lastDraw": true,
           "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                6,
-                46
-              ],
-              "count": 1
-            }
-          ]
+          "selectedPairs": []
         },
         {
           "number": 47,
@@ -53747,9 +53573,9 @@
       "windowStart": "2026-09-01",
       "predicted": [
         18,
-        21,
         23,
         24,
+        33,
         41,
         47
       ],
@@ -53761,7 +53587,7 @@
         38,
         39
       ],
-      "hits": 0,
+      "hits": 1,
       "expertHits": [
         0,
         1,
@@ -53807,28 +53633,6 @@
                 41
               ],
               "count": 2
-            }
-          ]
-        },
-        {
-          "number": 21,
-          "rank": 5,
-          "score": 0.0251,
-          "selectionScore": 0.6164,
-          "totalFrequency": 30,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 5,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                21,
-                47
-              ],
-              "count": 1
             }
           ]
         },
@@ -53891,6 +53695,35 @@
           ]
         },
         {
+          "number": 33,
+          "rank": 7,
+          "score": 0.0248,
+          "selectionScore": 0.6022,
+          "totalFrequency": 29,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                18,
+                33
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                23,
+                33
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
           "number": 41,
           "rank": 4,
           "score": 0.0259,
@@ -53941,7 +53774,7 @@
             },
             {
               "numbers": [
-                21,
+                23,
                 47
               ],
               "count": 1
@@ -55251,12 +55084,12 @@
       "trainingEnd": "2026-09-14",
       "windowStart": "2026-09-08",
       "predicted": [
-        12,
         16,
         23,
         33,
         37,
-        47
+        47,
+        49
       ],
       "actual": [
         14,
@@ -55266,7 +55099,7 @@
         42,
         49
       ],
-      "hits": 0,
+      "hits": 1,
       "expertHits": [
         0,
         0,
@@ -55287,35 +55120,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 12,
-          "rank": 6,
-          "score": 0.025,
-          "selectionScore": 0.6904,
-          "totalFrequency": 35,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                12,
-                23
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                12,
-                16
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 16,
           "rank": 5,
           "score": 0.0252,
@@ -55330,15 +55134,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
-                16
+                16,
+                23
               ],
               "count": 1
             },
             {
               "numbers": [
                 16,
-                23
+                49
               ],
               "count": 1
             }
@@ -55359,15 +55163,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
+                16,
                 23
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                16,
-                23
+                23,
+                37
               ],
               "count": 1
             }
@@ -55417,14 +55221,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                12,
+                23,
                 37
               ],
               "count": 1
             },
             {
               "numbers": [
-                23,
+                33,
                 37
               ],
               "count": 1
@@ -55448,6 +55252,28 @@
               "numbers": [
                 33,
                 47
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 49,
+          "rank": 8,
+          "score": 0.0238,
+          "selectionScore": 0.6204,
+          "totalFrequency": 29,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                16,
+                49
               ],
               "count": 1
             }
@@ -56204,7 +56030,7 @@
         3,
         18,
         23,
-        42,
+        24,
         49
       ],
       "actual": [
@@ -56338,6 +56164,13 @@
             {
               "numbers": [
                 23,
+                24
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                23,
                 49
               ],
               "count": 1
@@ -56345,24 +56178,31 @@
           ]
         },
         {
-          "number": 42,
-          "rank": 7,
-          "score": 0.025,
-          "selectionScore": 0.7227,
-          "totalFrequency": 35,
+          "number": 24,
+          "rank": 9,
+          "score": 0.0248,
+          "selectionScore": 0.7106,
+          "totalFrequency": 31,
           "recentFrequency": 2,
           "recent7": 2,
           "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
+          "consecutive": 1,
+          "lastDraw": true,
           "recentWindow": 7,
           "selectedPairs": [
             {
               "numbers": [
-                42,
+                24,
                 49
               ],
               "count": 2
+            },
+            {
+              "numbers": [
+                23,
+                24
+              ],
+              "count": 1
             }
           ]
         },
@@ -56381,7 +56221,7 @@
           "selectedPairs": [
             {
               "numbers": [
-                42,
+                24,
                 49
               ],
               "count": 2
@@ -56813,11 +56653,11 @@
       "windowStart": "2026-09-16",
       "predicted": [
         1,
-        3,
         10,
         18,
         23,
-        43
+        43,
+        44
       ],
       "actual": [
         11,
@@ -56863,43 +56703,7 @@
             {
               "numbers": [
                 1,
-                3
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                1,
                 18
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 3,
-          "rank": 6,
-          "score": 0.0246,
-          "selectionScore": 0.679,
-          "totalFrequency": 31,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                3,
-                18
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                1,
-                3
               ],
               "count": 1
             }
@@ -56924,6 +56728,13 @@
                 43
               ],
               "count": 1
+            },
+            {
+              "numbers": [
+                10,
+                44
+              ],
+              "count": 1
             }
           ]
         },
@@ -56942,15 +56753,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                3,
+                1,
                 18
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                1,
-                18
+                18,
+                43
               ],
               "count": 1
             }
@@ -56985,15 +56796,37 @@
           "selectedPairs": [
             {
               "numbers": [
-                3,
+                10,
                 43
               ],
               "count": 1
             },
             {
               "numbers": [
-                10,
+                18,
                 43
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 44,
+          "rank": 10,
+          "score": 0.0228,
+          "selectionScore": 0.5686,
+          "totalFrequency": 39,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                10,
+                44
               ],
               "count": 1
             }
@@ -57440,9 +57273,9 @@
         11,
         16,
         23,
-        34,
         43,
-        44
+        44,
+        48
       ],
       "actual": [
         16,
@@ -57452,7 +57285,7 @@
         46,
         49
       ],
-      "hits": 2,
+      "hits": 1,
       "expertHits": [
         1,
         2,
@@ -57560,35 +57393,6 @@
           ]
         },
         {
-          "number": 34,
-          "rank": 6,
-          "score": 0.0254,
-          "selectionScore": 0.6241,
-          "totalFrequency": 24,
-          "recentFrequency": 3,
-          "recent7": 3,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                11,
-                34
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                23,
-                34
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 43,
           "rank": 2,
           "score": 0.031,
@@ -57641,6 +57445,35 @@
               "numbers": [
                 16,
                 44
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 7,
+          "score": 0.0251,
+          "selectionScore": 0.611,
+          "totalFrequency": 34,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                11,
+                48
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                43,
+                48
               ],
               "count": 1
             }
@@ -59597,9 +59430,9 @@
       "windowStart": "2026-09-29",
       "predicted": [
         5,
-        15,
         16,
         31,
+        35,
         41,
         49
       ],
@@ -59611,7 +59444,7 @@
         21,
         23
       ],
-      "hits": 2,
+      "hits": 1,
       "expertHits": [
         1,
         2,
@@ -59654,36 +59487,7 @@
             {
               "numbers": [
                 5,
-                15
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 15,
-          "rank": 5,
-          "score": 0.0264,
-          "selectionScore": 0.7496,
-          "totalFrequency": 39,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                5,
-                15
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                15,
-                41
+                31
               ],
               "count": 1
             }
@@ -59712,7 +59516,7 @@
             {
               "numbers": [
                 16,
-                41
+                35
               ],
               "count": 1
             }
@@ -59742,6 +59546,35 @@
               "numbers": [
                 5,
                 31
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 35,
+          "rank": 8,
+          "score": 0.0259,
+          "selectionScore": 0.7227,
+          "totalFrequency": 36,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                5,
+                35
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                16,
+                35
               ],
               "count": 1
             }
@@ -61936,12 +61769,12 @@
       "trainingEnd": "2026-10-16",
       "windowStart": "2026-10-10",
       "predicted": [
-        11,
         18,
         21,
         23,
         35,
-        41
+        41,
+        48
       ],
       "actual": [
         18,
@@ -61971,35 +61804,6 @@
         0.1617
       ],
       "selectionReasons": [
-        {
-          "number": 11,
-          "rank": 5,
-          "score": 0.0256,
-          "selectionScore": 0.7187,
-          "totalFrequency": 38,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                11,
-                41
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                11,
-                21
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 18,
           "rank": 3,
@@ -62044,15 +61848,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                11,
+                18,
                 21
               ],
               "count": 1
             },
             {
               "numbers": [
-                18,
-                21
+                21,
+                23
               ],
               "count": 1
             }
@@ -62131,15 +61935,44 @@
           "selectedPairs": [
             {
               "numbers": [
-                11,
+                21,
                 41
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
+                41,
+                48
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 7,
+          "score": 0.0247,
+          "selectionScore": 0.6575,
+          "totalFrequency": 36,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
                 21,
-                41
+                48
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                35,
+                48
               ],
               "count": 1
             }
@@ -62154,12 +61987,12 @@
       "trainingEnd": "2026-10-17",
       "windowStart": "2026-10-11",
       "predicted": [
-        11,
         18,
         21,
         23,
         35,
-        41
+        41,
+        48
       ],
       "actual": [
         9,
@@ -62169,7 +62002,7 @@
         48,
         49
       ],
-      "hits": 3,
+      "hits": 4,
       "expertHits": [
         2,
         3,
@@ -62189,35 +62022,6 @@
         0.1622
       ],
       "selectionReasons": [
-        {
-          "number": 11,
-          "rank": 5,
-          "score": 0.0253,
-          "selectionScore": 0.586,
-          "totalFrequency": 38,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 2,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                11,
-                41
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                11,
-                21
-              ],
-              "count": 1
-            }
-          ]
-        },
         {
           "number": 18,
           "rank": 1,
@@ -62262,15 +62066,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                11,
+                18,
                 21
               ],
               "count": 1
             },
             {
               "numbers": [
-                18,
-                21
+                21,
+                23
               ],
               "count": 1
             }
@@ -62349,15 +62153,44 @@
           "selectedPairs": [
             {
               "numbers": [
-                11,
+                21,
                 41
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
+                41,
+                48
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 7,
+          "score": 0.0244,
+          "selectionScore": 0.5377,
+          "totalFrequency": 36,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 2,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
                 21,
-                41
+                48
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                35,
+                48
               ],
               "count": 1
             }
@@ -62809,9 +62642,9 @@
       "windowStart": "2026-10-14",
       "predicted": [
         18,
-        21,
         22,
         23,
+        26,
         32,
         48
       ],
@@ -62866,36 +62699,7 @@
             {
               "numbers": [
                 18,
-                21
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 21,
-          "rank": 7,
-          "score": 0.0269,
-          "selectionScore": 0.7069,
-          "totalFrequency": 37,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 5,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                21,
-                48
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                18,
-                21
+                22
               ],
               "count": 1
             }
@@ -62916,15 +62720,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                18,
-                22
+                22,
+                26
               ],
-              "count": 1
+              "count": 2
             },
             {
               "numbers": [
-                22,
-                23
+                18,
+                22
               ],
               "count": 1
             }
@@ -62952,8 +62756,37 @@
             },
             {
               "numbers": [
-                21,
+                22,
                 23
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 26,
+          "rank": 8,
+          "score": 0.0265,
+          "selectionScore": 0.6884,
+          "totalFrequency": 41,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                22,
+                26
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                18,
+                26
               ],
               "count": 1
             }
@@ -63003,14 +62836,14 @@
           "selectedPairs": [
             {
               "numbers": [
-                21,
+                18,
                 48
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                18,
+                23,
                 48
               ],
               "count": 1
@@ -63247,9 +63080,9 @@
         18,
         22,
         23,
-        26,
         32,
-        46
+        46,
+        48
       ],
       "actual": [
         8,
@@ -63331,9 +63164,9 @@
             {
               "numbers": [
                 22,
-                26
+                23
               ],
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -63352,44 +63185,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                18,
-                23
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                22,
-                23
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
-          "number": 26,
-          "rank": 7,
-          "score": 0.0264,
-          "selectionScore": 0.5305,
-          "totalFrequency": 41,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 3,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                22,
-                26
+                23,
+                48
               ],
               "count": 2
             },
             {
               "numbers": [
                 18,
-                26
+                23
               ],
               "count": 1
             }
@@ -63448,6 +63252,35 @@
               "numbers": [
                 18,
                 46
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 48,
+          "rank": 8,
+          "score": 0.026,
+          "selectionScore": 0.5167,
+          "totalFrequency": 38,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 4,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                23,
+                48
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                18,
+                48
               ],
               "count": 1
             }
@@ -64556,7 +64389,7 @@
         22,
         23,
         31,
-        43,
+        35,
         46
       ],
       "actual": [
@@ -64631,15 +64464,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                22,
-                43
+                17,
+                22
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                17,
-                22
+                22,
+                31
               ],
               "count": 1
             }
@@ -64689,29 +64522,29 @@
           ]
         },
         {
-          "number": 43,
-          "rank": 7,
-          "score": 0.0258,
-          "selectionScore": 0.508,
-          "totalFrequency": 42,
+          "number": 35,
+          "rank": 8,
+          "score": 0.0256,
+          "selectionScore": 0.4979,
+          "totalFrequency": 40,
           "recentFrequency": 2,
           "recent7": 2,
-          "recent15": 2,
+          "recent15": 3,
           "consecutive": 1,
           "lastDraw": true,
           "recentWindow": 7,
           "selectedPairs": [
             {
               "numbers": [
-                22,
-                43
+                17,
+                35
               ],
-              "count": 2
+              "count": 1
             },
             {
               "numbers": [
-                43,
-                46
+                22,
+                35
               ],
               "count": 1
             }
@@ -65195,7 +65028,7 @@
         22,
         23,
         26,
-        31,
+        35,
         46
       ],
       "actual": [
@@ -65206,7 +65039,7 @@
         47,
         48
       ],
-      "hits": 0,
+      "hits": 1,
       "expertHits": [
         0,
         0,
@@ -65343,10 +65176,10 @@
           ]
         },
         {
-          "number": 31,
-          "rank": 6,
+          "number": 35,
+          "rank": 7,
           "score": 0.0256,
-          "selectionScore": 0.526,
+          "selectionScore": 0.5235,
           "totalFrequency": 40,
           "recentFrequency": 2,
           "recent7": 2,
@@ -65357,15 +65190,8 @@
           "selectedPairs": [
             {
               "numbers": [
-                13,
-                31
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
                 22,
-                31
+                35
               ],
               "count": 1
             }
@@ -66484,12 +66310,12 @@
       "trainingEnd": "2026-11-06",
       "windowStart": "2026-10-31",
       "predicted": [
-        8,
         10,
         11,
         22,
         26,
-        35
+        35,
+        40
       ],
       "actual": [
         14,
@@ -66520,35 +66346,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 8,
-          "rank": 6,
-          "score": 0.0255,
-          "selectionScore": 0.5346,
-          "totalFrequency": 38,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 1,
-          "lastDraw": true,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                8,
-                10
-              ],
-              "count": 1
-            },
-            {
-              "numbers": [
-                8,
-                26
-              ],
-              "count": 1
-            }
-          ]
-        },
-        {
           "number": 10,
           "rank": 4,
           "score": 0.0279,
@@ -66563,15 +66360,15 @@
           "selectedPairs": [
             {
               "numbers": [
-                8,
-                10
+                10,
+                26
               ],
               "count": 1
             },
             {
               "numbers": [
                 10,
-                26
+                35
               ],
               "count": 1
             }
@@ -66657,7 +66454,7 @@
             },
             {
               "numbers": [
-                8,
+                10,
                 26
               ],
               "count": 1
@@ -66686,8 +66483,37 @@
             },
             {
               "numbers": [
-                8,
+                10,
                 35
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 40,
+          "rank": 8,
+          "score": 0.0246,
+          "selectionScore": 0.4915,
+          "totalFrequency": 37,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                11,
+                40
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                22,
+                40
               ],
               "count": 1
             }
@@ -68214,9 +68040,9 @@
       "trainingEnd": "2026-11-14",
       "windowStart": "2026-11-08",
       "predicted": [
-        10,
         13,
         25,
+        26,
         30,
         36,
         42
@@ -68229,7 +68055,7 @@
         36,
         42
       ],
-      "hits": 3,
+      "hits": 4,
       "expertHits": [
         1,
         2,
@@ -68250,35 +68076,6 @@
       ],
       "selectionReasons": [
         {
-          "number": 10,
-          "rank": 6,
-          "score": 0.0257,
-          "selectionScore": 0.5479,
-          "totalFrequency": 42,
-          "recentFrequency": 2,
-          "recent7": 2,
-          "recent15": 4,
-          "consecutive": 0,
-          "lastDraw": false,
-          "recentWindow": 7,
-          "selectedPairs": [
-            {
-              "numbers": [
-                10,
-                13
-              ],
-              "count": 2
-            },
-            {
-              "numbers": [
-                10,
-                25
-              ],
-              "count": 2
-            }
-          ]
-        },
-        {
           "number": 13,
           "rank": 5,
           "score": 0.0265,
@@ -68293,17 +68090,17 @@
           "selectedPairs": [
             {
               "numbers": [
-                10,
-                13
+                13,
+                25
               ],
               "count": 2
             },
             {
               "numbers": [
                 13,
-                25
+                36
               ],
-              "count": 2
+              "count": 1
             }
           ]
         },
@@ -68322,17 +68119,46 @@
           "selectedPairs": [
             {
               "numbers": [
-                10,
+                13,
                 25
               ],
               "count": 2
             },
             {
               "numbers": [
-                13,
-                25
+                25,
+                26
               ],
-              "count": 2
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 26,
+          "rank": 8,
+          "score": 0.025,
+          "selectionScore": 0.5148,
+          "totalFrequency": 47,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 4,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                25,
+                26
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                26,
+                30
+              ],
+              "count": 1
             }
           ]
         },
@@ -68387,7 +68213,7 @@
             },
             {
               "numbers": [
-                10,
+                13,
                 36
               ],
               "count": 1
@@ -69067,7 +68893,7 @@
     }
   ],
   "modelState": {
-    "version": "2.19.0",
+    "version": "2.20.0",
     "window": 7,
     "trainedThrough": "2026-11-18",
     "numberLogWeights": [
@@ -69094,19 +68920,19 @@
     "simulations": 315,
     "bootstrapReplicates": 3000,
     "blockLength": 7,
-    "meanHits": 0.7524,
+    "meanHits": 0.7683,
     "ci95MeanHits": [
-      0.6635,
-      0.8476
+      0.673,
+      0.8667
     ],
     "atLeastThree": 8,
-    "atLeastFour": 0,
+    "atLeastFour": 2,
     "histogram": [
-      139,
-      123,
+      136,
+      126,
       45,
-      8,
-      0,
+      6,
+      2,
       0,
       0
     ],
@@ -69117,98 +68943,98 @@
       "window": 5,
       "status": "ready",
       "simulations": 317,
-      "meanHits": 0.7224,
-      "atLeastThree": 4,
-      "atLeastThreeRate": 0.012618296529968454,
+      "meanHits": 0.7192,
+      "atLeastThree": 6,
+      "atLeastThreeRate": 0.01892744479495268,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6435,
-        0.8076
+        0.6309,
+        0.8044
       ]
     },
     {
       "window": 7,
       "status": "ready",
       "simulations": 315,
-      "meanHits": 0.7524,
+      "meanHits": 0.7683,
       "atLeastThree": 8,
       "atLeastThreeRate": 0.025396825396825397,
-      "atLeastFour": 0,
-      "atLeastFourRate": 0,
+      "atLeastFour": 2,
+      "atLeastFourRate": 0.006349206349206349,
       "ci95MeanHits": [
-        0.6635,
-        0.8476
+        0.673,
+        0.8698
       ]
     },
     {
       "window": 10,
       "status": "ready",
       "simulations": 312,
-      "meanHits": 0.7788,
-      "atLeastThree": 12,
-      "atLeastThreeRate": 0.038461538461538464,
+      "meanHits": 0.7917,
+      "atLeastThree": 13,
+      "atLeastThreeRate": 0.041666666666666664,
       "atLeastFour": 1,
       "atLeastFourRate": 0.003205128205128205,
       "ci95MeanHits": [
-        0.6795,
-        0.875
+        0.6827,
+        0.8846
       ]
     },
     {
       "window": 15,
       "status": "ready",
       "simulations": 307,
-      "meanHits": 0.7492,
+      "meanHits": 0.7655,
       "atLeastThree": 10,
       "atLeastThreeRate": 0.03257328990228013,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6287,
-        0.8436
+        0.645,
+        0.8567
       ]
     },
     {
       "window": 20,
       "status": "ready",
       "simulations": 302,
-      "meanHits": 0.7351,
+      "meanHits": 0.7517,
       "atLeastThree": 7,
       "atLeastThreeRate": 0.023178807947019868,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6225,
-        0.8278
+        0.6424,
+        0.8444
       ]
     },
     {
       "window": 30,
       "status": "ready",
       "simulations": 292,
-      "meanHits": 0.7123,
-      "atLeastThree": 5,
-      "atLeastThreeRate": 0.017123287671232876,
+      "meanHits": 0.7295,
+      "atLeastThree": 6,
+      "atLeastThreeRate": 0.02054794520547945,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6027,
-        0.8116
+        0.6301,
+        0.8219
       ]
     },
     {
       "window": 50,
       "status": "ready",
       "simulations": 272,
-      "meanHits": 0.7316,
+      "meanHits": 0.7279,
       "atLeastThree": 6,
       "atLeastThreeRate": 0.022058823529411766,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6066,
-        0.8493
+        0.614,
+        0.8419
       ]
     }
   ]
