@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 
-test('El Laboratorio IA está disponible y presenta una propuesta experimental de seis números',async()=>{
+test('El Laboratorio IA está disponible y presenta dos combinaciones experimentales de seis números',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/id="view-ai"[^>]*>Laboratorio IA/);
  assert.match(html,/id="ai-view"/);
@@ -16,8 +16,8 @@ test('El Laboratorio IA está disponible y presenta una propuesta experimental d
 });
 test('La propuesta explica la selección y contrasta el sorteo anterior',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/Combinación única/);
- assert.match(html,/Justificación de los seis números/);
+ assert.match(html,/Combinación 1/);assert.match(html,/Combinación 2/);
+ assert.match(html,/Justificación de las dos combinaciones/);
  assert.match(html,/selectedPairs/);
  assert.match(html,/ai-forecast-result/);
 });
@@ -51,10 +51,10 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
 });
 
-test('La interfaz conserva los siete métodos predictivos acordados',async()=>{
+test('La interfaz conserva los seis métodos predictivos acordados',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, repetición y rachas recientes, parejas y estructura, Bayes Beta-Binomial y Markov regularizado/);
- assert.match(html,/siete métodos/);
+ assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes Beta-Binomial y Markov regularizado/);
+ assert.match(html,/seis métodos/);
  assert.match(html,/id="recent-repetitions-card"/);
  assert.doesNotMatch(html,/repeatTrials|repeatRates/);
 });
