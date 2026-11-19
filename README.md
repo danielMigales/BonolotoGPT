@@ -8,7 +8,7 @@ Aplicación web en español para consultar los últimos sorteos de Bonoloto y el
 - Backtesting secuencial descriptivo e intervalos bootstrap por bloques temporales.
 - Estudio descriptivo de ventanas analíticas de 5, 7, 10, 15, 20, 30 y 50 sorteos.
 
-El laboratorio conserva seis métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado. Se eliminan el azar uniforme, la transición de repetición y la búsqueda combinatoria. La Bonoloto es aleatoria; las propuestas son experimentales y no garantizan premios.
+El laboratorio conserva siete métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, repetición y rachas recientes, parejas y estructura, Bayes Beta-Binomial y Markov regularizado. La selección explora combinaciones entre los catorce candidatos mejor puntuados y pondera suavemente la coaparición histórica de parejas. La evaluación prioriza el recuento de combinaciones con 3+ aciertos y muestra resultados en ventanas recientes de 50 y 100 predicciones. Estas señales son experimentales: el histórico no demuestra una ventaja predictiva ni garantiza premios. La Bonoloto es aleatoria; las propuestas son experimentales y no garantizan premios.
 
 ## Funciones activas
 
