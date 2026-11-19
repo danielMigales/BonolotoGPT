@@ -1,4 +1,4 @@
-// Laboratorio Bonoloto: seis métodos históricos, sin señales aleatorias ni búsqueda combinatoria.
+// Laboratorio Bonoloto: siete métodos históricos, señal explícita de repetición reciente y selección conjunta de candidatos.
 export const MODEL_VERSION='2.19.0';
 const range=n=>Array.from({length:n},(_,i)=>i);
 const normalize=v=>{const total=v.reduce((a,b)=>a+b,0);return total?v.map(x=>x/total):v.map(()=>1/v.length);};
