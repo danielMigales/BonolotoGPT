@@ -101,7 +101,7 @@ footer a{color:#9ddbb0}
 <div id="ai-controls" class="ai-controls"><div class="ai-window-fixed"><span>Ventana de análisis</span><strong>7 sorteos</strong></div><span id="ai-state" class="ai-muted" role="status">Analizando…</span></div>
 <div id="ai-error" class="error" role="alert" hidden></div>
 <div id="ai-content" hidden>
-<div class="ai-grid ai-focus"><article class="ai-card forecast-card"><div class="smallcaps forecast-kicker">Combinación única</div><h3 id="ai-forecast-date">Para el próximo sorteo</h3><div class="forecast-line" id="ai-forecast"></div><section id="ai-forecast-explanation" class="forecast-explanation" aria-live="polite"></section><div id="ai-forecast-result" class="forecast-result" aria-live="polite"></div><p>Estimación experimental; no garantiza premios.</p></article><article class="ai-card" id="frequent-pairs-card"><h3>Parejas frecuentes</h3><p id="frequent-pairs-caption">Parejas que más se repiten en los últimos 10 sorteos.</p><div class="pair-grid" id="frequent-pairs-list" aria-live="polite"></div><p class="ai-muted">Cada pareja se cuenta una sola vez por sorteo. Es un recuento descriptivo independiente de Bayes, Markov y de la clasificación de números.</p></article></div></section><footer><a href="https://www.loteriasyapuestas.es/es/bonoloto" target="_blank" rel="noopener noreferrer">Consultar SELAE ↗</a></footer></main>
+<div class="ai-grid ai-focus"><article class="ai-card forecast-card"><div class="smallcaps forecast-kicker">Combinación única</div><h3 id="ai-forecast-date">Para el próximo sorteo</h3><div class="forecast-line" id="ai-forecast"></div><section id="ai-forecast-explanation" class="forecast-explanation" aria-live="polite"></section><div id="ai-forecast-result" class="forecast-result" aria-live="polite"></div><p>Estimación experimental; no garantiza premios.</p></article><article class="ai-card" id="frequent-pairs-card"><h3>Parejas frecuentes</h3><p id="frequent-pairs-caption">Parejas que más se repiten en los últimos 10 sorteos.</p><div class="pair-grid" id="frequent-pairs-list" aria-live="polite"></div><p class="ai-muted">Cada pareja se cuenta una sola vez por sorteo. Es un recuento descriptivo independiente de Bayes, Markov y de la clasificación de números.</p></article><article class="ai-card" id="hit-audit-card"><h3>Seguimiento de aciertos</h3><p>Control específico de combinaciones que alcanzan 3 o más números.</p><div id="hit-audit-summary" aria-live="polite"></div><div id="hit-audit-methods"></div><div id="hit-audit-dates"></div><p class="ai-muted">El bloque reciente usa las últimas 100 predicciones retrospectivas disponibles. No es una garantía para el siguiente sorteo.</p></article></div></section><footer><a href="https://www.loteriasyapuestas.es/es/bonoloto" target="_blank" rel="noopener noreferrer">Consultar SELAE ↗</a></footer></main>
 <script type="module">
 // Toda estadística se calcula solo con los seis números principales.
 function frequencies(draws){const result=new Map();for(const draw of draws)for(const n of draw.numbers)result.set(n,(result.get(n)||0)+1);return result;}
@@ -162,9 +162,25 @@ function renderFrequentPairs(){
  $('frequent-pairs-caption').textContent='Recuento de los últimos '+draws.length+' sorteos.';
  $('frequent-pairs-list').innerHTML=top.length?top.map(pair=>'<div class="pair-item"><b>'+pad(pair.numbers[0])+' – '+pad(pair.numbers[1])+'</b><small>'+pair.count+' '+(pair.count===1?'vez':'veces')+'</small></div>').join(''):'<p class="ai-muted">No hay suficientes datos para mostrar parejas.</p>';
 }
+function renderHitAudit(report){
+ const rows=Array.isArray(report.rows)?report.rows:[];
+ const recent=rows.slice(-100);
+ const count=list=>list.filter(row=>row.hits>=3).length;
+ const count4=list=>list.filter(row=>row.hits>=4).length;
+ const pct=(n,total)=>total?(100*n/total).toFixed(1).replace('.',',')+'%':'—';
+ const mean=list=>list.length?(list.reduce((sum,row)=>sum+row.hits,0)/list.length).toFixed(2).replace('.',','):'—';
+ const full3=Number(report.metrics?.atLeastThree)||count(rows);
+ const full4=Number(report.metrics?.atLeastFour)||count4(rows);
+ $('hit-audit-summary').innerHTML='<p><b>Histórico completo:</b> '+full3+' de '+rows.length+' predicciones con 3+ ('+pct(full3,rows.length)+'); '+full4+' con 4+.</p><p><b>Últimas '+recent.length+' predicciones:</b> '+count(recent)+' con 3+ ('+pct(count(recent),recent.length)+'); '+count4(recent)+' con 4+. Media de aciertos: '+mean(recent)+' por combinación.</p>';
+ const names=Array.isArray(report.methods)?report.methods:[];
+ $('hit-audit-methods').innerHTML='<h4>Qué métodos llegan a 3+</h4>'+names.map((name,index)=>{const n=recent.filter(row=>Array.isArray(row.expertHits)&&row.expertHits[index]>=3).length;return '<p class="score-row"><span>'+name+'</span><b>'+n+'/'+recent.length+'</b><small>'+pct(n,recent.length)+'</small></p>';}).join('');
+ const hits=recent.filter(row=>row.hits>=3);
+ $('hit-audit-dates').innerHTML='<h4>Predicciones recientes con 3+</h4>'+(hits.length?'<p>'+hits.map(row=>format(row.date,{day:'2-digit',month:'short'})+' · '+row.hits+'/6').join(' &nbsp; | &nbsp; ')+'</p>':'<p class="ai-muted">Ninguna en las últimas '+recent.length+' predicciones.</p>');
+}
 function renderAi(report){
  aiReport=report;
  renderFrequentPairs();
+ renderHitAudit(report);
  $('ai-content').hidden=false;
  $('ai-forecast-date').textContent='Sorteo del '+format(report.forecast.targetDate,{day:'numeric',month:'long',year:'numeric'});
  const recentDraws=doc&&Array.isArray(doc.draws)?doc.draws.slice(0,7):[];const recentCounts=new Map();recentDraws.forEach(draw=>draw.numbers.forEach(n=>recentCounts.set(n,(recentCounts.get(n)||0)+1)));const repeatedNumbers=[...recentCounts.entries()].filter(([,count])=>count>1).sort((a,b)=>b[1]-a[1]||a[0]-b[0]);const repeatColors=new Map(repeatedNumbers.map(([n],i)=>[n,i]));const markedBall=n=>{const count=recentCounts.get(n)||0;return ball(n,count,repeatColors.get(n)||0);};$('ai-forecast').innerHTML='<div class="forecast-main-balls">'+report.forecast.numbers.map(markedBall).join('')+'</div>';
