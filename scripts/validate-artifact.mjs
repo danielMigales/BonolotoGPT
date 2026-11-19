@@ -33,7 +33,7 @@ assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservars
 
 if (sourceArchive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
-  assert.equal(fixedReport.version, "2.20.0");
+  assert.equal(fixedReport.version, "2.21.0");
   assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
   assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
@@ -44,7 +44,15 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(Number.isFinite(fixedReport.audit.meanHits));
   assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
   assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
-  assert.deepEqual(fixedReport.methods, ["Frecuencia acumulada", "Frecuencia reciente", "Recencia ponderada", "Repetición y rachas recientes", "Parejas y estructura", "Bayes Beta-Binomial", "Markov regularizado"]);
+  assert.deepEqual(fixedReport.methods, ["Frecuencia acumulada", "Frecuencia reciente", "Recencia ponderada", "Parejas y estructura", "Bayes Beta-Binomial", "Markov regularizado"]);
+  assert.equal(fixedReport.forecast.numbers.length, 6);
+  assert.equal(fixedReport.forecast.alternatives.length, 6);
+  assert.ok(fixedReport.forecast.numbers.filter(n => fixedReport.forecast.alternatives.includes(n)).length <= 3);
+  assert.equal(fixedReport.forecast.alternativeSelectionReasons.length, 6);
+  assert.ok(Number.isFinite(fixedReport.metrics.alternative.meanHits));
+  assert.ok(Number.isFinite(fixedReport.audit.alternative.meanHits));
+  assert.equal(fixedReport.audit.alternative.ci95MeanHits.length, 2);
+  assert.ok(staticHtml.includes("Combinación 1") && staticHtml.includes("Combinación 2"));
   assert.ok(!("randomMeanHits" in fixedReport.metrics));
   assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
   assert.ok(!("randomMeanHits" in fixedReport.audit));

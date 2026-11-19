@@ -4,11 +4,11 @@ Aplicación web en español para consultar los últimos sorteos de Bonoloto y el
 
 ## Funciones
 
-- Laboratorio IA con una propuesta experimental de seis números y explicación de las señales utilizadas.
+- Laboratorio IA con dos combinaciones experimentales de seis números, con explicaciones y evaluación separada.
 - Backtesting secuencial descriptivo e intervalos bootstrap por bloques temporales.
 - Estudio descriptivo de ventanas analíticas de 5, 7, 10, 15, 20, 30 y 50 sorteos.
 
-El laboratorio conserva siete métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, repetición y rachas recientes, parejas y estructura, Bayes Beta-Binomial y Markov regularizado. La selección explora combinaciones entre los catorce candidatos mejor puntuados y maximiza una aproximación de la probabilidad de 3+ aciertos, suponiendo independencia entre las probabilidades marginales y ponderando suavemente las parejas históricas. La evaluación prioriza el recuento de combinaciones con 3+ aciertos y muestra resultados en ventanas recientes de 50 y 100 predicciones. Estas señales son experimentales: el histórico no demuestra una ventaja predictiva ni garantiza premios.
+El laboratorio conserva seis métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes Beta-Binomial y Markov regularizado. Presenta dos combinaciones con un máximo de tres números compartidos y registra sus aciertos por separado. La selección explora combinaciones entre los catorce candidatos mejor puntuados y maximiza una aproximación de la probabilidad de 3+ aciertos, suponiendo independencia entre las probabilidades marginales y ponderando suavemente las parejas históricas. La evaluación prioriza el recuento de combinaciones con 3+ aciertos y muestra resultados en ventanas recientes de 50 y 100 predicciones. Estas señales son experimentales: el histórico no demuestra una ventaja predictiva ni garantiza premios.
 
 ## Funciones activas
 
@@ -23,7 +23,7 @@ El laboratorio conserva siete métodos: frecuencia acumulada, frecuencia recient
 
 El laboratorio está disponible como herramienta experimental y presenta sus límites estadísticos de forma explícita. El backtest es descriptivo y no compara con combinaciones aleatorias ni demuestra capacidad predictiva; sus combinaciones no deben interpretarse como predicciones fiables.
 
-El motor experimental se conserva en `engine/`; sus seis métodos se evalúan retrospectivamente mediante aciertos e intervalos bootstrap descriptivos. La propuesta selecciona directamente los seis números mejor clasificados, sin búsqueda combinatoria.
+El motor experimental se conserva en `engine/`; sus seis métodos se evalúan retrospectivamente mediante aciertos. Cada sorteo de backtest registra las dos combinaciones, con métricas separadas. La segunda combinación se diversifica para compartir como máximo tres números con la primera.
 
 La Bonoloto es un sorteo aleatorio: los resultados pasados no permiten garantizar ni demostrar una ventaja para el siguiente sorteo.
 
