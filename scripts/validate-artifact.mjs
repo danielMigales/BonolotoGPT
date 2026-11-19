@@ -33,7 +33,7 @@ assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservars
 
 if (sourceArchive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
-  assert.equal(fixedReport.version, "2.19.0");
+  assert.equal(fixedReport.version, "2.20.0");
   assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
   assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
