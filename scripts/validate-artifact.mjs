@@ -40,6 +40,8 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(fixedReport.audit.bootstrapReplicates >= 1000);
   assert.equal(fixedReport.audit.ci95MeanHits.length, 2);
   assert.ok(Number.isFinite(fixedReport.audit.meanHits));
+  assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
+  assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
   assert.deepEqual(fixedReport.methods, ["Frecuencia acumulada", "Frecuencia reciente", "Recencia ponderada", "Repetición y rachas recientes", "Parejas y estructura", "Bayes Beta-Binomial", "Markov regularizado"]);
   assert.ok(!("randomMeanHits" in fixedReport.metrics));
   assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
