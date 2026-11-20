@@ -2,8 +2,8 @@
   "version": "2.21.0",
   "status": "ready",
   "window": 7,
-  "sourceLastDate": "2026-11-19",
-  "drawCount": 323,
+  "sourceLastDate": "2026-11-20",
+  "drawCount": 324,
   "objective": {
     "primary": "maximize-approximate-three-plus-probability",
     "predictionStrategy": "six-methods-two-diversified-combinations-three-plus-objective",
@@ -19,264 +19,264 @@
     "Markov regularizado"
   ],
   "forecast": {
-    "targetDate": "2026-11-20",
-    "afterDate": "2026-11-19",
+    "targetDate": "2026-11-21",
+    "afterDate": "2026-11-20",
     "numbers": [
       15,
-      22,
-      34,
+      25,
       36,
+      37,
       42,
-      46
+      48
     ],
     "alternatives": [
-      10,
+      11,
       15,
+      22,
       26,
-      35,
       36,
       42
     ],
     "numberScores": [
       {
-        "number": 42,
-        "score": 0.0312,
+        "number": 36,
+        "score": 0.0279,
         "selectionScore": 1
       },
       {
-        "number": 36,
-        "score": 0.0279,
-        "selectionScore": 0.8215
-      },
-      {
         "number": 15,
-        "score": 0.0276,
-        "selectionScore": 0.8083
+        "score": 0.0275,
+        "selectionScore": 0.9753
       },
       {
-        "number": 34,
-        "score": 0.0267,
-        "selectionScore": 0.7562
-      },
-      {
-        "number": 22,
-        "score": 0.0255,
-        "selectionScore": 0.6931
-      },
-      {
-        "number": 10,
-        "score": 0.0249,
-        "selectionScore": 0.6651
-      },
-      {
-        "number": 26,
-        "score": 0.0248,
-        "selectionScore": 0.6551
-      },
-      {
-        "number": 46,
-        "score": 0.0244,
-        "selectionScore": 0.6358
-      },
-      {
-        "number": 35,
-        "score": 0.0237,
-        "selectionScore": 0.5995
-      },
-      {
-        "number": 30,
-        "score": 0.0232,
-        "selectionScore": 0.5748
-      },
-      {
-        "number": 11,
-        "score": 0.0228,
-        "selectionScore": 0.549
-      },
-      {
-        "number": 4,
-        "score": 0.0226,
-        "selectionScore": 0.5417
+        "number": 42,
+        "score": 0.0273,
+        "selectionScore": 0.9614
       },
       {
         "number": 37,
-        "score": 0.0225,
-        "selectionScore": 0.5331
+        "score": 0.0272,
+        "selectionScore": 0.9561
+      },
+      {
+        "number": 11,
+        "score": 0.027,
+        "selectionScore": 0.9381
+      },
+      {
+        "number": 25,
+        "score": 0.027,
+        "selectionScore": 0.9412
+      },
+      {
+        "number": 48,
+        "score": 0.0269,
+        "selectionScore": 0.9372
+      },
+      {
+        "number": 22,
+        "score": 0.0253,
+        "selectionScore": 0.8315
+      },
+      {
+        "number": 4,
+        "score": 0.0249,
+        "selectionScore": 0.8041
+      },
+      {
+        "number": 26,
+        "score": 0.0246,
+        "selectionScore": 0.7841
+      },
+      {
+        "number": 34,
+        "score": 0.0237,
+        "selectionScore": 0.7286
+      },
+      {
+        "number": 46,
+        "score": 0.0231,
+        "selectionScore": 0.6858
+      },
+      {
+        "number": 27,
+        "score": 0.0227,
+        "selectionScore": 0.6631
+      },
+      {
+        "number": 30,
+        "score": 0.0227,
+        "selectionScore": 0.6607
       },
       {
         "number": 18,
         "score": 0.0224,
-        "selectionScore": 0.5309
-      },
-      {
-        "number": 27,
-        "score": 0.0224,
-        "selectionScore": 0.5273
-      },
-      {
-        "number": 48,
-        "score": 0.0223,
-        "selectionScore": 0.5262
+        "selectionScore": 0.6407
       },
       {
         "number": 44,
-        "score": 0.0222,
-        "selectionScore": 0.5181
+        "score": 0.0221,
+        "selectionScore": 0.6276
       },
       {
         "number": 13,
-        "score": 0.0221,
-        "selectionScore": 0.5147
+        "score": 0.022,
+        "selectionScore": 0.6154
+      },
+      {
+        "number": 10,
+        "score": 0.0219,
+        "selectionScore": 0.6114
       },
       {
         "number": 16,
-        "score": 0.0219,
-        "selectionScore": 0.5032
-      },
-      {
-        "number": 25,
-        "score": 0.0219,
-        "selectionScore": 0.5008
-      },
-      {
-        "number": 47,
         "score": 0.0218,
-        "selectionScore": 0.4992
-      },
-      {
-        "number": 8,
-        "score": 0.0215,
-        "selectionScore": 0.4803
-      },
-      {
-        "number": 5,
-        "score": 0.0214,
-        "selectionScore": 0.4761
-      },
-      {
-        "number": 23,
-        "score": 0.0211,
-        "selectionScore": 0.4603
-      },
-      {
-        "number": 24,
-        "score": 0.0208,
-        "selectionScore": 0.4452
+        "selectionScore": 0.6074
       },
       {
         "number": 17,
-        "score": 0.0205,
-        "selectionScore": 0.4287
-      },
-      {
-        "number": 28,
-        "score": 0.0199,
-        "selectionScore": 0.3961
-      },
-      {
-        "number": 12,
-        "score": 0.0198,
-        "selectionScore": 0.3935
-      },
-      {
-        "number": 9,
-        "score": 0.0197,
-        "selectionScore": 0.3838
-      },
-      {
-        "number": 1,
-        "score": 0.0196,
-        "selectionScore": 0.3832
+        "score": 0.0218,
+        "selectionScore": 0.6072
       },
       {
         "number": 41,
-        "score": 0.0195,
-        "selectionScore": 0.3754
+        "score": 0.0214,
+        "selectionScore": 0.5825
+      },
+      {
+        "number": 5,
+        "score": 0.0213,
+        "selectionScore": 0.5743
+      },
+      {
+        "number": 24,
+        "score": 0.0211,
+        "selectionScore": 0.5607
+      },
+      {
+        "number": 23,
+        "score": 0.021,
+        "selectionScore": 0.5533
+      },
+      {
+        "number": 35,
+        "score": 0.0202,
+        "selectionScore": 0.5042
+      },
+      {
+        "number": 28,
+        "score": 0.0198,
+        "selectionScore": 0.4771
+      },
+      {
+        "number": 9,
+        "score": 0.0196,
+        "selectionScore": 0.4614
+      },
+      {
+        "number": 12,
+        "score": 0.0194,
+        "selectionScore": 0.4499
       },
       {
         "number": 45,
         "score": 0.0194,
-        "selectionScore": 0.3709
+        "selectionScore": 0.4509
+      },
+      {
+        "number": 1,
+        "score": 0.0192,
+        "selectionScore": 0.4374
       },
       {
         "number": 19,
         "score": 0.0185,
-        "selectionScore": 0.3226
+        "selectionScore": 0.3902
+      },
+      {
+        "number": 47,
+        "score": 0.0185,
+        "selectionScore": 0.3891
       },
       {
         "number": 29,
         "score": 0.0183,
-        "selectionScore": 0.3136
+        "selectionScore": 0.3788
       },
       {
         "number": 2,
-        "score": 0.0182,
-        "selectionScore": 0.3051
+        "score": 0.0181,
+        "selectionScore": 0.3695
+      },
+      {
+        "number": 8,
+        "score": 0.018,
+        "selectionScore": 0.3621
       },
       {
         "number": 43,
-        "score": 0.0175,
-        "selectionScore": 0.2673
-      },
-      {
-        "number": 21,
-        "score": 0.0171,
-        "selectionScore": 0.2458
+        "score": 0.0174,
+        "selectionScore": 0.3215
       },
       {
         "number": 31,
         "score": 0.0171,
-        "selectionScore": 0.2491
+        "selectionScore": 0.299
+      },
+      {
+        "number": 21,
+        "score": 0.017,
+        "selectionScore": 0.2941
       },
       {
         "number": 33,
-        "score": 0.017,
-        "selectionScore": 0.2413
+        "score": 0.0169,
+        "selectionScore": 0.2881
       },
       {
         "number": 14,
-        "score": 0.0162,
-        "selectionScore": 0.2017
+        "score": 0.0161,
+        "selectionScore": 0.2375
       },
       {
         "number": 40,
-        "score": 0.0162,
-        "selectionScore": 0.1979
+        "score": 0.0161,
+        "selectionScore": 0.2371
       },
       {
         "number": 3,
         "score": 0.0154,
-        "selectionScore": 0.1584
+        "selectionScore": 0.1898
       },
       {
         "number": 32,
-        "score": 0.0153,
-        "selectionScore": 0.1517
+        "score": 0.0152,
+        "selectionScore": 0.1807
       },
       {
         "number": 6,
         "score": 0.0148,
-        "selectionScore": 0.1241
+        "selectionScore": 0.1503
       },
       {
         "number": 39,
         "score": 0.0148,
-        "selectionScore": 0.1251
+        "selectionScore": 0.1509
       },
       {
         "number": 49,
         "score": 0.0148,
-        "selectionScore": 0.1269
+        "selectionScore": 0.1537
       },
       {
         "number": 7,
-        "score": 0.0143,
-        "selectionScore": 0.0974
+        "score": 0.0142,
+        "selectionScore": 0.1174
       },
       {
         "number": 38,
         "score": 0.0142,
-        "selectionScore": 0.0957
+        "selectionScore": 0.1136
       },
       {
         "number": 20,
@@ -291,25 +291,37 @@
         "number": 36,
         "recent7": 3,
         "recent15": 5,
-        "consecutive": 1
-      },
-      {
-        "number": 42,
-        "recent7": 3,
-        "recent15": 6,
         "consecutive": 0
       },
       {
-        "number": 34,
+        "number": 4,
+        "recent7": 2,
+        "recent15": 4,
+        "consecutive": 1
+      },
+      {
+        "number": 11,
+        "recent7": 2,
+        "recent15": 2,
+        "consecutive": 1
+      },
+      {
+        "number": 25,
         "recent7": 2,
         "recent15": 5,
         "consecutive": 1
       },
       {
-        "number": 4,
+        "number": 37,
         "recent7": 2,
-        "recent15": 3,
-        "consecutive": 0
+        "recent15": 4,
+        "consecutive": 1
+      },
+      {
+        "number": 48,
+        "recent7": 2,
+        "recent15": 2,
+        "consecutive": 1
       },
       {
         "number": 15,
@@ -322,14 +334,26 @@
         "recent7": 2,
         "recent15": 2,
         "consecutive": 0
+      },
+      {
+        "number": 34,
+        "recent7": 2,
+        "recent15": 5,
+        "consecutive": 0
+      },
+      {
+        "number": 42,
+        "recent7": 2,
+        "recent15": 5,
+        "consecutive": 0
       }
     ],
     "selectionReasons": [
       {
         "number": 15,
-        "rank": 3,
-        "score": 0.0276,
-        "selectionScore": 0.8083,
+        "rank": 2,
+        "score": 0.0275,
+        "selectionScore": 0.9753,
         "totalFrequency": 46,
         "recentFrequency": 2,
         "recent7": 2,
@@ -337,36 +361,29 @@
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
-        "selectedPairs": []
-      },
-      {
-        "number": 22,
-        "rank": 5,
-        "score": 0.0255,
-        "selectionScore": 0.6931,
-        "totalFrequency": 53,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 1,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              22,
-              34
+              15,
+              25
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              15,
+              37
             ],
             "count": 1
           }
         ]
       },
       {
-        "number": 34,
-        "rank": 4,
-        "score": 0.0267,
-        "selectionScore": 0.7562,
-        "totalFrequency": 34,
+        "number": 25,
+        "rank": 6,
+        "score": 0.027,
+        "selectionScore": 0.9412,
+        "totalFrequency": 40,
         "recentFrequency": 2,
         "recent7": 2,
         "recent15": 5,
@@ -376,15 +393,15 @@
         "selectedPairs": [
           {
             "numbers": [
-              22,
-              34
+              25,
+              48
             ],
-            "count": 1
+            "count": 2
           },
           {
             "numbers": [
-              34,
-              36
+              15,
+              25
             ],
             "count": 1
           }
@@ -392,42 +409,13 @@
       },
       {
         "number": 36,
-        "rank": 2,
+        "rank": 1,
         "score": 0.0279,
-        "selectionScore": 0.8215,
+        "selectionScore": 1,
         "totalFrequency": 36,
         "recentFrequency": 3,
         "recent7": 3,
         "recent15": 5,
-        "consecutive": 1,
-        "lastDraw": true,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              36,
-              42
-            ],
-            "count": 2
-          },
-          {
-            "numbers": [
-              34,
-              36
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
-        "number": 42,
-        "rank": 1,
-        "score": 0.0312,
-        "selectionScore": 1,
-        "totalFrequency": 45,
-        "recentFrequency": 3,
-        "recent7": 3,
-        "recent15": 6,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -442,29 +430,80 @@
         ]
       },
       {
-        "number": 46,
-        "rank": 8,
-        "score": 0.0244,
-        "selectionScore": 0.6358,
-        "totalFrequency": 50,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 1,
+        "number": 37,
+        "rank": 4,
+        "score": 0.0272,
+        "selectionScore": 0.9561,
+        "totalFrequency": 42,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 4,
         "consecutive": 1,
         "lastDraw": true,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              34,
-              46
+              15,
+              37
             ],
             "count": 1
           },
           {
             "numbers": [
+              25,
+              37
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 42,
+        "rank": 3,
+        "score": 0.0273,
+        "selectionScore": 0.9614,
+        "totalFrequency": 45,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 5,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
               36,
-              46
+              42
+            ],
+            "count": 2
+          }
+        ]
+      },
+      {
+        "number": 48,
+        "rank": 7,
+        "score": 0.0269,
+        "selectionScore": 0.9372,
+        "totalFrequency": 43,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
+        "consecutive": 1,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              25,
+              48
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              15,
+              48
             ],
             "count": 1
           }
@@ -473,22 +512,22 @@
     ],
     "alternativeSelectionReasons": [
       {
-        "number": 10,
-        "rank": 6,
-        "score": 0.0249,
-        "selectionScore": 0.6651,
-        "totalFrequency": 43,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 5,
+        "number": 11,
+        "rank": 5,
+        "score": 0.027,
+        "selectionScore": 0.9381,
+        "totalFrequency": 44,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
         "consecutive": 1,
         "lastDraw": true,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              10,
-              36
+              11,
+              15
             ],
             "count": 1
           }
@@ -496,9 +535,9 @@
       },
       {
         "number": 15,
-        "rank": 3,
-        "score": 0.0276,
-        "selectionScore": 0.8083,
+        "rank": 2,
+        "score": 0.0275,
+        "selectionScore": 0.9753,
         "totalFrequency": 46,
         "recentFrequency": 2,
         "recent7": 2,
@@ -506,17 +545,39 @@
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              11,
+              15
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "rank": 8,
+        "score": 0.0253,
+        "selectionScore": 0.8315,
+        "totalFrequency": 53,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 1,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
         "selectedPairs": []
       },
       {
         "number": 26,
-        "rank": 7,
-        "score": 0.0248,
-        "selectionScore": 0.6551,
+        "rank": 10,
+        "score": 0.0246,
+        "selectionScore": 0.7841,
         "totalFrequency": 48,
         "recentFrequency": 1,
         "recent7": 1,
-        "recent15": 4,
+        "recent15": 3,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -538,38 +599,16 @@
         ]
       },
       {
-        "number": 35,
-        "rank": 9,
-        "score": 0.0237,
-        "selectionScore": 0.5995,
-        "totalFrequency": 45,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 2,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              35,
-              42
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
         "number": 36,
-        "rank": 2,
+        "rank": 1,
         "score": 0.0279,
-        "selectionScore": 0.8215,
+        "selectionScore": 1,
         "totalFrequency": 36,
         "recentFrequency": 3,
         "recent7": 3,
         "recent15": 5,
-        "consecutive": 1,
-        "lastDraw": true,
+        "consecutive": 0,
+        "lastDraw": false,
         "recentWindow": 7,
         "selectedPairs": [
           {
@@ -581,7 +620,7 @@
           },
           {
             "numbers": [
-              10,
+              26,
               36
             ],
             "count": 1
@@ -590,13 +629,13 @@
       },
       {
         "number": 42,
-        "rank": 1,
-        "score": 0.0312,
-        "selectionScore": 1,
+        "rank": 3,
+        "score": 0.0273,
+        "selectionScore": 0.9614,
         "totalFrequency": 45,
-        "recentFrequency": 3,
-        "recent7": 3,
-        "recent15": 6,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 5,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -620,14 +659,74 @@
     ],
     "rankingReasons": [
       {
-        "number": 42,
+        "number": 36,
         "rank": 1,
-        "score": 0.0312,
+        "score": 0.0279,
         "selectionScore": 1,
-        "totalFrequency": 45,
+        "totalFrequency": 36,
         "recentFrequency": 3,
         "recent7": 3,
-        "recent15": 6,
+        "recent15": 5,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              36,
+              42
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              26,
+              36
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 1
+      },
+      {
+        "number": 15,
+        "rank": 2,
+        "score": 0.0275,
+        "selectionScore": 0.9753,
+        "totalFrequency": 46,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 3,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              15,
+              37
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              11,
+              15
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 2
+      },
+      {
+        "number": 42,
+        "rank": 3,
+        "score": 0.0273,
+        "selectionScore": 0.9614,
+        "totalFrequency": 45,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 5,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -647,92 +746,32 @@
             "count": 1
           }
         ],
-        "candidateRank": 1
+        "candidateRank": 3
       },
       {
-        "number": 36,
-        "rank": 2,
-        "score": 0.0279,
-        "selectionScore": 0.8215,
-        "totalFrequency": 36,
-        "recentFrequency": 3,
-        "recent7": 3,
-        "recent15": 5,
+        "number": 37,
+        "rank": 4,
+        "score": 0.0272,
+        "selectionScore": 0.9561,
+        "totalFrequency": 42,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 4,
         "consecutive": 1,
         "lastDraw": true,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              36,
-              42
+              4,
+              37
             ],
             "count": 2
           },
           {
             "numbers": [
-              34,
-              36
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 2
-      },
-      {
-        "number": 15,
-        "rank": 3,
-        "score": 0.0276,
-        "selectionScore": 0.8083,
-        "totalFrequency": 46,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              11,
-              15
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              4,
-              15
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 3
-      },
-      {
-        "number": 34,
-        "rank": 4,
-        "score": 0.0267,
-        "selectionScore": 0.7562,
-        "totalFrequency": 34,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 5,
-        "consecutive": 1,
-        "lastDraw": true,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              34,
-              36
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              22,
-              34
+              15,
+              37
             ],
             "count": 1
           }
@@ -740,10 +779,100 @@
         "candidateRank": 4
       },
       {
-        "number": 22,
+        "number": 11,
         "rank": 5,
-        "score": 0.0255,
-        "selectionScore": 0.6931,
+        "score": 0.027,
+        "selectionScore": 0.9381,
+        "totalFrequency": 44,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
+        "consecutive": 1,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              11,
+              25
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              11,
+              48
+            ],
+            "count": 2
+          }
+        ],
+        "candidateRank": 5
+      },
+      {
+        "number": 25,
+        "rank": 6,
+        "score": 0.027,
+        "selectionScore": 0.9412,
+        "totalFrequency": 40,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 5,
+        "consecutive": 1,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              11,
+              25
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              25,
+              48
+            ],
+            "count": 2
+          }
+        ],
+        "candidateRank": 6
+      },
+      {
+        "number": 48,
+        "rank": 7,
+        "score": 0.0269,
+        "selectionScore": 0.9372,
+        "totalFrequency": 43,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 2,
+        "consecutive": 1,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              11,
+              48
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              25,
+              48
+            ],
+            "count": 2
+          }
+        ],
+        "candidateRank": 7
+      },
+      {
+        "number": 22,
+        "rank": 8,
+        "score": 0.0253,
+        "selectionScore": 0.8315,
         "totalFrequency": 53,
         "recentFrequency": 1,
         "recent7": 1,
@@ -767,47 +896,47 @@
             "count": 1
           }
         ],
-        "candidateRank": 5
+        "candidateRank": 8
       },
       {
-        "number": 10,
-        "rank": 6,
+        "number": 4,
+        "rank": 9,
         "score": 0.0249,
-        "selectionScore": 0.6651,
-        "totalFrequency": 43,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 5,
+        "selectionScore": 0.8041,
+        "totalFrequency": 34,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 4,
         "consecutive": 1,
         "lastDraw": true,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              10,
-              36
+              4,
+              37
             ],
-            "count": 1
+            "count": 2
           },
           {
             "numbers": [
-              10,
-              34
+              4,
+              15
             ],
             "count": 1
           }
         ],
-        "candidateRank": 6
+        "candidateRank": 9
       },
       {
         "number": 26,
-        "rank": 7,
-        "score": 0.0248,
-        "selectionScore": 0.6551,
+        "rank": 10,
+        "score": 0.0246,
+        "selectionScore": 0.7841,
         "totalFrequency": 48,
         "recentFrequency": 1,
         "recent7": 1,
-        "recent15": 4,
+        "recent15": 3,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -815,31 +944,61 @@
           {
             "numbers": [
               26,
-              42
+              36
             ],
             "count": 1
           },
           {
             "numbers": [
               26,
-              36
+              42
             ],
             "count": 1
           }
         ],
-        "candidateRank": 7
+        "candidateRank": 10
+      },
+      {
+        "number": 34,
+        "rank": 11,
+        "score": 0.0237,
+        "selectionScore": 0.7286,
+        "totalFrequency": 34,
+        "recentFrequency": 2,
+        "recent7": 2,
+        "recent15": 5,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              34,
+              36
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              22,
+              34
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 11
       },
       {
         "number": 46,
-        "rank": 8,
-        "score": 0.0244,
-        "selectionScore": 0.6358,
+        "rank": 12,
+        "score": 0.0231,
+        "selectionScore": 0.6858,
         "totalFrequency": 50,
         "recentFrequency": 1,
         "recent7": 1,
         "recent15": 1,
-        "consecutive": 1,
-        "lastDraw": true,
+        "consecutive": 0,
+        "lastDraw": false,
         "recentWindow": 7,
         "selectedPairs": [
           {
@@ -857,193 +1016,13 @@
             "count": 1
           }
         ],
-        "candidateRank": 8
-      },
-      {
-        "number": 35,
-        "rank": 9,
-        "score": 0.0237,
-        "selectionScore": 0.5995,
-        "totalFrequency": 45,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 2,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              35,
-              42
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              4,
-              35
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 9
-      },
-      {
-        "number": 30,
-        "rank": 10,
-        "score": 0.0232,
-        "selectionScore": 0.5748,
-        "totalFrequency": 43,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 5,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              30,
-              42
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              30,
-              36
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 10
-      },
-      {
-        "number": 11,
-        "rank": 11,
-        "score": 0.0228,
-        "selectionScore": 0.549,
-        "totalFrequency": 43,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 1,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              11,
-              15
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              11,
-              27
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 11
-      },
-      {
-        "number": 4,
-        "rank": 12,
-        "score": 0.0226,
-        "selectionScore": 0.5417,
-        "totalFrequency": 33,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 3,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              4,
-              42
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              4,
-              15
-            ],
-            "count": 1
-          }
-        ],
         "candidateRank": 12
       },
       {
-        "number": 37,
-        "rank": 13,
-        "score": 0.0225,
-        "selectionScore": 0.5331,
-        "totalFrequency": 41,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 3,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              15,
-              37
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              4,
-              37
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 13
-      },
-      {
-        "number": 18,
-        "rank": 14,
-        "score": 0.0224,
-        "selectionScore": 0.5309,
-        "totalFrequency": 49,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 1,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              18,
-              34
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              18,
-              22
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 14
-      },
-      {
         "number": 27,
-        "rank": 15,
-        "score": 0.0224,
-        "selectionScore": 0.5273,
+        "rank": 13,
+        "score": 0.0227,
+        "selectionScore": 0.6631,
         "totalFrequency": 31,
         "recentFrequency": 2,
         "recent7": 2,
@@ -1055,26 +1034,56 @@
           {
             "numbers": [
               27,
-              42
+              36
             ],
             "count": 1
           },
           {
             "numbers": [
-              27,
-              36
+              15,
+              27
             ],
             "count": 1
           }
         ],
-        "candidateRank": 15
+        "candidateRank": 13
       },
       {
-        "number": 48,
-        "rank": 16,
-        "score": 0.0223,
-        "selectionScore": 0.5262,
-        "totalFrequency": 42,
+        "number": 30,
+        "rank": 14,
+        "score": 0.0227,
+        "selectionScore": 0.6607,
+        "totalFrequency": 43,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 5,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              30,
+              36
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              30,
+              42
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 14
+      },
+      {
+        "number": 18,
+        "rank": 15,
+        "score": 0.0224,
+        "selectionScore": 0.6407,
+        "totalFrequency": 49,
         "recentFrequency": 1,
         "recent7": 1,
         "recent15": 1,
@@ -1084,26 +1093,26 @@
         "selectedPairs": [
           {
             "numbers": [
-              15,
-              48
+              18,
+              22
             ],
             "count": 1
           },
           {
             "numbers": [
-              11,
-              48
+              18,
+              34
             ],
             "count": 1
           }
         ],
-        "candidateRank": 16
+        "candidateRank": 15
       },
       {
         "number": 44,
-        "rank": 17,
-        "score": 0.0222,
-        "selectionScore": 0.5181,
+        "rank": 16,
+        "score": 0.0221,
+        "selectionScore": 0.6276,
         "totalFrequency": 45,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1121,19 +1130,19 @@
           },
           {
             "numbers": [
-              4,
+              37,
               44
             ],
             "count": 1
           }
         ],
-        "candidateRank": 17
+        "candidateRank": 16
       },
       {
         "number": 13,
-        "rank": 18,
-        "score": 0.0221,
-        "selectionScore": 0.5147,
+        "rank": 17,
+        "score": 0.022,
+        "selectionScore": 0.6154,
         "totalFrequency": 41,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1145,14 +1154,44 @@
           {
             "numbers": [
               13,
-              42
+              36
             ],
             "count": 1
           },
           {
             "numbers": [
               13,
+              42
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 17
+      },
+      {
+        "number": 10,
+        "rank": 18,
+        "score": 0.0219,
+        "selectionScore": 0.6114,
+        "totalFrequency": 43,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 4,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              10,
               36
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              10,
+              34
             ],
             "count": 1
           }
@@ -1162,8 +1201,8 @@
       {
         "number": 16,
         "rank": 19,
-        "score": 0.0219,
-        "selectionScore": 0.5032,
+        "score": 0.0218,
+        "selectionScore": 0.6074,
         "totalFrequency": 45,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1175,14 +1214,14 @@
           {
             "numbers": [
               16,
-              34
+              22
             ],
             "count": 1
           },
           {
             "numbers": [
               16,
-              22
+              34
             ],
             "count": 1
           }
@@ -1190,29 +1229,29 @@
         "candidateRank": 19
       },
       {
-        "number": 25,
+        "number": 17,
         "rank": 20,
-        "score": 0.0219,
-        "selectionScore": 0.5008,
+        "score": 0.0218,
+        "selectionScore": 0.6072,
         "totalFrequency": 39,
         "recentFrequency": 1,
         "recent7": 1,
-        "recent15": 4,
-        "consecutive": 0,
-        "lastDraw": false,
+        "recent15": 3,
+        "consecutive": 1,
+        "lastDraw": true,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              15,
-              25
+              17,
+              37
             ],
             "count": 1
           },
           {
             "numbers": [
               11,
-              25
+              17
             ],
             "count": 1
           }
@@ -1220,11 +1259,11 @@
         "candidateRank": 20
       },
       {
-        "number": 47,
+        "number": 41,
         "rank": 21,
-        "score": 0.0218,
-        "selectionScore": 0.4992,
-        "totalFrequency": 46,
+        "score": 0.0214,
+        "selectionScore": 0.5825,
+        "totalFrequency": 45,
         "recentFrequency": 1,
         "recent7": 1,
         "recent15": 1,
@@ -1234,15 +1273,15 @@
         "selectedPairs": [
           {
             "numbers": [
-              42,
-              47
+              36,
+              41
             ],
             "count": 1
           },
           {
             "numbers": [
-              35,
-              47
+              34,
+              41
             ],
             "count": 1
           }
@@ -1250,40 +1289,10 @@
         "candidateRank": 21
       },
       {
-        "number": 8,
-        "rank": 22,
-        "score": 0.0215,
-        "selectionScore": 0.4803,
-        "totalFrequency": 39,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 2,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              8,
-              42
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              8,
-              35
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 22
-      },
-      {
         "number": 5,
-        "rank": 23,
-        "score": 0.0214,
-        "selectionScore": 0.4761,
+        "rank": 22,
+        "score": 0.0213,
+        "selectionScore": 0.5743,
         "totalFrequency": 39,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1301,8 +1310,38 @@
           },
           {
             "numbers": [
-              4,
-              5
+              5,
+              37
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 22
+      },
+      {
+        "number": 24,
+        "rank": 23,
+        "score": 0.0211,
+        "selectionScore": 0.5607,
+        "totalFrequency": 39,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 2,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              24,
+              36
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              24,
+              34
             ],
             "count": 1
           }
@@ -1312,8 +1351,8 @@
       {
         "number": 23,
         "rank": 24,
-        "score": 0.0211,
-        "selectionScore": 0.4603,
+        "score": 0.021,
+        "selectionScore": 0.5533,
         "totalFrequency": 54,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1325,40 +1364,25 @@
         "candidateRank": 24
       },
       {
-        "number": 24,
+        "number": 35,
         "rank": 25,
-        "score": 0.0208,
-        "selectionScore": 0.4452,
-        "totalFrequency": 39,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 2,
-        "consecutive": 1,
-        "lastDraw": true,
+        "score": 0.0202,
+        "selectionScore": 0.5042,
+        "totalFrequency": 45,
+        "recentFrequency": 0,
+        "recent7": 0,
+        "recent15": 1,
+        "consecutive": 0,
+        "lastDraw": false,
         "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              24,
-              36
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              24,
-              34
-            ],
-            "count": 1
-          }
-        ],
+        "selectedPairs": [],
         "candidateRank": 25
       },
       {
-        "number": 17,
+        "number": 28,
         "rank": 26,
-        "score": 0.0205,
-        "selectionScore": 0.4287,
+        "score": 0.0198,
+        "selectionScore": 0.4771,
         "totalFrequency": 38,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1369,15 +1393,15 @@
         "selectedPairs": [
           {
             "numbers": [
-              17,
-              42
+              22,
+              28
             ],
             "count": 1
           },
           {
             "numbers": [
-              17,
-              35
+              28,
+              34
             ],
             "count": 1
           }
@@ -1385,70 +1409,10 @@
         "candidateRank": 26
       },
       {
-        "number": 28,
-        "rank": 27,
-        "score": 0.0199,
-        "selectionScore": 0.3961,
-        "totalFrequency": 38,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 2,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              28,
-              34
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              22,
-              28
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 27
-      },
-      {
-        "number": 12,
-        "rank": 28,
-        "score": 0.0198,
-        "selectionScore": 0.3935,
-        "totalFrequency": 40,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 1,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              12,
-              42
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              12,
-              36
-            ],
-            "count": 1
-          }
-        ],
-        "candidateRank": 28
-      },
-      {
         "number": 9,
-        "rank": 29,
-        "score": 0.0197,
-        "selectionScore": 0.3838,
+        "rank": 27,
+        "score": 0.0196,
+        "selectionScore": 0.4614,
         "totalFrequency": 32,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1466,20 +1430,20 @@
           },
           {
             "numbers": [
-              4,
-              9
+              9,
+              37
             ],
             "count": 1
           }
         ],
-        "candidateRank": 29
+        "candidateRank": 27
       },
       {
-        "number": 1,
-        "rank": 30,
-        "score": 0.0196,
-        "selectionScore": 0.3832,
-        "totalFrequency": 39,
+        "number": 12,
+        "rank": 28,
+        "score": 0.0194,
+        "selectionScore": 0.4499,
+        "totalFrequency": 40,
         "recentFrequency": 1,
         "recent7": 1,
         "recent15": 1,
@@ -1489,56 +1453,26 @@
         "selectedPairs": [
           {
             "numbers": [
-              1,
-              42
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              1,
+              12,
               36
             ],
             "count": 1
-          }
-        ],
-        "candidateRank": 30
-      },
-      {
-        "number": 41,
-        "rank": 31,
-        "score": 0.0195,
-        "selectionScore": 0.3754,
-        "totalFrequency": 45,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 1,
-        "consecutive": 1,
-        "lastDraw": true,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              36,
-              41
-            ],
-            "count": 1
           },
           {
             "numbers": [
-              34,
-              41
+              12,
+              42
             ],
             "count": 1
           }
         ],
-        "candidateRank": 31
+        "candidateRank": 28
       },
       {
         "number": 45,
-        "rank": 32,
+        "rank": 29,
         "score": 0.0194,
-        "selectionScore": 0.3709,
+        "selectionScore": 0.4509,
         "totalFrequency": 36,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1562,13 +1496,43 @@
             "count": 1
           }
         ],
-        "candidateRank": 32
+        "candidateRank": 29
+      },
+      {
+        "number": 1,
+        "rank": 30,
+        "score": 0.0192,
+        "selectionScore": 0.4374,
+        "totalFrequency": 39,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 1,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              1,
+              36
+            ],
+            "count": 1
+          },
+          {
+            "numbers": [
+              1,
+              42
+            ],
+            "count": 1
+          }
+        ],
+        "candidateRank": 30
       },
       {
         "number": 19,
-        "rank": 33,
+        "rank": 31,
         "score": 0.0185,
-        "selectionScore": 0.3226,
+        "selectionScore": 0.3902,
         "totalFrequency": 36,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1580,25 +1544,40 @@
           {
             "numbers": [
               19,
-              42
+              36
             ],
             "count": 1
           },
           {
             "numbers": [
               19,
-              36
+              42
             ],
             "count": 1
           }
         ],
-        "candidateRank": 33
+        "candidateRank": 31
+      },
+      {
+        "number": 47,
+        "rank": 32,
+        "score": 0.0185,
+        "selectionScore": 0.3891,
+        "totalFrequency": 46,
+        "recentFrequency": 0,
+        "recent7": 0,
+        "recent15": 1,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [],
+        "candidateRank": 32
       },
       {
         "number": 29,
-        "rank": 34,
+        "rank": 33,
         "score": 0.0183,
-        "selectionScore": 0.3136,
+        "selectionScore": 0.3788,
         "totalFrequency": 34,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1609,26 +1588,26 @@
         "selectedPairs": [
           {
             "numbers": [
-              29,
-              34
+              22,
+              29
             ],
             "count": 1
           },
           {
             "numbers": [
-              22,
-              29
+              29,
+              34
             ],
             "count": 1
           }
         ],
-        "candidateRank": 34
+        "candidateRank": 33
       },
       {
         "number": 2,
-        "rank": 35,
-        "score": 0.0182,
-        "selectionScore": 0.3051,
+        "rank": 34,
+        "score": 0.0181,
+        "selectionScore": 0.3695,
         "totalFrequency": 35,
         "recentFrequency": 1,
         "recent7": 1,
@@ -1640,25 +1619,40 @@
           {
             "numbers": [
               2,
-              42
+              36
             ],
             "count": 1
           },
           {
             "numbers": [
               2,
-              36
+              42
             ],
             "count": 1
           }
         ],
+        "candidateRank": 34
+      },
+      {
+        "number": 8,
+        "rank": 35,
+        "score": 0.018,
+        "selectionScore": 0.3621,
+        "totalFrequency": 39,
+        "recentFrequency": 0,
+        "recent7": 0,
+        "recent15": 2,
+        "consecutive": 0,
+        "lastDraw": false,
+        "recentWindow": 7,
+        "selectedPairs": [],
         "candidateRank": 35
       },
       {
         "number": 43,
         "rank": 36,
-        "score": 0.0175,
-        "selectionScore": 0.2673,
+        "score": 0.0174,
+        "selectionScore": 0.3215,
         "totalFrequency": 43,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1670,14 +1664,14 @@
         "candidateRank": 36
       },
       {
-        "number": 21,
+        "number": 31,
         "rank": 37,
         "score": 0.0171,
-        "selectionScore": 0.2458,
-        "totalFrequency": 39,
+        "selectionScore": 0.299,
+        "totalFrequency": 41,
         "recentFrequency": 0,
         "recent7": 0,
-        "recent15": 1,
+        "recent15": 0,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -1685,14 +1679,14 @@
         "candidateRank": 37
       },
       {
-        "number": 31,
+        "number": 21,
         "rank": 38,
-        "score": 0.0171,
-        "selectionScore": 0.2491,
-        "totalFrequency": 41,
+        "score": 0.017,
+        "selectionScore": 0.2941,
+        "totalFrequency": 39,
         "recentFrequency": 0,
         "recent7": 0,
-        "recent15": 0,
+        "recent15": 1,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -1702,8 +1696,8 @@
       {
         "number": 33,
         "rank": 39,
-        "score": 0.017,
-        "selectionScore": 0.2413,
+        "score": 0.0169,
+        "selectionScore": 0.2881,
         "totalFrequency": 39,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1717,12 +1711,12 @@
       {
         "number": 14,
         "rank": 40,
-        "score": 0.0162,
-        "selectionScore": 0.2017,
+        "score": 0.0161,
+        "selectionScore": 0.2375,
         "totalFrequency": 33,
         "recentFrequency": 0,
         "recent7": 0,
-        "recent15": 4,
+        "recent15": 3,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -1732,8 +1726,8 @@
       {
         "number": 40,
         "rank": 41,
-        "score": 0.0162,
-        "selectionScore": 0.1979,
+        "score": 0.0161,
+        "selectionScore": 0.2371,
         "totalFrequency": 37,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1748,7 +1742,7 @@
         "number": 3,
         "rank": 42,
         "score": 0.0154,
-        "selectionScore": 0.1584,
+        "selectionScore": 0.1898,
         "totalFrequency": 35,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1762,8 +1756,8 @@
       {
         "number": 32,
         "rank": 43,
-        "score": 0.0153,
-        "selectionScore": 0.1517,
+        "score": 0.0152,
+        "selectionScore": 0.1807,
         "totalFrequency": 34,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1778,7 +1772,7 @@
         "number": 6,
         "rank": 44,
         "score": 0.0148,
-        "selectionScore": 0.1241,
+        "selectionScore": 0.1503,
         "totalFrequency": 35,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1793,7 +1787,7 @@
         "number": 39,
         "rank": 45,
         "score": 0.0148,
-        "selectionScore": 0.1251,
+        "selectionScore": 0.1509,
         "totalFrequency": 33,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1808,7 +1802,7 @@
         "number": 49,
         "rank": 46,
         "score": 0.0148,
-        "selectionScore": 0.1269,
+        "selectionScore": 0.1537,
         "totalFrequency": 36,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1822,8 +1816,8 @@
       {
         "number": 7,
         "rank": 47,
-        "score": 0.0143,
-        "selectionScore": 0.0974,
+        "score": 0.0142,
+        "selectionScore": 0.1174,
         "totalFrequency": 33,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1838,7 +1832,7 @@
         "number": 38,
         "rank": 48,
         "score": 0.0142,
-        "selectionScore": 0.0957,
+        "selectionScore": 0.1136,
         "totalFrequency": 32,
         "recentFrequency": 0,
         "recent7": 0,
@@ -1857,7 +1851,7 @@
         "totalFrequency": 26,
         "recentFrequency": 0,
         "recent7": 0,
-        "recent15": 1,
+        "recent15": 0,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
@@ -1866,19 +1860,19 @@
       }
     ],
     "methodWeights": [
-      0.1874,
-      0.1441,
-      0.1682,
-      0.1296,
-      0.1882,
-      0.1826
+      0.186,
+      0.1452,
+      0.1689,
+      0.132,
+      0.1869,
+      0.1811
     ],
     "structure": {
       "parity": [
         0.0714,
         0.1429,
-        0.1429,
-        0.1429,
+        0.2143,
+        0.0714,
         0.2143,
         0.2143,
         0.0714
@@ -1887,21 +1881,21 @@
         0.0361,
         0.0482,
         0.0361,
-        0.0602,
-        0.0602,
-        0.0843,
         0.0482,
-        0.012,
-        0.0241,
         0.0482,
-        0.0361,
+        0.0964,
+        0.0482,
+        0.0241,
         0.012,
+        0.0482,
+        0.0482,
+        0.0241,
         0.012,
         0.0241,
         0.0241,
         0.012,
         0.012,
-        0.0361,
+        0.0241,
         0.012,
         0.012,
         0.012,
@@ -1935,159 +1929,130 @@
       ],
       "pairAnchors": [
         4,
-        15,
-        27
+        11,
+        15
       ]
     }
   },
   "lastEvaluation": {
-    "targetDate": "2026-11-19",
-    "trainedThrough": "2026-11-18",
+    "targetDate": "2026-11-20",
+    "trainedThrough": "2026-11-19",
     "numbers": [
       15,
       22,
-      25,
-      26,
-      30,
-      42
+      34,
+      36,
+      42,
+      46
     ],
     "alternatives": [
+      10,
+      15,
       26,
-      30,
       35,
       36,
-      37,
       42
     ],
     "actual": [
-      10,
-      24,
-      34,
-      36,
-      41,
-      46
+      4,
+      11,
+      17,
+      25,
+      37,
+      48
     ],
     "hits": 0,
-    "alternativeHits": 1,
+    "alternativeHits": 0,
     "selectionReasons": [
       {
         "number": 15,
-        "rank": 5,
-        "score": 0.0257,
-        "selectionScore": 0.7011,
+        "rank": 3,
+        "score": 0.0276,
+        "selectionScore": 0.8083,
         "totalFrequency": 46,
         "recentFrequency": 2,
         "recent7": 2,
         "recent15": 3,
-        "consecutive": 1,
-        "lastDraw": true,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              15,
-              25
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
-        "number": 22,
-        "rank": 4,
-        "score": 0.0259,
-        "selectionScore": 0.7088,
-        "totalFrequency": 53,
-        "recentFrequency": 1,
-        "recent7": 1,
-        "recent15": 2,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
         "selectedPairs": []
       },
       {
-        "number": 25,
-        "rank": 6,
-        "score": 0.0251,
-        "selectionScore": 0.6671,
-        "totalFrequency": 39,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 4,
+        "number": 22,
+        "rank": 5,
+        "score": 0.0255,
+        "selectionScore": 0.6931,
+        "totalFrequency": 53,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 1,
         "consecutive": 0,
         "lastDraw": false,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              15,
-              25
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              25,
-              26
+              22,
+              34
             ],
             "count": 1
           }
         ]
       },
       {
-        "number": 26,
-        "rank": 2,
-        "score": 0.0285,
-        "selectionScore": 0.8493,
-        "totalFrequency": 48,
-        "recentFrequency": 2,
-        "recent7": 2,
-        "recent15": 4,
-        "consecutive": 0,
-        "lastDraw": false,
-        "recentWindow": 7,
-        "selectedPairs": [
-          {
-            "numbers": [
-              25,
-              26
-            ],
-            "count": 1
-          },
-          {
-            "numbers": [
-              26,
-              30
-            ],
-            "count": 1
-          }
-        ]
-      },
-      {
-        "number": 30,
-        "rank": 3,
-        "score": 0.0265,
-        "selectionScore": 0.7437,
-        "totalFrequency": 43,
+        "number": 34,
+        "rank": 4,
+        "score": 0.0267,
+        "selectionScore": 0.7562,
+        "totalFrequency": 34,
         "recentFrequency": 2,
         "recent7": 2,
         "recent15": 5,
-        "consecutive": 0,
-        "lastDraw": false,
+        "consecutive": 1,
+        "lastDraw": true,
         "recentWindow": 7,
         "selectedPairs": [
           {
             "numbers": [
-              25,
-              30
+              22,
+              34
             ],
             "count": 1
           },
           {
             "numbers": [
-              26,
-              30
+              34,
+              36
+            ],
+            "count": 1
+          }
+        ]
+      },
+      {
+        "number": 36,
+        "rank": 2,
+        "score": 0.0279,
+        "selectionScore": 0.8215,
+        "totalFrequency": 36,
+        "recentFrequency": 3,
+        "recent7": 3,
+        "recent15": 5,
+        "consecutive": 1,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              36,
+              42
+            ],
+            "count": 2
+          },
+          {
+            "numbers": [
+              34,
+              36
             ],
             "count": 1
           }
@@ -2096,7 +2061,7 @@
       {
         "number": 42,
         "rank": 1,
-        "score": 0.0313,
+        "score": 0.0312,
         "selectionScore": 1,
         "totalFrequency": 45,
         "recentFrequency": 3,
@@ -2108,15 +2073,37 @@
         "selectedPairs": [
           {
             "numbers": [
-              26,
+              36,
               42
+            ],
+            "count": 2
+          }
+        ]
+      },
+      {
+        "number": 46,
+        "rank": 8,
+        "score": 0.0244,
+        "selectionScore": 0.6358,
+        "totalFrequency": 50,
+        "recentFrequency": 1,
+        "recent7": 1,
+        "recent15": 1,
+        "consecutive": 1,
+        "lastDraw": true,
+        "recentWindow": 7,
+        "selectedPairs": [
+          {
+            "numbers": [
+              34,
+              46
             ],
             "count": 1
           },
           {
             "numbers": [
-              30,
-              42
+              36,
+              46
             ],
             "count": 1
           }
@@ -2125,10 +2112,10 @@
     ]
   },
   "metrics": {
-    "simulations": 316,
-    "meanHits": 0.7785,
+    "simulations": 317,
+    "meanHits": 0.776,
     "alternative": {
-      "meanHits": 0.6994,
+      "meanHits": 0.6972,
       "atLeastThree": 10,
       "atLeastFour": 0
     },
@@ -2144,13 +2131,13 @@
       "atLeastThree": 6,
       "atLeastFour": 1,
       "threePlusRate": 0.06,
-      "meanHits": 0.87
+      "meanHits": 0.85
     },
     "atLeastThree": 10,
     "atLeastFour": 1,
     "maxHits": 4,
     "histogram": [
-      138,
+      139,
       121,
       47,
       9,
@@ -2163,48 +2150,48 @@
     {
       "name": "Frecuencia acumulada",
       "initialWeight": 0.16666666666666666,
-      "meanHits": 0.7342,
+      "meanHits": 0.7319,
       "atLeastThree": 6,
-      "numberWeight": 0.1874
+      "numberWeight": 0.186
     },
     {
       "name": "Frecuencia reciente",
       "initialWeight": 0.16666666666666666,
-      "meanHits": 0.6867,
+      "meanHits": 0.6877,
       "atLeastThree": 8,
-      "numberWeight": 0.1441
+      "numberWeight": 0.1452
     },
     {
       "name": "Recencia ponderada",
       "initialWeight": 0.16666666666666666,
-      "meanHits": 0.7468,
+      "meanHits": 0.7445,
       "atLeastThree": 8,
-      "numberWeight": 0.1682
+      "numberWeight": 0.1689
     },
     {
       "name": "Parejas y estructura",
       "initialWeight": 0.16666666666666666,
-      "meanHits": 0.7184,
+      "meanHits": 0.7192,
       "atLeastThree": 11,
-      "numberWeight": 0.1296
+      "numberWeight": 0.132
     },
     {
       "name": "Bayes Beta-Binomial",
       "initialWeight": 0.16666666666666666,
-      "meanHits": 0.7342,
+      "meanHits": 0.7319,
       "atLeastThree": 6,
-      "numberWeight": 0.1882
+      "numberWeight": 0.1869
     },
     {
       "name": "Markov regularizado",
       "initialWeight": 0.16666666666666666,
-      "meanHits": 0.7437,
+      "meanHits": 0.7413,
       "atLeastThree": 4,
-      "numberWeight": 0.1826
+      "numberWeight": 0.1811
     }
   ],
   "patterns": {
-    "drawCount": 323,
+    "drawCount": 324,
     "frequency": [
       {
         "number": 1,
@@ -2220,7 +2207,7 @@
       },
       {
         "number": 4,
-        "count": 33
+        "count": 34
       },
       {
         "number": 5,
@@ -2248,7 +2235,7 @@
       },
       {
         "number": 11,
-        "count": 43
+        "count": 44
       },
       {
         "number": 12,
@@ -2272,7 +2259,7 @@
       },
       {
         "number": 17,
-        "count": 38
+        "count": 39
       },
       {
         "number": 18,
@@ -2304,7 +2291,7 @@
       },
       {
         "number": 25,
-        "count": 39
+        "count": 40
       },
       {
         "number": 26,
@@ -2352,7 +2339,7 @@
       },
       {
         "number": 37,
-        "count": 41
+        "count": 42
       },
       {
         "number": 38,
@@ -2396,7 +2383,7 @@
       },
       {
         "number": 48,
-        "count": 42
+        "count": 43
       },
       {
         "number": 49,
@@ -2417,7 +2404,7 @@
       {
         "even": 2,
         "odd": 4,
-        "count": 91
+        "count": 92
       },
       {
         "even": 3,
@@ -2549,15 +2536,15 @@
       },
       {
         "gap": 6,
-        "count": 118
+        "count": 119
       },
       {
         "gap": 7,
-        "count": 92
+        "count": 93
       },
       {
         "gap": 8,
-        "count": 97
+        "count": 98
       },
       {
         "gap": 9,
@@ -2569,11 +2556,11 @@
       },
       {
         "gap": 11,
-        "count": 61
+        "count": 62
       },
       {
         "gap": 12,
-        "count": 47
+        "count": 48
       },
       {
         "gap": 13,
@@ -2720,8 +2707,8 @@
         "count": 0
       }
     ],
-    "meanGap": 7.174,
-    "meanSum": 152.5201
+    "meanGap": 7.179,
+    "meanSum": 152.4877
   },
   "rows": [
     {
@@ -70754,45 +70741,241 @@
           ]
         }
       ]
+    },
+    {
+      "date": "2026-11-20",
+      "trainingCount": 323,
+      "trainingStart": "2026-01-01",
+      "trainingEnd": "2026-11-19",
+      "windowStart": "2026-11-13",
+      "predicted": [
+        15,
+        22,
+        34,
+        36,
+        42,
+        46
+      ],
+      "predictedAlternatives": [
+        10,
+        15,
+        26,
+        35,
+        36,
+        42
+      ],
+      "actual": [
+        4,
+        11,
+        17,
+        25,
+        37,
+        48
+      ],
+      "hits": 0,
+      "alternativeHits": 0,
+      "expertHits": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "weightsBefore": [
+        0.1874,
+        0.1441,
+        0.1682,
+        0.1296,
+        0.1882,
+        0.1826
+      ],
+      "selectionReasons": [
+        {
+          "number": 15,
+          "rank": 3,
+          "score": 0.0276,
+          "selectionScore": 0.8083,
+          "totalFrequency": 46,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 3,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": []
+        },
+        {
+          "number": 22,
+          "rank": 5,
+          "score": 0.0255,
+          "selectionScore": 0.6931,
+          "totalFrequency": 53,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 1,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                22,
+                34
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 34,
+          "rank": 4,
+          "score": 0.0267,
+          "selectionScore": 0.7562,
+          "totalFrequency": 34,
+          "recentFrequency": 2,
+          "recent7": 2,
+          "recent15": 5,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                22,
+                34
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                34,
+                36
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 36,
+          "rank": 2,
+          "score": 0.0279,
+          "selectionScore": 0.8215,
+          "totalFrequency": 36,
+          "recentFrequency": 3,
+          "recent7": 3,
+          "recent15": 5,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                36,
+                42
+              ],
+              "count": 2
+            },
+            {
+              "numbers": [
+                34,
+                36
+              ],
+              "count": 1
+            }
+          ]
+        },
+        {
+          "number": 42,
+          "rank": 1,
+          "score": 0.0312,
+          "selectionScore": 1,
+          "totalFrequency": 45,
+          "recentFrequency": 3,
+          "recent7": 3,
+          "recent15": 6,
+          "consecutive": 0,
+          "lastDraw": false,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                36,
+                42
+              ],
+              "count": 2
+            }
+          ]
+        },
+        {
+          "number": 46,
+          "rank": 8,
+          "score": 0.0244,
+          "selectionScore": 0.6358,
+          "totalFrequency": 50,
+          "recentFrequency": 1,
+          "recent7": 1,
+          "recent15": 1,
+          "consecutive": 1,
+          "lastDraw": true,
+          "recentWindow": 7,
+          "selectedPairs": [
+            {
+              "numbers": [
+                34,
+                46
+              ],
+              "count": 1
+            },
+            {
+              "numbers": [
+                36,
+                46
+              ],
+              "count": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   "modelState": {
     "version": "2.21.0",
     "window": 7,
-    "trainedThrough": "2026-11-19",
+    "trainedThrough": "2026-11-20",
     "numberLogWeights": [
-      0.12688502469255167,
-      -0.13605935853922116,
-      0.01898594162510921,
-      -0.24216084081336658,
-      0.13149573120214256,
-      0.10085350183278514
+      0.11831873359570835,
+      -0.12951218547401597,
+      0.021525830315331014,
+      -0.22448381759159586,
+      0.12287150264638357,
+      0.09127993650818982
     ],
     "numberWeights": [
-      0.18737742235238586,
-      0.14405288670567024,
-      0.16821211984613002,
-      0.12955156907459378,
-      0.1882433594101396,
-      0.18256264261108035
+      0.18601533560202124,
+      0.1451834624189626,
+      0.16885430060951073,
+      0.1320296566048407,
+      0.1868641512294941,
+      0.1810530935351706
     ]
   },
   "audit": {
     "method": "Resumen descriptivo de aciertos históricos con intervalo bootstrap por bloques temporales; sin comparación aleatoria ni prueba de superioridad.",
-    "simulations": 316,
+    "simulations": 317,
     "bootstrapReplicates": 3000,
     "blockLength": 7,
-    "meanHits": 0.7785,
+    "meanHits": 0.776,
     "alternative": {
-      "meanHits": 0.6994,
+      "meanHits": 0.6972,
       "ci95MeanHits": [
-        0.6108,
-        0.7816
+        0.612,
+        0.7823
       ],
       "atLeastThree": 10,
       "atLeastFour": 0,
       "histogram": [
-        152,
+        153,
         117,
         37,
         10,
@@ -70802,13 +70985,13 @@
       ]
     },
     "ci95MeanHits": [
-      0.6867,
-      0.8797
+      0.6845,
+      0.8801
     ],
     "atLeastThree": 10,
     "atLeastFour": 1,
     "histogram": [
-      138,
+      139,
       121,
       47,
       9,
@@ -70822,99 +71005,99 @@
     {
       "window": 5,
       "status": "ready",
-      "simulations": 318,
-      "meanHits": 0.7516,
+      "simulations": 319,
+      "meanHits": 0.7492,
       "atLeastThree": 5,
-      "atLeastThreeRate": 0.015723270440251572,
+      "atLeastThreeRate": 0.01567398119122257,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6635,
-        0.8333
+        0.6646,
+        0.837
       ]
     },
     {
       "window": 7,
       "status": "ready",
-      "simulations": 316,
-      "meanHits": 0.7785,
+      "simulations": 317,
+      "meanHits": 0.776,
       "atLeastThree": 10,
-      "atLeastThreeRate": 0.03164556962025317,
+      "atLeastThreeRate": 0.031545741324921134,
       "atLeastFour": 1,
-      "atLeastFourRate": 0.0031645569620253164,
+      "atLeastFourRate": 0.0031545741324921135,
       "ci95MeanHits": [
-        0.6899,
-        0.8829
+        0.6877,
+        0.8833
       ]
     },
     {
       "window": 10,
       "status": "ready",
-      "simulations": 313,
-      "meanHits": 0.7796,
+      "simulations": 314,
+      "meanHits": 0.7803,
       "atLeastThree": 11,
-      "atLeastThreeRate": 0.03514376996805112,
+      "atLeastThreeRate": 0.03503184713375796,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6709,
-        0.8754
+        0.6752,
+        0.8726
       ]
     },
     {
       "window": 15,
       "status": "ready",
-      "simulations": 308,
-      "meanHits": 0.7468,
+      "simulations": 309,
+      "meanHits": 0.7443,
       "atLeastThree": 7,
-      "atLeastThreeRate": 0.022727272727272728,
+      "atLeastThreeRate": 0.022653721682847898,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6331,
-        0.8506
+        0.6311,
+        0.8511
       ]
     },
     {
       "window": 20,
       "status": "ready",
-      "simulations": 303,
-      "meanHits": 0.7822,
+      "simulations": 304,
+      "meanHits": 0.7796,
       "atLeastThree": 7,
-      "atLeastThreeRate": 0.0231023102310231,
+      "atLeastThreeRate": 0.023026315789473683,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6601,
-        0.8878
+        0.6645,
+        0.8816
       ]
     },
     {
       "window": 30,
       "status": "ready",
-      "simulations": 293,
-      "meanHits": 0.7611,
+      "simulations": 294,
+      "meanHits": 0.7585,
       "atLeastThree": 7,
-      "atLeastThreeRate": 0.023890784982935155,
+      "atLeastThreeRate": 0.023809523809523808,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.6724,
-        0.8567
+        0.6667,
+        0.8571
       ]
     },
     {
       "window": 50,
       "status": "ready",
-      "simulations": 273,
-      "meanHits": 0.7436,
+      "simulations": 274,
+      "meanHits": 0.7409,
       "atLeastThree": 3,
-      "atLeastThreeRate": 0.01098901098901099,
+      "atLeastThreeRate": 0.010948905109489052,
       "atLeastFour": 0,
       "atLeastFourRate": 0,
       "ci95MeanHits": [
-        0.652,
-        0.8571
+        0.6533,
+        0.854
       ]
     }
   ]
