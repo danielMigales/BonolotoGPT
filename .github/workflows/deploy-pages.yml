@@ -1,8 +1,5 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
-  schedule:
-    - cron: '7 23 * * *'
-      timezone: 'Europe/Madrid'
   push:
     branches: [main]
   workflow_dispatch:
@@ -30,43 +27,6 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '22'
-      - name: Descargar y validar el histórico oficial de BonoLoto
-        id: update-data
-        run: npm run update-data
-      - name: Guardar el histórico validado
-        if: steps.update-data.outcome == 'success'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/draws.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Guardar histórico oficial validado de BonoLoto [skip ci]"
-            for attempt in 1 2 3; do
-              git pull --rebase -X theirs origin main && git push && exit 0
-              git rebase --abort || true
-              sleep 2
-            done
-            echo "No se pudo guardar el histórico tras tres intentos por cambios concurrentes."
-            exit 1
-          fi
-      - name: Guardar el punto de control si falla SELAE
-        if: always() && steps.update-data.outcome == 'failure'
-        run: |
-          if [ -f data/draws-progress.json ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/draws-progress.json
-            if ! git diff --cached --quiet; then
-              git commit -m "Guardar progreso de descarga Bonoloto"
-              for attempt in 1 2 3; do
-                git pull --rebase -X theirs origin main && git push && exit 0
-                git rebase --abort || true
-                sleep 2
-              done
-              echo "No se pudo guardar el punto de control tras tres intentos."
-              exit 1
-            fi
-          fi
       - name: Construir la web y el informe
         run: npm run build
       - name: Ejecutar las pruebas
