@@ -149,8 +149,8 @@ def parse_bulk_csv(body, end):
         if not row:
             continue
         first = ','.join(row[:2])
-        iso = re.search(r'(?<!\d)(20\d{2})[-/](\d{1,2})[-/](\d{1,2})(?!\d)', first)
-        euro = re.search(r'(?<!\d)(\d{1,2})[/-](\d{1,2})[/-](20\d{2})(?!\d)', first)
+        iso = re.search(r'(?<!\d)((?:19|20)\d{2})[-/](\d{1,2})[-/](\d{1,2})(?!\d)', first)
+        euro = re.search(r'(?<!\d)(\d{1,2})[/-](\d{1,2})[/-]((?:19|20)\d{2})(?!\d)', first)
         try:
             if iso:
                 draw_date = dt.date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3)))
@@ -268,7 +268,7 @@ def parse_recent_history(day, body):
     target = dt.date.fromisoformat(day)
     weekday = r'(?:Dom|Lun|Mar|Mi[eé]|Jue|Vie|S[aá]b)'
     pattern = (
-        weekday + r'-(\d{1,2})-(\d{1,2})-(20\d{2})\s+'
+        weekday + r'-(\d{1,2})-(\d{1,2})-((?:19|20)\d{2})\s+'
         + r'(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})\s+'
         + r'(\d{1,2})\s+(\d{1,2})\s+(\d{1,2})'
         + r'(?:\s+(\d{1,2})\s+(\d))?'
