@@ -38,6 +38,10 @@ class UpdateDataScheduleTests(unittest.TestCase):
             ['2022-09-24', '2022-09-25'],
         )
 
+    def test_calendar_excludes_the_covid_suspension(self):
+        dates = list(expected_dates(dt.date(2020, 5, 26), start=dt.date(2020, 3, 14)))
+        self.assertEqual(dates, ['2020-03-14', '2020-05-25', '2020-05-26'])
+
     def test_bonoloto_is_scheduled_every_day_including_sunday(self):
         self.assertEqual(
             latest_scheduled_date(dt.date(2026, 10, 18)),
