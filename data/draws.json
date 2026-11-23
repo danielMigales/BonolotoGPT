@@ -4,9 +4,24 @@
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/",
   "checkedAt": "2026-11-23T20:47:34.259166+00:00",
-  "latestDate": "2026-11-22",
+  "latestDate": "2026-11-23",
   "historyValidation": "frequency-discrepancy-with-selae",
   "draws": [
+    {
+      "id": "BONO-20261123",
+      "date": "2026-11-23",
+      "numbers": [
+        8,
+        15,
+        16,
+        21,
+        34,
+        36
+      ],
+      "complementario": 7,
+      "reintegro": 4,
+      "source": "user-provided"
+    },
     {
       "id": "BONO-20261122",
       "date": "2026-11-22",
