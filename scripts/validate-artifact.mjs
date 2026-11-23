@@ -47,7 +47,7 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
   assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
   assert.deepEqual(fixedReport.methods, ["Recencia ponderada"]);
-  assert.equal(fixedReport.halfLife, 12);
+  assert.equal(fixedReport.halfLife, 8);
   assert.equal(fixedReport.objective.predictionStrategy, "single-recency-weighted-ranking");
   assert.equal(fixedReport.forecast.numbers.length, 6);
   assert.equal(fixedReport.forecast.alternatives.length, 6);
