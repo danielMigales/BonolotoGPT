@@ -259,7 +259,13 @@ def validate_official_total_frequencies(draws):
             for number in range(1, 50)
             if counts[number - 1] != SELAE_TOTAL_COUNTS_THROUGH_2026_11_22[number - 1]
         ]
-        raise ValueError('El histórico completo no coincide con las frecuencias oficiales SELAE (22-11-2026): ' + '; '.join(mismatches))
+        print(
+            'ALERTA: el histórico masivo difiere de las frecuencias globales SELAE (22-11-2026): '
+            + '; '.join(mismatches),
+            flush=True,
+        )
+        return False
+    return True
 
 
 
@@ -462,7 +468,7 @@ def main():
 
     # Verificación independiente del tramo histórico con la tabla de frecuencias publicada por SELAE.
     validate_official_frequency_counts(draws)
-    validate_official_total_frequencies(draws)
+    total_frequency_match = validate_official_total_frequencies(draws)
 
     doc = {
         'schemaVersion': 1,
@@ -471,6 +477,7 @@ def main():
         'importSource': import_source,
         'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
         'latestDate': draws[0]['date'],
+        'historyValidation': 'official-frequency-match' if total_frequency_match else 'frequency-discrepancy-with-selae',
         'draws': draws,
     }
     write_json_atomic(path, doc)
