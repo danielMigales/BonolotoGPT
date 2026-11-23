@@ -51,10 +51,11 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
 });
 
-test('La interfaz conserva los seis métodos predictivos acordados',async()=>{
+test('La predicción usa exclusivamente recencia ponderada',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes Beta-Binomial y Markov regularizado/);
- assert.match(html,/seis métodos/);
+ assert.match(html,/El único criterio que ordena los números es la recencia ponderada/);
+ assert.match(html,/Cada aparición aporta la mitad del peso al cumplir 12 sorteos de antigüedad/);
+ assert.match(html,/Los recuentos de frecuencia, parejas y rachas que aparecen en otras secciones son únicamente descriptivos: no intervienen en la selección/);
  assert.match(html,/id="recent-repetitions-card"/);
- assert.doesNotMatch(html,/repeatTrials|repeatRates/);
+ assert.doesNotMatch(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes Beta-Binomial y Markov regularizado/);
 });
