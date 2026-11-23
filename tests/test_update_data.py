@@ -20,6 +20,24 @@ class UpdateDataScheduleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'ningún sorteo válido'):
             sorted_draws({})
 
+    def test_historical_calendar_matches_each_official_stage(self):
+        self.assertEqual(
+            list(expected_dates(dt.date(1988, 3, 2))),
+            ['1988-02-28', '1988-02-29', '1988-03-01', '1988-03-02'],
+        )
+        self.assertEqual(
+            list(expected_dates(dt.date(1993, 4, 23), start=dt.date(1993, 4, 18))),
+            ['1993-04-18', '1993-04-19', '1993-04-20', '1993-04-21', '1993-04-23'],
+        )
+        self.assertEqual(
+            list(expected_dates(dt.date(2015, 3, 28), start=dt.date(2015, 3, 22))),
+            ['2015-03-23', '2015-03-24', '2015-03-25', '2015-03-26', '2015-03-27', '2015-03-28'],
+        )
+        self.assertEqual(
+            list(expected_dates(dt.date(2022, 9, 25), start=dt.date(2022, 9, 24))),
+            ['2022-09-24', '2022-09-25'],
+        )
+
     def test_bonoloto_is_scheduled_every_day_including_sunday(self):
         self.assertEqual(
             latest_scheduled_date(dt.date(2026, 10, 18)),
