@@ -83,6 +83,11 @@ class UpdateDataScheduleTests(unittest.TestCase):
         self.assertEqual(rows['2026-10-18']['numbers'], [9, 18, 21, 23, 48, 49])
         self.assertTrue(rows['2026-10-17']['source'].startswith('https://www.loteriasyapuestas.es/'))
 
+    def test_bulk_csv_accepts_dates_from_the_first_1988_draw(self):
+        body = 'Fecha,N1,N2,N3,N4,N5,N6,C\\n28/02/1988,6,8,12,23,24,45,3\\n'
+        rows = parse_bulk_csv(body, dt.date(1988, 3, 1))
+        self.assertEqual(rows['1988-02-28']['numbers'], [6, 8, 12, 23, 24, 45])
+
     def test_bulk_csv_preserves_complementario_and_reintegro(self):
         body = 'Fecha,N1,N2,N3,N4,N5,N6,Complementario,Reintegro\n29/10/2026,11,13,24,26,42,48,9,7\n'
         row = parse_bulk_csv(body, dt.date(2026, 10, 29))['2026-10-29']
