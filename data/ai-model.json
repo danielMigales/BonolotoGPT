@@ -6,294 +6,343 @@
   "numberScores": [
     {
       "number": 36,
+      "rawScore": 4.956953814783565,
       "score": 4.957,
       "rank": 1,
       "selectionScore": 1
     },
     {
       "number": 4,
+      "rawScore": 4.277066003575609,
       "score": 4.2771,
       "rank": 2,
       "selectionScore": 0.8476
     },
     {
       "number": 26,
+      "rawScore": 4.265943340568902,
       "score": 4.2659,
       "rank": 3,
       "selectionScore": 0.8451
     },
     {
       "number": 42,
+      "rawScore": 3.974818071833468,
       "score": 3.9748,
       "rank": 4,
       "selectionScore": 0.7798
     },
     {
       "number": 13,
+      "rawScore": 3.883129844542798,
       "score": 3.8831,
       "rank": 5,
       "selectionScore": 0.7592
     },
     {
       "number": 34,
+      "rawScore": 3.701257255741943,
       "score": 3.7013,
       "rank": 6,
       "selectionScore": 0.7185
     },
     {
       "number": 37,
+      "rawScore": 3.275605627594235,
       "score": 3.2756,
       "rank": 7,
       "selectionScore": 0.623
     },
     {
       "number": 25,
+      "rawScore": 3.26914563489944,
       "score": 3.2691,
       "rank": 8,
       "selectionScore": 0.6216
     },
     {
       "number": 8,
+      "rawScore": 3.197334300387775,
       "score": 3.1973,
       "rank": 9,
       "selectionScore": 0.6055
     },
     {
       "number": 11,
+      "rawScore": 3.118894117641547,
       "score": 3.1189,
       "rank": 10,
       "selectionScore": 0.5879
     },
     {
       "number": 48,
+      "rawScore": 2.9397063855792376,
       "score": 2.9397,
       "rank": 11,
       "selectionScore": 0.5477
     },
     {
       "number": 30,
+      "rawScore": 2.938828983260369,
       "score": 2.9388,
       "rank": 12,
       "selectionScore": 0.5475
     },
     {
       "number": 22,
+      "rawScore": 2.870961741447031,
       "score": 2.871,
       "rank": 13,
       "selectionScore": 0.5323
     },
     {
       "number": 15,
+      "rawScore": 2.842516558837387,
       "score": 2.8425,
       "rank": 14,
       "selectionScore": 0.5259
     },
     {
       "number": 46,
+      "rawScore": 2.8030426099385464,
       "score": 2.803,
       "rank": 15,
       "selectionScore": 0.5171
     },
     {
       "number": 35,
+      "rawScore": 2.749627344060709,
       "score": 2.7496,
       "rank": 16,
       "selectionScore": 0.5051
     },
     {
       "number": 10,
+      "rawScore": 2.7363224918681874,
       "score": 2.7363,
       "rank": 17,
       "selectionScore": 0.5021
     },
     {
       "number": 27,
+      "rawScore": 2.7083655428555002,
       "score": 2.7084,
       "rank": 18,
       "selectionScore": 0.4959
     },
     {
       "number": 17,
+      "rawScore": 2.700011257212796,
       "score": 2.7,
       "rank": 19,
       "selectionScore": 0.494
     },
     {
       "number": 24,
+      "rawScore": 2.4809017207507784,
       "score": 2.4809,
       "rank": 20,
       "selectionScore": 0.4449
     },
     {
       "number": 9,
+      "rawScore": 2.202069976112643,
       "score": 2.2021,
       "rank": 21,
-      "selectionScore": 0.3823
+      "selectionScore": 0.3824
     },
     {
       "number": 14,
+      "rawScore": 2.128768610244388,
       "score": 2.1288,
       "rank": 22,
       "selectionScore": 0.3659
     },
     {
       "number": 2,
+      "rawScore": 2.0481171093774173,
       "score": 2.0481,
       "rank": 23,
       "selectionScore": 0.3478
     },
     {
       "number": 3,
+      "rawScore": 2.0350927455226238,
       "score": 2.0351,
       "rank": 24,
       "selectionScore": 0.3449
     },
     {
       "number": 5,
+      "rawScore": 1.9379880392844586,
       "score": 1.938,
       "rank": 25,
       "selectionScore": 0.3231
     },
     {
       "number": 12,
+      "rawScore": 1.9070417664271508,
       "score": 1.907,
       "rank": 26,
       "selectionScore": 0.3162
     },
     {
       "number": 28,
+      "rawScore": 1.7439127677098112,
       "score": 1.7439,
       "rank": 27,
       "selectionScore": 0.2796
     },
     {
       "number": 7,
+      "rawScore": 1.62281763443765,
       "score": 1.6228,
       "rank": 28,
       "selectionScore": 0.2525
     },
     {
       "number": 20,
+      "rawScore": 1.6197847438564368,
       "score": 1.6198,
       "rank": 29,
       "selectionScore": 0.2518
     },
     {
       "number": 16,
+      "rawScore": 1.5924215294949713,
       "score": 1.5924,
       "rank": 30,
       "selectionScore": 0.2457
     },
     {
       "number": 18,
+      "rawScore": 1.5338497014618602,
       "score": 1.5338,
       "rank": 31,
       "selectionScore": 0.2325
     },
     {
       "number": 33,
+      "rawScore": 1.477333541424608,
       "score": 1.4773,
       "rank": 32,
       "selectionScore": 0.2199
     },
     {
       "number": 6,
+      "rawScore": 1.4752345473917343,
       "score": 1.4752,
       "rank": 33,
       "selectionScore": 0.2194
     },
     {
       "number": 21,
+      "rawScore": 1.3860632067618326,
       "score": 1.3861,
       "rank": 34,
       "selectionScore": 0.1994
     },
     {
       "number": 29,
+      "rawScore": 1.3824268510679427,
       "score": 1.3824,
       "rank": 35,
       "selectionScore": 0.1986
     },
     {
       "number": 23,
+      "rawScore": 1.370614343435528,
       "score": 1.3706,
       "rank": 36,
       "selectionScore": 0.1959
     },
     {
       "number": 44,
+      "rawScore": 1.304492982152757,
       "score": 1.3045,
       "rank": 37,
       "selectionScore": 0.1811
     },
     {
       "number": 41,
+      "rawScore": 1.2747312407554117,
       "score": 1.2747,
       "rank": 38,
       "selectionScore": 0.1744
     },
     {
       "number": 32,
+      "rawScore": 1.2443441689536816,
       "score": 1.2443,
       "rank": 39,
       "selectionScore": 0.1676
     },
     {
       "number": 19,
+      "rawScore": 1.2077166297094997,
       "score": 1.2077,
       "rank": 40,
       "selectionScore": 0.1594
     },
     {
       "number": 47,
+      "rawScore": 1.204547740066424,
       "score": 1.2045,
       "rank": 41,
       "selectionScore": 0.1587
     },
     {
       "number": 40,
+      "rawScore": 1.1505451424523454,
       "score": 1.1505,
       "rank": 42,
       "selectionScore": 0.1466
     },
     {
       "number": 31,
+      "rawScore": 1.125048926435876,
       "score": 1.125,
       "rank": 43,
       "selectionScore": 0.1409
     },
     {
       "number": 38,
+      "rawScore": 1.0367135075385874,
       "score": 1.0367,
       "rank": 44,
       "selectionScore": 0.1211
     },
     {
       "number": 45,
+      "rawScore": 1.015127014351845,
       "score": 1.0151,
       "rank": 45,
       "selectionScore": 0.1162
     },
     {
       "number": 43,
+      "rawScore": 1.002201097868643,
       "score": 1.0022,
       "rank": 46,
       "selectionScore": 0.1133
     },
     {
       "number": 1,
+      "rawScore": 0.909892614580726,
       "score": 0.9099,
       "rank": 47,
       "selectionScore": 0.0926
     },
     {
       "number": 39,
+      "rawScore": 0.776901283318269,
       "score": 0.7769,
       "rank": 48,
       "selectionScore": 0.0628
     },
     {
       "number": 49,
+      "rawScore": 0.4966896514687734,
       "score": 0.4967,
       "rank": 49,
       "selectionScore": 0
