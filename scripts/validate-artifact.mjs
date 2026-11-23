@@ -42,6 +42,8 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(fixedReport.audit.bootstrapReplicates >= 1000);
   assert.equal(fixedReport.audit.ci95MeanHits.length, 2);
   assert.ok(Number.isFinite(fixedReport.audit.meanHits));
+  assert.ok(Number.isFinite(fixedReport.audit.randomBaseline.meanHits));
+  assert.ok(Number.isFinite(fixedReport.audit.deltaVsRandom));
   assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
   assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
   assert.deepEqual(fixedReport.methods, ["Frecuencia acumulada", "Frecuencia reciente", "Recencia ponderada", "Parejas y estructura", "Bayes Beta-Binomial", "Markov regularizado"]);
@@ -55,7 +57,7 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(staticHtml.includes("Combinación 1") && staticHtml.includes("Combinación 2"));
   assert.ok(!("randomMeanHits" in fixedReport.metrics));
   assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
-  assert.ok(!("randomMeanHits" in fixedReport.audit));
+  assert.ok("randomBaseline" in fixedReport.audit);
   assert.ok(fixedReport.windowStudy.every(item => !("randomMeanHits" in item) && !("pValueOneSided" in item)));
   assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5,7,10,15,20,30,50]);
   assert.ok(fixedReport.forecast.numbers.length === 6);
