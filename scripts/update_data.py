@@ -482,7 +482,11 @@ def main():
     }
     write_json_atomic(path, doc)
     progress_path.unlink(missing_ok=True)
-    print(f'Histórico oficial validado: {len(draws)} sorteos; último {draws[0]["date"]}', flush=True)
+    print(
+        f'Histórico importado: {len(draws)} sorteos; contraste global SELAE: '
+        f'{"coincide" if total_frequency_match else "con discrepancia"}; último {draws[0]["date"]}',
+        flush=True,
+    )
 
 
 if __name__ == '__main__':
