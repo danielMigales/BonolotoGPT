@@ -204,17 +204,35 @@ def parse_bulk_csv(body, end):
 
 
 def fetch_bulk_history(end):
-    """Descarga el CSV histórico en una petición en lugar de consultar cientos de fechas."""
-    response = subprocess.run(
-        [
-            'curl', '--fail', '--silent', '--show-error', '--location',
-            '--connect-timeout', '10', '--max-time', '45',
-            '--user-agent', 'Mozilla/5.0 (compatible; BonolotoGPT/1.0)',
-            BULK_CSV_URL,
-        ],
-        check=True, capture_output=True, text=True, encoding='utf-8',
-    )
-    return parse_bulk_csv(response.stdout, end)
+    """Descarga y combina los dos CSV históricos (1988-2012 y 2013-2026)."""
+    parsed = {}
+    for url in (BULK_CSV_OLD_URL, BULK_CSV_URL):
+        response = subprocess.run(
+            [
+                'curl', '--fail', '--silent', '--show-error', '--location',
+                '--connect-timeout', '10', '--max-time', '45',
+                '--user-agent', 'Mozilla/5.0 (compatible; BonolotoGPT/1.0)',
+                url,
+            ],
+            check=True, capture_output=True, text=True, encoding='utf-8',
+        )
+        part = parse_bulk_csv(response.stdout, end)
+        for day, row in part.items():
+            if day in parsed and parsed[day]['numbers'] != row['numbers']:
+                raise ValueError(f'Los CSV históricos discrepan en la combinación de {day}')
+            parsed[day] = row
+    return parsed
+
+
+def expected_archive_count(end):
+    """Recuento SELAE de referencia al 22-11-2026, extendido por sorteos posteriores."""
+    baseline_date = dt.date(2026, 11, 22)
+    baseline_count = 9455
+    if end <= baseline_date:
+        later = sum(1 for _ in expected_dates(baseline_date, start=end + dt.timedelta(days=1)))
+        return baseline_count - later
+    later = sum(1 for _ in expected_dates(end, start=baseline_date + dt.timedelta(days=1)))
+    return baseline_count + later
 
 
 def validate_official_frequency_counts(draws):
@@ -332,11 +350,12 @@ def main():
     end = today
     if now.time().replace(tzinfo=None) < RESULTS_AVAILABLE_AFTER:
         end -= dt.timedelta(days=1)
-    expected = list(expected_dates(end, start=START))
+    expected = list(expected_dates(end, start=dt.date(2026, 1, 1)))
     missing = [day for day in expected if day not in merged]
+    history_incomplete = not merged or min(merged) > START.isoformat() or len(merged) < expected_archive_count(end)
 
     import_source = previous.get('importSource') or progress_import_source
-    if len(missing) > 3:
+    if history_incomplete or len(missing) > 3:
         print(f'Faltan {len(missing)} fechas: descargando el histórico CSV en una sola petición.', flush=True)
         try:
             bulk = fetch_bulk_history(end)
@@ -357,11 +376,16 @@ def main():
                 'latestDate': max(merged),
                 'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
             })
-            print(f'CSV histórico importado: {len(bulk)} sorteos; progreso guardado.', flush=True)
+            print(f'CSV históricos combinados: {len(bulk)} sorteos, desde {min(bulk)} hasta {max(bulk)}; progreso guardado.', flush=True)
         except Exception as exc:
             print(f'No se pudo importar el CSV masivo: {exc}. Se intentará recuperar solo las fechas faltantes.', flush=True)
 
     missing = [day for day in expected if day not in merged]
+    if len(merged) < expected_archive_count(end):
+        raise RuntimeError(
+            f'El histórico importado contiene {len(merged)} sorteos; SELAE registra {expected_archive_count(end)}. '
+            'No se publica un histórico parcial.'
+        )
     if len(missing) > 3:
         raise RuntimeError(
             f'Todavía faltan {len(missing)} fechas tras intentar la importación masiva. '
