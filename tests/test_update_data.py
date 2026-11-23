@@ -10,6 +10,7 @@ from scripts.update_data import (
     normalize_widget,
     should_wait_for_results,
     sorted_draws,
+    expected_archive_count,
 )
 
 MADRID = ZoneInfo('Europe/Madrid')
@@ -37,6 +38,10 @@ class UpdateDataScheduleTests(unittest.TestCase):
             list(expected_dates(dt.date(2022, 9, 25), start=dt.date(2022, 9, 24))),
             ['2022-09-24', '2022-09-25'],
         )
+
+    def test_official_archive_count_baseline_and_next_draw(self):
+        self.assertEqual(expected_archive_count(dt.date(2026, 11, 22)), 9455)
+        self.assertEqual(expected_archive_count(dt.date(2026, 11, 23)), 9456)
 
     def test_calendar_excludes_the_covid_suspension(self):
         dates = list(expected_dates(dt.date(2020, 5, 26), start=dt.date(2020, 3, 14)))
