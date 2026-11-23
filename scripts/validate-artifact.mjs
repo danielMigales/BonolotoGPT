@@ -33,7 +33,7 @@ assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservars
 
 if (sourceArchive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
-  assert.equal(fixedReport.version, "2.21.0");
+  assert.equal(fixedReport.version, "3.0.0");
   assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
   assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
@@ -46,7 +46,9 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(Number.isFinite(fixedReport.audit.deltaVsRandom));
   assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
   assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
-  assert.deepEqual(fixedReport.methods, ["Frecuencia acumulada", "Frecuencia reciente", "Recencia ponderada", "Parejas y estructura", "Bayes Beta-Binomial", "Markov regularizado"]);
+  assert.deepEqual(fixedReport.methods, ["Recencia ponderada"]);
+  assert.equal(fixedReport.halfLife, 12);
+  assert.equal(fixedReport.objective.predictionStrategy, "single-recency-weighted-ranking");
   assert.equal(fixedReport.forecast.numbers.length, 6);
   assert.equal(fixedReport.forecast.alternatives.length, 6);
   assert.ok(fixedReport.forecast.numbers.filter(n => fixedReport.forecast.alternatives.includes(n)).length <= 3);
@@ -58,7 +60,7 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(!("randomMeanHits" in fixedReport.metrics));
   assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
   assert.ok("randomBaseline" in fixedReport.audit);
-  assert.ok(fixedReport.windowStudy.every(item => Number.isFinite(item.randomMeanHits) && Number.isFinite(item.deltaVsRandom)));
+  assert.ok(!("windowStudy" in fixedReport));
   assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5,7,10,15,20,30,50]);
   assert.ok(fixedReport.forecast.numbers.length === 6);
   assert.ok(!staticHtml.includes("repeatTrials"));
