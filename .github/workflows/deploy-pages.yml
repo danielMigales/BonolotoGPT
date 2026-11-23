@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '22'
+      - name: Actualizar histórico completo de Bonoloto
+        run: npm run update-data
       - name: Construir la web y el informe
         run: npm run build
       - name: Ejecutar las pruebas
