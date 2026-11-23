@@ -225,6 +225,15 @@ def fetch_bulk_history(end):
     return parsed
 
 
+SELAE_TOTAL_COUNTS_THROUGH_2026_11_22 = (
+    1150, 1193, 1144, 1119, 1106, 1127, 1152, 1125, 1127, 1211,
+    1136, 1139, 1138, 1110, 1135, 1168, 1149, 1149, 1143, 1161,
+    1160, 1206, 1152, 1157, 1156, 1180, 1183, 1138, 1092, 1192,
+    1180, 1181, 1222, 1194, 1174, 1165, 1163, 1114, 1185, 1167,
+    1180, 1171, 1125, 1152, 1179, 1203, 1159, 1151, 1167,
+)
+
+
 def expected_archive_count(end):
     """Recuento SELAE de referencia al 22-11-2026, extendido por sorteos posteriores."""
     baseline_date = dt.date(2026, 11, 22)
@@ -234,6 +243,24 @@ def expected_archive_count(end):
         return baseline_count - later
     later = sum(1 for _ in expected_dates(end, start=baseline_date + dt.timedelta(days=1)))
     return baseline_count + later
+
+
+def validate_official_total_frequencies(draws):
+    """Contrasta todas las apariciones históricas con las estadísticas oficiales SELAE."""
+    cutoff = dt.date(2026, 11, 22).isoformat()
+    counts = [0] * 49
+    baseline_draws = [row for row in draws if row['date'] <= cutoff]
+    for row in baseline_draws:
+        for number in row['numbers']:
+            counts[number - 1] += 1
+    if tuple(counts) != SELAE_TOTAL_COUNTS_THROUGH_2026_11_22:
+        mismatches = [
+            f'{number}: app={counts[number - 1]}, SELAE={SELAE_TOTAL_COUNTS_THROUGH_2026_11_22[number - 1]}'
+            for number in range(1, 50)
+            if counts[number - 1] != SELAE_TOTAL_COUNTS_THROUGH_2026_11_22[number - 1]
+        ]
+        raise ValueError('El histórico completo no coincide con las frecuencias oficiales SELAE (22-11-2026): ' + '; '.join(mismatches))
+
 
 
 def validate_official_frequency_counts(draws):
@@ -435,6 +462,7 @@ def main():
 
     # Verificación independiente del tramo histórico con la tabla de frecuencias publicada por SELAE.
     validate_official_frequency_counts(draws)
+    validate_official_total_frequencies(draws)
 
     doc = {
         'schemaVersion': 1,
