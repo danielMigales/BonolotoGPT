@@ -20,7 +20,7 @@
     },
     {
       "number": 26,
-      "rawScore": 3.032917492982815,
+      "rawScore": 3.0329174929828144,
       "score": 3.0329,
       "rank": 3,
       "selectionScore": 0.7714
@@ -48,14 +48,14 @@
     },
     {
       "number": 37,
-      "rawScore": 2.552188401595984,
+      "rawScore": 2.5521884015959837,
       "score": 2.5522,
       "rank": 7,
       "selectionScore": 0.6433
     },
     {
       "number": 25,
-      "rawScore": 2.5172615179260145,
+      "rawScore": 2.517261517926014,
       "score": 2.5173,
       "rank": 8,
       "selectionScore": 0.6341
@@ -97,21 +97,21 @@
     },
     {
       "number": 30,
-      "rawScore": 1.9238029376506196,
+      "rawScore": 1.9238029376506194,
       "score": 1.9238,
       "rank": 14,
       "selectionScore": 0.476
     },
     {
       "number": 17,
-      "rawScore": 1.920598383940132,
+      "rawScore": 1.9205983839401317,
       "score": 1.9206,
       "rank": 15,
       "selectionScore": 0.4752
     },
     {
       "number": 10,
-      "rawScore": 1.9144198526655833,
+      "rawScore": 1.9144198526655831,
       "score": 1.9144,
       "rank": 16,
       "selectionScore": 0.4735
@@ -132,7 +132,7 @@
     },
     {
       "number": 24,
-      "rawScore": 1.6243438177297145,
+      "rawScore": 1.6243438177297143,
       "score": 1.6243,
       "rank": 19,
       "selectionScore": 0.3962
@@ -160,14 +160,14 @@
     },
     {
       "number": 35,
-      "rawScore": 1.5405324696936344,
+      "rawScore": 1.5405324696936342,
       "score": 1.5405,
       "rank": 23,
       "selectionScore": 0.3739
     },
     {
       "number": 9,
-      "rawScore": 1.4648793362897046,
+      "rawScore": 1.4648793362897043,
       "score": 1.4649,
       "rank": 24,
       "selectionScore": 0.3538
@@ -237,7 +237,7 @@
     },
     {
       "number": 41,
-      "rawScore": 0.8834330959285757,
+      "rawScore": 0.8834330959285756,
       "score": 0.8834,
       "rank": 34,
       "selectionScore": 0.1989
@@ -293,7 +293,7 @@
     },
     {
       "number": 32,
-      "rawScore": 0.553177248044322,
+      "rawScore": 0.5531772480443219,
       "score": 0.5532,
       "rank": 42,
       "selectionScore": 0.111
@@ -307,14 +307,14 @@
     },
     {
       "number": 38,
-      "rawScore": 0.5090160698461618,
+      "rawScore": 0.5090160698461619,
       "score": 0.509,
       "rank": 44,
       "selectionScore": 0.0992
     },
     {
       "number": 23,
-      "rawScore": 0.4949042551790689,
+      "rawScore": 0.4949042551790688,
       "score": 0.4949,
       "rank": 45,
       "selectionScore": 0.0955
