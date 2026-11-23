@@ -61,7 +61,6 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
   assert.ok("randomBaseline" in fixedReport.audit);
   assert.ok(!("windowStudy" in fixedReport));
-  assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5,7,10,15,20,30,50]);
   assert.ok(fixedReport.forecast.numbers.length === 6);
   assert.ok(!staticHtml.includes("repeatTrials"));
   assert.ok(!staticHtml.includes("repeatRates"));
