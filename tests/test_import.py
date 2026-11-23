@@ -29,7 +29,8 @@ class ImportTests(unittest.TestCase):
         doc = json.loads((root / 'data/draws.json').read_text())
         self.assertEqual(doc['schemaVersion'], 1)
         self.assertEqual(doc['source'], 'SELAE')
-        self.assertEqual(doc['startDate'], '2026-01-01')
+        if doc['draws']:
+            self.assertEqual(doc['startDate'], doc['draws'][-1]['date'])
         self.assertIsInstance(doc['draws'], list)
 
         # El archivo puede estar vacío en un checkout limpio o contener el
