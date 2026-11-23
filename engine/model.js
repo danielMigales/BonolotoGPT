@@ -1,6 +1,6 @@
 // BonolotoGPT: un único criterio predictivo, recencia ponderada exponencial.
 export const MODEL_VERSION='3.0.0';
-const VALID_WINDOWS=[5,7,10,15,20,30,50],HALF_LIFE=12;
+const VALID_WINDOWS=[5,7,10,15,20,30,50],HALF_LIFE=8;
 const round=v=>Math.round(v*10000)/10000;
 const hits=(a,b)=>a.filter(x=>b.includes(x)).length;
 const range=n=>Array.from({length:n},(_,i)=>i);
