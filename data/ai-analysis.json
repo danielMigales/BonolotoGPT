@@ -71435,13 +71435,32 @@
     ]
   },
   "audit": {
-    "method": "Resumen descriptivo de aciertos históricos con intervalo bootstrap por bloques temporales; sin comparación aleatoria ni prueba de superioridad.",
+    "method": "Backtest cronológico con bootstrap por bloques y referencia aleatoria exacta; comparación descriptiva, no prueba de ventaja.",
     "simulations": 319,
     "bootstrapReplicates": 3000,
     "blockLength": 7,
     "meanHits": 0.7712,
+    "deltaVsRandom": 0.0365,
+    "atLeastThreeRate": 0.0313,
+    "atLeastFourRate": 0.0031,
+    "randomBaseline": {
+      "method": "Distribución hipergeométrica exacta: una combinación fija de 6 frente a un sorteo uniforme de 6 entre 49.",
+      "meanHits": 0.7347,
+      "atLeastThreeRate": 0.0187,
+      "atLeastFourRate": 0.001,
+      "distribution": [
+        0.436,
+        0.413,
+        0.1324,
+        0.0177,
+        0.001,
+        0,
+        0
+      ]
+    },
     "alternative": {
       "meanHits": 0.6959,
+      "deltaVsRandom": -0.0388,
       "ci95MeanHits": [
         0.6113,
         0.7774
@@ -71473,7 +71492,7 @@
       0,
       0
     ],
-    "caution": "Evaluación retrospectiva descriptiva. El histórico se ha utilizado durante el desarrollo y no constituye una prueba independiente. Los sorteos son independientes; estos resultados no permiten identificar números que no vayan a salir ni garantizan resultados futuros."
+    "caution": "La referencia aleatoria es teórica y exacta. Un promedio histórico algo mayor no demuestra capacidad predictiva: el intervalo bootstrap debe interpretarse junto con el baseline y el backtest no es una prueba independiente si se ha usado para desarrollar el modelo."
   },
   "windowStudy": [
     {
