@@ -22,7 +22,7 @@ class UpdateDataScheduleTests(unittest.TestCase):
 
     def test_historical_calendar_matches_each_official_stage(self):
         self.assertEqual(
-            list(expected_dates(dt.date(1988, 3, 2))),
+            list(expected_dates(dt.date(1988, 3, 2), start=dt.date(1988, 2, 28))),
             ['1988-02-28', '1988-02-29', '1988-03-01', '1988-03-02'],
         )
         self.assertEqual(
