@@ -58,7 +58,7 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(!("randomMeanHits" in fixedReport.metrics));
   assert.ok(!("deltaVsRandom" in fixedReport.experts[0]));
   assert.ok("randomBaseline" in fixedReport.audit);
-  assert.ok(fixedReport.windowStudy.every(item => !("randomMeanHits" in item) && !("pValueOneSided" in item)));
+  assert.ok(fixedReport.windowStudy.every(item => Number.isFinite(item.randomMeanHits) && Number.isFinite(item.deltaVsRandom)));
   assert.deepEqual(fixedReport.windowStudy.map(item => item.window), [5,7,10,15,20,30,50]);
   assert.ok(fixedReport.forecast.numbers.length === 6);
   assert.ok(!staticHtml.includes("repeatTrials"));
