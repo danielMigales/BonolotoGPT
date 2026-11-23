@@ -1,21 +1,302 @@
 {
-  "version": "2.21.0",
-  "window": 7,
+  "version": "3.0.0",
+  "method": "exponential-recency",
+  "halfLife": 12,
   "trainedThrough": "2026-11-22",
-  "numberLogWeights": [
-    0.12288745635297803,
-    -0.1337251645973319,
-    0.02085675067538419,
-    -0.23512436535040443,
-    0.12763204116489504,
-    0.0974732817544799
-  ],
-  "numberWeights": [
-    0.18672754089388344,
-    0.1444650966757818,
-    0.1686153100107995,
-    0.13053465305002304,
-    0.18761559059602675,
-    0.1820418087734855
+  "numberScores": [
+    {
+      "number": 36,
+      "score": 4.957,
+      "rank": 1,
+      "selectionScore": 1
+    },
+    {
+      "number": 4,
+      "score": 4.2771,
+      "rank": 2,
+      "selectionScore": 0.8476
+    },
+    {
+      "number": 26,
+      "score": 4.2659,
+      "rank": 3,
+      "selectionScore": 0.8451
+    },
+    {
+      "number": 42,
+      "score": 3.9748,
+      "rank": 4,
+      "selectionScore": 0.7798
+    },
+    {
+      "number": 13,
+      "score": 3.8831,
+      "rank": 5,
+      "selectionScore": 0.7592
+    },
+    {
+      "number": 34,
+      "score": 3.7013,
+      "rank": 6,
+      "selectionScore": 0.7185
+    },
+    {
+      "number": 37,
+      "score": 3.2756,
+      "rank": 7,
+      "selectionScore": 0.623
+    },
+    {
+      "number": 25,
+      "score": 3.2691,
+      "rank": 8,
+      "selectionScore": 0.6216
+    },
+    {
+      "number": 8,
+      "score": 3.1973,
+      "rank": 9,
+      "selectionScore": 0.6055
+    },
+    {
+      "number": 11,
+      "score": 3.1189,
+      "rank": 10,
+      "selectionScore": 0.5879
+    },
+    {
+      "number": 48,
+      "score": 2.9397,
+      "rank": 11,
+      "selectionScore": 0.5477
+    },
+    {
+      "number": 30,
+      "score": 2.9388,
+      "rank": 12,
+      "selectionScore": 0.5475
+    },
+    {
+      "number": 22,
+      "score": 2.871,
+      "rank": 13,
+      "selectionScore": 0.5323
+    },
+    {
+      "number": 15,
+      "score": 2.8425,
+      "rank": 14,
+      "selectionScore": 0.5259
+    },
+    {
+      "number": 46,
+      "score": 2.803,
+      "rank": 15,
+      "selectionScore": 0.5171
+    },
+    {
+      "number": 35,
+      "score": 2.7496,
+      "rank": 16,
+      "selectionScore": 0.5051
+    },
+    {
+      "number": 10,
+      "score": 2.7363,
+      "rank": 17,
+      "selectionScore": 0.5021
+    },
+    {
+      "number": 27,
+      "score": 2.7084,
+      "rank": 18,
+      "selectionScore": 0.4959
+    },
+    {
+      "number": 17,
+      "score": 2.7,
+      "rank": 19,
+      "selectionScore": 0.494
+    },
+    {
+      "number": 24,
+      "score": 2.4809,
+      "rank": 20,
+      "selectionScore": 0.4449
+    },
+    {
+      "number": 9,
+      "score": 2.2021,
+      "rank": 21,
+      "selectionScore": 0.3824
+    },
+    {
+      "number": 14,
+      "score": 2.1288,
+      "rank": 22,
+      "selectionScore": 0.3659
+    },
+    {
+      "number": 2,
+      "score": 2.0481,
+      "rank": 23,
+      "selectionScore": 0.3478
+    },
+    {
+      "number": 3,
+      "score": 2.0351,
+      "rank": 24,
+      "selectionScore": 0.3449
+    },
+    {
+      "number": 5,
+      "score": 1.938,
+      "rank": 25,
+      "selectionScore": 0.3231
+    },
+    {
+      "number": 12,
+      "score": 1.907,
+      "rank": 26,
+      "selectionScore": 0.3162
+    },
+    {
+      "number": 28,
+      "score": 1.7439,
+      "rank": 27,
+      "selectionScore": 0.2796
+    },
+    {
+      "number": 7,
+      "score": 1.6228,
+      "rank": 28,
+      "selectionScore": 0.2525
+    },
+    {
+      "number": 20,
+      "score": 1.6198,
+      "rank": 29,
+      "selectionScore": 0.2518
+    },
+    {
+      "number": 16,
+      "score": 1.5924,
+      "rank": 30,
+      "selectionScore": 0.2457
+    },
+    {
+      "number": 18,
+      "score": 1.5338,
+      "rank": 31,
+      "selectionScore": 0.2325
+    },
+    {
+      "number": 33,
+      "score": 1.4773,
+      "rank": 32,
+      "selectionScore": 0.2199
+    },
+    {
+      "number": 6,
+      "score": 1.4752,
+      "rank": 33,
+      "selectionScore": 0.2194
+    },
+    {
+      "number": 21,
+      "score": 1.3861,
+      "rank": 34,
+      "selectionScore": 0.1994
+    },
+    {
+      "number": 29,
+      "score": 1.3824,
+      "rank": 35,
+      "selectionScore": 0.1986
+    },
+    {
+      "number": 23,
+      "score": 1.3706,
+      "rank": 36,
+      "selectionScore": 0.1959
+    },
+    {
+      "number": 44,
+      "score": 1.3045,
+      "rank": 37,
+      "selectionScore": 0.1811
+    },
+    {
+      "number": 41,
+      "score": 1.2747,
+      "rank": 38,
+      "selectionScore": 0.1744
+    },
+    {
+      "number": 32,
+      "score": 1.2443,
+      "rank": 39,
+      "selectionScore": 0.1676
+    },
+    {
+      "number": 19,
+      "score": 1.2077,
+      "rank": 40,
+      "selectionScore": 0.1594
+    },
+    {
+      "number": 47,
+      "score": 1.2045,
+      "rank": 41,
+      "selectionScore": 0.1587
+    },
+    {
+      "number": 40,
+      "score": 1.1505,
+      "rank": 42,
+      "selectionScore": 0.1466
+    },
+    {
+      "number": 31,
+      "score": 1.125,
+      "rank": 43,
+      "selectionScore": 0.1409
+    },
+    {
+      "number": 38,
+      "score": 1.0367,
+      "rank": 44,
+      "selectionScore": 0.1211
+    },
+    {
+      "number": 45,
+      "score": 1.0151,
+      "rank": 45,
+      "selectionScore": 0.1162
+    },
+    {
+      "number": 43,
+      "score": 1.0022,
+      "rank": 46,
+      "selectionScore": 0.1133
+    },
+    {
+      "number": 1,
+      "score": 0.9099,
+      "rank": 47,
+      "selectionScore": 0.0926
+    },
+    {
+      "number": 39,
+      "score": 0.7769,
+      "rank": 48,
+      "selectionScore": 0.0628
+    },
+    {
+      "number": 49,
+      "score": 0.4967,
+      "rank": 49,
+      "selectionScore": 0
+    }
   ]
 }
