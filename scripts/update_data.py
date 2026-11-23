@@ -61,7 +61,7 @@ def normalize_widget(day, body):
     }
 
 
-def expected_dates(end, start=START):
+def expected_dates(end, start=dt.date(2026, 1, 1)):
     """Calendario real de sorteos según las etapas históricas de Bonoloto."""
     day = max(start, START)
     while day <= end:
@@ -331,7 +331,7 @@ def main():
     end = today
     if now.time().replace(tzinfo=None) < RESULTS_AVAILABLE_AFTER:
         end -= dt.timedelta(days=1)
-    expected = list(expected_dates(end))
+    expected = list(expected_dates(end, start=START))
     missing = [day for day in expected if day not in merged]
 
     import_source = previous.get('importSource') or progress_import_source
