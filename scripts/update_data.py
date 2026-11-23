@@ -130,6 +130,7 @@ def fetch_day(day):
 
 
 BULK_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQALTRaLDFfhXOAQmeONPqmFKm9yOiQ4W97rhWgR41BZ7czFsjK5YktD6fnETKHGB9YUnyQ4XBSbhZx/pub?gid=0&output=csv&single=true'
+BULK_CSV_OLD_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQALTRaLDFfhXOAQmeONPqmFKm9yOiQ4W97rhWgR41BZ7czFsjK5YktD6fnETKHGB9YUnyQ4XBSbhZx/pub?gid=1&output=csv&single=true'
 BULK_SOURCE_PAGE = 'https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/'
 # Frecuencias oficiales SELAE para los sorteos del 2026-01-01 al 2026-10-17,
 # publicadas en sus estadísticas con actualización del 2026-10-17.
@@ -356,7 +357,7 @@ def main():
 
     import_source = previous.get('importSource') or progress_import_source
     if history_incomplete or len(missing) > 3:
-        print(f'Faltan {len(missing)} fechas: descargando el histórico CSV en una sola petición.', flush=True)
+        print(f'Histórico incompleto ({len(merged)}/{expected_archive_count(end)} sorteos) o faltan {len(missing)} fechas recientes: descargando los dos CSV históricos.', flush=True)
         try:
             bulk = fetch_bulk_history(end)
             # Conserva complementario/reintegro ya registrados solo si la combinación
