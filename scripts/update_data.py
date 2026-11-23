@@ -73,7 +73,8 @@ def expected_dates(end, start=dt.date(2026, 1, 1)):
             weekdays = {0, 1, 2, 3, 4, 5}  # lunes a sábado
         else:
             weekdays = set(range(7))
-        if day.weekday() in weekdays:
+        pandemic_pause = dt.date(2020, 3, 16) <= day <= dt.date(2020, 5, 24)
+        if day.weekday() in weekdays and not pandemic_pause:
             yield day.isoformat()
         day += dt.timedelta(days=1)
 
