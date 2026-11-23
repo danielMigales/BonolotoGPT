@@ -1,40 +1,32 @@
 # BonolotoGPT · Archivo de sorteos
 
-Aplicación web en español para consultar los últimos sorteos de Bonoloto y el histórico oficial guardado desde el 1 de enero de 2026.
+Aplicación web en español para consultar los últimos sorteos de Bonoloto y el histórico normalizado desde el 1 de enero de 2026.
 
 ## Funciones
 
-- Laboratorio IA con dos combinaciones experimentales de seis números, con explicaciones y evaluación separada.
-- Backtesting secuencial descriptivo e intervalos bootstrap por bloques temporales.
-- Estudio descriptivo de ventanas analíticas de 5, 7, 10, 15, 20, 30 y 50 sorteos.
-
-El laboratorio conserva seis métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes Beta-Binomial y Markov regularizado. Presenta dos combinaciones con un máximo de tres números compartidos y registra sus aciertos por separado. La selección explora combinaciones entre los catorce candidatos mejor puntuados y maximiza una aproximación de la probabilidad de 3+ aciertos, suponiendo independencia entre las probabilidades marginales y ponderando suavemente las parejas históricas. La evaluación prioriza el recuento de combinaciones con 3+ aciertos y muestra resultados en ventanas recientes de 50 y 100 predicciones. Estas señales son experimentales: el histórico no demuestra una ventaja predictiva ni garantiza premios.
-
-## Funciones activas
-
-- Consulta de los últimos resultados oficiales.
-- Consulta del histórico por fechas.
-- Recuento y marcadores de números repetidos en los sorteos mostrados.
+- Consulta de los últimos resultados y del histórico por fechas.
 - Complementario y reintegro cuando constan en el resultado.
-- Introducción controlada de un sorteo pendiente y actualización del histórico.
-- Enlaces a la fuente oficial de SELAE.
+- Laboratorio experimental con dos combinaciones de seis números: los seis primeros del ranking y los seis siguientes.
+- Backtesting cronológico descriptivo y auditoría frente a una referencia aleatoria teórica.
+- Actualización y validación del histórico con fuentes de SELAE.
 
-## Sobre las predicciones
+## Método del laboratorio
 
-El laboratorio está disponible como herramienta experimental y presenta sus límites estadísticos de forma explícita. El backtest es descriptivo y no compara con combinaciones aleatorias ni demuestra capacidad predictiva; sus combinaciones no deben interpretarse como predicciones fiables.
+El laboratorio utiliza **un único método predictivo: recencia ponderada exponencial**, con una **semivida fija de 8 sorteos**. Cada aparición aporta la mitad de su peso al alcanzar ocho sorteos de antigüedad. No se combinan frecuencias acumuladas, parejas, Bayes, Markov ni otros modelos.
 
-El motor experimental se conserva en `engine/`; sus seis métodos se evalúan retrospectivamente mediante aciertos. Cada sorteo de backtest registra las dos combinaciones, con métricas separadas. La segunda combinación se diversifica para compartir como máximo tres números con la primera.
+La primera combinación contiene los seis números con mayor puntuación; la segunda contiene los seis siguientes. Las métricas retrospectivas son descriptivas: no demuestran una ventaja predictiva ni garantizan premios.
 
-La Bonoloto es un sorteo aleatorio: los resultados pasados no permiten garantizar ni demostrar una ventaja para el siguiente sorteo.
+La Bonoloto es un sorteo aleatorio. Los resultados pasados no permiten garantizar ni demostrar una ventaja para el siguiente sorteo.
 
 ## Archivos principales
 
 - `data/draws.json`: histórico normalizado de sorteos.
 - `web/index.html`: interfaz fuente.
 - `web/logic.js`: lógica de consulta y presentación del histórico.
-- `public/`: sitio estático publicado.
+- `engine/model.js`: motor de recencia ponderada.
 - `scripts/update_data.py`: descarga y validación del histórico.
-- `scripts/build.mjs`: generación del sitio estático con el informe del laboratorio.
+- `scripts/build.mjs`: generación del sitio estático y del informe del laboratorio.
+- `public/`: sitio estático publicado.
 
 ## Ejecución local
 
@@ -44,6 +36,6 @@ Requiere Node.js 22+ y Python 3.12+. Ejecuta `python scripts/update_data.py`, `n
 
 Repositorio: https://github.com/danielMigales/BonolotoGPT
 
-GitHub Actions valida el histórico, ejecuta las pruebas, construye la aplicación y publica `public/` en GitHub Pages. La actualización automática depende de que la descarga y validación del histórico finalice correctamente.
+GitHub Actions ejecuta las pruebas, construye la aplicación y publica `public/` en GitHub Pages. La actualización automática del histórico depende de que la descarga y validación de los resultados finalice correctamente.
 
 Nunca se inventan resultados ni se rellenan datos ausentes con ejemplos.
