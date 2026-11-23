@@ -12,10 +12,9 @@ import time
 from zoneinfo import ZoneInfo
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-START = dt.date(2026, 1, 1)
+START = dt.date(1988, 2, 28)
 BASE = 'https://www.loteriasyapuestas.es/es/bonoloto/resultados/bonoloto-resultados-del-'
 MADRID = ZoneInfo('Europe/Madrid')
-DRAW_WEEKDAYS = set(range(7))  # SELAE publica sorteos de BonoLoto todos los días
 RESULTS_AVAILABLE_AFTER = dt.time(23, 0)
 SPANISH_MONTHS = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre')
 
@@ -62,10 +61,19 @@ def normalize_widget(day, body):
     }
 
 
-def expected_dates(end):
-    day = START
+def expected_dates(end, start=START):
+    """Calendario real de sorteos según las etapas históricas de Bonoloto."""
+    day = max(start, START)
     while day <= end:
-        if day.weekday() in DRAW_WEEKDAYS:
+        if day < dt.date(1993, 4, 19):
+            weekdays = {0, 1, 2, 6}  # lunes, martes, miércoles y domingo
+        elif day < dt.date(2015, 3, 23):
+            weekdays = {0, 1, 2, 4}  # lunes, martes, miércoles y viernes
+        elif day < dt.date(2022, 9, 25):
+            weekdays = {0, 1, 2, 3, 4, 5}  # lunes a sábado
+        else:
+            weekdays = set(range(7))
+        if day.weekday() in weekdays:
             yield day.isoformat()
         day += dt.timedelta(days=1)
 
@@ -190,7 +198,7 @@ def parse_bulk_csv(body, end):
             raise ValueError(f'CSV histórico contiene dos combinaciones distintas para {day}')
         parsed[day] = record
     if not parsed:
-        raise ValueError('El CSV histórico no contiene sorteos Bonoloto desde 2026-01-01')
+        raise ValueError('El CSV histórico no contiene sorteos Bonoloto desde 1988-02-28')
     return parsed
 
 
@@ -211,7 +219,7 @@ def fetch_bulk_history(end):
 def validate_official_frequency_counts(draws):
     """Contrasta el tramo cerrado con la tabla oficial de frecuencias de SELAE."""
     cutoff = dt.date(2026, 10, 17)
-    expected_days = list(expected_dates(cutoff))
+    expected_days = list(expected_dates(cutoff, start=dt.date(2026, 1, 1)))
     by_date = {row['date']: row for row in draws if row['date'] <= cutoff.isoformat()}
     if not all(day in by_date for day in expected_days):
         missing = [day for day in expected_days if day not in by_date]
@@ -398,47 +406,6 @@ def main():
         raise ValueError('Faltan sorteos en el calendario diario: ' + ', '.join(missing_dates[:20]))
     if len({row['id'] for row in draws}) != len(draws):
         raise ValueError('Identificadores duplicados')
-
-    # Completa C y R de todo el histórico. Nunca se publican valores inferidos.
-    incomplete = [
-        row['date'] for row in draws
-        if not isinstance(row.get('complementario'), int)
-        or not isinstance(row.get('reintegro'), int)
-    ]
-    if incomplete:
-        print(f'Recuperando complementario y reintegro de {len(incomplete)} sorteos históricos.', flush=True)
-
-        def enrich_day(day):
-            try:
-                return fetch_day(day)
-            except Exception:
-                return fetch_recent_history(day)
-
-        with ThreadPoolExecutor(max_workers=8) as pool:
-            futures = {pool.submit(enrich_day, day): day for day in incomplete}
-            for future in as_completed(futures):
-                day = futures[future]
-                fresh = future.result()
-                current = merged[day]
-                if fresh.get('numbers') != current.get('numbers'):
-                    raise ValueError(f'La combinación principal no coincide al completar C/R para {day}')
-                for key in ('complementario', 'reintegro'):
-                    if key not in fresh:
-                        raise ValueError(f'La fuente no proporciona {key} para {day}')
-                    current[key] = fresh[key]
-                write_json_atomic(progress_path, {
-                    'schemaVersion': 1,
-                    'startDate': str(START),
-                    'source': 'SELAE',
-                    'importSource': import_source,
-                    'latestDate': max(merged),
-                    'draws': sorted(merged.values(), key=lambda row: row['date'], reverse=True),
-                })
-                print(f'{day}: complementario y reintegro verificados.', flush=True)
-
-    draws = sorted_draws(merged)
-    if any(not isinstance(row.get('complementario'), int) or not isinstance(row.get('reintegro'), int) for row in draws):
-        raise ValueError('El histórico no está completo: faltan complementarios o reintegros.')
 
     # Verificación independiente del tramo histórico con la tabla de frecuencias publicada por SELAE.
     validate_official_frequency_counts(draws)
