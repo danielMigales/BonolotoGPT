@@ -36,3 +36,16 @@ El repositorio contiene histórico y evaluación de predicciones de Bonoloto. La
 2. `npm run build`
 3. Confirmar que los archivos generados están sincronizados.
 4. Confirmar que el workflow de publicación finaliza correctamente.
+
+
+## ACLARACIONES VIGENTES DEL PROPIETARIO — 24-11-2026
+Estas aclaraciones sustituyen cualquier indicación contradictoria de las secciones antiguas de esta memoria:
+
+- Los resultados recientes que el propietario facilita manualmente cuando SELAE falla son válidos y fiables. La descarga automática falla repetidamente; no presentarla como funcional.
+- El modelo vigente utiliza **solo recencia ponderada**, con **semivida 8** (la configuración que mejor resultado ha ofrecido). Los demás métodos probados no han demostrado aportar aciertos y no están activos.
+- El periodo de interés es desde el **1 de enero del año en curso**, no desde 1988.
+- Los errores del histórico no deben impedir que la web cargue.
+- La APK fue una prueba descartada porque no se actualiza; no es una línea activa.
+- No insistir en que el azar es mejor que el algoritmo.
+- No cambiar decisiones ni ampliar el alcance por iniciativa propia. Verificar el contexto antes de llamar “fallo” a una decisión deliberada. No reabrir cuestiones ya resueltas salvo que el propietario lo solicite.
+
