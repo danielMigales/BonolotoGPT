@@ -1,9 +1,6 @@
 name: Publicar BonolotoGPT en GitHub Pages
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - .github/workflows/deploy-pages.yml
 permissions:
   contents: read
   pages: write
