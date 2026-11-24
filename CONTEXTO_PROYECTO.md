@@ -20,7 +20,7 @@ La Bonoloto es aleatoria. No se promete capacidad predictiva ni se presenta el a
 
 ## Estado
 
-El modelo conserva seis métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado. Se excluyen azar uniforme y transición de repetición. La interfaz presenta dos combinaciones diferenciadas, con un máximo de tres números compartidos; ambas se explican y se evalúan por separado. La propuesta sigue siendo experimental y no hay evidencia de ventaja frente al azar.
+El modelo activo utiliza parejas habituales: suma las frecuencias de las 15 parejas de cada combinación con los sorteos desde el 1 de enero de 2026. La primera maximiza la puntuación; la segunda aplica el mismo criterio con un máximo de tres números compartidos. Ambas se explican y se evalúan por separado.
 
 
 ## DECISIONES VIGENTES CONFIRMADAS POR EL PROPIETARIO — 24-11-2026
@@ -28,8 +28,7 @@ El modelo conserva seis métodos: frecuencia acumulada, frecuencia reciente, rec
 
 - **Carga de resultados recientes:** la descarga automática desde SELAE falla repetidamente. Cuando SELAE no está disponible, el propietario facilita los resultados y se introducen manualmente. Esos resultados se consideran válidos y fiables; no se deben etiquetar como falsos ni cuestionar por el mero hecho de ser una entrada manual.
 - **Actualización automática:** no funciona de forma fiable y no debe darse por operativa ni proponerse como si ya resolviera la actualización. El flujo manual facilitado por el propietario es el procedimiento práctico vigente.
-- **Modelo activo:** únicamente recencia ponderada. Los demás métodos se probaron y, hasta ahora, no han demostrado aportar aciertos; no forman parte del modelo activo.
-- **Semivida:** fijada en **8**, porque es la configuración que ha ofrecido el mejor resultado en las pruebas realizadas. No volver a comparar ni cambiar este valor salvo petición expresa del propietario.
+- **Modelo activo (actualizado el 24-11-2026):** parejas habituales. Se cuentan las frecuencias de las 15 parejas de cada combinación usando todos los sorteos desde el 1 de enero de 2026, sin ponderar antigüedad. La primera maximiza la suma; la segunda maximiza la misma suma con un máximo de tres números compartidos. Esta decisión sustituye la recencia ponderada y su semivida 8.
 - **Periodo de datos relevante:** desde el **1 de enero del año en curso**. El histórico desde 1988 no es un objetivo del proyecto y no debe imponerse ni presentarse como requisito.
 - **Tolerancia a errores del histórico:** un fallo o discrepancia del histórico no debe bloquear la carga de la página web. La web debe poder cargar aunque el histórico o un artefacto de análisis tenga errores.
 - **APK Android:** prueba descartada; no se actualiza correctamente. No es una línea activa de desarrollo ni debe proponerse como entregable vigente.

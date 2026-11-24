@@ -1,11 +1,39 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {analyze,patterns,MODEL_VERSION,nextDrawDate,recencyScores} from '../engine/model.js';
+import {analyze,patterns,MODEL_VERSION,nextDrawDate,pairFrequencies,scoreCombination,PAIR_HISTORY_START} from '../engine/model.js';
 import {auditBacktest} from '../engine/evaluation.js';
-function draws(count=40){const out=[];let date=new Date('2026-09-01T12:00:00Z');for(let i=0;i<count;i++){const numbers=Array.from({length:49},(_,j)=>((j*17+i*11)%49)+1).slice(0,6).sort((a,b)=>a-b);out.push({date:date.toISOString().slice(0,10),numbers});date.setUTCDate(date.getUTCDate()+1);}return out;}
-test('El único método predictivo es recencia ponderada exponencial',()=>{const d=draws(),r=analyze(d);assert.deepEqual(r.methods,['Recencia ponderada']);assert.equal(r.version,'3.0.0');assert.equal(r.halfLife,8);assert.equal(r.objective.predictionStrategy,'single-recency-weighted-ranking');assert.equal(r.forecast.numbers.length,6);assert.equal(r.forecast.alternatives.length,6);assert.equal(r.forecast.selectionReasons.length,6);assert.equal(r.forecast.alternativeSelectionReasons.length,6);assert.ok(r.rows.every(x=>x.expertHits.length===1&&x.weightsBefore.length===1));assert.equal(r.lastEvaluation.hits,r.lastEvaluation.numbers.filter(n=>r.lastEvaluation.actual.includes(n)).length);});
-test('Una aparición reciente pesa más que una antigua',()=>{const old=[{numbers:[1,2,3,4,5,6]},{numbers:[7,8,9,10,11,12]}],newer=[{numbers:[7,8,9,10,11,12]},{numbers:[1,2,3,4,5,6]}];const a=recencyScores(old),b=recencyScores(newer);assert.ok(a[6]>a[0]);assert.ok(b[0]>b[6]);assert.ok(Math.abs(a[0]-Math.pow(.5,1/8))<1e-10);});
-test('El backtest es cronológico y no mira el sorteo objetivo',()=>{const d=draws(),a=analyze(d),changed=d.map(x=>({...x,numbers:[...x.numbers]}));changed[7].numbers=[1,2,3,4,5,6];assert.deepEqual(analyze(changed).rows[0].predicted,a.rows[0].predicted);assert.deepEqual(analyze(d),a);assert.equal(a.rows.length,d.length-7);});
-test('Estadísticas descriptivas no forman parte del método de selección',()=>{const p=patterns([{numbers:[1,2,3,4,5,6]},{numbers:[1,2,10,20,30,40]}]);assert.equal(p.frequency[0].count,2);assert.equal(p.pairs.find(x=>x.numbers.join('-')==='1-2').count,2);});
-test('Ventanas y fechas',()=>{const d=draws();assert.equal(analyze(d.slice(0,7)).status,'insufficient');assert.throws(()=>analyze(d,{window:18}));assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(MODEL_VERSION,'3.0.0');});
-test('La auditoría compara la recencia con el azar',()=>{const r=analyze(draws()),a=auditBacktest(r.rows);assert.equal(a.simulations,r.metrics.simulations);assert.ok(Number.isFinite(a.randomBaseline.meanHits));assert.ok(Number.isFinite(a.deltaVsRandom));});
+function draws(count=8){const out=[];let date=new Date('2026-09-01T12:00:00Z');for(let i=0;i<count;i++){const numbers=Array.from({length:49},(_,j)=>((j*17+i*11)%49)+1).slice(0,6).sort((a,b)=>a-b);out.push({date:date.toISOString().slice(0,10),numbers});date.setUTCDate(date.getUTCDate()+1);}return out;}
+const recentDraws=draws();
+const report=analyze([{date:'2025-12-31',numbers:[40,41,42,43,44,45]},...recentDraws]);
+test('El único método suma las frecuencias de parejas desde 2026',()=>{
+ assert.deepEqual(report.methods,['Parejas habituales']);assert.equal(report.version,'4.0.0');
+ assert.equal(report.objective.predictionStrategy,'highest-sum-of-pair-frequencies');
+ assert.equal(report.forecast.numbers.length,6);assert.equal(report.forecast.alternatives.length,6);
+ assert.equal(report.forecast.selectionReasons.length,6);assert.equal(report.forecast.alternativeSelectionReasons.length,6);
+ assert.ok(report.forecast.sharedNumbers<=3);assert.equal(report.forecast.pairHistoryStart,PAIR_HISTORY_START);
+ assert.equal(report.forecast.score,scoreCombination(report.forecast.numbers,pairFrequencies(recentDraws)));
+ assert.equal(report.rows.length,1);
+});
+test('Las parejas cuentan una vez por sorteo y la puntuación suma las 15 parejas',()=>{
+ const d=[{numbers:[1,2,3,4,5,6]},{numbers:[1,2,7,8,9,10]}],pairs=pairFrequencies(d);
+ assert.equal(pairs.get('1-2'),2);assert.equal(pairs.get('1-3'),1);
+ assert.equal(scoreCombination([1,2,3,4,5,6],pairs),16);
+});
+test('El análisis excluye sorteos anteriores al 1 de enero de 2026',()=>{
+ assert.equal(report.drawCount,8);assert.equal(report.sourceStartDate,PAIR_HISTORY_START);
+});
+test('El backtest entrena solo con sorteos anteriores al objetivo',()=>{
+ assert.equal(report.rows[0].trainingCount,7);assert.equal(report.rows[0].trainingEnd,recentDraws[6].date);
+ assert.equal(report.rows[0].date,recentDraws[7].date);
+});
+test('Ventana mínima, fechas y estadísticas descriptivas',()=>{
+ assert.equal(analyze(recentDraws.slice(0,7)).status,'insufficient');
+ assert.throws(()=>analyze(recentDraws,{window:18}));
+ assert.equal(nextDrawDate('2026-10-19'),'2026-10-20');assert.equal(MODEL_VERSION,'4.0.0');
+ const p=patterns([{numbers:[1,2,3,4,5,6]},{numbers:[1,2,10,20,30,40]}]);
+ assert.equal(p.frequency[0].count,2);assert.equal(p.pairs.find(x=>x.numbers.join('-')==='1-2').count,2);
+});
+test('La auditoría mantiene la evaluación de las dos combinaciones',()=>{
+ const a=auditBacktest(report.rows);assert.equal(a.simulations,report.metrics.simulations);
+ assert.ok(Number.isFinite(a.randomBaseline.meanHits));assert.ok(Number.isFinite(a.deltaVsRandom));
+});

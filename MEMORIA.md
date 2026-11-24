@@ -8,12 +8,12 @@ BonolotoGPT es una aplicación independiente para consultar el histórico oficia
 Cada sorteo se almacena como fecha, identificador oficial, URL oficial y los seis números principales. No se guardan campos auxiliares en el archivo normalizado. La interfaz, las estadísticas, las predicciones, las métricas y el seguimiento utilizan exclusivamente esos seis números.
 
 ## Modelo
-- Versión del motor: 2.15.0.
-- La aplicación genera y evalúa una única combinación de seis números.
+- Versión del motor: 4.0.0.
+- La aplicación genera y evalúa dos combinaciones de seis números, con un máximo de tres números compartidos.
 - Universo: números del 1 al 49; seis números distintos por combinación.
 - La interfaz muestra los cinco sorteos más recientes y permite consultar el histórico.
 - El Laboratorio IA usa una ventana fija de 7 sorteos y requiere 8 sorteos oficiales para evaluar la primera predicción.
-- Siete métodos estadísticos se combinan y se evalúan secuencialmente usando exclusivamente los seis números principales.
+- El método activo suma las frecuencias de las 15 parejas de cada combinación con los sorteos desde el 1 de enero de 2026, sin ponderar antigüedad; la segunda combinación aplica el mismo criterio con un máximo de tres números compartidos.
 - La evaluación registra aciertos de 0 a 6 y compara con una referencia aleatoria reproducible. No implica que el método supere al azar.
 
 ## Calendario
@@ -42,7 +42,7 @@ El repositorio contiene histórico y evaluación de predicciones de Bonoloto. La
 Estas aclaraciones sustituyen cualquier indicación contradictoria de las secciones antiguas de esta memoria:
 
 - Los resultados recientes que el propietario facilita manualmente cuando SELAE falla son válidos y fiables. La descarga automática falla repetidamente; no presentarla como funcional.
-- El modelo vigente utiliza **solo recencia ponderada**, con **semivida 8** (la configuración que mejor resultado ha ofrecido). Los demás métodos probados no han demostrado aportar aciertos y no están activos.
+- El modelo vigente utiliza **solo parejas habituales**: suma las frecuencias de las 15 parejas de cada combinación con todos los sorteos desde el **1 de enero de 2026**, sin ponderar antigüedad. La segunda combinación aplica el mismo criterio y comparte como máximo tres números con la primera. Esta decisión sustituye la recencia ponderada y la semivida 8.
 - El periodo de interés es desde el **1 de enero del año en curso**, no desde 1988.
 - Los errores del histórico no deben impedir que la web cargue.
 - La APK fue una prueba descartada porque no se actualiza; no es una línea activa.

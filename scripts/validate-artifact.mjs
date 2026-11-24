@@ -33,10 +33,10 @@ assert.ok(publicArchive.draws.length > 0, "El histórico oficial debe conservars
 
 if (sourceArchive.draws.length > 7) {
   const fixedReport = JSON.parse(await readFile(resolve(projectRoot, "public/data/ai-analysis-7.json"), "utf8"));
-  assert.equal(fixedReport.version, "3.0.0");
+  assert.equal(fixedReport.version, "4.0.0");
   assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
-  assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
+  assert.equal(fixedReport.drawCount, sourceArchive.draws.filter(draw => draw.date >= "2026-01-01").length);
   assert.equal(fixedReport.sourceLastDate, sourceArchive.latestDate);
   assert.equal(fixedReport.audit.simulations, fixedReport.metrics.simulations);
   assert.ok(fixedReport.audit.bootstrapReplicates >= 1000);
@@ -46,9 +46,11 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(Number.isFinite(fixedReport.audit.deltaVsRandom));
   assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
   assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
-  assert.deepEqual(fixedReport.methods, ["Recencia ponderada"]);
-  assert.equal(fixedReport.halfLife, 8);
-  assert.equal(fixedReport.objective.predictionStrategy, "single-recency-weighted-ranking");
+  assert.deepEqual(fixedReport.methods, ["Parejas habituales"]);
+  assert.equal(fixedReport.objective.pairHistoryStart, "2026-01-01");
+  assert.equal(fixedReport.forecast.sharedNumbers <= 3, true);
+  assert.equal(fixedReport.forecast.pairHistoryStart, "2026-01-01");
+  assert.equal(fixedReport.objective.predictionStrategy, "highest-sum-of-pair-frequencies");
   assert.equal(fixedReport.forecast.numbers.length, 6);
   assert.equal(fixedReport.forecast.alternatives.length, 6);
   assert.ok(fixedReport.forecast.numbers.filter(n => fixedReport.forecast.alternatives.includes(n)).length <= 3);

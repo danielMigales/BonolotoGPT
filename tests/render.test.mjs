@@ -51,11 +51,12 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
 });
 
-test('La predicción usa exclusivamente recencia ponderada',async()=>{
+test('La predicción usa exclusivamente parejas habituales desde 2026',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
- assert.match(html,/El único criterio que ordena los números es la recencia ponderada/);
- assert.match(html,/Cada aparición aporta la mitad del peso al cumplir 8 sorteos de antigüedad/);
- assert.match(html,/Los recuentos de frecuencia, parejas y rachas que aparecen en otras secciones son únicamente descriptivos: no intervienen en la selección/);
+ assert.match(html,/La puntuación suma las frecuencias históricas de las 15 parejas posibles/);
+ assert.match(html,/desde el 1 de enero de 2026, sin ponderar su antigüedad/);
+ assert.match(html,/comparte como máximo tres números con la primera/);
  assert.match(html,/id="recent-repetitions-card"/);
- assert.doesNotMatch(html,/frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes Beta-Binomial y Markov regularizado/);
+ assert.match(html,/Recuento desde el 1 de enero de 2026/);
+ assert.doesNotMatch(html,/El único criterio que ordena los números es la recencia ponderada/);
 });
