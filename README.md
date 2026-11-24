@@ -12,11 +12,11 @@ Aplicación web en español para consultar los últimos sorteos de Bonoloto y el
 
 ## Método del laboratorio
 
-El laboratorio utiliza **un único método predictivo: recencia ponderada exponencial**, con una **semivida fija de 8 sorteos**. Cada aparición aporta la mitad de su peso al alcanzar ocho sorteos de antigüedad. No se combinan frecuencias acumuladas, parejas, Bayes, Markov ni otros modelos.
+El laboratorio utiliza **parejas habituales** con el histórico completo desde el **1 de enero de 2026**. Para cada combinación de seis números se suman las frecuencias de sus 15 parejas posibles. No se pondera la antigüedad: cada sorteo del periodo aporta una unidad a cada pareja que contiene.
 
-La primera combinación contiene los seis números con mayor puntuación; la segunda contiene los seis siguientes. Las métricas retrospectivas son descriptivas: no demuestran una ventaja predictiva ni garantizan premios.
+La primera combinación es la que obtiene la mayor puntuación total. La segunda aplica exactamente el mismo criterio, con un máximo de tres números compartidos con la primera. La interfaz muestra las parejas y sus frecuencias para justificar ambas selecciones.
 
-La Bonoloto es un sorteo aleatorio. Los resultados pasados no permiten garantizar ni demostrar una ventaja para el siguiente sorteo.
+El backtest es cronológico: cada predicción usa únicamente sorteos anteriores al que evalúa. Sus resultados son descriptivos y no garantizan premios ni demuestran capacidad predictiva.
 
 ## Archivos principales
 
