@@ -36,7 +36,7 @@ if (sourceArchive.draws.length > 7) {
   assert.equal(fixedReport.version, "4.0.0");
   assert.equal(fixedReport.window, 7);
   assert.equal(fixedReport.status, "ready");
-  assert.equal(fixedReport.drawCount, sourceArchive.draws.length);
+  assert.equal(fixedReport.drawCount, sourceArchive.draws.filter(draw => draw.date >= "2026-01-01").length);
   assert.equal(fixedReport.sourceLastDate, sourceArchive.latestDate);
   assert.equal(fixedReport.audit.simulations, fixedReport.metrics.simulations);
   assert.ok(fixedReport.audit.bootstrapReplicates >= 1000);
