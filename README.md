@@ -16,7 +16,7 @@ El laboratorio utiliza **parejas habituales** con el histórico completo desde e
 
 La primera combinación es la que obtiene la mayor puntuación total. La segunda aplica exactamente el mismo criterio, con un máximo de tres números compartidos con la primera. La interfaz muestra las parejas y sus frecuencias para justificar ambas selecciones.
 
-El backtest es cronológico: cada predicción usa únicamente sorteos anteriores al que evalúa. Sus resultados son descriptivos y no garantizan premios ni demuestran capacidad predictiva.
+El backtest es cronológico: cada predicción usa únicamente sorteos anteriores al que evalúa. Por el coste de la búsqueda exhaustiva, el informe público evalúa las cinco predicciones cronológicas más recientes disponibles; las parejas de la propuesta sí se calculan con todos los sorteos del periodo. Sus resultados son descriptivos y no garantizan premios ni demuestran capacidad predictiva.
 
 ## Archivos principales
 
