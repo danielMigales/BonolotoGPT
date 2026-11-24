@@ -42,6 +42,18 @@ def parse_draw(body, existing):
         raise ValueError("El reintegro debe estar entre 0 y 9.")
     date_text = date.isoformat()
     draws = existing.get("draws", [])
+    previous = next((item for item in draws if item.get("date") == date_text), None)
+    if previous:
+        same = (
+            previous.get("numbers") == sorted(numbers)
+            and previous.get("complementario") == complementario
+            and previous.get("reintegro") == reintegro
+        )
+        if not same:
+            raise ValueError(
+                f"Ya existe un sorteo para {date_text} con datos diferentes. "
+                "No se ha sobrescrito; revisa el resultado existente antes de corregirlo."
+            )
     row = {
         "id": "BONO-" + date.strftime("%Y%m%d"),
         "date": date_text,
