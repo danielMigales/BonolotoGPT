@@ -15,3 +15,11 @@
 ## Limpieza aplicada
 
 Motor, interfaz, datos generados, pruebas y workflows comparten ahora un único flujo de propuesta y evaluación. Los módulos heredados sin uso se han retirado.
+
+## 24 de noviembre de 2026 — Cambio autorizado de método
+
+- Se sustituye la recencia ponderada por parejas habituales.
+- El cálculo utiliza todos los sorteos desde el 1 de enero de 2026, sin ponderar antigüedad.
+- La primera combinación maximiza la suma de las frecuencias de sus 15 parejas.
+- La segunda aplica el mismo criterio y comparte como máximo tres números con la primera.
+- Se actualizan motor, pruebas, interfaz, construcción y documentación. No se modifican workflows ni el histórico.
