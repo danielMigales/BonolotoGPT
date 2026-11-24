@@ -23,7 +23,7 @@ El backtest es cronológico: cada predicción usa únicamente sorteos anteriores
 - `data/draws.json`: histórico normalizado de sorteos.
 - `web/index.html`: interfaz fuente.
 - `web/logic.js`: lógica de consulta y presentación del histórico.
-- `engine/model.js`: motor de recencia ponderada.
+- `engine/model.js`: motor de parejas habituales.
 - `scripts/update_data.py`: descarga y validación del histórico.
 - `scripts/build.mjs`: generación del sitio estático y del informe del laboratorio.
 - `public/`: sitio estático publicado.
