@@ -3,10 +3,25 @@
   "startDate": "1988-02-28",
   "source": "SELAE",
   "importSource": "https://lotoideas.com/bonoloto-resultados-historicos-de-todos-los-sorteos/",
-  "checkedAt": "2026-11-24T16:08:34.373051+00:00",
-  "latestDate": "2026-11-23",
-  "historyValidation": "frequency-discrepancy-with-selae",
+  "checkedAt": "2026-11-24T21:00:29.241Z",
+  "latestDate": "2026-11-24",
+  "historyValidation": "user-provided-latest-draw",
   "draws": [
+    {
+      "id": "BONO-20261124",
+      "date": "2026-11-24",
+      "numbers": [
+        9,
+        13,
+        34,
+        36,
+        37,
+        44
+      ],
+      "complementario": 27,
+      "reintegro": 4,
+      "source": "user-provided"
+    },
     {
       "id": "BONO-20261123",
       "date": "2026-11-23",
