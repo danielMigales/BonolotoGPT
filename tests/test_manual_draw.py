@@ -29,6 +29,20 @@ class ManualDrawTests(unittest.TestCase):
         self.assertNotIn("entryMethod", row)
         self.assertNotIn("source", row)
 
+    def test_rejects_conflicting_existing_draw_without_overwriting(self):
+        with self.assertRaisesRegex(ValueError, "No se ha sobrescrito"):
+            manual_draw.parse_draw(self.body(), self.existing)
+
+    def test_accepts_identical_existing_draw(self):
+        existing = {"draws": [{
+            "date": self.today,
+            "numbers": [7, 8, 9, 10, 11, 12],
+            "complementario": 13,
+            "reintegro": 4,
+        }]}
+        row = manual_draw.parse_draw(self.body(), existing)
+        self.assertEqual(row["numbers"], [7, 8, 9, 10, 11, 12])
+
     def test_rejects_repeated_main_numbers(self):
         with self.assertRaisesRegex(ValueError, "seis números distintos"):
             manual_draw.parse_draw(self.body(numbers="7, 8, 8, 10, 11, 12"), self.existing)
