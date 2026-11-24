@@ -11,7 +11,10 @@ test('El único método suma las frecuencias de parejas desde 2026',()=>{
  assert.equal(report.forecast.numbers.length,6);assert.equal(report.forecast.alternatives.length,6);
  assert.equal(report.forecast.selectionReasons.length,6);assert.equal(report.forecast.alternativeSelectionReasons.length,6);
  assert.ok(report.forecast.sharedNumbers<=3);assert.equal(report.forecast.pairHistoryStart,PAIR_HISTORY_START);
- assert.equal(report.forecast.score,scoreCombination(report.forecast.numbers,pairFrequencies(recentDraws)));
+ assert.equal(report.forecast.score,scoreCombination(report.forecast.numbers,pairFrequencies(recentDraws.slice(-7))));
+ assert.equal(report.forecast.pairDrawCount,7);
+ assert.equal(report.forecast.pairWindowStartDate,recentDraws[1].date);
+ assert.equal(report.forecast.pairWindowEndDate,recentDraws[7].date);
  assert.equal(report.rows.length,1);
 });
 test('Las parejas cuentan una vez por sorteo y la puntuación suma las 15 parejas',()=>{
@@ -22,7 +25,14 @@ test('Las parejas cuentan una vez por sorteo y la puntuación suma las 15 pareja
 test('El análisis excluye sorteos anteriores al 1 de enero de 2026',()=>{
  assert.equal(report.drawCount,8);assert.equal(report.sourceStartDate,PAIR_HISTORY_START);
 });
-test('El backtest entrena solo con sorteos anteriores al objetivo',()=>{
+test('La combinación actual solo usa los siete sorteos más recientes',()=>{
+ const older={date:'2026-08-31',numbers:[1,2,3,4,5,6]};
+ const baseline=analyze([...recentDraws]);
+ const withOlder=analyze([older,...recentDraws]);
+ assert.deepEqual(withOlder.forecast.numbers,baseline.forecast.numbers);
+ assert.equal(withOlder.forecast.pairDrawCount,7);
+});
+test('El backtest entrena solo con los siete sorteos anteriores más recientes',()=>{
  assert.equal(report.rows[0].trainingCount,7);assert.equal(report.rows[0].trainingEnd,recentDraws[6].date);
  assert.equal(report.rows[0].date,recentDraws[7].date);
 });
