@@ -20,7 +20,7 @@ La Bonoloto es aleatoria. No se promete capacidad predictiva ni se presenta el a
 
 ## Estado
 
-El modelo conserva seis métodos: frecuencia acumulada, frecuencia reciente, recencia ponderada, parejas y estructura, Bayes regularizado y Markov regularizado. Se excluyen azar uniforme y transición de repetición. La interfaz presenta dos combinaciones diferenciadas, con un máximo de tres números compartidos; ambas se explican y se evalúan por separado. La propuesta sigue siendo experimental y no hay evidencia de ventaja frente al azar.
+El modelo activo utiliza parejas habituales: suma las frecuencias de las 15 parejas de cada combinación con los sorteos desde el 1 de enero de 2026. La primera maximiza la puntuación; la segunda aplica el mismo criterio con un máximo de tres números compartidos. Ambas se explican y se evalúan por separado.
 
 
 ## DECISIONES VIGENTES CONFIRMADAS POR EL PROPIETARIO — 24-11-2026
