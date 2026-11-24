@@ -42,7 +42,7 @@ El repositorio contiene histórico y evaluación de predicciones de Bonoloto. La
 Estas aclaraciones sustituyen cualquier indicación contradictoria de las secciones antiguas de esta memoria:
 
 - Los resultados recientes que el propietario facilita manualmente cuando SELAE falla son válidos y fiables. La descarga automática falla repetidamente; no presentarla como funcional.
-- El modelo vigente utiliza **solo recencia ponderada**, con **semivida 8** (la configuración que mejor resultado ha ofrecido). Los demás métodos probados no han demostrado aportar aciertos y no están activos.
+- El modelo vigente utiliza **solo parejas habituales**: suma las frecuencias de las 15 parejas de cada combinación con todos los sorteos desde el **1 de enero de 2026**, sin ponderar antigüedad. La segunda combinación aplica el mismo criterio y comparte como máximo tres números con la primera. Esta decisión sustituye la recencia ponderada y la semivida 8.
 - El periodo de interés es desde el **1 de enero del año en curso**, no desde 1988.
 - Los errores del histórico no deben impedir que la web cargue.
 - La APK fue una prueba descartada porque no se actualiza; no es una línea activa.
