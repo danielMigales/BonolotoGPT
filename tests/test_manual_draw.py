@@ -13,7 +13,7 @@ SPEC.loader.exec_module(manual_draw)
 class ManualDrawTests(unittest.TestCase):
     def setUp(self):
         self.today = dt.datetime.now(ZoneInfo("Europe/Madrid")).date().isoformat()
-        self.existing = {"draws": [{"date": self.today, "numbers": [1, 2, 3, 4, 5, 6]}]}
+        self.existing = {"draws": []}
 
     def body(self, date=None, numbers="7, 8, 9, 10, 11, 12", complementario="13", reintegro="4"):
         return (
@@ -31,7 +31,7 @@ class ManualDrawTests(unittest.TestCase):
 
     def test_rejects_conflicting_existing_draw_without_overwriting(self):
         with self.assertRaisesRegex(ValueError, "No se ha sobrescrito"):
-            manual_draw.parse_draw(self.body(), self.existing)
+            manual_draw.parse_draw(self.body(), {"draws": [{"date": self.today, "numbers": [1, 2, 3, 4, 5, 6]}]})
 
     def test_accepts_identical_existing_draw(self):
         existing = {"draws": [{
