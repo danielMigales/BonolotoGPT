@@ -12,11 +12,11 @@ Aplicación web en español para consultar los últimos sorteos de Bonoloto y el
 
 ## Método del laboratorio
 
-El laboratorio utiliza **parejas habituales** con el histórico completo desde el **1 de enero de 2026**. Para cada combinación de seis números se suman las frecuencias de sus 15 parejas posibles. No se pondera la antigüedad: cada sorteo del periodo aporta una unidad a cada pareja que contiene.
+El laboratorio utiliza **parejas habituales** calculadas exclusivamente con los **últimos 7 sorteos disponibles**. Para cada combinación de seis números se suman las frecuencias de sus 15 parejas posibles dentro de esa ventana. Los sorteos anteriores no intervienen en la puntuación de la combinación actual.
 
 La primera combinación es la que obtiene la mayor puntuación total. La segunda aplica exactamente el mismo criterio, con un máximo de tres números compartidos con la primera. La interfaz muestra las parejas y sus frecuencias para justificar ambas selecciones.
 
-El backtest es cronológico: cada predicción usa únicamente sorteos anteriores al que evalúa. Por el coste de la búsqueda exhaustiva, el informe público evalúa las cinco predicciones cronológicas más recientes disponibles; las parejas de la propuesta sí se calculan con todos los sorteos del periodo. Sus resultados son descriptivos y no garantizan premios ni demuestran capacidad predictiva.
+El backtest es cronológico: cada predicción usa únicamente los 7 sorteos anteriores más recientes al que evalúa. Por el coste de la búsqueda exhaustiva, el informe público evalúa las cinco predicciones cronológicas más recientes disponibles. Sus resultados son descriptivos y no garantizan premios ni demuestran capacidad predictiva.
 
 ## Archivos principales
 
