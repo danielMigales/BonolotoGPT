@@ -51,12 +51,12 @@ test('La portada no muestra el bote estimado ni el resumen de métricas',async()
  assert.match(html,/<section class="stats" aria-label="Resumen del archivo" hidden>/);
 });
 
-test('La predicción usa exclusivamente parejas habituales desde 2026',async()=>{
+test('La predicción usa exclusivamente parejas habituales de los últimos siete sorteos',async()=>{
  const html=await readFile(new URL('../web/index.html',import.meta.url),'utf8');
  assert.match(html,/La puntuación suma las frecuencias históricas de las 15 parejas posibles/);
- assert.match(html,/desde el 1 de enero de 2026, sin ponderar su antigüedad/);
+ assert.match(html,/exclusivamente los últimos 7 sorteos disponibles/);
  assert.match(html,/comparte como máximo tres números con la primera/);
  assert.match(html,/id="recent-repetitions-card"/);
- assert.match(html,/Recuento desde el 1 de enero de 2026/);
+ assert.match(html,/Recuento de los últimos/);
  assert.doesNotMatch(html,/El único criterio que ordena los números es la recencia ponderada/);
 });
