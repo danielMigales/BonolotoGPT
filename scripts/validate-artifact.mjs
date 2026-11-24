@@ -46,7 +46,7 @@ if (sourceArchive.draws.length > 7) {
   assert.ok(Number.isFinite(fixedReport.audit.deltaVsRandom));
   assert.ok(Number.isFinite(fixedReport.metrics.recent100.threePlusRate));
   assert.ok(Array.isArray(fixedReport.forecast.recentSignals));
-  assert.deepEqual(fixedReport.methods, ["Recencia ponderada"]);
+  assert.deepEqual(fixedReport.methods, ["Parejas habituales"]);
   assert.equal(fixedReport.objective.pairHistoryStart, "2026-01-01");
   assert.equal(fixedReport.forecast.sharedNumbers <= 3, true);
   assert.equal(fixedReport.forecast.pairHistoryStart, "2026-01-01");
