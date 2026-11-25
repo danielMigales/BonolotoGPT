@@ -10,13 +10,25 @@ Aplicación web en español para consultar los últimos sorteos de Bonoloto y el
 - Backtesting cronológico descriptivo y auditoría frente a una referencia aleatoria teórica.
 - Actualización y validación del histórico con fuentes de SELAE.
 
-## Método del laboratorio
+## Método activo actualmente
 
 El laboratorio utiliza **parejas habituales** con el histórico completo desde el **1 de enero de 2026**. Para cada combinación de seis números se suman las frecuencias de sus 15 parejas posibles. No se pondera la antigüedad: cada sorteo del periodo aporta una unidad a cada pareja que contiene.
 
 La primera combinación es la que obtiene la mayor puntuación total. La segunda aplica exactamente el mismo criterio, con un máximo de tres números compartidos con la primera. La interfaz muestra las parejas y sus frecuencias para justificar ambas selecciones.
 
 El backtest es cronológico: cada predicción usa únicamente sorteos anteriores al que evalúa. Por el coste de la búsqueda exhaustiva, el informe público evalúa las cinco predicciones cronológicas más recientes disponibles; las parejas de la propuesta sí se calculan con todos los sorteos del periodo. Sus resultados son descriptivos y no garantizan premios ni demuestran capacidad predictiva.
+
+## Próxima modificación solicitada del laboratorio — 25-11-2026
+
+Esta es una especificación solicitada y **pendiente de implementación**; no describe todavía el comportamiento publicado:
+
+- Crear **siete pestañas**, una por cada método de análisis, sin mezclar los criterios entre pestañas.
+- Cada método debe generar **dos combinaciones** de seis números.
+- La ventana de cálculo será exclusivamente la de los **diez sorteos más recientes del año en curso**.
+- No utilizar sorteos de años anteriores, aunque hicieran falta para completar diez observaciones.
+- Los métodos mencionados expresamente por el propietario son Markov, recencia ponderada, Bayes y frecuencia acumulada. Parejas habituales es el método activo actual.
+- La documentación y el código revisados no acreditan que ya existan siete métodos predictivos independientes. Antes de programar, hay que identificar en el proyecto qué otros métodos están documentados y distinguirlos de criterios nuevos que habría que diseñar. No inventar ni presentar como existentes métodos que solo sean estadísticas descriptivas.
+- La lista definitiva de los siete métodos y sus fórmulas queda pendiente de cerrar tras esa revisión. No se debe sustituir esta decisión por una lista propuesta sin validación.
 
 ## Archivos principales
 
@@ -39,3 +51,7 @@ Repositorio: https://github.com/danielMigales/BonolotoGPT
 GitHub Actions ejecuta las pruebas, construye la aplicación y publica `public/` en GitHub Pages. La actualización automática del histórico depende de que la descarga y validación de los resultados finalice correctamente.
 
 Nunca se inventan resultados ni se rellenan datos ausentes con ejemplos.
+
+## Registro de trabajo y reglas de continuidad
+
+Cada cambio autorizado debe anotarse en `HISTORIAL_TRABAJO.md` y reflejarse en los documentos técnicos afectados. La documentación se consulta antes de modificar el proyecto y se actualiza en el mismo trabajo que modifica el código. Registrar decisiones, fórmulas, parámetros, archivos afectados, verificaciones, tareas pendientes y decisiones descartadas. No introducir automatizaciones, cambios de histórico ni modificaciones de workflows sin autorización expresa.
